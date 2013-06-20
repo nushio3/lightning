@@ -1,6 +1,6 @@
-all: build doc
+all: build
 
-.PHONY: init build doc test
+.PHONY: init build doc test CI sync
 
 init:
 	cabal install --only-dependencies --enable-tests
@@ -17,3 +17,8 @@ install: init build test
 
 doc:
 	cabal haddock --hyperlink-source
+
+sync:
+	git pull
+
+CI: sync init test

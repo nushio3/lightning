@@ -21,7 +21,7 @@ doc:
 sync:
 	git pull
 
-paper:
+paper: build
 	./dist/build/make-paper/make-paper
 
 CI: sync test paper

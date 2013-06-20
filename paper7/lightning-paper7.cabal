@@ -20,9 +20,13 @@ Data-Files:          material/aastex.cls
 
 library
   exposed-modules:   
+                     Paper
                      Physics.ProtoPlanetaryDisk
   other-modules:     Paths_lightning_paper7
   build-depends:     base ==4.*
+                   , HaTeX
+                   , text
+
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/
 
@@ -33,6 +37,8 @@ executable make-paper
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    exe-src/
   Build-Depends:     base
+                   , lightning-paper7
+
                    , directory
                    , process
                    , shake >= 0.10.5

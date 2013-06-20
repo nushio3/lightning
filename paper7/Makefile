@@ -1,6 +1,6 @@
-all: build
+all: paper
 
-.PHONY: init build doc test CI sync paper
+.PHONY: init build clean doc test CI sync paper
 
 init:
 	cabal install --only-dependencies --enable-tests
@@ -8,6 +8,9 @@ init:
 
 build: init
 	cabal build
+
+clean:
+	cabal clean
 
 test: build
 	cabal test

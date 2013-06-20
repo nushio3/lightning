@@ -2,37 +2,40 @@ module Main where
 
 import Development.Shake
 import Development.Shake.FilePath
-import System.Directory (setCurrentDirectory)
+import System.Directory (getCurrentDirectory, setCurrentDirectory)
 import System.Process (system)
 import Text.Printf
 
+import Paper(writePaper)
 
-workDir, unWorkDir :: FilePath
+
+workDir :: FilePath
 workDir = "dist/work"
-unWorkDir = "../../"
 
 main :: IO ()
 main = do
-  _ <- system $ printf "mkdir %s" workDir
-  setCurrentDirectory workDir
-
+  _ <- system $ printf "mkdir -p %s" workDir
   shakeArgs shakeOptions $ do
-    want ["paper.pdf"]
+    want [workDir </> "paper.pdf"]
     rulesExt
     rulesFiles
 
 rulesExt :: Rules()
 rulesExt = do
-  "*.pdf" *> \out -> do
+  "//*.pdf" *> \out -> do
     let src = out -<.> "tex"
-    need [src, "aastex.cls"]
-    system' "pdflatex" [src]
+        cls = takeDirectory out </> "aastex.cls"
+    need [src, cls]
+    system' "pdflatex" ["-output-directory=" ++ workDir, src]
 
 rulesFiles :: Rules()
 rulesFiles = do
-  "paper.tex" *> \_out -> do
-    copyFile' (unWorkDir </> "material/template.tex") "paper.tex"
+  "//paper.tex" *> \out -> do
+    let src = "./material/template.tex"
+        exe = "./dist/build/make-paper/make-paper"
+    need [src,exe]
+    liftIO $ writePaper src out
 
-  "*.cls" *> \out -> do
-    let src = unWorkDir </> "material" </> out
+  "dist//*.cls" *> \out -> do
+    let src = "material" </> takeFileName out
     copyFile' src out

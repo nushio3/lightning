@@ -24,8 +24,10 @@ library
                      Physics.ProtoPlanetaryDisk
   other-modules:     Paths_lightning_paper7
   build-depends:     base ==4.*
-                   , HaTeX
+                   , HaTeX >= 3.5
+                   , mtl
                    , text
+                   , transformers
 
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/

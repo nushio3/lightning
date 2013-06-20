@@ -1,12 +1,12 @@
 all: build
 
-.PHONY: init build doc test CI sync
+.PHONY: init build doc test CI sync paper
 
 init:
 	cabal install --only-dependencies --enable-tests
 	cabal configure --enable-tests
 
-build:
+build: init
 	cabal build
 
 test: build
@@ -21,4 +21,7 @@ doc:
 sync:
 	git pull
 
-CI: sync init test
+paper:
+	./dist/build/make-paper/make-paper
+
+CI: sync test paper

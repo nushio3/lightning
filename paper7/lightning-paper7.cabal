@@ -21,12 +21,14 @@ Data-Files:          material/aastex.cls
 library
   exposed-modules:   
                      Control.Monad.Author
+                     Control.Monad.Author.Label
                      Control.Monad.Author.State
                      Control.Monad.Author.Type
                      Paper
                      Physics.ProtoPlanetaryDisk
   other-modules:     Paths_lightning_paper7
   build-depends:     base ==4.*
+                   , containers 
                    , data-default >= 0.5.3
                    , HaTeX >= 3.6
                    , lens >= 3.9.0.2

@@ -26,7 +26,7 @@ library
                      Control.Monad.Author.State
                      Control.Monad.Author.Type
                      Paper
-                     Physics.ProtoPlanetaryDisk
+                     Model.Disk.Hayashi
 
   other-modules:     Paths_lightning_paper7
   build-depends:     base ==4.*
@@ -37,6 +37,7 @@ library
                    , mtl
                    , text
                    , transformers
+                   , unittyped >= 0.3.1
 
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/

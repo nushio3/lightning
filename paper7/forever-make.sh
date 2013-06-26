@@ -1,5 +1,5 @@
 while :
 do
-    inotifywait -r --exclude *~ src/
+    inotifywait -e modify --exclude *~ -r src/
     make
 done

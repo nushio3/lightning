@@ -26,7 +26,7 @@ rulesExt = do
     let src = out -<.> "tex"
         cls = takeDirectory out </> "aastex.cls"
     need [src, cls]
-    system' "pdflatex" ["-output-directory=" ++ workDir, src]
+    system' "pdflatex" ["-output-directory=" ++ workDir, "-halt-on-error", src]
 
 rulesFiles :: Rules()
 rulesFiles = do

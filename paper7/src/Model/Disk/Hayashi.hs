@@ -40,9 +40,11 @@ surfaceDensity r =
       sigmoid (val $ (r |-| innerRadius) |/| scaleHeight r) *
       sigmoid (val $ (r |-| outerRadius) |/| scaleHeight r) 
 
-surfaceDensityDoc :: LTX.LaTeXC l => l
-surfaceDensityDoc = LTX.sigmau <> LTX.autoParens "r"
-
+surfaceDensityDoc :: Monad m => AuthorT m ()
+surfaceDensityDoc = do
+  LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
+  1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
+  LTX.mathrm ("g/cm" **2)
 
 temperatureField :: Floating a => a :| AstronomicalUnit -> a :| Kelvin
 temperatureField r = 280 *| kelvin |*| 

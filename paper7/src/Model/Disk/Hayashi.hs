@@ -1,25 +1,36 @@
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
-import UnitTyped 
-import UnitTyped.SI 
-import UnitTyped.SI.Constants
-import UnitTyped.SI.Meta
-import UnitTyped.SI.Derived.Length 
-import UnitTyped.SI.Derived.Time
-
+import           Control.Monad.Author
+import           Data.Monoid ((<>))
+import qualified Text.LaTeX as LTX
+import qualified Text.LaTeX.Base.Class as LTX
+import qualified Text.LaTeX.Packages.AMSMath as LTX
+import qualified Text.LaTeX.Utils as LTX
+import           UnitTyped 
+import           UnitTyped.SI 
+import           UnitTyped.SI.Constants
+import           UnitTyped.SI.Meta
+import           UnitTyped.SI.Derived.Length 
+import           UnitTyped.SI.Derived.Time
 import qualified UnitTyped.NoPrelude as U 
 
+hayashiModelDoc :: Monad m =>  AuthorT m ()
+hayashiModelDoc = do
+  "Hayashi model is as follows."
+  LTX.eqnarray $ do
+    surfaceDensityDoc
+
 innerRadius, outerRadius, snowlineRadius :: Fractional a => a :| AstronomicalUnit
-innerRadius = 0.35*| astronomicalUnit
-outerRadius = 2.7*| astronomicalUnit
+innerRadius = 0.35  *| astronomicalUnit
+outerRadius = 2.7   *| astronomicalUnit
 snowlineRadius = 36 *| astronomicalUnit
 
 
 surfaceDensity :: Floating a => a :| AstronomicalUnit -> 
  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] a
-
 surfaceDensity r = 
   cutoff *|
    (1700 *| gram |/| square (centi meter)) |*| 
@@ -28,6 +39,10 @@ surfaceDensity r =
     cutoff = 
       sigmoid (val $ (r |-| innerRadius) |/| scaleHeight r) *
       sigmoid (val $ (r |-| outerRadius) |/| scaleHeight r) 
+
+surfaceDensityDoc :: LTX.LaTeXC l => l
+surfaceDensityDoc = LTX.sigmau <> LTX.autoParens "r"
+
 
 temperatureField :: Floating a => a :| AstronomicalUnit -> a :| Kelvin
 temperatureField r = 280 *| kelvin |*| 

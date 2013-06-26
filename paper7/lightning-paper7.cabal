@@ -25,8 +25,10 @@ library
                      Control.Monad.Author.Ref
                      Control.Monad.Author.State
                      Control.Monad.Author.Type
-                     Paper
                      Model.Disk.Hayashi
+                     Paper
+                     Paper.SectionModel
+                     Text.LaTeX.Utils
 
   other-modules:     Paths_lightning_paper7
   build-depends:     base ==4.*

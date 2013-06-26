@@ -12,9 +12,11 @@ import qualified Data.Text.IO as Text
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import           Text.LaTeX.Base.Class (liftL)
-import qualified Text.LaTeX as TeX
-import qualified Text.LaTeX.Packages.Graphicx as TeX
+import qualified Text.LaTeX as LTX
+import qualified Text.LaTeX.Packages.Graphicx as LTX
 import           Text.LaTeX.Packages.AMSMath (autoParens)
+
+import           Paper.SectionModel (sectionModel)
 
 writePaper :: FilePath -> FilePath -> IO ()
 writePaper srcFn outFn = do
@@ -31,20 +33,21 @@ writePaper srcFn outFn = do
       | otherwise                          = str
 
 abstractText :: Text.Text
-abstractText = TeX.render abstract
+abstractText = LTX.render abstract
 
 abstract :: LaTeX
 abstract = TeXRaw "We study lightning distribution in protoplanetary disks."
 
 bodyText :: Text.Text
-bodyText = TeX.render $
+bodyText = LTX.render $
   runIdentity $ runAuthorT $ do
     sectionIntro
+    sectionModel
     sectionConclusion
 
 sectionIntro :: Monad m => AuthorT m ()
 sectionIntro = do
-  TeX.section "Introduction"
+  LTX.section "Introduction"
   "intro bra bra."
   (liftL $ TeXEnv "eqnarray" []) $
     autoParens(x+y)*autoParens(1/x+y)
@@ -53,9 +56,10 @@ sectionIntro = do
       x = "x"
       y = "y"
 
+
 sectionConclusion :: Monad m => AuthorT m ()
 sectionConclusion = do
-  TeX.section "Conclusion"
+  LTX.section "Conclusion"
   modify id
   "distribution was shown."
   2 * 3.14e96

@@ -11,6 +11,7 @@ import qualified Data.Text    as Text
 import qualified Data.Text.IO as Text
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
+import           Text.LaTeX.Base.Class (liftL)
 import qualified Text.LaTeX as TeX
 import qualified Text.LaTeX.Packages.Graphicx as TeX
 import           Text.LaTeX.Packages.AMSMath (autoParens)
@@ -45,7 +46,7 @@ sectionIntro :: Monad m => AuthorT m ()
 sectionIntro = do
   TeX.section "Introduction"
   "intro bra bra."
-  TeX.liftL $ TeXEnv "eqnarray" [] $ do
+  (liftL $ TeXEnv "eqnarray" []) $
     autoParens(x+y)*autoParens(1/x+y)
 
   where
@@ -55,5 +56,6 @@ sectionIntro = do
 sectionConclusion :: Monad m => AuthorT m ()
 sectionConclusion = do
   TeX.section "Conclusion"
-  modify (id :: AuthorState ->  AuthorState)
+  modify id
   "distribution was shown."
+  2 * 3.14e96

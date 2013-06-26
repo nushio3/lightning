@@ -22,6 +22,7 @@ library
   exposed-modules:   
                      Control.Monad.Author
                      Control.Monad.Author.State
+                     Control.Monad.Author.Type
                      Paper
                      Physics.ProtoPlanetaryDisk
   other-modules:     Paths_lightning_paper7

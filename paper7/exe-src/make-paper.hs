@@ -11,7 +11,7 @@ import Paper(writePaper)
 
 
 workDir :: FilePath
-workDir = "dist/work"
+workDir = "dist/output"
 
 main :: IO ()
 main = do
@@ -25,12 +25,26 @@ rulesExt :: Rules()
 rulesExt = do
   "//*.pdf" *> \out -> do
     let src = out -<.> "tex"
+        heresrc = "paper.tex"
         cls = takeDirectory out </> "aastex.cls"
         bib = takeDirectory out </> "the.bib"
-    need [src, cls, bib]
+        bst = takeDirectory out </> "apj.bst" 
+    need [src, cls, bib, bst]
 
-    system' "bibtex" [src]
-    system' "pdflatex" ["-output-directory=" ++ workDir, "-halt-on-error", src]
+    let 
+      cmd = unlines $
+        [ printf "pdflatex -halt-on-error %s" heresrc
+        , printf "bibtex %s" heresrc
+        , printf "pdflatex -halt-on-error %s" heresrc
+        , printf "pdflatex -halt-on-error %s" heresrc
+          ]
+      runnerFn :: FilePath
+      runnerFn = "run.sh"
+    liftIO $ do
+      writeFile (workDir </> runnerFn) cmd
+      system $ "chmod 755 " ++ (workDir </> runnerFn)
+      system $ printf "chdir %s; ./%s;" workDir runnerFn
+      return ()
 
 rulesFiles :: Rules()
 rulesFiles = do
@@ -44,6 +58,10 @@ rulesFiles = do
     let src = "material" </> takeFileName out
     copyFile' src out
     
+  "dist//*.bst" *> \out -> do
+    let src = "material" </> takeFileName out
+    copyFile' src out
+
   "dist//*.bib" *> \out -> do
     let src = "material" </> takeFileName out
         bibFn1 = "/home/nushio/My Library.bib"

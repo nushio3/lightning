@@ -1,8 +1,9 @@
 module Main where
 
+import Control.Monad
 import Development.Shake
 import Development.Shake.FilePath
-import System.Directory (getCurrentDirectory, setCurrentDirectory)
+import System.Directory (getCurrentDirectory, setCurrentDirectory, doesFileExist)
 import System.Process (system)
 import Text.Printf
 
@@ -26,6 +27,16 @@ rulesExt = do
     let src = out -<.> "tex"
         cls = takeDirectory out </> "aastex.cls"
     need [src, cls]
+
+    liftIO $ do
+      let bibFn1 = "/home/nushio/My Library.bib"
+          bibFn2 = "./material/the.bib"
+      b <- System.Directory.doesFileExist bibFn1
+      when b $ do
+        system $ printf "cp '%s' %s" bibFn1 bibFn2
+        return ()
+      when (not b) $ do
+        printf "NAOI"
     system' "pdflatex" ["-output-directory=" ++ workDir, "-halt-on-error", src]
 
 rulesFiles :: Rules()

@@ -26,17 +26,10 @@ rulesExt = do
   "//*.pdf" *> \out -> do
     let src = out -<.> "tex"
         cls = takeDirectory out </> "aastex.cls"
-    need [src, cls]
+        bib = takeDirectory out </> "the.bib"
+    need [src, cls, bib]
 
-    liftIO $ do
-      let bibFn1 = "/home/nushio/My Library.bib"
-          bibFn2 = "./material/the.bib"
-      b <- System.Directory.doesFileExist bibFn1
-      when b $ do
-        system $ printf "cp '%s' %s" bibFn1 bibFn2
-        return ()
-      when (not b) $ do
-        printf "NAOI"
+    system' "bibtex" [src]
     system' "pdflatex" ["-output-directory=" ++ workDir, "-halt-on-error", src]
 
 rulesFiles :: Rules()
@@ -50,3 +43,18 @@ rulesFiles = do
   "dist//*.cls" *> \out -> do
     let src = "material" </> takeFileName out
     copyFile' src out
+    
+  "dist//*.bib" *> \out -> do
+    let src = "material" </> takeFileName out
+        bibFn1 = "/home/nushio/My Library.bib"
+        bibFn2 = "./material/the.bib"
+    
+    liftIO $ do
+      b <- System.Directory.doesFileExist bibFn1
+      when b $ do
+        system $ printf "cp '%s' %s" bibFn1 bibFn2
+        return ()
+      when (not b) $ do
+        printf "ARAHEN!"
+    
+    copyFile' bibFn2 out    

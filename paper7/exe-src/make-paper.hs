@@ -28,13 +28,13 @@ rulesExt = do
         heresrc = "paper.tex"
         cls = takeDirectory out </> "aastex.cls"
         bib = takeDirectory out </> "the.bib"
-        bst = takeDirectory out </> "apj.bst" 
+        bst = takeDirectory out </> "apj.bst"
     need [src, cls, bib, bst]
 
-    let 
+    let
       cmd = unlines $
         [ printf "pdflatex -halt-on-error %s" heresrc
-        , printf "bibtex %s" heresrc
+        , printf "bibtex paper"
         , printf "pdflatex -halt-on-error %s" heresrc
         , printf "pdflatex -halt-on-error %s" heresrc
           ]
@@ -43,7 +43,7 @@ rulesExt = do
     liftIO $ do
       writeFile (workDir </> runnerFn) cmd
       system $ "chmod 755 " ++ (workDir </> runnerFn)
-      system $ printf "chdir %s; ./%s;" workDir runnerFn
+      system $ printf "cd %s; ./%s;" workDir runnerFn
       return ()
 
 rulesFiles :: Rules()
@@ -57,7 +57,7 @@ rulesFiles = do
   "dist//*.cls" *> \out -> do
     let src = "material" </> takeFileName out
     copyFile' src out
-    
+
   "dist//*.bst" *> \out -> do
     let src = "material" </> takeFileName out
     copyFile' src out
@@ -66,7 +66,7 @@ rulesFiles = do
     let src = "material" </> takeFileName out
         bibFn1 = "/home/nushio/My Library.bib"
         bibFn2 = "./material/the.bib"
-    
+
     liftIO $ do
       b <- System.Directory.doesFileExist bibFn1
       when b $ do
@@ -74,5 +74,5 @@ rulesFiles = do
         return ()
       when (not b) $ do
         printf "ARAHEN!"
-    
-    copyFile' bibFn2 out    
+
+    copyFile' bibFn2 out

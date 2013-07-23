@@ -26,7 +26,10 @@ library
     Control.Monad.Author.State
     Control.Monad.Author.Type
     Data.Reflection.Typed
+    Figure.DiskSection
     Figure.Gnuplot
+    Figure.Shake
+    GlobalConfig
     HereDocument
     Model.Concepts
     Model.Disk.Hayashi
@@ -38,19 +41,21 @@ library
     UnitTyped.Synonyms
 
   other-modules:     Paths_lightning_paper7
-  build-depends:     base ==4.*
-                   , containers 
-                   , data-default >= 0.5.3
-                   , HaTeX >= 3.6
-                   , lens >= 3.9.0.2
-                   , mtl
-                   , process   
-                   , reflection >= 1.3.2
-                   , tagged
-                   , template-haskell
-                   , text
-                   , transformers
-                   , unittyped >= 0.3.1
+  build-depends:     
+      base ==4.*
+    , containers 
+    , data-default >= 0.5.3
+    , HaTeX >= 3.6
+    , lens >= 3.9.0.2
+    , mtl
+    , process   
+    , reflection >= 1.3.2
+    , tagged
+    , template-haskell
+    , text
+    , transformers
+    , shake
+    , unittyped >= 0.3.1
 
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/

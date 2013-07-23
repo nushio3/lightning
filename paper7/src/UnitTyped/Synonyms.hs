@@ -11,4 +11,16 @@ import           UnitTyped.SI.Derived.Length
 import           UnitTyped.SI.Derived.Time
 import qualified UnitTyped.NoPrelude as U
 
-type GPerCM2 a =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] a
+type GramPerCm2 a =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] a
+type GramPerCm3 a =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] a
+
+type CmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ] a
+
+type AU a = a :| AstronomicalUnit
+
+type Cm a = a :| Centi Meter
+
+type CoulombPerCm2 a = 
+  Value
+    '[ '(Current, POne), '(Length, NTwo), '(Time, POne)]
+    '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] a

@@ -3,7 +3,7 @@ module Main where
 import Control.Monad
 import Development.Shake
 import Development.Shake.FilePath
-import System.Directory (getCurrentDirectory, setCurrentDirectory, doesFileExist)
+import System.Directory (doesFileExist)
 import System.Process (system)
 import Text.Printf
 
@@ -30,7 +30,8 @@ rulesExt = do
         bib = takeDirectory out </> "the.bib"
         bst = takeDirectory out </> "apj.bst"
     need [src, cls, bib, bst]
-
+    need $ map (printf "%s/fig%d.eps" workDir :: Int -> String) [1..1]
+    
     let
       cmd = unlines $
         [ printf "pdflatex -halt-on-error %s" heresrc
@@ -46,8 +47,10 @@ rulesExt = do
       system $ printf "cd %s; ./%s;" workDir runnerFn
       return ()
 
-rulesFiles :: Rules()
+rulesFiles :: Rules ()
 rulesFiles = do
+  rulesFigures
+
   "//paper.tex" *> \out -> do
     let src = "./material/template.tex"
         exe = "./dist/build/make-paper/make-paper"
@@ -76,3 +79,12 @@ rulesFiles = do
         printf "ARAHEN!"
 
     copyFile' bibFn2 out
+
+rulesFigures :: Rules ()
+rulesFigures = do
+  workDir </> "fig1.eps" *> \outFn -> do
+    liftIO $ writeFile outFn "hoge\n"
+    let motoFn = workDir </> "dat1.txt"
+    need [motoFn]
+  workDir </> "dat1.txt" *> \outFn -> do
+    liftIO $ writeFile outFn "huga\n"    

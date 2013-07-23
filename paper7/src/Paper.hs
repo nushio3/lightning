@@ -17,6 +17,7 @@ import qualified Text.LaTeX.Packages.Graphicx as LTX
 import           Text.LaTeX.Packages.AMSMath (autoParens)
 
 import           Paper.SectionModel (sectionModel)
+import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 
 writePaper :: FilePath -> FilePath -> IO ()
 writePaper srcFn outFn = do
@@ -44,6 +45,7 @@ bodyText = LTX.render $
     sectionIntro
     sectionModel
     sectionConclusion
+    sectionAcknowledgement
 
 sectionIntro :: Monad m => AuthorT m ()
 sectionIntro = do

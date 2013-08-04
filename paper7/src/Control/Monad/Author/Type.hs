@@ -1,22 +1,21 @@
-{-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 module Control.Monad.Author.Type where
 
 import           Text.LaTeX (LaTeX)
-import           Control.Monad.State.Strict (StateT(..), evalStateT, MonadState(..))
+import           Control.Monad.RWS
 import           Control.Monad.Trans.Class (lift)
 import           Data.Default (def)
+import           Text.LaTeX.Base.Syntax (LaTeX)
 import           Text.LaTeX.Base.Writer (LaTeXT, execLaTeXT)
 import qualified Control.Monad.Author.State as AuthorState
 
 
-type AuthorT m = LaTeXT (StateT AuthorState.Root m)
+type AuthorT = RWST () LaTeX AuthorState.Root
+type MonadAuthor = MonadRWS () LaTeX AuthorState.Root
 
-runAuthorT :: Monad m => AuthorT m a -> m LaTeX
-runAuthorT = flip evalStateT def . execLaTeXT
+runAuthorT :: Monad m => AuthorT m a -> m (a, AuthorState.Root, LaTeX)
+runAuthorT prog = runRWST prog () def
 
-instance Monad m => MonadState AuthorState.Root (AuthorT m) where
-    get = lift get
-    put = lift . put
-    state = lift . state

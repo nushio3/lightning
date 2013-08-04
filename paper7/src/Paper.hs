@@ -3,7 +3,7 @@ module Paper where
 
 
 import           Control.Monad.Author
-import           Control.Monad.Writer (execWriter, tell)
+import           Control.Monad.RWS
 import           Control.Monad.State.Strict (modify)
 import           Data.Monoid ((<>))
 import           Data.Functor.Identity
@@ -40,28 +40,21 @@ abstract :: LaTeX
 abstract = TeXRaw "We study lightning distribution in protoplanetary disks."
 
 bodyText :: Text.Text
-bodyText = LTX.render $
-  runIdentity $ runAuthorT $ do
-    sectionIntro
-    sectionModel
-    sectionConclusion
-    sectionAcknowledgement
+bodyText = LTX.render $ bodyTeX
+  where
+    (_,_,bodyTeX) = runIdentity $ runAuthorT $ do
+      sectionIntro
+      sectionModel
+      sectionConclusion
+      sectionAcknowledgement
 
 sectionIntro :: Monad m => AuthorT m ()
 sectionIntro = do
-  LTX.section "Introduction"
-  "intro bra bra."
-  (liftL $ TeXEnv "eqnarray" []) $
-    autoParens(x+y)*autoParens(1/x+y)
-
-  where
-      x = "x"
-      y = "y"
-
+  tell $ LTX.section "Introduction"
+  tell $ "intro bra bra."
 
 sectionConclusion :: Monad m => AuthorT m ()
 sectionConclusion = do
-  LTX.section "Conclusion"
-  modify id
-  "distribution was shown."
-  2 * 3.14e96
+  tell $ LTX.section "Conclusion"
+  tell $ "distribution was shown."
+

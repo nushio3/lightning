@@ -6,6 +6,7 @@
 module Model.Disk.Hayashi where
 
 import           Control.Monad.Author
+import           Control.Monad.RWS (tell)
 import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
 import           Model.Concepts
@@ -24,7 +25,7 @@ import qualified UnitTyped.NoPrelude as U
 
 hayashiModelDoc :: Monad m =>  AuthorT m ()
 hayashiModelDoc = do
-  "Hayashi model is as follows."
+  tell "Hayashi model is as follows."
   LTX.eqnarray $ do
     surfaceDensityGasDoc
 
@@ -58,9 +59,9 @@ densityGas = autoc $
 
 surfaceDensityGasDoc :: Monad m => AuthorT m ()
 surfaceDensityGasDoc = do
-  LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
-  1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
-  LTX.mathrm ("g/cm" **2)
+  tell $ LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
+  tell $ 1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
+  tell $ LTX.mathrm ("g/cm" **2)
 
 temperature :: Given OrbitalRadius => Double :| Kelvin
 temperature = 280 *| kelvin |*|

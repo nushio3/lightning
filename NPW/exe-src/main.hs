@@ -17,7 +17,7 @@ main = gogo
   where
     gogo = do
       str0 <- BS.readFile "/dev/urandom"
-      let str = take 10 $ concat $ map (show.(flip mod 10).fromEnum) $ BS.unpack str0
+      let str = ("run-"++) $ take 10 $ concat $ map (show.(flip mod 10).fromEnum) $ BS.unpack str0
       system $ printf "mkdir -p %s" str
       go str 0 sys1
       gogo

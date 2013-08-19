@@ -18,11 +18,29 @@ cabal-version:       >=1.8
 library
   build-depends:     
     base ==4.6.*
+   ,containers
+   ,mtl
    ,repa
    ,repa-io
   exposed-modules:     
     Field
+    Lightning
+
   hs-source-dirs:
     src/
   ghc-options:
-    -Wall -O2
+    -Wall -O2 -threaded
+
+executable main
+  build-depends:     
+    base ==4.6.*
+   ,NPW
+   ,repa
+   ,repa-io
+   
+  main-is:
+    main.hs
+  hs-source-dirs:
+    exe-src/
+  ghc-options:
+    -Wall -O2 -threaded

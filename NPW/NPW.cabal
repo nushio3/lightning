@@ -36,8 +36,10 @@ library
 executable main
   build-depends:     
     base ==4.6.*
+   ,bytestring
    ,containers
    ,NPW
+   ,process
    ,repa
    ,repa-io
 

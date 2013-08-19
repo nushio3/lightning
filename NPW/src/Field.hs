@@ -14,14 +14,15 @@ type Edge = (R.DIM2, R.DIM2)
 
     
     
-plot :: System -> Field R.U RGB                    
-plot (bc, pot) =
+plot :: Double -> System -> Field R.U RGB                    
+plot brightness (bc, pot) =
   runIdentity $ R.computeUnboxedP $ R.zipWith go bc pot
   where
+    bn = brightness
     go (-2) _ = (255,255,255)
     go (-1) _ = (0,0,64)
     go 1    _ = (64,0,0)
-    go _    v = (rb(v**3*64+64),rb(64-v**3*64),128)
+    go _    v = (rb(v**3*bn+bn),rb(bn-v**3*bn),rb(2*bn))
     rb = round . max 0 . min 255
     
     

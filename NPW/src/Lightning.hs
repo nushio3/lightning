@@ -32,7 +32,8 @@ initialBC = runIdentity $ R.computeP $ R.fromFunction theShape $ go
     go (Z:.y:.x)
       | y < 16 = 1
       | y > theHeight-16 = (-1)
-      | y > theHeight-128 && (abs $ x - div theWidth 2) < 16 = (-1)
+      | y > theHeight-150+(abs $ x - div theWidth 2) 
+        && (abs $ x - div theWidth 2) < 16 = (-1)
       | otherwise = 0
 
 diffStencil :: Stencil R.DIM2 Double
@@ -183,4 +184,8 @@ proceed sys0@(bc0, pot0) = do
     pot1 = diffuse False (bc1, pot0)
   return (bc1,pot1)
       
-  
+isTouchDown :: Field R.U Int -> Field R.U Int -> Bool
+isTouchDown bcA bcB = 
+  runIdentity $
+  R.foldAllP (||) False $
+  R.zipWith (\x y -> x*y<0) bcA bcB

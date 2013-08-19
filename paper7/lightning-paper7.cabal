@@ -41,8 +41,10 @@ library
     UnitTyped.Synonyms
 
   other-modules:     Paths_lightning_paper7
+<<<<<<< HEAD
   build-depends:     
       base ==4.*
+    , citation-resolve >= 0.3
     , containers 
     , data-default >= 0.5.3
     , HaTeX >= 3.6

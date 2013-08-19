@@ -18,6 +18,7 @@ import           UnitTyped.SI
 import           UnitTyped.SI.Constants hiding (pi)
 import           UnitTyped.SI.Meta
 import           UnitTyped.SI.Derived.Length
+import           UnitTyped.SI.Derived.Mass
 import           UnitTyped.SI.Derived.Time
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
@@ -28,10 +29,14 @@ hayashiModelDoc = do
   LTX.eqnarray $ do
     surfaceDensityGasDoc
 
-innerRadius, outerRadius, snowlineRadius :: AU Double
+innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double
 innerRadius = 0.35  *| astronomicalUnit
-outerRadius = 2.7   *| astronomicalUnit
-snowlineRadius = 36 *| astronomicalUnit
+outerRadius = 36   *| astronomicalUnit
+snowlineRadius = 2.7 *| astronomicalUnit
+
+innerSH = OrbitalRadius `being` innerRadius $ scaleHeight
+outerSH = OrbitalRadius `being` outerRadius $ scaleHeight
+snowlineSH = OrbitalRadius `being` snowlineRadius $ scaleHeight
 
 
 surfaceDensityGas :: Given OrbitalRadius => GramPerCm2 Double
@@ -42,9 +47,9 @@ surfaceDensityGas =
   where
     r :: AU Double
     r = the OrbitalRadius
-    cutoff =
-      sigmoid (val $ (r |-| innerRadius) |/| scaleHeight) *
-      sigmoid (val $ (r |-| outerRadius) |/| scaleHeight)
+    cutoff = 
+      sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
+      sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
 
 
 densityGas :: (Given OrbitalRadius, Given ZCoordinate) => GramPerCm3 Double
@@ -52,7 +57,7 @@ densityGas = autoc $
   factor *| surfaceDensityGas |/| h
   where
     factor = (2*pi)**(-1/2)
-           * exp(negate $ val (square z |/| (2 *| square h)))
+           * (exp(negate $ val (square z |/| (2 *| square h))))
     z = the ZCoordinate
     h = scaleHeight
 
@@ -74,7 +79,7 @@ soundSpeed = U.sqrt $ autoc cssq
 
 orbitalAngularVelocity :: Given OrbitalRadius => Double :| Hertz
 orbitalAngularVelocity =
-  U.sqrt $ autoc $ g |*| m_p |/| cubic (the OrbitalRadius)
+  U.sqrt $ autoc $ g |*| (2e33 *| gram) |/| cubic (the OrbitalRadius)
 
 scaleHeight :: Given OrbitalRadius => AU Double
 scaleHeight = autoc $ soundSpeed |/| orbitalAngularVelocity

@@ -41,7 +41,6 @@ library
     UnitTyped.Synonyms
 
   other-modules:     Paths_lightning_paper7
-<<<<<<< HEAD
   build-depends:     
       base ==4.*
     , citation-resolve >= 0.3

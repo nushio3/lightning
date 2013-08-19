@@ -20,6 +20,7 @@ library
     base ==4.6.*
    ,containers
    ,mtl
+   ,random
    ,repa
    ,repa-io
    ,vector
@@ -35,9 +36,11 @@ library
 executable main
   build-depends:     
     base ==4.6.*
+   ,containers
    ,NPW
    ,repa
    ,repa-io
+
    
   main-is:
     main.hs

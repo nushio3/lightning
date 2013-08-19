@@ -4,7 +4,7 @@ init:
 	cabal install --only-dependencies --enable-tests
 	cabal configure --enable-tests
 
-build: init
+build: 
 	cabal build
 
 clean:

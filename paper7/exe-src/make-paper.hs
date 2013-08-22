@@ -3,15 +3,13 @@ module Main where
 import Control.Monad
 import Development.Shake
 import Development.Shake.FilePath
+import Figure.Shake (rulesFigures)
+import GlobalConfig(workDir)
 import System.Directory (doesFileExist)
 import System.Process (system)
 import Text.Printf
 
 import Paper(writePaper)
-
-
-workDir :: FilePath
-workDir = "dist/output"
 
 main :: IO ()
 main = do
@@ -80,11 +78,3 @@ rulesFiles = do
 
     copyFile' bibFn2 out
 
-rulesFigures :: Rules ()
-rulesFigures = do
-  workDir </> "fig1.eps" *> \outFn -> do
-    liftIO $ writeFile outFn "hoge\n"
-    let motoFn = workDir </> "dat1.txt"
-    need [motoFn]
-  workDir </> "dat1.txt" *> \outFn -> do
-    liftIO $ writeFile outFn "huga\n"    

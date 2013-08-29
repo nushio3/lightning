@@ -21,6 +21,7 @@ Data-Files:          material/aastex.cls
 library
   exposed-modules:   
     Control.Monad.Author
+    Control.Monad.Author.Cite
     Control.Monad.Author.Label
     Control.Monad.Author.Ref
     Control.Monad.Author.State

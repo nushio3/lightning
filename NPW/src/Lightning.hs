@@ -32,8 +32,8 @@ initialBC = runIdentity $ R.computeP $ R.fromFunction theShape $ go
     go (Z:.y:.x)
       | y < 16 = 1
       | y > theHeight-16 = (-1)
-      | y > theHeight-150+(abs $ x - div theWidth 2) 
-        && (abs $ x - div theWidth 2) < 16 = (-1)
+      | y < 150-(abs $ x - div theWidth 2) 
+        && (abs $ x - div theWidth 2) < 16 = (1)
       | otherwise = 0
 
 diffStencil :: Stencil R.DIM2 Double

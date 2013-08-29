@@ -31,9 +31,13 @@ main = gogo
       sys2 <- proceed sys
       let tdFlag = isTouchDown initialBC (fst $ sys)
           plotFlag = tdFlag || (mod age 32 ==0)
+          vipFlag 
+            | tdFlag || (mod age 128 ==32) = "b"
+            | otherwise = "a"
+          
       when plotFlag $ do
-        let fn = printf "%s/test%04d.bmp" dir age
+        let fn = printf "%s/test%04d%s.bmp" dir age vipFlag
         putStrLn fn
-        writeImageToBMP fn $ 
-          plot (if tdFlag then 160 else 64) sys2
+        writeImageToBMP fn $ plot (if tdFlag then 160 else 64) sys2
+  
       when (not tdFlag) $ go dir (age+1) sys2

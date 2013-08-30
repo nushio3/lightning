@@ -3,6 +3,7 @@ module Paper where
 
 import           Control.Lens ((^.))
 import           Control.Monad.Author
+import           Control.Monad.Author.Cite(cite)
 import qualified Control.Monad.Author.State as AS
 import           Control.Monad.RWS
 import           Control.Monad.State.Strict (modify)
@@ -62,8 +63,8 @@ genBodyText = do
         sectionAcknowledgement
 
   (_,as1,bodyTeX) <- runAuthorTWithDBFile "material/citation.db" paper
-  
-  let 
+
+  let
     bibentryOf :: String -> String
     bibentryOf url = case Map.lookup url (as1 ^. AS.citationDB . CSL.db) :: Maybe String of
       Nothing -> ""
@@ -72,21 +73,24 @@ genBodyText = do
                   in s0 ++ "{" ++ url ++ s2
 
     processed0 = map bibentryOf $ Set.toList $ as1 ^. AS.citedUrlSet
-                  
-    bibText = 
+
+    bibText =
       Text.unlines $
-      map Text.pack processed0                       
+      map Text.pack processed0
 
 
   return (LTX.render bodyTeX, bibText)
 
-sectionIntro :: Monad m => AuthorT m ()
+sectionIntro :: MonadIO m => AuthorT m ()
 sectionIntro = do
   tell $ LTX.section "Introduction"
-  tell $ "intro bra bra."
+  tell "This work is based on the landmark review by "
+  cite "isbn:9784130627184"
+  tell ". The parallel computations are based on "
+  cite "isbn:9781449335946"
+  tell "."
 
 sectionConclusion :: Monad m => AuthorT m ()
 sectionConclusion = do
   tell $ LTX.section "Conclusion"
   tell $ "distribution was shown."
-

@@ -13,10 +13,11 @@ import Text.LaTeX.Base.Syntax as LTX
 import Text.LaTeX.Base.Class as LTX
 import Text.LaTeX.Base.Commands as LTX
 
-cite :: (MonadState AS.Root m, MonadIO m, LaTeXC (m a)) => String -> m a
+cite :: (MonadState AS.Root m, MonadIO m, LaTeXC (m ())) => String -> m ()
 cite url = do
   db1 <- use citationDB
   citedUrlSet %= Set.insert url
   (ref, db2) <- liftIO $ runStateT (resolve url) db1
   citationDB .= db2
   LTX.cite $ LTX.raw $ Text.pack url
+  

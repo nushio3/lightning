@@ -11,3 +11,16 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1981PThPS..70...35H},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - isbn:9781449335946
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "{Marlow}, S.",'
+    - ! '        TITLE = "Parallel and Concurrent Programming in Haskell.",'
+    - ! '        PUBLISHER = "Oreilly \& Associates Inc",'
+    - ! '        ADDRESS = "",'
+    - ! '        YEAR ="2013"}'
+- - isbn:9784130627184
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "{Takahashi}, T.",'
+    - ! '        TITLE = "Kaminari no kagaku",'
+    - ! '        PUBLISHER = "Tokyodaigakushuppankai",'
+    - ! '        YEAR ="2009"}'

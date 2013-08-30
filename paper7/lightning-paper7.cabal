@@ -45,7 +45,7 @@ library
   build-depends:     
       base ==4.*
     , citeproc-hs >= 0.3.8
-    , citation-resolve >= 0.3.0.1
+    , citation-resolve >= 0.3.0.2
     , containers 
     , data-default >= 0.5.3
     , HaTeX >= 3.6

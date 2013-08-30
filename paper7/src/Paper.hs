@@ -23,15 +23,19 @@ writePaper :: FilePath -> FilePath -> IO ()
 writePaper srcFn outFn = do
   srcStr <- Text.readFile srcFn
   print $ (srcFn, outFn)
-  Text.writeFile outFn $
-    Text.unlines $
-    map rep $ Text.lines srcStr
-  where
+
+  bodyText <- genBodyText
+
+  let
     (<?) = Text.isInfixOf
     rep str
       | "Insert abstract here" <? str      = abstractText
       | "Insert document body here" <? str = bodyText
       | otherwise                          = str
+
+  Text.writeFile outFn $
+    Text.unlines $
+    map rep $ Text.lines srcStr
 
 abstractText :: Text.Text
 abstractText = LTX.render abstract
@@ -39,10 +43,12 @@ abstractText = LTX.render abstract
 abstract :: LaTeX
 abstract = TeXRaw "We study lightning distribution in protoplanetary disks."
 
-bodyText :: Text.Text
-bodyText = LTX.render $ bodyTeX
+genBodyText :: IO Text.Text
+genBodyText = do
+  (_,_,bodyTeX) <- runAuthorTWithDBFile "material/citation.db" go
+  return $ LTX.render $ bodyTeX
   where
-    (_,_,bodyTeX) = runIdentity $ runAuthorT $ do
+    go = do
       sectionIntro
       sectionModel
       sectionConclusion

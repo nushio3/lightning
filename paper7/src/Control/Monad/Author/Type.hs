@@ -36,12 +36,13 @@ runAuthorTWithDBFile fn prog = do
        State.put (rootState2 ^. AS.citationDB)
        return ret
        
+
 instance Monad m => Monoid (AuthorT m ()) where
   mempty = return ()
   mappend = (>>)
 
 instance Monad m => IsString (AuthorT m ()) where
-  fromString = tell . fromString  
+  fromString = tell . fromString 
 
 instance Monad m => LaTeXC (AuthorT m ()) where
   liftListL f xs = do

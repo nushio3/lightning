@@ -6,7 +6,9 @@
 module Model.Disk.Hayashi where
 
 import           Control.Monad.Author
+import           Control.Monad.Author.Cite(cite)
 import           Control.Monad.RWS (tell)
+import           Control.Monad.IO.Class
 import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
 import           Model.Concepts
@@ -24,9 +26,10 @@ import           UnitTyped.SI.Derived.Time
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
 
-hayashiModelDoc :: Monad m =>  AuthorT m ()
+hayashiModelDoc :: MonadIO m =>  AuthorT m ()
 hayashiModelDoc = do
-  tell "Hayashi model is as follows."
+  () <- cite "bibcode:1981PThPS..70...35H"
+  tell " has proposed the following model of the protoplanetary disk."
   LTX.eqnarray $ do
     surfaceDensityGasDoc
 

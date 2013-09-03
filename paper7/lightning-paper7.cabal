@@ -38,6 +38,7 @@ library
     Paper
     Paper.SectionAcknowledgement
     Paper.SectionModel
+    Paper.SectionObservation
     Text.LaTeX.Utils
     UnitTyped.Synonyms
 

@@ -25,6 +25,7 @@ import qualified Text.LaTeX.Packages.Graphicx as LTX
 import           Text.LaTeX.Packages.AMSMath (autoParens)
 
 import           Paper.SectionModel (sectionModel)
+import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 import           System.IO.Unsafe
 
@@ -59,6 +60,7 @@ genBodyText = do
   let paper = do
         sectionIntro
         sectionModel
+        sectionObservation
         sectionConclusion
         sectionAcknowledgement
 

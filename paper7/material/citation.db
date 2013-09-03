@@ -11,6 +11,51 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1981PThPS..70...35H},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2010ApJ...720..480O
+  - - ! '@ARTICLE{2010ApJ...720..480O,'
+    - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
+      E.~A. and '
+    - ! "\t{Andrews}, S.~M. and {Espaillat}, C. and {van Kempen}, T.~A. and "
+    - ! "\t{Wilner}, D.~J. and {Pascucci}, I.},"
+    - ! '    title = "{The Disk Imaging Survey of Chemistry with SMA. I. Taurus Protoplanetary
+      Disk Data}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1007.1476},'
+    - ! ' primaryClass = "astro-ph.GA",'
+    - ! ' keywords = {astrochemistry, ISM: molecules, protoplanetary disks, radio
+      lines: ISM, stars: formation, techniques: high angular resolution},'
+    - ! '     year = 2010,'
+    - ! '    month = sep,'
+    - ! '   volume = 720,'
+    - ! '    pages = {480-493},'
+    - ! '      doi = {10.1088/0004-637X/720/1/480},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...720..480O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2011ApJ...734...98O
+  - - ! '@ARTICLE{2011ApJ...734...98O,'
+    - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
+      E.~A. and '
+    - ! "\t{Andrews}, S.~M. and {Espaillat}, C. and {Wilner}, D.~J. and "
+    - ! "\t{Pascucci}, I. and {Kastner}, J.~H.},"
+    - ! '    title = "{Disk Imaging Survey of Chemistry with SMA. II. Southern Sky
+      Protoplanetary Disk Data and Full Sample Statistics}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1104.1236},'
+    - ! ' primaryClass = "astro-ph.GA",'
+    - ! ' keywords = {astrochemistry, ISM: molecules, protoplanetary disks, radio
+      lines: ISM, stars: formation, techniques: high angular resolution},'
+    - ! '     year = 2011,'
+    - ! '    month = jun,'
+    - ! '   volume = 734,'
+    - ! '      eid = {98},'
+    - ! '    pages = {98},'
+    - ! '      doi = {10.1088/0004-637X/734/2/98},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - isbn:9781449335946
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "{Marlow}, S.",'

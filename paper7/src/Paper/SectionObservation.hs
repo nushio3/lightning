@@ -12,6 +12,9 @@ import           Text.LaTeX.Base.Class (LaTeXC(..))
 sectionObservation :: (MonadIO m) => AuthorT m ()
 sectionObservation = do
   tell $ LTX.section "Observation."
+  () <- LTX.raw $ "Observation of $\\mathrm{HCO}^{+}$ lines are possible."
   () <- cite "bibcode:2011ApJ...734...98O"
   () <- cite "bibcode:2010ApJ...720..480O"
-  LTX.raw $ "Observation of $\\mathrm{HCO}^{+}$ lines are possible."
+  () <- LTX.raw $ "Lightning mean free path."
+  () <- cite "doi:10.1006/icar.1999.6245"
+  return ()

@@ -56,6 +56,11 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - doi:10.1006/icar.1999.6245
+  - - ! '@article{Desch_2000, title={The Generation of Lightning in the Solar Nebula},
+      volume={143}, url={http://dx.doi.org/10.1006/icar.1999.6245}, DOI={10.1006/icar.1999.6245},
+      number={1}, journal={Icarus}, publisher={Elsevier - Academic Press}, author={Desch,
+      S.J. and Cuzzi, J.N.}, year={2000}, month={Jan}, pages={87-105}}'
 - - isbn:9781449335946
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "{Marlow}, S.",'

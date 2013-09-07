@@ -77,6 +77,17 @@ executable make-paper
                    , process
                    , shake >= 0.10.5
 
+executable make-presentation
+  main-is:           make-presentation.hs           
+  Ghc-Options:       -Wall -O2
+  hs-source-dirs:    exe-src/
+  Build-Depends:     base
+                   , lightning-paper7
+
+                   , directory
+                   , process
+                   , shake >= 0.10.5
+
 
 -- Test-Suite doctest
 --   Type:                 exitcode-stdio-1.0

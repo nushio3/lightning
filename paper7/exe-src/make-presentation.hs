@@ -14,7 +14,7 @@ main :: IO ()
 main = do
   _ <- system $ printf "mkdir -p %s" workDir
   shakeArgs shakeOptions $ do
-    want [workDir </> "paper.pdf"]
+    want [workDir </> "presentation.pdf"]
     rulesExt
     rulesFiles
 
@@ -22,9 +22,9 @@ rulesExt :: Rules()
 rulesExt = do
   "//*.pdf" *> \out -> do
     let src = out -<.> "tex"
-        heresrc = "paper.tex"
+        heresrc = "presentation.tex"
         cls = takeDirectory out </> "aastex.cls"
-        bib = takeDirectory out </> "the.bib"
+        bib = takeDirectory out </> "presentation.bib"
         bst = takeDirectory out </> "apj.bst"
     need [src, cls, bib, bst]
     need $ map (printf "%s/fig%d.eps" workDir :: Int -> String) [1..1]
@@ -48,9 +48,9 @@ rulesFiles :: Rules ()
 rulesFiles = do
   rulesFigures
 
-  ["//paper.tex", "//the.bib"] *>> \[outFn,bibFn] -> do
-    let src = "./material/template.tex"
-        exe = "./dist/build/make-paper/make-paper"
+  ["//presentation.tex", "//presentation.bib"] *>> \[outFn,bibFn] -> do
+    let src = "./material/presentation-template.tex"
+        exe = "./dist/build/make-presentation/make-presentation"
     need [src,exe]
     liftIO $ writePaper src outFn bibFn
 

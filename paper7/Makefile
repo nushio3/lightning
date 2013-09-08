@@ -1,6 +1,6 @@
-all: paper
+all: presentation
 
-.PHONY: init build clean doc test CI sync paper
+.PHONY: init build clean doc test CI sync paper presentation
 
 init:
 	cabal install --only-dependencies --enable-tests
@@ -26,5 +26,8 @@ sync:
 
 paper: build
 	./dist/build/make-paper/make-paper
+
+presentation: build
+	./dist/build/make-presentation/make-presentation
 
 CI: sync test paper

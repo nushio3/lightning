@@ -40,6 +40,10 @@ library
     Paper.SectionModel
     Paper.SectionObservation
     Text.LaTeX.Utils
+    Text.LaTeX.Author
+    Text.LaTeX.Author.Internal
+    Text.LaTeX.Author.Commands
+
     UnitTyped.Synonyms
 
   other-modules:     Paths_lightning_paper7

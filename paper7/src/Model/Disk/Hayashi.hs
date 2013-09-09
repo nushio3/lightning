@@ -51,7 +51,7 @@ surfaceDensityGas =
   where
     r :: AU Double
     r = the OrbitalRadius
-    cutoff = 
+    cutoff =
       sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
       sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
 
@@ -85,9 +85,47 @@ orbitalAngularVelocity :: Given OrbitalRadius => Double :| Hertz
 orbitalAngularVelocity =
   U.sqrt $ autoc $ g |*| (2e33 *| gram) |/| cubic (the OrbitalRadius)
 
+orbitalVelocity :: Given OrbitalRadius => CmPerSec Double
+orbitalVelocity =
+  U.sqrt $ autoc $ g |*| (2e33 *| gram) |/| the OrbitalRadius
+
+
+
 scaleHeight :: Given OrbitalRadius => AU Double
 scaleHeight = autoc $ soundSpeed |/| orbitalAngularVelocity
   where r = the OrbitalRadius
 
 sigmoid :: Double -> Double
 sigmoid x = 1/(1+exp (negate x))
+
+gaussian :: Double -> Double -> Double -> Double
+gaussian mu sigma x = 1/sqrt(2*pi* sigma^2) * exp (negate $ (/2) $ ((x-mu)/sigma)^2)
+
+pvDistribution :: AU Double -> CmPerSec Double -> Double
+pvDistribution r v = gaussian (val v0) (val cs) (val v)
+  where
+    cs :: CmPerSec Double
+    cs = OrbitalRadius `being` r0 $ soundSpeed
+
+    v0 :: CmPerSec Double
+    v0 = signum (val r) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
+    r0 :: AU Double
+    r0 = U.abs r
+
+chargedPVDistribution :: CmPerSec Double -> AU Double -> CmPerSec Double -> Double
+chargedPVDistribution vch r v = gaussian (val v0) (val cs) (val v)
+  where
+    cs :: CmPerSec Double
+    cs = OrbitalRadius `being` r0 $ soundSpeed |+| vch'
+
+    vch'
+      | val r0 < 100 = vch
+      | otherwise    = fmap (* ((val r0 /100)**(-1.5))) vch
+
+    v0 :: CmPerSec Double
+    v0 = signum (val r) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
+    r0 :: AU Double
+    r0 = U.abs r
+
+relativePVDistribution :: CmPerSec Double -> AU Double -> CmPerSec Double -> Double
+relativePVDistribution vch r v = chargedPVDistribution vch r v - pvDistribution r v

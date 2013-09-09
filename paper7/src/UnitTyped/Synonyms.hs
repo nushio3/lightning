@@ -15,6 +15,7 @@ type GramPerCm2 a =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne),
 type GramPerCm3 a =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] a
 
 type CmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ] a
+type KmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ] a
 
 type AU a = a :| AstronomicalUnit
 

@@ -108,7 +108,7 @@ pvDistribution r v = gaussian (val v0) (val cs) (val v)
     cs = OrbitalRadius `being` r0 $ soundSpeed
 
     v0 :: CmPerSec Double
-    v0 = signum (val r) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
+    v0 = (sin inclination * signum (val r)) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
     r0 :: AU Double
     r0 = U.abs r
 
@@ -123,9 +123,12 @@ chargedPVDistribution vch r v = gaussian (val v0) (val cs) (val v)
       | otherwise    = fmap (* ((val r0 /100)**(-1.5))) vch
 
     v0 :: CmPerSec Double
-    v0 = signum (val r) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
+    v0 = (sin inclination * signum (val r)) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
     r0 :: AU Double
     r0 = U.abs r
 
 relativePVDistribution :: CmPerSec Double -> AU Double -> CmPerSec Double -> Double
 relativePVDistribution vch r v = chargedPVDistribution vch r v - pvDistribution r v
+
+inclination :: Double
+inclination = 7/180*pi

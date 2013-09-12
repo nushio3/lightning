@@ -1,4 +1,4 @@
-all: presentation
+all: paper
 
 .PHONY: init build clean doc test CI sync paper presentation
 

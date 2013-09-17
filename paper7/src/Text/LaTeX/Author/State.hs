@@ -1,13 +1,29 @@
+{-# LANGUAGE ConstraintKinds #-}
+{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Text.LaTeX.Author.State where
 
+import           Control.Lens ((.~),(&),(^.))
 import           Control.Lens.TH (makeLenses)
+import           Control.Monad
+import           Control.Monad.RWS
+import           Control.Monad.State as State
+import           Control.Monad.Trans.Class (lift)
 import           Data.Default
 import qualified Data.Map.Strict as Map
+import           Data.Monoid
 import qualified Data.Set as Set
+import           Data.String
 import           Data.Text (Text)
 import           Data.Typeable
+import           Text.LaTeX (LaTeX)
+import           Text.LaTeX.Base.Class (LaTeXC(..))
+import           Text.LaTeX.Base.Syntax (LaTeX)
+import           Text.LaTeX.Base.Writer (LaTeXT, execLaTeXT)
 import qualified Text.CSL.Input.Identifier.Internal as Citation
 
 
@@ -58,13 +74,13 @@ type MonadAuthor = MonadRWS () LaTeX AuthorState
 --   
 runAuthorTWithDBFile :: forall m a. (MonadIO m) => FilePath -> AuthorT m a -> m (a, AuthorState, LaTeX)
 runAuthorTWithDBFile fn prog = do
-  evalStateT (withDBFile fn go) def
+  evalStateT (Citation.withDBFile fn go) def
   where
-    go :: StateT DB m (a, AuthorState, LaTeX)
+    go :: StateT Citation.DB m (a, AuthorState, LaTeX)
     go = do
        db1 <- State.get
-       ret@(ret2, rootState2, doc2) <- lift $ runRWST prog () (def & AS.citationDB .~  db1)
-       State.put (rootState2 ^. AS.citationDB)
+       ret@(ret2, rootState2, doc2) <- lift $ runRWST prog () (def & citationDB .~  db1)
+       State.put (rootState2 ^. citationDB)
        return ret
        
 

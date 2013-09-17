@@ -41,7 +41,7 @@ library
     Paper.SectionObservation
     Text.LaTeX.Utils
     Text.LaTeX.Author
-    Text.LaTeX.Author.Internal
+    Text.LaTeX.Author.State
     Text.LaTeX.Author.Commands
 
     UnitTyped.Synonyms

@@ -20,12 +20,12 @@ Data-Files:          material/aastex.cls
 
 library
   exposed-modules:   
-    Control.Monad.Author
-    Control.Monad.Author.Cite
-    Control.Monad.Author.Label
-    Control.Monad.Author.Ref
-    Control.Monad.Author.State
-    Control.Monad.Author.Type
+--     Control.Monad.Author
+--     Control.Monad.Author.Cite
+--     Control.Monad.Author.Label
+--     Control.Monad.Author.Ref
+--     Control.Monad.Author.State
+--     Control.Monad.Author.Type
     Data.Reflection.Typed
     Figure.DiskSection
     Figure.Gnuplot

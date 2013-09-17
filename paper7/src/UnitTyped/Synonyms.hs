@@ -11,7 +11,7 @@ import           UnitTyped.SI.Derived.Length
 import           UnitTyped.SI.Derived.Time
 import qualified UnitTyped.NoPrelude as U
 
-type GramPerCm2 a =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] a
+type GramPerCm2 =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] 
 type GramPerCm3 a =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] a
 
 type CmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ] a

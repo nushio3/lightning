@@ -12,16 +12,16 @@ import           UnitTyped.SI.Derived.Time
 import qualified UnitTyped.NoPrelude as U
 
 type GramPerCm2 =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] 
-type GramPerCm3 a =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] a
+type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] 
 
-type CmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ] a
-type KmPerSec a = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ] a
+type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]
+type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ] 
 
-type AU a = a :| AstronomicalUnit
+type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 
-type Cm a = a :| Centi Meter
+type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
 
-type CoulombPerCm2 a = 
+type CoulombPerCm2 = 
   Value
     '[ '(Current, POne), '(Length, NTwo), '(Time, POne)]
-    '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] a
+    '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] 

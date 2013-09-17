@@ -61,6 +61,40 @@
       volume={143}, url={http://dx.doi.org/10.1006/icar.1999.6245}, DOI={10.1006/icar.1999.6245},
       number={1}, journal={Icarus}, publisher={Elsevier - Academic Press}, author={Desch,
       S.J. and Cuzzi, J.N.}, year={2000}, month={Jan}, pages={87-105}}'
+- - doi:10.1016/0375-9601(92)90348-P
+  - - ! '@article{vich_Milikh_Roussel-Dupre_1992, title={Runaway electron mechanism
+      of air breakdown and preconditioning during a thunderstorm}, volume={165}, url={http://dx.doi.org/10.1016/0375-9601(92)90348-P},
+      DOI={10.1016/0375-9601(92)90348-P}, number={5-6}, journal={Physics Letters A},
+      publisher={Elsevier }, author={Gurevich, A.V. and Milikh, G.M. and Roussel-Dupre,
+      R.}, year={1992}, month={Jun}, pages={463-468}}'
+- - doi:10.1070/PU2001v044n11ABEH000939
+  - - ! '@article{Gurevich_Zybin_2001, title={Runaway breakdown and electric discharges
+      in thunderstorms}, volume={44}, url={http://dx.doi.org/10.1070/PU2001v044n11ABEH000939},
+      DOI={10.1070/PU2001v044n11ABEH000939}, number={11}, journal={Physics-Uspekhi},
+      publisher={Uspekhi Fizicheskikh Nauk Journal}, author={Gurevich, Aleksandr V
+      and Zybin, Kirill P}, year={2001}, month={Nov}, pages={1119-1140}}'
+- - isbn:3-540-64296-X
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "S.J. Buchman ... Ed. by Y. Itikawa.",'
+    - ! '        TITLE = "Interactions of photons and electrons with atoms",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2000"}'
+- - isbn:354044338X
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! "        AUTHOR = \"Landolt-B\xF6rnstein. Ed. in chief: W. Martienssen\","
+    - ! '        TITLE = "Numerical data and functional relationships in science and
+      technology : new series",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2003"}'
+- - isbn:3540653473
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Y. Hahn ... Ed. by Y. Itikawa.",'
+    - ! '        TITLE = "Collisions of electrons with atomic ions",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2001"}'
 - - isbn:9781449335946
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "{Marlow}, S.",'
@@ -71,6 +105,6 @@
 - - isbn:9784130627184
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "{Takahashi}, T.",'
-    - ! '        TITLE = "Kaminari no kagaku",'
-    - ! '        PUBLISHER = "Tokyodaigakushuppankai",'
+    - ! '        TITLE = "Kaminari no Kagaku",'
+    - ! '        PUBLISHER = "Tokyo Daigaku Shuppankai",'
     - ! '        YEAR ="2009"}'

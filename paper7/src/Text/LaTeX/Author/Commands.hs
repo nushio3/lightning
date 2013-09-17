@@ -1,8 +1,9 @@
 {-# LANGUAGE FlexibleContexts #-}
-
+{-# LANGUAGE OverloadedStrings #-}
 module Text.LaTeX.Author.Commands where
 
 import           Control.Lens (use, (.=), (%=))
+import           Control.Monad
 import           Control.Monad.State (runStateT, MonadState)
 import           Control.Monad.IO.Class
 import           Data.Char (isAlphaNum)
@@ -27,6 +28,17 @@ cite url = do
   citationDB .= db2
   LTX.cite $ LTX.raw $ Text.pack url
   
+-- | make a citation to a document(s).
+citet :: (MonadState AuthorState m, MonadIO m, LaTeXC (m ())) => [String] -> m ()
+citet urls = do
+  forM urls $ \url -> do
+    db1 <- use citationDB
+    citedUrlSet %= Set.insert url
+    (ref, db2) <- liftIO $ runStateT (resolve url) db1
+    citationDB .= db2
+  LTX.cite $ LTX.raw $ Text.intercalate "," $ map Text.pack urls
+
+
 -- | refer to a label.  
 ref :: (MonadState AuthorState m, LaTeXC (m a)) => AS.Label -> m a
 ref lab = do

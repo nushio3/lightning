@@ -1,4 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell #-}
 module Paper where
 
 import           Control.Lens ((^.))
@@ -27,6 +29,8 @@ import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 import           System.IO.Unsafe
 
 import           Text.LaTeX.Author as Author
+import           HereDocument
+
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
 writePaper srcFn outFn bibFn = do
@@ -53,6 +57,7 @@ abstractText = LTX.render abstract
 
 abstract :: LaTeX
 abstract = TeXRaw "We study lightning distribution in protoplanetary disks."
+
 
 genBodyText :: IO (Text.Text, Text.Text)
 genBodyText = do
@@ -85,6 +90,11 @@ genBodyText = do
 sectionIntro :: MonadIO m => AuthorT m ()
 sectionIntro = do
   tell $ LTX.section "Introduction"
+  tell [doc| Meteorites include unmodified materials from the protoplanetary disks that formed 
+             our Solar System and carries unique evidences to understand stars and planet formation. |]
+  () <- LTX.par
+  tell [doc| Substantial progress has been made in the understanding of the lightning ignition mechanism 
+             in these twenty years. |]
   tell "This work is based on the landmark review by "
   cite "isbn:9784130627184"
   tell ". The parallel computations are based on "

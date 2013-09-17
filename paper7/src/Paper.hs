@@ -2,9 +2,6 @@
 module Paper where
 
 import           Control.Lens ((^.))
-import           Control.Monad.Author
-import           Control.Monad.Author.Cite(cite)
-import qualified Control.Monad.Author.State as AS
 import           Control.Monad.RWS
 import           Control.Monad.State.Strict (modify)
 import           Data.Default (def)
@@ -28,6 +25,8 @@ import           Paper.SectionModel (sectionModel)
 import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 import           System.IO.Unsafe
+
+import           Text.LaTeX.Author as Author
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
 writePaper srcFn outFn bibFn = do
@@ -68,13 +67,13 @@ genBodyText = do
 
   let
     bibentryOf :: String -> String
-    bibentryOf url = case Map.lookup url (as1 ^. AS.citationDB . CSL.db) :: Maybe String of
+    bibentryOf url = case Map.lookup url (as1 ^. Author.citationDB . CSL.db) :: Maybe String of
       Nothing -> ""
       Just str -> let (s0,s1) = break (=='{') str
                       (_,s2) = break (==',') s1
                   in s0 ++ "{" ++ url ++ s2
 
-    processed0 = map bibentryOf $ Set.toList $ as1 ^. AS.citedUrlSet
+    processed0 = map bibentryOf $ Set.toList $ as1 ^. Author.citedUrlSet
 
     bibText =
       Text.unlines $

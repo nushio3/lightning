@@ -5,7 +5,6 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Dust where
 
-import           Control.Monad.Author
 import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
 import           Model.Concepts
@@ -21,6 +20,8 @@ import           UnitTyped.SI.Derived.Length
 import           UnitTyped.SI.Derived.Time
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
+
+import           Text.LaTeX.Author
 
 dustSurfaceCharge :: CoulombPerCm2 Double
 dustSurfaceCharge = mkVal 1e-10

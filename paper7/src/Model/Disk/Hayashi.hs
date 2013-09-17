@@ -5,8 +5,6 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
-import           Control.Monad.Author
-import           Control.Monad.Author.Cite(cite)
 import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
 import           Data.Reflection.Typed
@@ -25,6 +23,8 @@ import           UnitTyped.SI.Derived.Mass
 import           UnitTyped.SI.Derived.Time
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
+
+import           Text.LaTeX.Author
 
 hayashiModelDoc :: MonadIO m =>  AuthorT m ()
 hayashiModelDoc = do

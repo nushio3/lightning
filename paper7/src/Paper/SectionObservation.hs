@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Paper.SectionObservation where
 
-import           Control.Monad.Author
-import           Control.Monad.Author.Cite(cite)
 import           Control.Monad.RWS
 import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Utils as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
+
+import           Text.LaTeX.Author (AuthorT, cite)
+
 
 sectionObservation :: (MonadIO m) => AuthorT m ()
 sectionObservation = do

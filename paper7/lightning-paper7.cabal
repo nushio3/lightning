@@ -33,6 +33,7 @@ library
     GlobalConfig
     HereDocument
     Model.Concepts
+    Model.Constants
     Model.Disk.Hayashi
     Model.Dust
     Paper

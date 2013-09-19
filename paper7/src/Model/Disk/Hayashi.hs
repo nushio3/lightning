@@ -9,9 +9,10 @@ import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
 import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
-import           Model.Concepts
+import qualified Data.Text as Text
 import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
+import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
 import qualified Text.LaTeX.Utils as LTX
 import           UnitTyped
@@ -24,12 +25,22 @@ import           UnitTyped.SI.Derived.Time
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
 
+import           Model.Concepts
+import           Model.Constants
+
 import           Text.LaTeX.Author
 
 hayashiModelDoc :: MonadIO m =>  AuthorT m ()
 hayashiModelDoc = do
   () <- cite "bibcode:1981PThPS..70...35H"
   tell " has proposed the following model of the protoplanetary disk."
+  
+  () <- LTX.par
+  
+  () <- LTX.raw $ Text.pack $ show $ val $ lightSpeed
+  
+  () <- LTX.par
+  
   LTX.eqnarray $ do
     surfaceDensityGasDoc
 

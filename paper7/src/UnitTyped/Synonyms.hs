@@ -38,16 +38,18 @@ type CoulombPerCm2 =
     '[ '(Current, POne), '(Length, NTwo), '(Time, POne)]
     '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] 
 
+
 type PermittivityUnit = 
   Value
     '[ '(Mass, NOne),  '(Length, NThree), '(Time, PFour), '(Current, PTwo)]
-    '[ '(Kilo Gram, NOne) , '(Meter, NThree), '(Second, NFour), '(Ampere, PTwo)] 
+    '[ '(Kilo Gram, NOne) , '(Meter, NThree), '(Second, PFour), '(Ampere, PTwo)] 
 
 
 type PermeabilityUnit = 
   Value
     '[ '(Mass, POne),  '(Length, POne), '(Time, NTwo), '(Current, NTwo)]
     '[ '(Kilo Gram, POne) , '(Meter, POne), '(Second, NTwo), '(Ampere, NTwo)] 
+
 
 
   

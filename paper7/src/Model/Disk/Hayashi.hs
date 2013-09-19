@@ -32,14 +32,14 @@ import           Text.LaTeX.Author
 
 hayashiModelDoc :: MonadIO m =>  AuthorT m ()
 hayashiModelDoc = do
-  () <- cite "bibcode:1981PThPS..70...35H"
-  tell " has proposed the following model of the protoplanetary disk."
+  cite "bibcode:1981PThPS..70...35H"
   
-  () <- LTX.par
+  " has proposed the following model of the protoplanetary disk."
+  LTX.par
   
-  () <- LTX.raw $ Text.pack $ show $ val $ lightSpeed
+  LTX.raw $ Text.pack $ show $ val $ lightSpeed
   
-  () <- LTX.par
+  LTX.par
   
   LTX.eqnarray $ do
     surfaceDensityGasDoc

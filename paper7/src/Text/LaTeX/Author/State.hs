@@ -25,7 +25,7 @@ import           Text.LaTeX.Base.Class (LaTeXC(..))
 import           Text.LaTeX.Base.Syntax (LaTeX)
 import           Text.LaTeX.Base.Writer (LaTeXT, execLaTeXT)
 import qualified Text.CSL.Input.Identifier.Internal as Citation
-
+import           Unsafe.Coerce
 
 -- | 'Label's are used to create a unique reference label
 --   in a paper.
@@ -84,14 +84,14 @@ runAuthorTWithDBFile fn prog = do
        return ret
        
 
-instance Monad m => Monoid (AuthorT m ()) where
-  mempty = return ()
+instance Monad m => Monoid (AuthorT m a) where
+  mempty = return $ unsafeCoerce ()
   mappend = (>>)
 
-instance Monad m => IsString (AuthorT m ()) where
-  fromString = tell . fromString 
+instance Monad m => IsString (AuthorT m a) where
+  fromString str = (tell $ fromString str) >> mempty
 
-instance Monad m => LaTeXC (AuthorT m ()) where
+instance Monad m => LaTeXC (AuthorT m a) where
   liftListL f xs = do
     -- run the arguments piecewise, while updating the state and collecting the arguments.
     fragments <- forM xs $ \x -> do
@@ -100,3 +100,4 @@ instance Monad m => LaTeXC (AuthorT m ()) where
       put s1
       return w1
     tell $ f fragments  
+    mempty

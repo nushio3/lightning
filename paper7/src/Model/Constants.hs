@@ -2,7 +2,7 @@ module Model.Constants where
 
 import UnitTyped
 import UnitTyped.Synonyms
-
+import qualified UnitTyped.NoPrelude as U
 
 electronMass :: Kg Double
 electronMass = mkVal 9.10938291e-31
@@ -13,5 +13,21 @@ protonMass = mkVal 1.67262178e-27
 solarMass :: Kg Double
 solarMass = mkVal 1.98892e30
 
+lightSpeed :: MeterPerSec Double
+lightSpeed = U.sqrt $ x
+  where
+    x :: Meter2PerSec2 Double
+    x = autoc $ (one :: NoDimension Double) |/| y
+    
+    y :: Sec2PerMeter2 Double
+    y = autoc $ 
+     (vacuumPermittivity |*| vacuumPermeability)
+    
+
+
+vacuumPermittivity :: PermittivityUnit Double
+vacuumPermittivity = mkVal $ 8.854187817620e-12
+
 vacuumPermeability :: PermeabilityUnit Double
 vacuumPermeability = mkVal $ pi * 4e-7
+

@@ -1,3 +1,4 @@
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
@@ -65,27 +66,30 @@ genBodyText = do
         sectionConclusion
         sectionAcknowledgement
 
-  (_,as1,bodyTeX) <- withDatabaseFile "material/citation.db" paper
+  (bibText, _ , bodyDoc) <- runAuthoringT $ do
+    withDatabaseFile "material/citation.db" paper
+    txt <- bibliographyContent
+    return txt
 
 
 
-  return (LTX.render bodyTeX, bibText)
+  return (LTX.render $ bodyDoc ^. latexSrc, bibText)
 
 sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do
-  tell $ LTX.section "Introduction"
-  tell [doc| Meteorites include unmodified materials from the protoplanetary disks that formed 
+  command1 "section" $ raw "Introduction"
+  raw [doc| Meteorites include unmodified materials from the protoplanetary disks that formed 
              our Solar System and carries unique evidences to understand stars and planet formation. |]
-  () <- LTX.par
-  tell [doc| Substantial progress has been made in the understanding of the lightning ignition mechanism 
+
+  raw [doc| Substantial progress has been made in the understanding of the lightning ignition mechanism 
              in these twenty years. |]
-  tell "This work is based on the landmark review by "
-  cite "isbn:9784130627184"
-  tell ". The parallel computations are based on "
-  cite "isbn:9781449335946"
-  tell "."
+  esc "This work is based on the landmark review by "
+  citet ["isbn:9784130627184"]
+  esc ". The parallel computations are based on "
+  citet ["isbn:9781449335946"]
+  esc "."
 
 sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
-  tell $ LTX.section "Conclusion"
-  tell $ "distribution was shown."
+  command1 "section" $ esc "Conclusion"
+  esc "distribution was shown."

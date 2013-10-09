@@ -1,3 +1,4 @@
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
@@ -5,17 +6,14 @@
 module Paper.SectionAcknowledgement where
 
 import           Control.Monad.RWS
-import qualified Text.LaTeX as LTX
-import           Text.LaTeX.Base.Syntax(TeXArg(..))
-import qualified Text.LaTeX.Utils as LTX
 import           HereDocument (doc)
 
-import           Text.LaTeX.Author (AuthorT)
+import           Text.Authoring
 
-sectionAcknowledgement :: forall m. Monad m => AuthorT m ()
+sectionAcknowledgement :: MonadAuthoring s w m => m ()
 sectionAcknowledgement = do
-  tell $ LTX.texComm "section*" [(FixArg, "Acknowledgement")]                       
-  [doc| I appreciate Shinichi Enami for his advices 
+  command1 "section*" $ raw "Acknowledgement"
+  esc [doc| I appreciate Shinichi Enami for his advices 
         on ice surface charge chemistry.
         |]
                          

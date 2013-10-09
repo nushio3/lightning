@@ -5,6 +5,7 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
+import           Control.Monad.Identity
 import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
 import           Data.Reflection.Typed
@@ -14,7 +15,6 @@ import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
-import qualified Text.LaTeX.Utils as LTX
 import           UnitTyped
 import           UnitTyped.SI
 import           UnitTyped.SI.Constants hiding (pi)
@@ -28,20 +28,21 @@ import qualified UnitTyped.NoPrelude as U
 import           Model.Concepts
 import           Model.Constants
 
-import           Text.LaTeX.Author
+import           Text.Authoring
 
-hayashiModelDoc :: MonadIO m =>  AuthorT m ()
+hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
-  cite "bibcode:1981PThPS..70...35H"
+  citet1 "bibcode:1981PThPS..70...35H"
   
-  " has proposed the following model of the protoplanetary disk."
-  LTX.par
+  esc " has proposed the following model of the protoplanetary disk."
+  raw "\n\n"
   
-  LTX.raw $ Text.pack $ show $ val $ lightSpeed
   
-  LTX.par
+  raw $ Text.pack $ show $ val $ lightSpeed
   
-  LTX.eqnarray $ do
+  raw "\n\n"
+  
+  command1 "eqnarray" $ do
     surfaceDensityGasDoc
 
 innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double
@@ -66,6 +67,14 @@ surfaceDensityGas =
       sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
       sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
 
+surfaceDensityGasDoc :: MonadAuthoring s w m => m ()
+surfaceDensityGasDoc =  
+  (latex =<<) $ LTX.execLaTeXT $ do
+     LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
+     1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
+     LTX.mathrm ("g/cm" **2)
+
+
 
 densityGas :: (Given OrbitalRadius, Given ZCoordinate) => GramPerCm3 Double
 densityGas = autoc $
@@ -76,11 +85,6 @@ densityGas = autoc $
     z = the ZCoordinate
     h = scaleHeight
 
-surfaceDensityGasDoc :: Monad m => AuthorT m ()
-surfaceDensityGasDoc = do
-  tell $ LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
-  tell $ 1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
-  tell $ LTX.mathrm ("g/cm" **2)
 
 temperature :: Given OrbitalRadius => Double :| Kelvin
 temperature = 280 *| kelvin |*|

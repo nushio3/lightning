@@ -14,8 +14,7 @@ import qualified Data.Map as Map
 import qualified Data.Set as Set
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as Text
-import qualified Text.CSL as CSL
-import qualified Text.CSL.Input.Identifier as CSL (db)
+import           Text.Authoring
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import           Text.LaTeX.Base.Class (liftL)
@@ -28,9 +27,7 @@ import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 import           System.IO.Unsafe
 
-import           Text.LaTeX.Author as Author
 import           HereDocument
-
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
 writePaper srcFn outFn bibFn = do
@@ -68,26 +65,13 @@ genBodyText = do
         sectionConclusion
         sectionAcknowledgement
 
-  (_,as1,bodyTeX) <- runAuthorTWithDBFile "material/citation.db" paper
+  (_,as1,bodyTeX) <- withDatabaseFile "material/citation.db" paper
 
-  let
-    bibentryOf :: String -> String
-    bibentryOf url = case Map.lookup url (as1 ^. Author.citationDB . CSL.db) :: Maybe String of
-      Nothing -> ""
-      Just str -> let (s0,s1) = break (=='{') str
-                      (_,s2) = break (==',') s1
-                  in s0 ++ "{" ++ url ++ s2
-
-    processed0 = map bibentryOf $ Set.toList $ as1 ^. Author.citedUrlSet
-
-    bibText =
-      Text.unlines $
-      map Text.pack processed0
 
 
   return (LTX.render bodyTeX, bibText)
 
-sectionIntro :: MonadIO m => AuthorT m ()
+sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do
   tell $ LTX.section "Introduction"
   tell [doc| Meteorites include unmodified materials from the protoplanetary disks that formed 
@@ -101,7 +85,7 @@ sectionIntro = do
   cite "isbn:9781449335946"
   tell "."
 
-sectionConclusion :: Monad m => AuthorT m ()
+sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
   tell $ LTX.section "Conclusion"
   tell $ "distribution was shown."

@@ -1,21 +1,19 @@
-{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 module Paper.SectionObservation where
 
-import           Control.Monad.RWS
+import           Control.Monad.State
 import qualified Text.LaTeX as LTX
-import qualified Text.LaTeX.Utils as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
 
-import           Text.LaTeX.Author (AuthorT, cite)
+import           Text.Authoring
 
-
-sectionObservation :: (MonadIO m) => AuthorT m ()
+sectionObservation :: MonadAuthoring s w m => m ()
 sectionObservation = do
-  tell $ LTX.section "Observation."
-  () <- LTX.raw $ "Observation of $\\mathrm{HCO}^{+}$ lines are possible."
-  () <- cite "bibcode:2011ApJ...734...98O"
-  () <- cite "bibcode:2010ApJ...720..480O"
-  () <- LTX.raw $ "Lightning mean free path."
-  () <- cite "doi:10.1006/icar.1999.6245"
+  command1 "section" $ raw "Observation"
+  raw $ "Observation of $\\mathrm{HCO}^{+}$ lines are possible."
+  citet ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
+  raw $ "Lightning mean free path."
+  citet ["doi:10.1006/icar.1999.6245"]
   return ()
+  

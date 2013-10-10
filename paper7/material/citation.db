@@ -87,14 +87,14 @@
       F. M.}, year={1940}, month={Apr}, pages={87-174}}'
 - - isbn:3-540-64296-X
   - - ! '    @BOOK{CiteKeyGoesHere,'
-    - ! '        AUTHOR = "S.J. Buchman ... Ed. by Y. Itikawa.",'
+    - ! '        AUTHOR = "Y. Itikawa.",'
     - ! '        TITLE = "Interactions of photons and electrons with atoms",'
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'
     - ! '        YEAR ="2000"}'
 - - isbn:354044338X
   - - ! '    @BOOK{CiteKeyGoesHere,'
-    - ! "        AUTHOR = \"Landolt-B\xF6rnstein. Ed. in chief: W. Martienssen\","
+    - ! '        AUTHOR = "W. Martienssen",'
     - ! '        TITLE = "Numerical data and functional relationships in science and
       technology : new series",'
     - ! '        PUBLISHER = "Springer",'
@@ -102,7 +102,7 @@
     - ! '        YEAR ="2003"}'
 - - isbn:3540653473
   - - ! '    @BOOK{CiteKeyGoesHere,'
-    - ! '        AUTHOR = "Y. Hahn ... Ed. by Y. Itikawa.",'
+    - ! '        AUTHOR = "Y. Itikawa.",'
     - ! '        TITLE = "Collisions of electrons with atomic ions",'
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'

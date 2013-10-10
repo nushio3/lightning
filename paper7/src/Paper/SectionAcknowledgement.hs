@@ -13,7 +13,9 @@ import           Text.Authoring
 sectionAcknowledgement :: MonadAuthoring s w m => m ()
 sectionAcknowledgement = do
   command1 "section*" $ raw "Acknowledgement"
-  esc [doc| I appreciate Shinichi Enami for his advices 
-        on ice surface charge chemistry.
+  esc [doc| 
+        We thank Edward Kmett, Simon Peyton Jones, Richard Eisenberg and Takayuki Muto for helpful discussions; 
+        Shinichi Enami for his advices on ice surface charge chemistry;
+        Eiji Akiyama, Hideko Nomura and Tooru Eguchi for the estimation of ALMA sensitivity.
         |]
                          

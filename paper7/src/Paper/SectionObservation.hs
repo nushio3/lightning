@@ -13,8 +13,8 @@ sectionObservation = do
   command1 "section" $ raw "Observation"
   raw "Observation of $\\mathrm{HCO}^{+}$ lines are possible"
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
-  raw "."
+  raw ". "
   citet ["doi:10.1006/icar.1999.6245"]
-  raw " calculates the lightning mean free path."
+  raw " calculates the lightning mean free path. "
   return ()
   

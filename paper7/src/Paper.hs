@@ -73,7 +73,7 @@ genBodyText = do
 
 
 
-  return (LTX.render $ bodyDoc ^. latexSrc, bibText)
+  return (LTX.render bodyDoc, bibText)
 
 sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do

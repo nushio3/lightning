@@ -42,7 +42,7 @@ hayashiModelDoc = do
   
   raw "\n\n"
   
-  command1 "eqnarray" $ do
+  environment "eqnarray" $ do
     surfaceDensityGasDoc
 
 innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double

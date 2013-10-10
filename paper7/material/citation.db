@@ -73,6 +73,18 @@
       DOI={10.1070/PU2001v044n11ABEH000939}, number={11}, journal={Physics-Uspekhi},
       publisher={Uspekhi Fizicheskikh Nauk Journal}, author={Gurevich, Aleksandr V
       and Zybin, Kirill P}, year={2001}, month={Nov}, pages={1119-1140}}'
+- - doi:10.1086/432796
+  - - ! '@article{Inutsuka_Sano_2005, title={Self-sustained Ionization and Vanishing
+      Dead Zones in Protoplanetary Disks}, volume={628}, url={http://dx.doi.org/10.1086/432796},
+      DOI={10.1086/432796}, number={2}, journal={The Astrophysical Journal}, publisher={IOP
+      Publishing}, author={Inutsuka, Shu-ichiro and Sano, Takayoshi}, year={2005},
+      month={Aug}, pages={L155-L158}}'
+- - doi:10.1103/RevModPhys.12.87
+  - - ! '@article{Druyvesteyn_Penning_1940, title={The Mechanism of Electrical Discharges
+      in Gases of Low Pressure}, volume={12}, url={http://dx.doi.org/10.1103/RevModPhys.12.87},
+      DOI={10.1103/RevModPhys.12.87}, number={2}, journal={Reviews of Modern Physics},
+      publisher={American Physical Society}, author={Druyvesteyn, M. J. and Penning,
+      F. M.}, year={1940}, month={Apr}, pages={87-174}}'
 - - isbn:3-540-64296-X
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "S.J. Buchman ... Ed. by Y. Itikawa.",'

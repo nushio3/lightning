@@ -29,6 +29,8 @@ type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne)
 
 type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]  
 
+type GramOf = Value '[ '(Mass, POne)] '[ '(Gram, POne) ]  
+
 type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 
 type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
@@ -37,6 +39,11 @@ type CoulombPerCm2 =
   Value
     '[ '(Current, POne), '(Length, NTwo), '(Time, POne)]
     '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] 
+
+type Coulomb = 
+  Value
+    '[ '(Current, POne), '(Time, POne)]
+    '[ '(Ampere, POne), '(Second, POne) ] 
 
 
 type PermittivityUnit = 

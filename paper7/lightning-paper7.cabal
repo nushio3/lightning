@@ -30,6 +30,7 @@ library
     Model.Constants
     Model.Disk.Hayashi
     Model.Dust
+    Model.Values
     Paper
     Paper.SectionAcknowledgement
     Paper.SectionModel

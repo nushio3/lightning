@@ -19,7 +19,7 @@ sectionModel = do
   
   environment "itemize" $ do
 
-    command0 "item"
+    raw "\\item[{\\tt [C]} ]"
     
     esc $ [doc| 
            Conventional breakdown model, widely used in meteorological context,
@@ -27,18 +27,19 @@ sectionModel = do
     citet ["doi:10.1006/icar.1999.6245"]
     raw ".\n\n"
 
-    command0 "item"
+
+    raw "\\item[{\\tt [DP]} ]"
 
     esc $ [doc| 
            Druyversteyn-Penning breakdown model, based on electrical discharge 
            model proposed by |]
     citet ["doi:10.1103/RevModPhys.12.87"]
-    esc " and introduced as a protoplanetary disk lightning by"
+    esc " and introduced as a protoplanetary disk lightning model by "
     citet ["doi:10.1086/432796"]
     raw ".\n\n"
 
 
-    command0 "item"
+    raw "\\item[{\\tt [R]} ]"
 
     esc "Runaway breakdown model, proposed by "
     citet ["doi:10.1016/0375-9601(92)90348-P","doi:10.1070/PU2001v044n11ABEH000939"]
@@ -50,3 +51,4 @@ sectionModel = do
 
 
   hayashiModelDoc
+

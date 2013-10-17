@@ -36,6 +36,26 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2002JGRD..107.4075M
+  - - ! '@ARTICLE{2002JGRD..107.4075M,'
+    - ! '   author = {{Mansell}, E.~R. and {MacGorman}, D.~R. and {Ziegler}, C.~L.
+      and '
+    - ! "\t{Straka}, J.~M.},"
+    - ! '    title = "{Simulated three-dimensional branched lightning in a numerical
+      thunderstorm model}",'
+    - ! '  journal = {Journal of Geophysical Research (Atmospheres)},'
+    - ! ' keywords = {Meteorology and Atmospheric Dynamics, Meteorology and Atmospheric
+      Dynamics: Atmospheric electricity, Meteorology and Atmospheric Dynamics: Lightning,
+      Meteorology and Atmospheric Dynamics: Numerical modeling and data assimilation,},'
+    - ! '     year = 2002,'
+    - ! '    month = may,'
+    - ! '   volume = 107,'
+    - ! '      eid = {4075},'
+    - ! '    pages = {4075},'
+    - ! '      doi = {10.1029/2000JD000244},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2010ApJ...720..480O
   - - ! '@ARTICLE{2010ApJ...720..480O,'
     - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
@@ -56,6 +76,25 @@
     - ! '    pages = {480-493},'
     - ! '      doi = {10.1088/0004-637X/720/1/480},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...720..480O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2010MNRAS.401.2641M
+  - - ! '@ARTICLE{2010MNRAS.401.2641M,'
+    - ! '   author = {{Muranushi}, T.},'
+    - ! '    title = "{Dust-dust collisional charging and lightning in protoplanetary
+      discs}",'
+    - ! '  journal = {\mnras},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0908.1575},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {plasmas, turbulence, methods: numerical, meteors, meteoroids,
+      planetary systems: formation, planetary systems: protoplanetary discs},'
+    - ! '     year = 2010,'
+    - ! '    month = feb,'
+    - ! '   volume = 401,'
+    - ! '    pages = {2641-2664},'
+    - ! '      doi = {10.1111/j.1365-2966.2009.15848.x},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010MNRAS.401.2641M},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2011ApJ...734...98O
@@ -141,8 +180,7 @@
 - - isbn:354044338X
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "W. Martienssen",'
-    - ! '        TITLE = "Numerical data and functional relationships in science and
-      technology : new series",'
+    - ! '        TITLE = "Interactions of photons and electrons with molecules",'
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'
     - ! '        YEAR ="2003"}'

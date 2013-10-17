@@ -1,4 +1,5 @@
 {-# LANGUAGE ConstraintKinds #-}
+{-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -6,6 +7,7 @@
 module Paper.SectionModel where
 
 import           Control.Monad.RWS
+import           Data.Dynamic
 import           HereDocument (doc)
 import           Model.Disk.Hayashi (hayashiModelDoc)
   
@@ -20,6 +22,10 @@ sectionModel = do
   subSectionDischargeModel
   
   
+data TakahashiDischargeFormula = TakahashiDischargeFormula deriving Typeable
+labelTakahashiDischargeFormula :: Label
+labelTakahashiDischargeFormula = fromValue TakahashiDischargeFormula
+  
 subSectionDielectricStrength :: MonadAuthoring s w m => m ()    
 subSectionDielectricStrength = do  
   command1 "subsection" $ raw "Dielectric Strength of Air"  
@@ -31,17 +37,18 @@ of the electric field that the subject material does not cause the electric
 breakdown. It is physical property of central importance for discharge 
 physics.
 
-Lightning on Earth is discharge phenomenon in air, but it has been a long standing 
+Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
 problem that lightning takes place under electric field amplitude well below the 
-dielectric strength of air. The dielectric strength of air is given by
+dielectric strength of air; The dielectric strength of air as function of pressure is
          |]
-  citet ["isbn:9784130627184"] -- Takahashi 2007
-  esc $ " as function of pressure as:"
+  citep ["isbn:9784130627184"] -- Takahashi 2007
+  esc $ ": "
   
   environment "eqnarray" $ do
     raw [doc|
 E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
 |]
+    label labelTakahashiDischargeFormula
 
   raw "where $E_0 = 30 {\\rm kV/cm}$ "
 
@@ -74,7 +81,7 @@ is observed with electric field amplitude of
 
 subSectionDischargeModel :: MonadAuthoring s w m => m ()  
 subSectionDischargeModel = do
-  command1 "subsection" $ raw "Model"
+  command1 "subsection" $ raw "Breakdown Models"
   
   esc $ "We compare following three models of breakdown model: "
   
@@ -85,8 +92,10 @@ subSectionDischargeModel = do
     esc $ [doc| 
            Conventional breakdown model, widely used in meteorological context,
            and also adopted into astrophysical context e.g. by |]
-    citet ["doi:10.1006/icar.1999.6245"]
-    raw ".\n\n"
+    citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]
+    raw ". This model explains Equations ("
+    ref labelTakahashiDischargeFormula
+    raw ") well. \n\n"
 
 
     raw "\\item[{\\tt [DP]} ]"
@@ -104,10 +113,21 @@ subSectionDischargeModel = do
 
     esc "Runaway breakdown model, proposed by "
     citet ["doi:10.1016/0375-9601(92)90348-P","doi:10.1070/PU2001v044n11ABEH000939"]
-    raw ".\n\n"
+    esc [doc|. Runaway breakdown occurs in a electric field an order of magnitude   
+           Weaker than that of a conventional breakdown. Runaway breakdown
+           better explains the lightning observations and used as the discharge
+           model in thunderstorm simulations studies
+        e.g. by |]
+    citet ["bibcode:2002JGRD..107.4075M"]
+    raw ". \n\n"
   
-  esc "Cross section data are taken from "
-  citet ["isbn:3-540-64296-X","isbn:3540653473","isbn:354044338X"]
+
+
+  esc "The interactons of electrons with even the simplest atoms and molecules "
+  citet [ "isbn:3-540-64296-X" -- atoms
+        , "isbn:3540653473" -- atomic ions
+        , "isbn:354044338X" -- molecules
+        ]
   raw ".\n\n"  
 
 

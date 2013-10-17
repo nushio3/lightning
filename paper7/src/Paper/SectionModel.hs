@@ -36,17 +36,40 @@ problem that lightning takes place under electric field amplitude well below the
 dielectric strength of air. The dielectric strength of air is given by
          |]
   citet ["isbn:9784130627184"] -- Takahashi 2007
-  esc $ "as function of pressure as:"
+  esc $ " as function of pressure as:"
   
   environment "eqnarray" $ do
     raw [doc|
 E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
 |]
 
-  raw [doc|
-where $E_0 = 30 {\rm kV/cm}$ $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
-of air at ground level, respectively.
+  raw "where $E_0 = 30 {\\rm kV/cm}$ "
+
+  citep [ "doi:10.1063/1.323084", "isbn:9780028645865"]
+
+  raw [doc| , $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
+of air at ground level, respectively. On the other hand, intracloud lightning
+is observed with electric field amplitude of
   |]  
+
+  raw "$140 {\\rm V/cm}$ "
+  citep ["doi:10.1029/96JD01625"]
+
+  raw " to "
+
+  raw "$150 {\\rm V/cm}$ "
+  citep ["doi:10.1029/JD091iD01p01231"] 
+  esc ". "
+
+  esc "Cloud-to-ground lightning is observed with "
+
+  raw "$1 {\\rm kV/cm}$ "
+  citep ["bibcode:1983JMSJ...61...656"]
+  raw " to "
+
+  raw "$1.8 {\\rm kV/cm}$ "
+  citep ["bibcode:1999JAtS...56.1561T"]
+  raw ". "
 
 
 subSectionDischargeModel :: MonadAuthoring s w m => m ()  

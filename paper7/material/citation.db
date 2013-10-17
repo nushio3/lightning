@@ -11,6 +11,31 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1981PThPS..70...35H},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:1983JMSJ...61...656
+  - - ! '@ARTICLE{1983JMSJ.. 61...656,'
+    - ! '   author = {{Takahashi}, T.},'
+    - ! '    title = "{Electric Structure of Oceanic Tropical Clouds and Charge Separation
+      Processes}",'
+    - ! '  journal = {Journal of the Meteorological Society of Japan. Ser. II},'
+    - ! '     year = 1983,'
+    - ! '   volume = 61,'
+    - ! '   number = 4,'
+    - ! '    pages = {656-669},'
+    - ! '}'
+- - bibcode:1999JAtS...56.1561T
+  - - ! '@ARTICLE{1999JAtS...56.1561T,'
+    - ! '   author = {{Takahashi}, T. and {Tajiri}, T. and {Sonoi}, Y.},'
+    - ! '    title = "{Charges on Graupel and Snow Crystals and the Electrical Structure
+      of Winter Thunderstorms.}",'
+    - ! '  journal = {Journal of Atmospheric Sciences},'
+    - ! '     year = 1999,'
+    - ! '    month = jun,'
+    - ! '   volume = 56,'
+    - ! '    pages = {1561-1578},'
+    - ! '      doi = {10.1175/1520-0469(1999)056<1561:COGASC>2.0.CO;2},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2010ApJ...720..480O
   - - ! '@ARTICLE{2010ApJ...720..480O,'
     - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
@@ -67,6 +92,27 @@
       DOI={10.1016/0375-9601(92)90348-P}, number={5-6}, journal={Physics Letters A},
       publisher={Elsevier }, author={Gurevich, A.V. and Milikh, G.M. and Roussel-Dupre,
       R.}, year={1992}, month={Jun}, pages={463-468}}'
+- - doi:10.1029/96JD01625
+  - - ! '@article{ch_Helsdon_Detwiler_Smith_1996, title={Microphysical and electrical
+      evolution of a Florida thunderstorm: 1. Observations}, volume={101}, url={http://dx.doi.org/10.1029/96JD01625},
+      DOI={10.1029/96JD01625}, number={D14}, journal={Journal of Geophysical Research},
+      publisher={Wiley Blackwell (John Wiley &amp; Sons)}, author={French, Jeffrey
+      R. and Helsdon, John H. and Detwiler, Andrew G. and Smith, Paul L.}, year={1996},
+      month={Aug}, pages={18961}}'
+- - doi:10.1029/JD091iD01p01231
+  - - ! '@article{b_Pitter_Hallett_Saunders_1986, title={Early electrification and
+      precipitation development in a small, isolated Montana cumulonimbus}, volume={91},
+      url={http://dx.doi.org/10.1029/JD091iD01p01231}, DOI={10.1029/JD091iD01p01231},
+      number={D1}, journal={Journal of Geophysical Research}, publisher={Wiley Blackwell
+      (John Wiley &amp; Sons)}, author={Dye, J. E. and Jones, J. J. and Winn, W. P.
+      and Cerni, T. A. and Gardiner, B. and Lamb, D. and Pitter, R. L. and Hallett,
+      J. and Saunders, C. P. R.}, year={1986}, pages={1231}}'
+- - doi:10.1063/1.323084
+  - - ! '@article{Phelps_Griffiths_1976, title={Dependence of positive corona streamer
+      propagation on air pressure and water vapor content}, volume={47}, url={http://dx.doi.org/10.1063/1.323084},
+      DOI={10.1063/1.323084}, number={7}, journal={Journal of Applied Physics}, publisher={American
+      Institute of Physics}, author={Phelps, C. T. and Griffiths, R. F.}, year={1976},
+      pages={2929}}'
 - - doi:10.1070/PU2001v044n11ABEH000939
   - - ! '@article{Gurevich_Zybin_2001, title={Runaway breakdown and electric discharges
       in thunderstorms}, volume={44}, url={http://dx.doi.org/10.1070/PU2001v044n11ABEH000939},
@@ -107,6 +153,13 @@
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'
     - ! '        YEAR ="2001"}'
+- - isbn:9780028645865
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "J. S. Rigden",'
+    - ! '        TITLE = "[A - D].",'
+    - ! '        PUBLISHER = "Macmillan Reference USA",'
+    - ! '        ADDRESS = "New York",'
+    - ! '        YEAR ="1996"}'
 - - isbn:9781449335946
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "{Marlow}, S.",'

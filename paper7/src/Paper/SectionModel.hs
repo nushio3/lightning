@@ -15,7 +15,45 @@ import           Text.Authoring
 sectionModel :: MonadAuthoring s w m => m ()
 sectionModel = do
   command1 "section" $ raw "Model"
-  esc $ "We study the following three models of lightning: "
+  
+  subSectionDielectricStrength
+  subSectionDischargeModel
+  
+  
+subSectionDielectricStrength :: MonadAuthoring s w m => m ()    
+subSectionDielectricStrength = do  
+  command1 "subsection" $ raw "Dielectric Strength of Air"  
+  
+  esc $ [doc|
+
+Dielectric strength of an insulating material is the maximum amplitude 
+of the electric field that the subject material does not cause the electric
+breakdown. It is physical property of central importance for discharge 
+physics.
+
+Lightning on Earth is discharge phenomenon in air, but it has been a long standing 
+problem that lightning takes place under electric field amplitude well below the 
+dielectric strength of air. The dielectric strength of air is given by
+         |]
+  citet ["isbn:9784130627184"] -- Takahashi 2007
+  esc $ "as function of pressure as:"
+  
+  environment "eqnarray" $ do
+    raw [doc|
+E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
+|]
+
+  raw [doc|
+where $E_0 = 30 {\rm kV/cm}$ $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
+of air at ground level, respectively.
+  |]  
+
+
+subSectionDischargeModel :: MonadAuthoring s w m => m ()  
+subSectionDischargeModel = do
+  command1 "subsection" $ raw "Model"
+  
+  esc $ "We compare following three models of breakdown model: "
   
   environment "itemize" $ do
 

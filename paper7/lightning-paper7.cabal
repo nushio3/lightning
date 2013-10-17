@@ -42,7 +42,7 @@ library
   build-depends:     
       base ==4.*
 
-    , authoring >= 0.2
+    , authoring >= 0.2.3.3
     , containers 
     , data-default >= 0.5.3
     , HaTeX >= 3.6

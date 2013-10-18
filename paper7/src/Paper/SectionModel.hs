@@ -12,6 +12,7 @@ import           HereDocument (doc)
 import           Model.Disk.Hayashi (hayashiModelDoc)
   
 import           Text.Authoring
+import           Text.Authoring.TH 
 
 
 sectionModel :: MonadAuthoring s w m => m ()
@@ -29,6 +30,17 @@ labelTakahashiDischargeFormula = fromValue TakahashiDischargeFormula
 subSectionDielectricStrength :: MonadAuthoring s w m => m ()    
 subSectionDielectricStrength = do  
   command1 "subsection" $ raw "Dielectric Strength of Air"  
+  
+  let price = 10 :: Int
+      cheapStr = "cheap! it's cheap!" :: String
+  
+      takahashi2007 = citep ["isbn:9784130627184"] 
+  
+  [rawQ| Air is cheap. It costs only #{price} yen per ton @{takahashi2007}. #{cheapStr} |]
+  
+  [escQ| You know what! \10 = 10 yen = 0.1$ !!! omg! |]
+
+  [rawQ| {\bf too cheap!!} |]
   
   esc $ [doc|
 

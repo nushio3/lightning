@@ -23,9 +23,12 @@ sectionModel = do
   subSectionDischargeModel
   
   
-data TakahashiDischargeFormula = TakahashiDischargeFormula deriving Typeable
-labelTakahashiDischargeFormula :: Label
-labelTakahashiDischargeFormula = fromValue TakahashiDischargeFormula
+  
+[declareLabels| takahashiDischargeFormula , furuhataFormula, nushioFormula |]
+
+-- data TakahashiDischargeFormula = TakahashiDischargeFormula deriving Typeable
+-- labelTakahashiDischargeFormula :: Label
+-- labelTakahashiDischargeFormula = fromValue TakahashiDischargeFormula
   
 subSectionDielectricStrength :: MonadAuthoring s w m => m ()    
 subSectionDielectricStrength = do  
@@ -60,7 +63,7 @@ dielectric strength of air; The dielectric strength of air as function of pressu
     raw [doc|
 E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
 |]
-    label labelTakahashiDischargeFormula
+    label takahashiDischargeFormula
 
   raw "where $E_0 = 30 {\\rm kV/cm}$ "
 
@@ -106,7 +109,7 @@ subSectionDischargeModel = do
            and also adopted into astrophysical context e.g. by |]
     citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]
     raw ". This model explains Equations ("
-    ref labelTakahashiDischargeFormula
+    ref takahashiDischargeFormula
     raw ") well. \n\n"
 
 

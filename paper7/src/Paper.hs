@@ -16,6 +16,7 @@ import qualified Data.Set as Set
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as Text
 import           Text.Authoring
+import           Text.Authoring.TH
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import           Text.LaTeX.Base.Class (liftL)
@@ -28,7 +29,6 @@ import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 import           System.IO.Unsafe
 
-import           HereDocument
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
 writePaper srcFn outFn bibFn = do
@@ -78,10 +78,10 @@ genBodyText = do
 sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do
   command1 "section" $ raw "Introduction"
-  raw [doc| Meteorites include unmodified materials from the protoplanetary disks that formed 
-             our Solar System and carries unique evidences to understand stars and planet formation. |]
+  [escQ| Meteorites include unmodified materials from the protoplanetary disks that formed 
+             our Solar System and carries unique evidences to understand stars and planet formation. 
 
-  raw [doc| Substantial progress has been made in the understanding of the lightning ignition mechanism 
+        Substantial progress has been made in the understanding of the lightning ignition mechanism 
              in these twenty years. |]
   esc "This work is based on the landmark review by "
   citet ["isbn:9784130627184"]

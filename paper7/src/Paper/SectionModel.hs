@@ -8,7 +8,6 @@ module Paper.SectionModel where
 
 import           Control.Monad.RWS
 import           Data.Dynamic
-import           HereDocument (doc)
 import           Model.Disk.Hayashi (hayashiModelDoc)
   
 import           Text.Authoring
@@ -45,7 +44,7 @@ subSectionDielectricStrength = do
 
   [rawQ| {\bf too cheap!!} |]
   
-  esc $ [doc|
+  [escQ|
 
 Dielectric strength of an insulating material is the maximum amplitude 
 of the electric field that the subject material does not cause the electric
@@ -60,7 +59,7 @@ dielectric strength of air; The dielectric strength of air as function of pressu
   esc $ ": "
   
   environment "eqnarray" $ do
-    raw [doc|
+    [rawQ|
 E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
 |]
     label takahashiDischargeFormula
@@ -69,7 +68,7 @@ E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
 
   citep [ "doi:10.1063/1.323084", "isbn:9780028645865"]
 
-  raw [doc| , $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
+  [rawQ| , $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
 of air at ground level, respectively. On the other hand, intracloud lightning
 is observed with electric field amplitude of
   |]  
@@ -104,7 +103,7 @@ subSectionDischargeModel = do
 
     raw "\\item[{\\tt [C]} ]"
     
-    esc $ [doc| 
+    [escQ| 
            Conventional breakdown model, widely used in meteorological context,
            and also adopted into astrophysical context e.g. by |]
     citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]
@@ -115,7 +114,7 @@ subSectionDischargeModel = do
 
     raw "\\item[{\\tt [DP]} ]"
 
-    esc $ [doc| 
+    [escQ| 
            Druyversteyn-Penning breakdown model, based on electrical discharge 
            model proposed by |]
     citet ["doi:10.1103/RevModPhys.12.87"]
@@ -128,7 +127,7 @@ subSectionDischargeModel = do
 
     esc "Runaway breakdown model, proposed by "
     citet ["doi:10.1016/0375-9601(92)90348-P","doi:10.1070/PU2001v044n11ABEH000939"]
-    esc [doc|. Runaway breakdown occurs in a electric field an order of magnitude   
+    [escQ|. Runaway breakdown occurs in a electric field an order of magnitude   
            Weaker than that of a conventional breakdown. Runaway breakdown
            better explains the lightning observations and used as the discharge
            model in thunderstorm simulations studies

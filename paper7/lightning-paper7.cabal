@@ -25,7 +25,6 @@ library
     Figure.Gnuplot
     Figure.Shake
     GlobalConfig
-    HereDocument
     Model.Concepts
     Model.Constants
     Model.Disk.Hayashi

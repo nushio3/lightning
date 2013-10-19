@@ -71,6 +71,9 @@ subSectionDischargeModel :: MonadAuthoring s w m => m ()
 subSectionDischargeModel = do
   command1 "subsection" $ raw "Breakdown Models"
   
+  [escQ| By the way 2+3*4 is #{2+3*4}. @{emvbe!} |]
+
+
   [escQ| We compare following three models of breakdown model: |]
   
   environment "itemize" $ do
@@ -79,12 +82,13 @@ subSectionDischargeModel = do
     
     [escQ| 
            Conventional breakdown model, widely used in meteorological context,
-           and also adopted into astrophysical context e.g. by |]
-    citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]
-    raw ". This model explains Equations ("
-    ref takahashiDischargeFormula
-    raw ") well. \n\n"
+           and also adopted into astrophysical context e.g. by
+@{citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]} .
+This model explains Equations (@{ref takahashiDischargeFormula}) well.
 
+
+ |]
+    
 
     raw "\\item[{\\tt [DP]} ]"
 

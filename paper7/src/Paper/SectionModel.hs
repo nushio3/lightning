@@ -24,26 +24,13 @@ sectionModel = do
   
   
 [declareLabels| takahashiDischargeFormula , furuhataFormula, nushioFormula |]
-
--- data TakahashiDischargeFormula = TakahashiDischargeFormula deriving Typeable
--- labelTakahashiDischargeFormula :: Label
--- labelTakahashiDischargeFormula = fromValue TakahashiDischargeFormula
   
 subSectionDielectricStrength :: MonadAuthoring s w m => m ()    
 subSectionDielectricStrength = do  
   command1 "subsection" $ raw "Dielectric Strength of Air"  
   
-  let price = 10 :: Int
-      cheapStr = "cheap! it's cheap!" :: String
-  
-      takahashi2007 = citep ["isbn:9784130627184"] 
-  
-  [rawQ| Air is cheap. It costs only #{price} yen per ton @{takahashi2007}. #{cheapStr} |]
-  
-  [escQ| You know what! \10 = 10 yen = 0.1$ !!! omg! |]
+  let takahashi2007 = citep ["isbn:9784130627184"] 
 
-  [rawQ| {\bf too cheap!!} |]
-  
   [escQ|
 
 Dielectric strength of an insulating material is the maximum amplitude 
@@ -53,51 +40,38 @@ physics.
 
 Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
 problem that lightning takes place under electric field amplitude well below the 
-dielectric strength of air; The dielectric strength of air as function of pressure is
+dielectric strength of air; The dielectric strength of air 
+as function of pressure is @{takahashi2007}:
          |]
-  citep ["isbn:9784130627184"] -- Takahashi 2007
-  esc $ ": "
   
   environment "eqnarray" $ do
-    [rawQ|
-E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} ,
-|]
-    label takahashiDischargeFormula
+    [rawQ| E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.65} @{label takahashiDischargeFormula} , |]
 
-  raw "where $E_0 = 30 {\\rm kV/cm}$ "
 
-  citep [ "doi:10.1063/1.323084", "isbn:9780028645865"]
+  let citeDSofAir   = citep [ "doi:10.1063/1.323084", "isbn:9780028645865"]    
+      french1996    = citep ["doi:10.1029/96JD01625"]      
+      dye1986       = citep ["doi:10.1029/JD091iD01p01231"]
+      takahashi1983 = citep ["bibcode:1983JMSJ...61...656"]
+      takahashi1999 = citep ["bibcode:1999JAtS...56.1561T"]
 
-  [rawQ| , $P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
+
+  [rawQ| where $E_0 = 30 {\rm kV/cm}$ @{citeDSofAir},
+$P_0 = 1 {\rm atm}$ are dielectric strength and pressure 
 of air at ground level, respectively. On the other hand, intracloud lightning
 is observed with electric field amplitude of
+$140 {\rm V/cm}$ @{french1996} to
+$150 {\rm V/cm}$ @{dye1986}.
+Cloud-to-ground lightning is observed with electric field amplitude of around
+$1 {\rm V/cm}$ @{takahashi1983} to
+$2 {\rm V/cm}$ @{takahashi1999} .
   |]  
-
-  raw "$140 {\\rm V/cm}$ "
-  citep ["doi:10.1029/96JD01625"]
-
-  raw " to "
-
-  raw "$150 {\\rm V/cm}$ "
-  citep ["doi:10.1029/JD091iD01p01231"] 
-  esc ". "
-
-  esc "Cloud-to-ground lightning is observed with "
-
-  raw "$1 {\\rm kV/cm}$ "
-  citep ["bibcode:1983JMSJ...61...656"]
-  raw " to "
-
-  raw "$1.8 {\\rm kV/cm}$ "
-  citep ["bibcode:1999JAtS...56.1561T"]
-  raw ". "
 
 
 subSectionDischargeModel :: MonadAuthoring s w m => m ()  
 subSectionDischargeModel = do
   command1 "subsection" $ raw "Breakdown Models"
   
-  esc $ "We compare following three models of breakdown model: "
+  [escQ| We compare following three models of breakdown model: |]
   
   environment "itemize" $ do
 

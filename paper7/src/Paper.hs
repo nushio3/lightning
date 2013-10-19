@@ -19,15 +19,11 @@ import           Text.Authoring
 import           Text.Authoring.TH
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
-import           Text.LaTeX.Base.Class (liftL)
 import qualified Text.LaTeX as LTX
-import qualified Text.LaTeX.Packages.Graphicx as LTX
-import           Text.LaTeX.Packages.AMSMath (autoParens)
 
 import           Paper.SectionModel (sectionModel)
 import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
-import           System.IO.Unsafe
 
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
@@ -78,16 +74,19 @@ genBodyText = do
 sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do
   command1 "section" $ raw "Introduction"
-  [escQ| Meteorites include unmodified materials from the protoplanetary disks that formed 
-             our Solar System and carries unique evidences to understand stars and planet formation. 
+  
+  let takahashi2007 = citet ["isbn:9784130627184"]
+      marlow2013    = citet ["isbn:9781449335946"]
+  [escQ| 
+Meteorites include unmodified materials from the protoplanetary disks that formed 
+our Solar System and carries unique evidences to understand stars and planet formation. 
+Substantial progress has been made in the understanding of the lightning ignition mechanism 
+in these twenty years.
 
-        Substantial progress has been made in the understanding of the lightning ignition mechanism 
-             in these twenty years. |]
-  esc "This work is based on the landmark review by "
-  citet ["isbn:9784130627184"]
-  esc ". The parallel computations are based on "
-  citet ["isbn:9781449335946"]
-  esc "."
+This work is based on the landmark review by @{takahashi2007}. 
+The parallel computations are based on @{marlow2013}.
+
+ |]
 
 sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do

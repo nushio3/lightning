@@ -152,6 +152,11 @@
       DOI={10.1063/1.323084}, number={7}, journal={Journal of Applied Physics}, publisher={American
       Institute of Physics}, author={Phelps, C. T. and Griffiths, R. F.}, year={1976},
       pages={2929}}'
+- - doi:10.1063/1.329081
+  - - ! '@article{Chantry_1981, title={A critique of methods for calculating the dielectric
+      strength of gas mixtures}, volume={52}, url={http://dx.doi.org/10.1063/1.329081},
+      DOI={10.1063/1.329081}, number={4}, journal={Journal of Applied Physics}, publisher={American
+      Institute of Physics}, author={Chantry, P. J.}, year={1981}, pages={2731}}'
 - - doi:10.1070/PU2001v044n11ABEH000939
   - - ! '@article{Gurevich_Zybin_2001, title={Runaway breakdown and electric discharges
       in thunderstorms}, volume={44}, url={http://dx.doi.org/10.1070/PU2001v044n11ABEH000939},

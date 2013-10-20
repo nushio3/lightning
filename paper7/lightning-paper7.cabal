@@ -30,6 +30,7 @@ library
     Model.Breakdown
     Model.Disk.Hayashi
     Model.Dust
+    Model.Gas
     Model.Values
     Paper
     Paper.SectionAcknowledgement

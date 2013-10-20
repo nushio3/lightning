@@ -26,6 +26,6 @@ sectionModel = do
   command1 "subsection" $ raw "Breakdown Models"
   aboutThreeDischargeModel
   
-  
+  command1 "subsection" $ raw "Disk Models"  
   hayashiModelDoc  
 

@@ -38,10 +38,6 @@ hayashiModelDoc = do
   raw "\n\n"
   
   
-  raw $ Text.pack $ show $ val $ lightSpeed
-  
-  raw "\n\n"
-  
   environment "eqnarray" $ do
     surfaceDensityGasDoc
 

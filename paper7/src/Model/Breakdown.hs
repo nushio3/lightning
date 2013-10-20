@@ -26,8 +26,8 @@ breakdown. It is physical property of central importance for discharge
 physics.
 
 Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
-problem that lightning takes place under electric field amplitude well below the 
-dielectric strength of air; The dielectric strength of air 
+mystery that lightning takes place under electric field amplitude well below the 
+dielectric strength of air. The dielectric strength of air 
 as function of pressure is @{takahashi2007}:
          |]
   
@@ -105,7 +105,7 @@ In this model ionization that leads to breakdown is caused by exponential
 increase of the number of electron with relativistic ($\sim 1$MeV) kinetic energy.
 Because the mean free path for such fast electrons is much longer than that for thermal
 electrons, runaway breakdown takes place at electric field much weaker than that of a conventional breakdown. 
-Runaway breakdown better explains the lightning observations in Earth atmosphere and is used as the discharge
+Runaway breakdown model better explains the lightning observations in Earth atmosphere and is used as the discharge
 model in thunderstorm simulations studies
 e.g. by @{citet ["bibcode:2002JGRD..107.4075M"] -- Mansell et al}. |]
     
@@ -122,10 +122,10 @@ we need to compute Boltzmann distribution of electrons.
 Since the interactons of electrons with even the simplest atoms and molecules
 has profound details @{landoltBoernstein},
 this requires difficult numerical computations @{citep ["doi:10.1063/1.329081"]}.
-In this paper, we will instead resort to a back-of-the-envelope calculation to reproduce 
-the result of the conventional breakdown model.
-
+In this paper, we will instead resort to a back-of-the-envelope calculation that reproduces
+the values from the conventional breakdown model.
  |]
+
 
 
 

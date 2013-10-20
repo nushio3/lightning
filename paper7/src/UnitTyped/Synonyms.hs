@@ -3,6 +3,7 @@
 
 module UnitTyped.Synonyms where
 
+import           Text.Printf
 import           UnitTyped
 import           UnitTyped.SI
 import           UnitTyped.SI.Constants
@@ -13,27 +14,94 @@ import           UnitTyped.SI.Derived.Time
 import           UnitTyped.SI.Derived.Mass
 import qualified UnitTyped.NoPrelude as U
 
+----------------------------------------------------------------
+-- Pretty Printing Functions
+----------------------------------------------------------------
+
+ppValF :: PrintfArg x => String -> Value a b x -> String
+ppValF fmtStr (Value x) = printf fmtStr x
+
+ppValE :: PrintfArg x => Int -> Value a b x -> String
+ppValE d (Value x) = ret
+  where
+    fmtStr :: String
+    fmtStr = printf "%%.%de" d
+    
+    protoStr :: String
+    protoStr = printf fmtStr x
+
+    (valPart,expPart) = break (=='e') protoStr
+    
+    ret = case expPart of
+      "e0" -> valPart
+      _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
+
+
+----------------------------------------------------------------
+-- Nondimensionals
+----------------------------------------------------------------
+
 type NoDimension = Value '[] '[]
 
+----------------------------------------------------------------
+-- Nonweighted units
+----------------------------------------------------------------
+
+type PerCm3 =  Value '[ '(Length, NThree)] '[ '(Centi Meter, NThree) ] 
+
+----------------------------------------------------------------
+-- Weighted units
+----------------------------------------------------------------
+
+-- densities
 type GramPerCm2 =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] 
 type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] 
 
-type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]
-type MeterPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
 
-type Meter2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Meter, PTwo), '(Second, NTwo) ]
-type Sec2PerMeter2 = Value '[ '(Length, NTwo),  '(Time, PTwo)] '[ '(Meter, NTwo), '(Second, PTwo) ]
+
+
+-- energies
+type ElectronVolt = Value Energy '[ '(Ev, POne)]
 
 
 type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]
 
 type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]  
 
-type GramOf = Value '[ '(Mass, POne)] '[ '(Gram, POne) ]  
+type GramUnit = Value '[ '(Mass, POne)] '[ '(Gram, POne) ]  
+type GramPerMole = Value '[ '(Mass, POne)] '[ '(Gram, POne), '(Mole, NOne) ]  
+
 
 type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 
 type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
+
+-- velocities
+type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]
+type MeterPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
+
+-- squared velocities
+type Meter2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Meter, PTwo), '(Second, NTwo) ]
+type Sec2PerMeter2 = Value '[ '(Length, NTwo),  '(Time, PTwo)] '[ '(Meter, NTwo), '(Second, PTwo) ]
+
+-- areas
+type Meter2 = Value '[ '(Length, PTwo)] '[ '(Meter, PTwo)]
+type Cm2 = Value '[ '(Length, PTwo)] '[ '(Centi Meter, PTwo)]
+
+
+
+----------------------------------------------------------------
+-- Electric Units
+----------------------------------------------------------------
+type VoltUnit = Value ElectricPotential '[ '(Volt, POne)]
+
+type VoltPerCm = Value 
+  '[ '(Current, NOne), '(Mass, POne), '(Length, POne), '(Time, NThree) ]
+  '[ '(Volt, POne) , '(Centi Meter, NOne)]
+type KVPerCm = Value 
+  '[ '(Current, NOne), '(Mass, POne), '(Length, POne), '(Time, NThree) ]
+  '[ '(Kilo Volt, POne) , '(Centi Meter, NOne)]
+
 
 type CoulombPerCm2 = 
   Value
@@ -45,12 +113,10 @@ type Coulomb =
     '[ '(Current, POne), '(Time, POne)]
     '[ '(Ampere, POne), '(Second, POne) ] 
 
-
 type PermittivityUnit = 
   Value
     '[ '(Mass, NOne),  '(Length, NThree), '(Time, PFour), '(Current, PTwo)]
     '[ '(Kilo Gram, NOne) , '(Meter, NThree), '(Second, PFour), '(Ampere, PTwo)] 
-
 
 type PermeabilityUnit = 
   Value

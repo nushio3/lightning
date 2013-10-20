@@ -65,7 +65,7 @@ library
 
 executable make-paper
   main-is:           make-paper.hs           
-  Ghc-Options:       -Wall -O2
+  Ghc-Options:       -Wall -O2 
   hs-source-dirs:    exe-src/
   Build-Depends:     base
                    , lightning-paper7

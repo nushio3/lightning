@@ -10,6 +10,7 @@ import           Control.Monad.RWS
 import           Data.Dynamic
 import           Model.Breakdown  
 import           Model.Disk.Hayashi (hayashiModelDoc)
+import           Model.Gas (aboutAir)
 
 import           Text.Authoring
 import           Text.Authoring.TH 
@@ -25,6 +26,10 @@ sectionModel = do
 
   command1 "subsection" $ raw "Breakdown Models"
   aboutThreeDischargeModel
+  
+  raw "\n\n"
+  
+  aboutAir
   
   command1 "subsection" $ raw "Disk Models"  
   hayashiModelDoc  

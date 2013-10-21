@@ -62,7 +62,7 @@ type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne),
 
 -- energies
 type ElectronVolt = Value Energy '[ '(Ev, POne)]
-type JouleUnit = Vaule Energy  '[ '(Joule, POne)]
+type JouleUnit = Value Energy  '[ '(Joule, POne)]
 
 
 

@@ -62,6 +62,8 @@ type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne),
 
 -- energies
 type ElectronVolt = Value Energy '[ '(Ev, POne)]
+type JouleUnit = Vaule Energy  '[ '(Joule, POne)]
+
 
 
 type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]
@@ -113,11 +115,13 @@ type Coulomb =
     '[ '(Current, POne), '(Time, POne)]
     '[ '(Ampere, POne), '(Second, POne) ] 
 
+-- eps0
 type PermittivityUnit = 
   Value
     '[ '(Mass, NOne),  '(Length, NThree), '(Time, PFour), '(Current, PTwo)]
     '[ '(Kilo Gram, NOne) , '(Meter, NThree), '(Second, PFour), '(Ampere, PTwo)] 
 
+-- mu0
 type PermeabilityUnit = 
   Value
     '[ '(Mass, POne),  '(Length, POne), '(Time, NTwo), '(Current, NTwo)]

@@ -32,6 +32,18 @@ airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 ppdMix :: Convertible' a b => (ChemicalSpecies -> Value a b Double) -> Value a b Double
 ppdMix func = 0.9105 *| func H2 |+| 8.8769e-2 *| func He |+| 7.7662e-4 *| func O2
 
+atomicNumber :: ChemicalSpecies -> NoDimension Double 
+atomicNumber H2 = mkVal 2
+atomicNumber He = mkVal 2
+atomicNumber N2 = mkVal 14
+atomicNumber O2 = mkVal 16
+atomicNumber Ar = mkVal 18
+atomicNumber H2O = mkVal 10
+atomicNumber HCOPlus = mkVal 15
+atomicNumber DCOPlus = mkVal 15
+atomicNumber N2HPlus = mkVal 15
+
+
 
 molecularMass :: ChemicalSpecies -> GramPerMole Double 
 molecularMass H2 = mkVal 2
@@ -67,10 +79,34 @@ mfpAir12 :: Cm Double
 mfpAir12 = autoc $ 1 /| airNumberDensity |/| (airMix $ inelCrossSection 12)
 
 
+   
+
 airDielectricStrength :: KVPerCm Double
 airDielectricStrength = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
+airDielectricStrengthDP :: KVPerCm Double
+airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpAir12) 
+  where
+    w = mkVal 12                           :: ElectronVolt Double
+    ratio = sqrt $ val ratioD              :: Double
+    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
+    bigM = autoc $ airMix molecularMass    :: GramUnit Double
+
+airDielectricStrengthR :: KVPerCm Double
+airDielectricStrengthR = autoc $ 
+  (11/(4*pi)) *| (e3 |*| z |*| airNumberDensity)
+             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
+  
+  where
+    nrg :: JouleUnit Double
+    nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+    
+    e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
+    z = airMix atomicNumber
+    n = airNumberDensity
+    
+
 airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
 
@@ -100,8 +136,15 @@ $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
 $E_{\rm crit} = #{ppValF "%.0f" airDielectricStrength} {\rm kV/cm}$,
- which is in agreement with Equation (@{ref takahashiDischargeFormula}).
-   |]
+ which is in agreement with the dielectric strength of air at ground level.
 
+DP sais
+$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthDP} {\rm kV/cm}$.
+
+R sais
+$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthR} {\rm kV/cm}$.
+
+
+   |]
 
 

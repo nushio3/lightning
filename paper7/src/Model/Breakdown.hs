@@ -6,8 +6,14 @@
 
 module Model.Breakdown where
 
+
 import Text.Authoring
 import Text.Authoring.TH
+import UnitTyped
+import UnitTyped.Synonyms
+
+
+import Model.Gas
 
 
 [declareLabels| ntpAirDielectricStrength, takahashiDischargeFormula |]
@@ -154,5 +160,113 @@ the values from the Townsend breakdown model.
 
 
 
+aboutAir :: MonadAuthoring s w m => m ()
+aboutAir = do
+  [rawQ|
+We assume that air consists of
+78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fraction).
+Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
+The ionization energy of these chemical species are
+$\Delta W_{\rm N_2} = #{val $ ionizationEnergy N2} {\rm eV}$,
+$\Delta W_{\rm O_2} = #{val $ ionizationEnergy O2} {\rm eV}$, and
+$\Delta W_{\rm Ar}  = #{val $ ionizationEnergy Ar} {\rm eV}$, respectively.
+Of these $\Delta W_{\rm O_2} \sim 12 {\rm eV}$ is the smallest, so we estimate
+the electric field amplitude $E_{\rm crit}$ required to accelerate the electron
+upto 12eV; i.e. we solve $12 {\rm eV} = e E_{\rm crit} l_{\rm mfp}$.
+Given that
+the inelastic cross sections of $\rm N_2, O_2, Ar$ for 12 eV electron 12eV are
+$0.8, ~1.8, ~0.0 \times 10^{ -16} {\rm cm^{ -2}}$
+@{citep ["isbn:3-540-64296-X", "isbn:354044338X"]},
+the mean inelastic cross section of air at 12eV is 
+$#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
+Therefore, $l_{\rm mfp} = #{ppValE 1 mfpAir12} {\rm cm}$.
+This gives 
+$E_{\rm crit} = #{ppValF "%.0f" airDielectricStrengthT} {\rm kV/cm}$,
+ which is in agreement with the dielectric strength of air at ground level
+(Equations (@{ref ntpAirDielectricStrength})).
+
+On the other hand, according to the formalization by
+@{citet ["doi:10.1086/432796"]}, average kinetic energy of electron
+under the electric field $E$ is
+\begin{eqnarray}
+  \langle \epsilon \rangle = 0.43 e E l_{\rm mfp} \sqrt{\frac{M}{m_e}},
+\end{eqnarray}
+where $M$ is the mass of the collision partner, 
+and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
+In the case of the air at NTP,
+since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
+$E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthDP} {\rm kV/cm}$.
+
+Finally, according to the runaway breakdown model the dielectric strength
+$E_{\rm crit}$ is the electric field amplitude where
+the acceleration by the electric field balances
+the ionization loss for minimum ionizing electrons. 
+Minimum ionizing electrons are electrons with such kinetic energy $\varepsilon$
+that  for them the ionization loss is the smallest.
+The ionization losses of an electron as the function of $\varepsilon$ has the following form
+@{citationGen "citep[see][chap 5.5]" ["isbn:978-0-521-75618-1"]}:
+   |]
+
+  environment "eqnarray" $ do
+    [rawQ| -\frac{d\varepsilon}{dt} &=& 
+\frac{e^4 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a(\gamma), \\
+\mathrm{where}~~~a(\gamma) &=& \left(\frac{c}{v}\right)^2
+   \left[ \ln\frac{\gamma^3 {m_e}^2 v^4 }{2 (1+\gamma){\bar I}^2}
+ - \left(\frac{2}{\gamma} - \frac{1}{\gamma^2}\right)\ln 2
+ + \frac{1}{\gamma^2}
+ + \frac{1}{8}\left(1 - \frac{1}{\gamma}\right)^2\right],
+    |]
+
+  [rawQ|
+where 
+$ \gamma = (1 - v^2/c^2)^{ -1/2} $ is the Lorentz factor of the electron,
+$\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, 
+${\bar Z} n_n$ is the number density of ambient electrons of the matter. 
+$\bar I$ is the mean excitation energy, a parameter to be fitted to
+laboratory experimental data. We use the value of 
+$\bar I_{\rm air} = 86.3 {\rm eV}$ from ESTAR database @{citep ["special:nist-estar"]}.
+
+For the case of the air $a(\gamma)$ takes its minimum 
+$a_{\rm min} = 20.2$ at $\gamma = 3.89$
+or $\varepsilon = 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
+is the solution of the work balance equation
+\begin{eqnarray}
+  eE-\frac{d\varepsilon}{dt} &=& 0,
+\end{eqnarray}
+which is 
+\begin{eqnarray}
+E_{\rm crit} 
+&=& \frac{e^3 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a_{\rm min}, \nonumber \\
+&=&  #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}.
+\end{eqnarray}
+   |]
+
+
+
+  [rawQ|
+All three model states that the dielectric strength of the gas is proportional to
+the number density of the gas. 
+\begin{eqnarray}
+\begin{array}{CCCCC}
+E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
+2.14 \times 10^{ -17} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{hoge} , \\
+E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
+6.09 \times 10^{ -18} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{piyo} , \\
+E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
+1.12 \times 10^{ -19} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{huga} .
+\end{array}
+\label{toge}
+\end{eqnarray}
+  |]
+
+--  (log((511e3/88.0)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
+
+
+-- This is the database to use
+-- http://physics.nist.gov/PhysRefData/Star/Text/ESTAR.html
+
+-- other databases
+-- http://www.srim.org/SRIM/SRIMPICS/IONIZ.htm
+-- http://physics.nist.gov/PhysRefData/XrayMassCoef/tab1.html
 
 

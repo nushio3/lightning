@@ -10,7 +10,7 @@ import           Control.Monad.RWS
 import           Data.Dynamic
 import           Model.Breakdown  
 import           Model.Disk.Hayashi (hayashiModelDoc)
-import           Model.Gas (aboutAir)
+import           Model.Breakdown (aboutAir)
 
 import           Text.Authoring
 import           Text.Authoring.TH 

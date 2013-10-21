@@ -138,13 +138,11 @@ This gives
 $E_{\rm crit} = #{ppValF "%.0f" airDielectricStrength} {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level.
 
-DP sais
+On the other hand, according to DP model
 $E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthDP} {\rm kV/cm}$.
 
-R sais
+And according to the runaway breakdown model
 $E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthR} {\rm kV/cm}$.
-
-
    |]
 
 

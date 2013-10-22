@@ -95,7 +95,7 @@ airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| m
 
 airDielectricStrengthR :: KVPerCm Double
 airDielectricStrengthR = autoc $ 
-  (11/(4*pi)) *| (e3 |*| z |*| airNumberDensity)
+  (20.2/(8*pi)) *| (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
@@ -150,9 +150,43 @@ In the case of the air at NTP,
 since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
 $E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthDP} {\rm kV/cm}$.
 
-Finally, according to the runaway breakdown model,
-$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthR} {\rm kV/cm}$
-@{citep ["isbn:3-540-29692-1"]}.
+Finally, according to the runaway breakdown model the dielectric strength
+$E_{\rm crit}$ is the electric field amplitude where
+the acceleration by the electric field balances
+the ionization loss for minimum ionizing electrons. 
+Minimum ionizing electrons are electrons with such kinetic energy $\varepsilon$
+that  for them the ionization loss is the smallest.
+The ionization losses of an electron as the function of $\varepsilon$ has the following form
+@{citationGen "citep[see][chap 5.5]" ["isbn:978-0-521-75618-1"]}:
+   |]
+
+  environment "eqnarray" $ do
+    [rawQ| -\frac{d\varepsilon}{dt} &=& 
+\frac{e^4 N_e}{8 \pi {\epsilon_0}^2 m_e c^2}a(\gamma), \\
+\mathrm{where}~~~a(\gamma) &=& \left(\frac{c}{v}\right)^2
+   \left[ \ln\frac{\gamma^3 {m_e}^2 v^4 }{2 (1+\gamma){\bar I}^2}
+ - \left(\frac{2}{\gamma} - \frac{1}{\gamma^2}\right)\ln 2
+ + \frac{1}{\gamma^2}
+ + \frac{1}{8}\left(1 - \frac{1}{\gamma}\right)^2\right],
+    |]
+
+  [rawQ|
+where 
+$ \gamma = (1 - v^2/c^2)^{ -1/2} $ is the Lorentz factor of the electron,
+$\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, and
+$\bar I$ is the mean excitation energy, a parameter to be fitted to
+laboratory experimental data. We use values of $\bar I$ from
+@{citet ["doi:10.1016/S0092-640X(72)80002-0"]}.
+
+For the case of the air $a(\gamma)$ takes its minimum at $\gamma \simeq 20.2$
+or $\varepsilon \simeq 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
+is the solution of the work balance equation
+\begin{eqnarray}
+  eE-\frac{d\varepsilon}{dt} &=& 0,
+\end{eqnarray}
+which is $E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}$.
    |]
 
 
+-- http://www.srim.org/SRIM/SRIMPICS/IONIZ.htm
+-- http://physics.nist.gov/PhysRefData/XrayMassCoef/tab1.html

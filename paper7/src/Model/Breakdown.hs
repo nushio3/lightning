@@ -39,17 +39,18 @@ the dielectric strength of air at normal temperature and pressure (NTP;
 $20^{\circ}{\rm C}$ and 1atm)
 is well established from laboratory experiments @{citeDSofAir}: |]
 
-  environment "eqnarray" $ [rawQ| E_0 = 30 {\rm kV/cm}, @{label ntpAirDielectricStrength}|]
+  environment "eqnarray" $ [rawQ| E_0 = 30 {\rm kV/cm}. @{label ntpAirDielectricStrength}|]
 
 
   [rawQ| The long-distance limit of Paschen's law states that the dielectric strength of gas 
 depends linearly on the gas number density @{citep ["isbn:978-3-642-64760-4"]}.
 However, in the case of the air the dependence of the dielectric strength on the number density is
-known to be steeper than linear. This is explained by the electron chemistry, and empirical formulae are known
+known to be steeper than linear. This is explained by the electron loss via three-body interactions,
+and empirical formulae are known
  @{citep ["doi:10.1063/1.323084","isbn:9784130627184"]}:
          |] 
   environment "eqnarray" $ do
-     [rawQ| E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.5 - 1.65} @{label takahashiDischargeFormula} . |]
+     [rawQ| E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.5 - 1.65} @{label takahashiDischargeFormula} , |]
   [rawQ| where $E_0$ and $P_0$ are the dielectric strength and the pressure of the air at ground level, respectively. |]
 
 
@@ -145,7 +146,7 @@ we need to compute Boltzmann distribution of electrons.
 Since the interactons of electrons with even the simplest atoms and molecules
 has profound details @{landoltBoernstein},
 this requires difficult numerical computations @{citep ["doi:10.1063/1.329081"]}.
-In this paper, we will instead resort to a back-of-the-envelope calculation that reproduces
+In this paper, we will instead resort to a simple calculation that reproduces
 the values from the Townsend breakdown model.
  |]
 

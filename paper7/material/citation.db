@@ -131,6 +131,13 @@
       DOI={10.1016/0375-9601(92)90348-P}, number={5-6}, journal={Physics Letters A},
       publisher={Elsevier }, author={Gurevich, A.V. and Milikh, G.M. and Roussel-Dupre,
       R.}, year={1992}, month={Jun}, pages={463-468}}'
+- - doi:10.1016/S0092-640X(72)80002-0
+  - - ! '@article{Bertel_Joffre_Sklavenitis_1972, title={Energy loss, range, and bremsstrahlung
+      yield for 10-keV to 100-MeV electrons in various elements and chemical compounds},
+      volume={4}, url={http://dx.doi.org/10.1016/S0092-640X(72)80002-0}, DOI={10.1016/S0092-640X(72)80002-0},
+      journal={Atomic Data and Nuclear Data Tables}, publisher={Elsevier }, author={Pages,
+      Lucien and Bertel, Evelyne and Joffre, Henri and Sklavenitis, Laodamas}, year={1972},
+      month={Mar}, pages={1-27}}'
 - - doi:10.1029/96JD01625
   - - ! '@article{ch_Helsdon_Detwiler_Smith_1996, title={Microphysical and electrical
       evolution of a Florida thunderstorm: 1. Observations}, volume={101}, url={http://dx.doi.org/10.1029/96JD01625},
@@ -203,6 +210,13 @@
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'
     - ! '        YEAR ="2001"}'
+- - isbn:978-0-521-75618-1
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Malcolm S. Longair.",'
+    - ! '        TITLE = "High energy astrophysics",'
+    - ! '        PUBLISHER = "Cambridge University Press",'
+    - ! '        ADDRESS = "Cambridge",'
+    - ! '        YEAR ="2010"}'
 - - isbn:978-3-642-64760-4
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "Yuri P. Raizer.",'

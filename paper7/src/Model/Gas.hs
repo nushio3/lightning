@@ -188,5 +188,9 @@ which is $E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}$.
    |]
 
 
+--  (log((511e3/85.88)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
+
+
+
 -- http://www.srim.org/SRIM/SRIMPICS/IONIZ.htm
 -- http://physics.nist.gov/PhysRefData/XrayMassCoef/tab1.html

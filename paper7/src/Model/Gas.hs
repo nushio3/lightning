@@ -12,7 +12,7 @@ import Text.Authoring.TH
 import UnitTyped
 import UnitTyped.Synonyms
 
-import Model.Breakdown (takahashiDischargeFormula)
+import Model.Breakdown (ntpAirDielectricStrength)
 import Model.Values
 
 data ChemicalSpecies
@@ -105,7 +105,7 @@ airDielectricStrengthR = autoc $
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = airMix atomicNumber
     n = airNumberDensity
-    
+
 
 airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
@@ -118,7 +118,6 @@ aboutAir = do
   [rawQ|
 We assume that air consists of
 78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fraction).
-Mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass}.   
 Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
 The ionization energy of these chemical species are
 $\Delta W_{\rm N_2} = #{val $ ionizationEnergy N2} {\rm eV}$,
@@ -136,13 +135,24 @@ $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
 $E_{\rm crit} = #{ppValF "%.0f" airDielectricStrength} {\rm kV/cm}$,
- which is in agreement with the dielectric strength of air at ground level.
+ which is in agreement with the dielectric strength of air at ground level
+(Equations (@{ref ntpAirDielectricStrength})).
 
-On the other hand, according to DP model
+On the other hand, according to the formalization by
+@{citet ["doi:10.1086/432796"]}, average kinetic energy of electron
+under the electric field $E$ is
+\begin{eqnarray}
+  \langle \epsilon \rangle = 0.43 e E l_{\rm mfp} \sqrt{\frac{M}{m_e}},
+\end{eqnarray}
+where $M$ is the mass of the collision partner, 
+and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
+In the case of the air at NTP,
+since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
 $E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthDP} {\rm kV/cm}$.
 
-And according to the runaway breakdown model
-$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthR} {\rm kV/cm}$.
+Finally, according to the runaway breakdown model,
+$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthR} {\rm kV/cm}$
+@{citep ["isbn:3-540-29692-1"]}.
    |]
 
 

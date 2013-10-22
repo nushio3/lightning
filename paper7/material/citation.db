@@ -175,6 +175,13 @@
       DOI={10.1103/RevModPhys.12.87}, number={2}, journal={Reviews of Modern Physics},
       publisher={American Physical Society}, author={Druyvesteyn, M. J. and Penning,
       F. M.}, year={1940}, month={Apr}, pages={87-174}}'
+- - isbn:3-540-29692-1
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "K. R. Lang",'
+    - ! '        TITLE = "Astrophysical formulae",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin",'
+    - ! '        YEAR ="2006"}'
 - - isbn:3-540-64296-X
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "Y. Itikawa.",'
@@ -196,6 +203,13 @@
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin [u.a.]",'
     - ! '        YEAR ="2001"}'
+- - isbn:978-3-642-64760-4
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Yuri P. Raizer.",'
+    - ! '        TITLE = "Gas discharge physics",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin",'
+    - ! '        YEAR ="1997"}'
 - - isbn:9780028645865
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "J. S. Rigden",'

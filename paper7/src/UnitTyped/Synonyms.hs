@@ -65,7 +65,6 @@ type ElectronVolt = Value Energy '[ '(Ev, POne)]
 type JouleUnit = Value Energy  '[ '(Joule, POne)]
 
 
-
 type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]
 
 type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]  
@@ -73,6 +72,7 @@ type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]
 type GramUnit = Value '[ '(Mass, POne)] '[ '(Gram, POne) ]  
 type GramPerMole = Value '[ '(Mass, POne)] '[ '(Gram, POne), '(Mole, NOne) ]  
 
+type KelvinUnit = Value '[ '(Temperature, POne)] '[ '(Kelvin, POne) ] 
 
 type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 

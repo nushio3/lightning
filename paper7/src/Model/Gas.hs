@@ -70,21 +70,38 @@ ionizationEnergy = go
 inelCrossSection :: Int -> ChemicalSpecies -> Cm2 Double    
 inelCrossSection 12 N2 = mkVal 0.8e-16
 inelCrossSection 12 O2 = mkVal 1.8e-16
-inelCrossSection 15 O2 = mkVal 1.81e-16
 inelCrossSection 12 Ar = mkVal 0
 inelCrossSection 15 H2 = mkVal 1.57e-16
+inelCrossSection 15 O2 = mkVal 1.81e-16
 inelCrossSection _  _  = mkVal 0
+
+elCrossSection :: Int -> ChemicalSpecies -> Cm2 Double    
+elCrossSection 12 N2 = mkVal 11.6e-16
+elCrossSection 12 O2 = mkVal 9.00e-16
+elCrossSection 12 Ar = mkVal 0
+elCrossSection 15 H2 = mkVal 6.62e-16
+elCrossSection 15 O2 = mkVal 8.89e-16
+elCrossSection _  _  = mkVal 0
+
 
 mfpAir12 :: Cm Double
 mfpAir12 = autoc $ 1 /| airNumberDensity |/| (airMix $ inelCrossSection 12)
 
+mfpPpd15 :: Cm Double
+mfpPpd15 = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ inelCrossSection 15)
+
 
    
 
-airDielectricStrength :: KVPerCm Double
-airDielectricStrength = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
+airDielectricStrengthT :: KVPerCm Double
+airDielectricStrengthT = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
+ppdDielectricStrengthT :: KVPerCm Double
+ppdDielectricStrengthT = autoc $ w |/| (mfpPpd15 |*| elementaryCharge)
+  where w = mkVal 15 :: ElectronVolt Double
+
+
 airDielectricStrengthDP :: KVPerCm Double
 airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpAir12) 
   where
@@ -110,8 +127,14 @@ airDielectricStrengthR = autoc $
 airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
 
+ppdDensity :: GramPerCm3 Double
+ppdDensity = mkVal 1
+
 airNumberDensity :: PerCm3 Double
 airNumberDensity = autoc $ airDensity |/| airMix molecularMass
+
+ppdNumberDensity :: PerCm3 Double
+ppdNumberDensity = autoc $ ppdDensity |/| ppdMix molecularMass
 
 aboutAir :: MonadAuthoring s w m => m ()
 aboutAir = do
@@ -134,7 +157,7 @@ the mean inelastic cross section of air at 12eV is
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
-$E_{\rm crit} = #{ppValF "%.0f" airDielectricStrength} {\rm kV/cm}$,
+$E_{\rm crit} = #{ppValF "%.0f" airDielectricStrengthT} {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 
@@ -148,7 +171,7 @@ where $M$ is the mass of the collision partner,
 and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
 In the case of the air at NTP,
 since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
-$E_{\rm crit} = #{ppValF "%.1f" airDielectricStrengthDP} {\rm kV/cm}$.
+$E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthDP} {\rm kV/cm}$.
 
 Finally, according to the runaway breakdown model the dielectric strength
 $E_{\rm crit}$ is the electric field amplitude where
@@ -162,7 +185,7 @@ The ionization losses of an electron as the function of $\varepsilon$ has the fo
 
   environment "eqnarray" $ do
     [rawQ| -\frac{d\varepsilon}{dt} &=& 
-\frac{e^4 N_e}{8 \pi {\epsilon_0}^2 m_e c^2}a(\gamma), \\
+\frac{e^4 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a(\gamma), \\
 \mathrm{where}~~~a(\gamma) &=& \left(\frac{c}{v}\right)^2
    \left[ \ln\frac{\gamma^3 {m_e}^2 v^4 }{2 (1+\gamma){\bar I}^2}
  - \left(\frac{2}{\gamma} - \frac{1}{\gamma^2}\right)\ln 2
@@ -173,24 +196,46 @@ The ionization losses of an electron as the function of $\varepsilon$ has the fo
   [rawQ|
 where 
 $ \gamma = (1 - v^2/c^2)^{ -1/2} $ is the Lorentz factor of the electron,
-$\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, and
+$\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, 
+${\bar Z} n_n$ is the number density of ambient electrons of the matter. 
 $\bar I$ is the mean excitation energy, a parameter to be fitted to
-laboratory experimental data. We use values of $\bar I$ from
-@{citet ["special:nist-estar"]}.
+laboratory experimental data. We use the value of 
+$\bar I_{\rm air} = 86.3 {\rm eV}$ from ESTAR database @{citep ["special:nist-estar"]}.
 
 For the case of the air $a(\gamma)$ takes its minimum 
-$a_{\rm min} = 20.2$ at $\gamma \simeq 3.89$
-or $\varepsilon \simeq 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
+$a_{\rm min} = 20.2$ at $\gamma = 3.89$
+or $\varepsilon = 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
 is the solution of the work balance equation
 \begin{eqnarray}
   eE-\frac{d\varepsilon}{dt} &=& 0,
 \end{eqnarray}
-which is $E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}$.
+which is 
+\begin{eqnarray}
+E_{\rm crit} 
+&=& \frac{e^3 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a_{\rm min}, \nonumber \\
+&=&  #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}.
+\end{eqnarray}
    |]
 
 
---  (log((511e3/88.0)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
 
+  [rawQ|
+All three model states that the dielectric strength of the gas is proportional to
+the number density of the gas. 
+\begin{eqnarray}
+\begin{array}{CCCCC}
+E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
+2.14 \times 10^{ -17} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{hoge} , \\
+E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
+6.09 \times 10^{ -18} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{piyo} , \\
+E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
+1.12 \times 10^{ -19} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{huga} .
+\end{array}
+\label{toge}
+\end{eqnarray}
+  |]
+
+--  (log((511e3/88.0)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
 
 
 -- This is the database to use

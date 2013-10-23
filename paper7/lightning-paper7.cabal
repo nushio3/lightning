@@ -26,7 +26,6 @@ library
     Figure.Shake
     GlobalConfig
     Model.Concepts
-    Model.Constants
     Model.Breakdown
     Model.Disk.Hayashi
     Model.Dust

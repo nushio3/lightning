@@ -2,6 +2,8 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
@@ -17,18 +19,17 @@ import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
 import           UnitTyped
 import           UnitTyped.SI
-import           UnitTyped.SI.Constants hiding (pi)
-import           UnitTyped.SI.Meta
 import           UnitTyped.SI.Derived.Length
-import           UnitTyped.SI.Derived.Mass
 import           UnitTyped.SI.Derived.Time
+import           UnitTyped.SI.Meta
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
 
 import           Model.Concepts
-import           Model.Constants
+import           Model.Values
 
 import           Text.Authoring
+import           Text.Authoring.TH
 
 hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
@@ -40,21 +41,37 @@ hayashiModelDoc = do
   
   environment "eqnarray" $ do
     surfaceDensityGasDoc
+    raw ",\\\\"
+    temperatureDoc
+    raw "."
+
+  [rawQ| The assumption of the hydrostatic equilibrium leads to the vertical distribution of the gas
+\begin{eqnarray}
+\rho(r,z)&=&\rho_0(r) \exp \left(-\frac{z^2}{2h^2}\right), \\
+\mathrm{where} ~~~ 
+h(r) &=& \frac{c_s}{\Omega}, \\
+c_s(r) &=& \sqrt{\frac{k_B T(r)}{\mu m_p}},\\
+\Omega(r) &=& \sqrt{\frac{G M_{\odot}}{r^3}}.
+\end{eqnarray}
+   |]
 
 innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double
-innerRadius = 0.35  *| astronomicalUnit
-outerRadius = 36   *| astronomicalUnit
-snowlineRadius = 2.7 *| astronomicalUnit
+innerRadius =    mkVal 0.35  
+outerRadius =    mkVal 300   
+snowlineRadius = mkVal 2.7
 
 innerSH = OrbitalRadius `being` innerRadius $ scaleHeight
 outerSH = OrbitalRadius `being` outerRadius $ scaleHeight
 snowlineSH = OrbitalRadius `being` snowlineRadius $ scaleHeight
 
+mmsnStandardSurfaceDensity :: GramPerCm2 Double
+mmsnStandardSurfaceDensity = mkVal 1700
+
 
 surfaceDensityGas :: Given OrbitalRadius => GramPerCm2 Double
-surfaceDensityGas =
+surfaceDensityGas = autoc $ 
   cutoff *|
-   (1700 *| gram |/| square (centi meter)) |*|
+   mmsnStandardSurfaceDensity |*|
    (fmap (**(-1.5)) $ r |/| (1 *| astronomicalUnit))
   where
     r :: AU Double
@@ -65,10 +82,10 @@ surfaceDensityGas =
 
 surfaceDensityGasDoc :: MonadAuthoring s w m => m ()
 surfaceDensityGasDoc =  
-  (latex =<<) $ LTX.execLaTeXT $ do
-     LTX.sigmau <> LTX.autoParens "r" LTX.& "=" LTX.& ""
-     1.7e3 `LTX.times` (LTX.autoParens ("r" / ("1" <> LTX.mathrm "au")) ** (negate $ 3/2))
-     LTX.mathrm ("g/cm" **2)
+  [rawQ|
+\Sigma{}\left(r\right)&=& #{ppValE 1 mmsnStandardSurfaceDensity}
+\left(\frac{r}{1\mathrm{au}}\right)^{ -\frac{3}{2}}\mathrm{g/cm^{2}}
+   |]
 
 
 
@@ -86,19 +103,27 @@ temperature :: Given OrbitalRadius => Double :| Kelvin
 temperature = 280 *| kelvin |*|
    (fmap (**(-0.5)) $ (the OrbitalRadius) |/| (1 *| astronomicalUnit))
 
+temperatureDoc :: MonadAuthoring s w m => m ()
+temperatureDoc =  
+  [rawQ|
+T\left(r\right)&=& 280
+\left(\frac{r}{1\mathrm{au}}\right)^{ -\frac{1}{2}}\mathrm{K}
+   |]
+
+
 soundSpeed :: Given OrbitalRadius => CmPerSec Double
 soundSpeed = U.sqrt $ autoc cssq
   where
-    cssq = (kB |*| temperature) |/| (2.34 *| m_p)
+    cssq = (kB |*| temperature) |/| (2.34 *| protonMass)
       `as`  (square (centi meter) |/| square second)
 
 orbitalAngularVelocity :: Given OrbitalRadius => Double :| Hertz
 orbitalAngularVelocity =
-  U.sqrt $ autoc $ g |*| (2e33 *| gram) |/| cubic (the OrbitalRadius)
+  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| cubic (the OrbitalRadius)
 
 orbitalVelocity :: Given OrbitalRadius => CmPerSec Double
 orbitalVelocity =
-  U.sqrt $ autoc $ g |*| (2e33 *| gram) |/| the OrbitalRadius
+  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| the OrbitalRadius
 
 
 

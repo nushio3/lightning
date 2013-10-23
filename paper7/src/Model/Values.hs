@@ -1,6 +1,7 @@
 module Model.Values where
 
 import UnitTyped
+import qualified UnitTyped.SI.Constants as C
 import UnitTyped.Synonyms
 
 ----------------------------------------------------------------
@@ -26,6 +27,9 @@ speedOfLight = mkVal 29979245800
 elementaryCharge :: Coulomb Double
 elementaryCharge = mkVal 1.60217657e-19
 
+gravitationalConstant = C.g
+
+kB = C.kB
 
 
 -- eps0

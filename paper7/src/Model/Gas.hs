@@ -176,9 +176,10 @@ $ \gamma = (1 - v^2/c^2)^{ -1/2} $ is the Lorentz factor of the electron,
 $\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, and
 $\bar I$ is the mean excitation energy, a parameter to be fitted to
 laboratory experimental data. We use values of $\bar I$ from
-@{citet ["doi:10.1016/S0092-640X(72)80002-0"]}.
+@{citet ["special:nist-estar"]}.
 
-For the case of the air $a(\gamma)$ takes its minimum at $\gamma \simeq 20.2$
+For the case of the air $a(\gamma)$ takes its minimum 
+$a_{\rm min} = 20.2$ at $\gamma \simeq 3.89$
 or $\varepsilon \simeq 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
 is the solution of the work balance equation
 \begin{eqnarray}
@@ -188,9 +189,13 @@ which is $E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}$.
    |]
 
 
---  (log((511e3/85.88)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
+--  (log((511e3/88.0)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
 
 
 
+-- This is the database to use
+-- http://physics.nist.gov/PhysRefData/Star/Text/ESTAR.html
+
+-- other databases
 -- http://www.srim.org/SRIM/SRIMPICS/IONIZ.htm
 -- http://physics.nist.gov/PhysRefData/XrayMassCoef/tab1.html

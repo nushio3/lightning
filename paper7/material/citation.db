@@ -244,3 +244,12 @@
     - ! '        TITLE = "Kaminari no Kagaku",'
     - ! '        PUBLISHER = "Tokyo Daigaku Shuppankai",'
     - ! '        YEAR ="2009"}'
+- - special:nist-estar
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "M.J. {Berger} and J.S. {Coursey} and M.A. {Zucker} and
+      J. {Chang}",'
+    - ! '        TITLE = "Stopping-Power and Range Tables for Electrons, Protons,
+      and Helium Ions",'
+    - ! '        PUBLISHER = "NIST, Physical Measurement Laboratory",'
+    - ! '        URL = "http://www.nist.gov/pml/data/star/index.cfm",'
+    - ! '        YEAR ="2009"}'

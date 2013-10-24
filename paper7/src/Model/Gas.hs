@@ -21,6 +21,7 @@ data ChemicalSpecies
   = H2
   | N2
   | O2
+  | CO
   | H2O
   | Ar
   | He
@@ -32,13 +33,15 @@ airMix :: Convertible' a b => (ChemicalSpecies -> Value a b Double) -> Value a b
 airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 
 ppdMix :: Convertible' a b => (ChemicalSpecies -> Value a b Double) -> Value a b Double
-ppdMix func = 0.9105 *| func H2 |+| 8.8769e-2 *| func He |+| 7.7662e-4 *| func O2
+ppdMix func = 0.9219 *| func H2 |+| 7.7718e-2 *| func He 
+              |+| 2.262326e-4 *| func CO |+| 1.3404e-4 *| func O2
 
 atomicNumber :: ChemicalSpecies -> NoDimension Double 
 atomicNumber H2 = mkVal 2
 atomicNumber He = mkVal 2
 atomicNumber N2 = mkVal 14
 atomicNumber O2 = mkVal 16
+atomicNumber CO = mkVal 14
 atomicNumber Ar = mkVal 18
 atomicNumber H2O = mkVal 10
 atomicNumber HCOPlus = mkVal 15
@@ -52,6 +55,7 @@ molecularMass H2 = mkVal 2
 molecularMass He = mkVal 4
 molecularMass N2 = mkVal 28
 molecularMass O2 = mkVal 32
+molecularMass CO = mkVal 28
 molecularMass Ar = mkVal 39.9
 molecularMass H2O = mkVal 18
 molecularMass HCOPlus = mkVal 29
@@ -63,6 +67,7 @@ ionizationEnergy = go
   where
     go H2  = mkVal 15.43
     go N2  = mkVal 15.58
+    go CO  = mkVal 14.01
     go O2  = mkVal 12.07
     go H2O = mkVal 12.61
     go Ar  = mkVal 15.76
@@ -75,6 +80,7 @@ inelCrossSection 12 O2 = mkVal 1.8e-16
 inelCrossSection 12 Ar = mkVal 0
 inelCrossSection 15 H2 = mkVal 1.57e-16
 inelCrossSection 15 O2 = mkVal 1.81e-16
+inelCrossSection 15 CO = mkVal 0.051e-16
 inelCrossSection _  _  = mkVal 0
 
 elCrossSection :: Int -> ChemicalSpecies -> Cm2 Double    
@@ -83,6 +89,8 @@ elCrossSection 12 O2 = mkVal 9.00e-16
 elCrossSection 12 Ar = mkVal 17.4e-16
 elCrossSection 15 H2 = mkVal 6.62e-16
 elCrossSection 15 O2 = mkVal 8.89e-16
+elCrossSection 15 CO = mkVal 10.89e-16
+elCrossSection 15 He = mkVal 3.55e-16
 elCrossSection _  _  = mkVal 0
 
 airDensity :: GramPerCm3 Double
@@ -117,16 +125,17 @@ mfpPpd15E = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ elCrossSection 15)
 
    
 
-airDielectricStrengthT :: KVPerCm Double
+airDielectricStrengthT :: VoltPerCm Double
 airDielectricStrengthT = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
-ppdDielectricStrengthT :: KVPerCm Double
+ppdDielectricStrengthT :: VoltPerCm Double
 ppdDielectricStrengthT = autoc $ w |/| (mfpPpd15 |*| elementaryCharge)
   where w = mkVal 15 :: ElectronVolt Double
 
 
-airDielectricStrengthDP :: KVPerCm Double
+
+airDielectricStrengthDP :: VoltPerCm Double
 airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpAir12E) 
   where
     w = mkVal 12                           :: ElectronVolt Double
@@ -134,7 +143,15 @@ airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| m
     ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
     bigM = autoc $ airMix molecularMass    :: GramUnit Double
 
-airDielectricStrengthR :: KVPerCm Double
+ppdDielectricStrengthDP :: VoltPerCm Double
+ppdDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpPpd15E) 
+  where
+    w = mkVal 15                           :: ElectronVolt Double
+    ratio = sqrt $ val ratioD              :: Double
+    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
+    bigM = autoc $ ppdMix molecularMass    :: GramUnit Double
+
+airDielectricStrengthR :: VoltPerCm Double
 airDielectricStrengthR = autoc $ 
   (20.2/(8*pi)) *| (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
@@ -146,5 +163,18 @@ airDielectricStrengthR = autoc $
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = airMix atomicNumber
     n = airNumberDensity
+
+ppdDielectricStrengthR :: VoltPerCm Double
+ppdDielectricStrengthR = autoc $ 
+  (20.2/(8*pi)) *| (e3 |*| z |*| ppdNumberDensity)
+             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
+  
+  where
+    nrg :: JouleUnit Double
+    nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+    
+    e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
+    z = ppdMix atomicNumber
+    n = ppdNumberDensity
 
 

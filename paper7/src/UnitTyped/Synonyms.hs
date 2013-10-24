@@ -83,6 +83,7 @@ type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne
 type MeterPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
 
 -- squared velocities
+type Cm2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Centi Meter, PTwo), '(Second, NTwo) ]
 type Meter2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Meter, PTwo), '(Second, NTwo) ]
 type Sec2PerMeter2 = Value '[ '(Length, NTwo),  '(Time, PTwo)] '[ '(Meter, NTwo), '(Second, PTwo) ]
 

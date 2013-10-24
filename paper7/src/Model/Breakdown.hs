@@ -181,7 +181,7 @@ the mean inelastic cross section of air at 12eV is
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
-$E_{\rm crit} = #{ppValF "%.0f" airDielectricStrengthT} {\rm kV/cm}$,
+$E_{\rm crit} = #{ppValF "%.0f" $ fmap (1e-3*) airDielectricStrengthT} {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 
@@ -206,7 +206,7 @@ can be calculated from elastic cross sections of the elemental molecules at 12eV
  #{ppValE 2 (elCrossSection 12 Ar)} {\rm cm^{ -2}}$,
 respectively, for $\rm N_2, O_2, Ar$, see @{citet ["isbn:3-540-64296-X", "isbn:354044338X"]}.)
 Therefore,
-$E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthDP} {\rm kV/cm}$.
+$E_{\rm crit} = #{ppValF "%.2f" $ fmap (1e-3*) airDielectricStrengthDP} {\rm kV/cm}$.
 
 Finally, according to the runaway breakdown model the dielectric strength
 $E_{\rm crit}$ is the electric field amplitude where
@@ -251,7 +251,7 @@ which is
 \begin{eqnarray}
 E_{\rm crit} 
 &=& \frac{e^3 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a_{\rm min}, \nonumber \\
-&=&  #{ppValF "%.2f" airDielectricStrengthR} {\rm kV/cm}.
+&=&  #{ppValF "%.1f" $ fmap (1e-3*) airDielectricStrengthR} {\rm kV/cm}.
 \end{eqnarray}
    |]
 
@@ -260,21 +260,20 @@ E_{\rm crit}
   [rawQ|
 All three model states that the dielectric strength of the gas is proportional to
 the number density of the gas. 
+
 \begin{eqnarray}
 \begin{array}{CCCCC}
 E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
-2.14 \times 10^{ -17} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{hoge} , \\
+ #{ppValE 1 $ airDielectricStrengthT} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
-6.09 \times 10^{ -18} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{piyo} , \\
+ #{ppValE 1 $ airDielectricStrengthDP} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
-1.12 \times 10^{ -19} \left( \frac{n_n}{\mathrm{cm}^{ -3}}  \right) \mathrm{V/cm} \label{huga} .
+ #{ppValE 1 $ airDielectricStrengthR} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  .
 \end{array}
-\label{toge}
 \end{eqnarray}
   |]
 
 --  (log((511e3/88.0)**2/2 * x**3/(1+x)*(1-1/x**2)**2)- (2/x - 1/x**2)* log (2) + 1/x**2 + (1-1/x)**2/8)/(1-1/x**2)
-
 
 -- This is the database to use
 -- http://physics.nist.gov/PhysRefData/Star/Text/ESTAR.html

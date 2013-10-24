@@ -1,3 +1,18 @@
+- - ! "bibcode:\t2009LanB...4B...44L"
+  - - ! '@ARTICLE{2009LanB...4B...44L,'
+    - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
+    - ! '    title = "{Abundances of the Elements in the Solar System}",'
+    - ! '  journal = {Landolt B{\"o}rnstein},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0901.1149},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {solar abundances, solar system abundances, condensation temperatures},'
+    - ! '     year = 2009,'
+    - ! '    pages = {44},'
+    - ! '      doi = {10.1007/978-3-540-88055-4_34},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1981PThPS..70...35H
   - - ! '@ARTICLE{1981PThPS..70...35H,'
     - ! '   author = {{Hayashi}, C.},'
@@ -73,6 +88,21 @@
     - ! '    pages = {4075},'
     - ! '      doi = {10.1029/2000JD000244},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2009LanB...4B...44L
+  - - ! '@ARTICLE{2009LanB...4B...44L,'
+    - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
+    - ! '    title = "{Abundances of the Elements in the Solar System}",'
+    - ! '  journal = {Landolt B{\"o}rnstein},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0901.1149},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {solar abundances, solar system abundances, condensation temperatures},'
+    - ! '     year = 2009,'
+    - ! '    pages = {44},'
+    - ! '      doi = {10.1007/978-3-540-88055-4_34},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2010ApJ...720..480O

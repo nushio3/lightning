@@ -1,4 +1,4 @@
-module Model.Disk.PPD where
+module Model.Disk.Disk where
 
 import Text.Authoring
 import Text.Authoring.TH

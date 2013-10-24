@@ -27,6 +27,7 @@ library
     GlobalConfig
     Model.Concepts
     Model.Breakdown
+    Model.Breakdown.Disk
     Model.Disk.Hayashi
     Model.Dust
     Model.Gas

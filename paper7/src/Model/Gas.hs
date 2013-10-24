@@ -80,7 +80,7 @@ inelCrossSection _  _  = mkVal 0
 elCrossSection :: Int -> ChemicalSpecies -> Cm2 Double    
 elCrossSection 12 N2 = mkVal 11.6e-16
 elCrossSection 12 O2 = mkVal 9.00e-16
-elCrossSection 12 Ar = mkVal 0
+elCrossSection 12 Ar = mkVal 17.4e-16
 elCrossSection 15 H2 = mkVal 6.62e-16
 elCrossSection 15 O2 = mkVal 8.89e-16
 elCrossSection _  _  = mkVal 0
@@ -104,8 +104,15 @@ ppdNumberDensity = autoc $ ppdDensity |/| ppdMix molecularMass
 mfpAir12 :: Cm Double
 mfpAir12 = autoc $ 1 /| airNumberDensity |/| (airMix $ inelCrossSection 12)
 
+mfpAir12E :: Cm Double
+mfpAir12E = autoc $ 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
+
+
 mfpPpd15 :: Cm Double
 mfpPpd15 = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ inelCrossSection 15)
+
+mfpPpd15E :: Cm Double
+mfpPpd15E = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ elCrossSection 15)
 
 
    
@@ -120,7 +127,7 @@ ppdDielectricStrengthT = autoc $ w |/| (mfpPpd15 |*| elementaryCharge)
 
 
 airDielectricStrengthDP :: KVPerCm Double
-airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpAir12) 
+airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpAir12E) 
   where
     w = mkVal 12                           :: ElectronVolt Double
     ratio = sqrt $ val ratioD              :: Double

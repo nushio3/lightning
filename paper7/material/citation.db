@@ -22,6 +22,25 @@
     - ! '   number = 4,'
     - ! '    pages = {656-669},'
     - ! '}'
+- - bibcode:1989GeCoA..53..197A
+  - - ! '@ARTICLE{1989GeCoA..53..197A,'
+    - ! '   author = {{Anders}, E. and {Grevesse}, N.},'
+    - ! '    title = "{Abundances of the elements - Meteoritic and solar}",'
+    - ! '  journal = {\gca},'
+    - ! ' keywords = {ABUNDANCE, CHEMICAL ANALYSIS, CHONDRITES, METEORITIC COMPOSITION,
+      PHOTOSPHERE, SOLAR CORONA, ENERGETIC PARTICLES, ISOTOPES, SOLAR WIND, METEORITES,
+      ABUNDANCE, SAMPLES, METEORITE, CI CHONDRITES, SUN, CORONA, PHOTOSPHERE, REVIEW,
+      ELEMENTS, FRACTIONATION, SOLAR SYSTEM, NUCLIDES, SOLAR WIND, CHARGED PARTICLES,
+      RARE GASES, REFRACTORY ELEMENTS, COMETS, SIDEROPHILES, VOLATILES, NUCLEOSYNTHESIS,
+      HALLEY, COMPARISONS},'
+    - ! '     year = 1989,'
+    - ! '    month = jan,'
+    - ! '   volume = 53,'
+    - ! '    pages = {197-214},'
+    - ! '      doi = {10.1016/0016-7037(89)90286-X},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1989GeCoA..53..197A},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1999JAtS...56.1561T
   - - ! '@ARTICLE{1999JAtS...56.1561T,'
     - ! '   author = {{Takahashi}, T. and {Tajiri}, T. and {Sonoi}, Y.},'
@@ -120,11 +139,26 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - doi:10.1002/andp.19303970303
+  - - ! '@article{Bethe_1930, title={Zur Theorie des Durchgangs schneller Korpuskularstrahlen
+      durch Materie}, volume={397}, url={http://dx.doi.org/10.1002/andp.19303970303},
+      DOI={10.1002/andp.19303970303}, number={3}, journal={Annalen der Physik}, publisher={Wiley
+      Blackwell (John Wiley &amp; Sons)}, author={Bethe, H.}, year={1930}, pages={325-400}}'
 - - doi:10.1006/icar.1999.6245
   - - ! '@article{Desch_2000, title={The Generation of Lightning in the Solar Nebula},
       volume={143}, url={http://dx.doi.org/10.1006/icar.1999.6245}, DOI={10.1006/icar.1999.6245},
       number={1}, journal={Icarus}, publisher={Elsevier - Academic Press}, author={Desch,
       S.J. and Cuzzi, J.N.}, year={2000}, month={Jan}, pages={87-105}}'
+- - doi:10.1007/BF01342532
+  - - ! "@article{Bethe_1932, title={Bremsformel f\xEF\xBF\xBDr Elektronen relativistischer
+      Geschwindigkeit}, volume={76}, url={http://dx.doi.org/10.1007/BF01342532}, DOI={10.1007/BF01342532},
+      number={5-6}, journal={Zeitschrift f\xEF\xBF\xBDr Physik}, publisher={Springer-Verlag},
+      author={Bethe, H.}, year={1932}, month={May}, pages={293-299}}"
+- - doi:10.1007/BF01344553
+  - - ! "@article{Bloch_1933, title={Bremsverm\xEF\xBF\xBDgen von Atomen mit mehreren
+      Elektronen}, volume={81}, url={http://dx.doi.org/10.1007/BF01344553}, DOI={10.1007/BF01344553},
+      number={5-6}, journal={Zeitschrift f\xEF\xBF\xBDr Physik}, publisher={Springer-Verlag},
+      author={Bloch, F.}, year={1933}, month={May}, pages={363-376}}"
 - - doi:10.1016/0375-9601(92)90348-P
   - - ! '@article{vich_Milikh_Roussel-Dupre_1992, title={Runaway electron mechanism
       of air breakdown and preconditioning during a thunderstorm}, volume={165}, url={http://dx.doi.org/10.1016/0375-9601(92)90348-P},
@@ -212,14 +246,14 @@
     - ! '        YEAR ="2001"}'
 - - isbn:978-0-521-75618-1
   - - ! '    @BOOK{CiteKeyGoesHere,'
-    - ! '        AUTHOR = "Malcolm S. Longair.",'
+    - ! '        AUTHOR = "Malcolm S. Longair",'
     - ! '        TITLE = "High energy astrophysics",'
     - ! '        PUBLISHER = "Cambridge University Press",'
     - ! '        ADDRESS = "Cambridge",'
     - ! '        YEAR ="2010"}'
 - - isbn:978-3-642-64760-4
   - - ! '    @BOOK{CiteKeyGoesHere,'
-    - ! '        AUTHOR = "Yuri P. Raizer.",'
+    - ! '        AUTHOR = "Yuri P. Raizer",'
     - ! '        TITLE = "Gas discharge physics",'
     - ! '        PUBLISHER = "Springer",'
     - ! '        ADDRESS = "Berlin",'

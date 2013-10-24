@@ -9,6 +9,7 @@ module Paper.SectionModel where
 import           Control.Monad.RWS
 import           Data.Dynamic
 import           Model.Breakdown  
+import           Model.Breakdown.Disk (aboutDiskDischarge)
 import           Model.Disk.Hayashi (hayashiModelDoc)
 import           Model.Breakdown (aboutAir)
 
@@ -34,3 +35,4 @@ sectionModel = do
   command1 "subsection" $ raw "Disk Models"  
   hayashiModelDoc  
 
+  aboutDiskDischarge

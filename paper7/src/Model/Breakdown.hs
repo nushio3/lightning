@@ -179,7 +179,7 @@ $0.8, ~1.8, ~0.0 \times 10^{ -16} {\rm cm^{ -2}}$
 @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]},
 the mean inelastic cross section of air at 12eV is 
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
-Therefore, $l_{\rm mfp} = #{ppValE 1 mfpAir12} {\rm cm}$.
+Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
 $E_{\rm crit} = #{ppValF "%.0f" airDielectricStrengthT} {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level
@@ -195,6 +195,17 @@ where $M$ is the mass of the collision partner,
 and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
 In the case of the air at NTP,
 since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
+$M = #{ppValE 2 $ (autoc $ airMix molecularMass :: GramUnit Double)} {\rm g}$.
+Note that $l_{\rm mfp}$ in Druyversteyn-Penning model means elastic
+mean free path
+$l_{\rm mfp} = (n_n \sigma_{el})^{ -1} = #{ppValE 2 mfpAir12E} {\rm cm}$ which 
+can be calculated from elastic cross sections of the elemental molecules at 12eV
+($\sigma_{el} = 
+ #{ppValE 2 (elCrossSection 12 N2)}, 
+ #{ppValE 2 (elCrossSection 12 O2)}, 
+ #{ppValE 2 (elCrossSection 12 Ar)} {\rm cm^{ -2}}$,
+respectively, for $\rm N_2, O_2, Ar$, see @{citet ["isbn:3-540-64296-X", "isbn:354044338X"]}.)
+Therefore,
 $E_{\rm crit} = #{ppValF "%.2f" airDielectricStrengthDP} {\rm kV/cm}$.
 
 Finally, according to the runaway breakdown model the dielectric strength
@@ -203,8 +214,11 @@ the acceleration by the electric field balances
 the ionization loss for minimum ionizing electrons. 
 Minimum ionizing electrons are electrons with such kinetic energy $\varepsilon$
 that  for them the ionization loss is the smallest.
-The ionization losses of an electron as the function of $\varepsilon$ has the following form
-@{citationGen "citep[see][chap 5.5]" ["isbn:978-0-521-75618-1"]}:
+The ionization loss of an electron as a function of $\varepsilon$ 
+is formalized by 
+@{citet["doi:10.1002/andp.19303970303", "doi:10.1007/BF01342532","doi:10.1007/BF01344553"]}.
+We use the following form from
+@{citationGen "citet[chap 5.5]" ["isbn:978-0-521-75618-1"]}:
    |]
 
   environment "eqnarray" $ do
@@ -214,11 +228,11 @@ The ionization losses of an electron as the function of $\varepsilon$ has the fo
    \left[ \ln\frac{\gamma^3 {m_e}^2 v^4 }{2 (1+\gamma){\bar I}^2}
  - \left(\frac{2}{\gamma} - \frac{1}{\gamma^2}\right)\ln 2
  + \frac{1}{\gamma^2}
- + \frac{1}{8}\left(1 - \frac{1}{\gamma}\right)^2\right],
+ + \frac{1}{8}\left(1 - \frac{1}{\gamma}\right)^2\right].
     |]
 
   [rawQ|
-where 
+Here,
 $ \gamma = (1 - v^2/c^2)^{ -1/2} $ is the Lorentz factor of the electron,
 $\varepsilon = (\gamma - 1) m_e c^2$ is the electron kinetic energy, 
 ${\bar Z} n_n$ is the number density of ambient electrons of the matter. 
@@ -229,7 +243,7 @@ $\bar I_{\rm air} = 86.3 {\rm eV}$ from ESTAR database @{citep ["special:nist-es
 For the case of the air $a(\gamma)$ takes its minimum 
 $a_{\rm min} = 20.2$ at $\gamma = 3.89$
 or $\varepsilon = 1.48 {\rm MeV}$. The dielectric strength $E_{\rm crit}$
-is the solution of the work balance equation
+is the solution of the following work-balance equation
 \begin{eqnarray}
   eE-\frac{d\varepsilon}{dt} &=& 0,
 \end{eqnarray}

@@ -37,6 +37,27 @@
     - ! '   number = 4,'
     - ! '    pages = {656-669},'
     - ! '}'
+- - bibcode:1986ApJ...303..416S
+  - - ! '@ARTICLE{1986ApJ...303..416S,'
+    - ! '   author = {{Scoville}, N.~Z. and {Sargent}, A.~I. and {Sanders}, D.~B.
+      and '
+    - ! "\t{Claussen}, M.~J. and {Masson}, C.~R. and {Lo}, K.~Y. and {Phillips}, T.~G."
+    - ! "\t},"
+    - ! '    title = "{High-resolution mapping of molecular outflows in NGC 2071,
+      W49, and NGC 7538}",'
+    - ! '  journal = {\apj},'
+    - ! ' keywords = {ASTRONOMICAL MAPS, EMISSION SPECTRA, GAS FLOW, MOLECULAR CLOUDS,
+      MOLECULAR FLOW, NEBULAE, STELLAR WINDS, CONTINUOUS SPECTRA, FLOW VELOCITY, H
+      II REGIONS, HIGH RESOLUTION, MILLIMETER WAVES, RADIO INTERFEROMETERS, STELLAR
+      EVOLUTION},'
+    - ! '     year = 1986,'
+    - ! '    month = apr,'
+    - ! '   volume = 303,'
+    - ! '    pages = {416-432},'
+    - ! '      doi = {10.1086/164086},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1986ApJ...303..416S},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1989GeCoA..53..197A
   - - ! '@ARTICLE{1989GeCoA..53..197A,'
     - ! '   author = {{Anders}, E. and {Grevesse}, N.},'

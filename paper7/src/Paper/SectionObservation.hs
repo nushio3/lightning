@@ -81,4 +81,10 @@ $\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSec
 $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
 \end{tabular}
   |]
+ 
+  [rawQ|
+  The column density where the optical depth equals one is estimated
+  @{citationGen "citep[][see the appendix of]" ["bibcode:1986ApJ...303..416S"]}.
+ 
+  |]
   return ()

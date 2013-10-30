@@ -31,6 +31,7 @@ library
     Model.Disk.Hayashi
     Model.Dust
     Model.Gas
+    Model.RadiativeTransfer
     Model.Values
     Paper
     Paper.SectionAcknowledgement

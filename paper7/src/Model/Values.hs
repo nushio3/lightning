@@ -39,3 +39,11 @@ vacuumPermittivity = mkVal $ 1 / (4 * pi * 1e-7 * 299792458**2)
 -- mu0                     
 vacuumPermeability :: PermeabilityUnit Double
 vacuumPermeability = mkVal $ 4 * pi * 1e-7
+
+-- |Planck constant
+planckConstant :: JouleSecond Double
+planckConstant = mkVal 6.6260695729e-34
+
+-- |Reduced Planck constant
+hbar ::  JouleSecond Double
+hbar = mkVal $ 6.6260695729e-34 / 2 / pi

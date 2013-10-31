@@ -47,7 +47,10 @@ type NoDimension = Value '[] '[]
 -- Nonweighted units
 ----------------------------------------------------------------
 
+type PerSecond =  Value '[ '(Time, NOne)] '[ '(Second, NOne) ] 
 type PerCm3 =  Value '[ '(Length, NThree)] '[ '(Centi Meter, NThree) ] 
+type PerCm2 =  Value '[ '(Length, NTwo)] '[ '(Centi Meter, NTwo) ] 
+type PerCm =  Value '[ '(Length, NOne)] '[ '(Centi Meter, NOne) ] 
 
 ----------------------------------------------------------------
 -- Weighted units
@@ -63,6 +66,8 @@ type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne),
 -- energies
 type ElectronVolt = Value Energy '[ '(Ev, POne)]
 type JouleUnit = Value Energy  '[ '(Joule, POne)]
+
+type JouleSecond = Value '[ '(Time, ('Neg 'One)), '(Mass, ('Pos 'One)), '(Length, ('Pos ('Suc 'One))) ] '[ '(Joule, ('Pos 'One)), '(Second, ('Pos 'One)) ]
 
 
 type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]

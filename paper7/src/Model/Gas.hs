@@ -28,7 +28,8 @@ data ChemicalSpecies
   | HCOPlus
   | DCOPlus
   | N2HPlus
-    
+  deriving (Eq, Show)    
+
 airMix :: Convertible' a b => (ChemicalSpecies -> Value a b Double) -> Value a b Double
 airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 
@@ -61,6 +62,24 @@ molecularMass H2O = mkVal 18
 molecularMass HCOPlus = mkVal 29
 molecularMass DCOPlus = mkVal 30
 molecularMass N2HPlus = mkVal 29
+
+{- 
+Leiden大学のdataabaseがおすすめです。
+http://home.strw.leidenuniv.nl/~moldata/
+RATRANコードを用いれば、このデータを読み込んで輝線の
+輻射輸送計算が簡単に行えます。
+http://www.sron.rug.nl/~vdtak/ratran/frames.html
+(もう少し大きな分子を扱う場合は、cologne のデータベース(CDMS)
+http://www.astro.uni-koeln.de/cdms
+-}
+
+rotationalConstant :: ChemicalSpecies -> PerSecond Double
+rotationalConstant HCOPlus = autoc $ speedOfLight |*| (mkVal 1.4875 :: PerCm Double)
+rotationalConstant DCOPlus = autoc $ speedOfLight |*| (mkVal 1.2015 :: PerCm Double)
+rotationalConstant N2HPlus = autoc $ speedOfLight |*| (mkVal 1.55395 :: PerCm Double)
+
+rotationalConstant c       = error $ "rotational constant undefined for : " ++ show c
+
 
 ionizationEnergy :: ChemicalSpecies -> ElectronVolt Double
 ionizationEnergy = go

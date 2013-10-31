@@ -15,6 +15,7 @@ import UnitTyped.Synonyms
 
 import Model.Gas
 import Model.Values
+import Model.RadiativeTransfer
 
 import           Text.Authoring
 import           Text.Authoring.TH
@@ -81,10 +82,7 @@ $\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSec
 $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
 \end{tabular}
   |]
+
+  aboutScoville
  
-  [rawQ|
-  The column density where the optical depth equals one is estimated
-  @{citationGen "citep[][see the appendix of]" ["bibcode:1986ApJ...303..416S"]}.
- 
-  |]
   return ()

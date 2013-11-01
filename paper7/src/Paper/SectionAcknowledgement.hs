@@ -18,4 +18,5 @@ sectionAcknowledgement = do
         Edward Kmett, Simon Peyton Jones and Richard Eisenberg for their comments on our Haskell programs;
         Tooru Eguchi for instruction of Japanese Virtual Observatory.
         |]
+
                          

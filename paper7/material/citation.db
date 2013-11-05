@@ -91,6 +91,25 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2002ApJ...581..357K
+  - - ! '@ARTICLE{2002ApJ...581..357K,'
+    - ! '   author = {{Kitamura}, Y. and {Momose}, M. and {Yokogawa}, S. and {Kawabe},
+      R. and '
+    - ! "\t{Tamura}, M. and {Ida}, S.},"
+    - ! '    title = "{Investigation of the Physical Properties of Protoplanetary
+      Disks around T Tauri Stars by a 1 Arcsecond Imaging Survey: Evolution and Diversity
+      of the Disks in Their Accretion Stage}",'
+    - ! '  journal = {\apj},'
+    - ! ' keywords = {Stars: Circumstellar Matter, Stars: Planetary Systems: Formation,
+      Radio Lines: Stars, Stars: Pre-Main-Sequence},'
+    - ! '     year = 2002,'
+    - ! '    month = dec,'
+    - ! '   volume = 581,'
+    - ! '    pages = {357-380},'
+    - ! '      doi = {10.1086/344223},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002ApJ...581..357K},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2002JGRD..107.4075M
   - - ! '@ARTICLE{2002JGRD..107.4075M,'
     - ! '   author = {{Mansell}, E.~R. and {MacGorman}, D.~R. and {Ziegler}, C.~L.
@@ -109,6 +128,25 @@
     - ! '    pages = {4075},'
     - ! '      doi = {10.1029/2000JD000244},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2009ApJ...700.1502A
+  - - ! '@ARTICLE{2009ApJ...700.1502A,'
+    - ! '   author = {{Andrews}, S.~M. and {Wilner}, D.~J. and {Hughes}, A.~M. and '
+    - ! "\t{Qi}, C. and {Dullemond}, C.~P.},"
+    - ! '    title = "{Protoplanetary Disk Structures in Ophiuchus}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0906.0730},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {accretion, accretion disks, circumstellar matter, planetary
+      systems: protoplanetary disks, solar system: formation, stars: pre-main sequence},'
+    - ! '     year = 2009,'
+    - ! '    month = aug,'
+    - ! '   volume = 700,'
+    - ! '    pages = {1502-1523},'
+    - ! '      doi = {10.1088/0004-637X/700/2/1502},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009ApJ...700.1502A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2009LanB...4B...44L
@@ -146,6 +184,26 @@
     - ! '    pages = {480-493},'
     - ! '      doi = {10.1088/0004-637X/720/1/480},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...720..480O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2010ApJ...723.1241A
+  - - ! '@ARTICLE{2010ApJ...723.1241A,'
+    - ! '   author = {{Andrews}, S.~M. and {Wilner}, D.~J. and {Hughes}, A.~M. and '
+    - ! "\t{Qi}, C. and {Dullemond}, C.~P.},"
+    - ! '    title = "{Protoplanetary Disk Structures in Ophiuchus. II. Extension
+      to Fainter Sources}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1007.5070},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {accretion, accretion disks, circumstellar matter, planetary
+      systems, protoplanetary disks, stars: pre-main sequence},'
+    - ! '     year = 2010,'
+    - ! '    month = nov,'
+    - ! '   volume = 723,'
+    - ! '    pages = {1241-1254},'
+    - ! '      doi = {10.1088/0004-637X/723/2/1241},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...723.1241A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2010MNRAS.401.2641M
@@ -188,6 +246,23 @@
     - ! '    pages = {98},'
     - ! '      doi = {10.1088/0004-637X/734/2/98},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2013ASPC..476..387A
+  - - ! '@INPROCEEDINGS{2013ASPC..476..387A,'
+    - ! '   author = {{Akiyama}, E. and {Momose}, M. and {Tsukagoshi}, T. and {Kitamura},
+      Y.'
+    - ! "\t},"
+    - ! '    title = "{Temperature and Surface Density Structures of a Typical Full
+      Disk around MWC 480}",'
+    - booktitle = {Astronomical Society of the Pacific Conference Series},
+    - ! '     year = 2013,'
+    - ! '   series = {Astronomical Society of the Pacific Conference Series},'
+    - ! '   volume = 476,'
+    - ! '   editor = {{Kawabe}, R. and {Kuno}, N. and {Yamamoto}, S.},'
+    - ! '    month = oct,'
+    - ! '    pages = {387},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013ASPC..476..387A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - doi:10.1002/andp.19303970303

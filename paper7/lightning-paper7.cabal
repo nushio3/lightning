@@ -29,6 +29,7 @@ library
     Model.Breakdown
     Model.Breakdown.Disk
     Model.Disk.Hayashi
+    Model.Disk.Recent
     Model.Dust
     Model.Gas
     Model.RadiativeTransfer

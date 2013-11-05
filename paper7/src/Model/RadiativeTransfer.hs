@@ -65,7 +65,7 @@ aboutScoville = do
   so that the intensity is
 
 \begin{eqnarray}
-I(\nu) = B_{\nu_0}(T) (1-\exp \tau_\nu(N))        .
+I(\nu) = B_{\nu_0}(T) \left(1-\exp (-\tau_\nu(N))\right)   .
 \end{eqnarray}
 
  

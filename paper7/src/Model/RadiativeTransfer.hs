@@ -37,8 +37,11 @@ N_{\tau_{\nu 0}=1} =
 
 
 scovilleFormula :: ChemicalSpecies -> Int -> KelvinUnit Double -> PerCm2 Double
-scovilleFormula = undefined
-
+scovilleFormula chem j tex = undefined
+  where
+    realJ :: Double
+    realJ = fromIntegral j
+    
 
 
 -- http://www.cv.nrao.edu/course/astr534/Equations.html

@@ -17,6 +17,21 @@ import Model.Values
 import           Text.Authoring
 import           Text.Authoring.TH
 
+-- | From Alma OT
+dipoleMoment :: ChemicalSpecies -> DebyeOf Double 
+dipoleMoment N2HPlus = mkVal $ sqrt 11.56 
+dipoleMoment HCOPlus = mkVal $ sqrt 15.21
+dipoleMoment DCOPlus = mkVal $ sqrt 15.21
+dipoleMoment _ = mkVal 0
+
+
+rotationalConst :: ChemicalSpecies -> PerSecond Double 
+rotationalConst N2HPlus = autoc $ 0.5 *| speedOfLight |*| (mkVal 3.1079 :: PerCm Double)
+rotationalConst HCOPlus = autoc $ 0.5 *| speedOfLight |*| (mkVal 2.9750 :: PerCm Double)
+rotationalConst DCOPlus = autoc $ 0.5 *| speedOfLight |*| (mkVal 2.4030 :: PerCm Double)
+rotationalConst _ = mkVal 0
+
+
 aboutScovilleFormula :: MonadAuthoring s w m => m ()
 aboutScovilleFormula = 
   environment "eqnarray" $ [rawQ|
@@ -37,11 +52,21 @@ N_{\tau_{\nu 0}=1} =
 
 
 scovilleFormula :: ChemicalSpecies -> Int -> KelvinUnit Double -> PerCm2 Double
-scovilleFormula chem j tex = undefined
+scovilleFormula chem j tex = 
+  autoc $ (vacuumPermittivity |*| exitationNrg |*| vgas) |/| 
+          (rotationalConst chem |*| deb |*| deb)
   where
     realJ :: Double
     realJ = fromIntegral j
     
+    exitationNrg :: JouleUnit Double
+    exitationNrg = autoc $ kB |*| tex
+
+    vgas :: MeterPerSec Double
+    vgas = U.sqrt $ autoc $ exitationNrg |/| molecularMass chem
+
+    deb = dipoleMoment chem
+
 
 
 -- http://www.cv.nrao.edu/course/astr534/Equations.html

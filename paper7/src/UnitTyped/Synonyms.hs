@@ -133,6 +133,7 @@ type PermeabilityUnit =
     '[ '(Mass, POne),  '(Length, POne), '(Time, NTwo), '(Current, NTwo)]
     '[ '(Kilo Gram, POne) , '(Meter, POne), '(Second, NTwo), '(Ampere, NTwo)] 
 
-
+-- dipole moment
+type DebyeOf = Value ElectricPotential '[ '(Debye, POne)]
 
   

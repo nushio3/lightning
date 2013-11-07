@@ -52,6 +52,8 @@ type PerCm3 =  Value '[ '(Length, NThree)] '[ '(Centi Meter, NThree) ]
 type PerCm2 =  Value '[ '(Length, NTwo)] '[ '(Centi Meter, NTwo) ] 
 type PerCm =  Value '[ '(Length, NOne)] '[ '(Centi Meter, NOne) ] 
 
+type GHz =  Value '[ '(Time, NOne)] '[ '(Giga Hertz, POne) ] 
+
 ----------------------------------------------------------------
 -- Weighted units
 ----------------------------------------------------------------
@@ -60,7 +62,10 @@ type PerCm =  Value '[ '(Length, NOne)] '[ '(Centi Meter, NOne) ]
 type GramPerCm2 =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] 
 type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] 
 
+type JouleM3 =  Value '[ '(Mass, POne),  '(Length, PFive),  '(Time, NTwo)] '[ '(Joule, POne), '(Meter, PThree) ] 
 
+type SpectralRadiance = 
+    Value '[ '(Mass, POne), '(Time, NTwo)] '[ '(Watt, POne), '(Meter, NTwo), '(Hertz, NOne) ] 
 
 
 -- energies
@@ -134,6 +139,6 @@ type PermeabilityUnit =
     '[ '(Kilo Gram, POne) , '(Meter, POne), '(Second, NTwo), '(Ampere, NTwo)] 
 
 -- dipole moment
-type DebyeOf = Value ElectricPotential '[ '(Debye, POne)]
+type DebyeOf = Value ElectricDipoleMoment '[ '(Debye, POne)]
 
   

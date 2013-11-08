@@ -24,7 +24,6 @@ library
     Figure.Gnuplot
     Figure.Shake
     GlobalConfig
-    Model.Concepts
     Model.Breakdown
     Model.Breakdown.Disk
     Model.Disk

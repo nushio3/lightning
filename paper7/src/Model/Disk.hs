@@ -22,6 +22,7 @@ equatorAt r = Coord r $ mkVal 0
 
 data Disk = Disk {
   inclinationAngle :: Double,
+  centralStarMass ::  GramUnit Double,
   gasSurfaceDensity :: Coord -> GramPerCm2 Double,
   temperature :: Coord -> KelvinUnit Double
   }

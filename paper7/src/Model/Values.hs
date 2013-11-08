@@ -8,17 +8,17 @@ import UnitTyped.Synonyms
 -- Mass units
 ----------------------------------------------------------------
 
-solarMass :: Kg Double
+solarMass :: GramUnit Double
 solarMass = mkVal 1.98892e33
 
-earthMass :: Kg Double
+earthMass :: GramUnit Double
 earthMass = mkVal 5.9742e24
 
-electronMass :: Kg Double
-electronMass = mkVal 9.10938291e-31
+electronMass :: GramUnit Double
+electronMass = mkVal 9.10938291e-28
 
-protonMass :: Kg Double
-protonMass = mkVal 1.67262178e-27
+protonMass :: GramUnit Double
+protonMass = mkVal 1.67262178e-24
 
 
 speedOfLight :: CmPerSec Double

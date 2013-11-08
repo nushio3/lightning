@@ -72,6 +72,7 @@ mmsnModel :: Disk
 mmsnModel 
   = Disk
   { inclinationAngle = 0
+  , centralStarMass = solarMass
   , gasSurfaceDensity = sdGas
   , temperature = tem
   }
@@ -127,13 +128,16 @@ soundSpeed disk pos = U.sqrt $ autoc cssq
                |/| (2.34 *| protonMass)
 
 orbitalAngularVelocity :: Disk -> Coord -> Double :| Hertz
-orbitalAngularVelocity _ (Coord r _) =
-  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| cubic r
-
+orbitalAngularVelocity disk (Coord r _) =
+  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r
+  where
+    mSun = centralStarMass mSun
+    
 orbitalVelocity :: Disk -> Coord -> CmPerSec Double
-orbitalVelocity  _ (Coord r _) =
-  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| r
-
+orbitalVelocity  disk (Coord r _) =
+  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r
+  where
+    mSun = centralStarMass mSun
 
 
 scaleHeight :: Disk -> Coord -> AU Double

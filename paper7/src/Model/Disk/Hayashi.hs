@@ -10,7 +10,6 @@ module Model.Disk.Hayashi where
 import           Control.Monad.Identity
 import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
-import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
 import qualified Data.Text as Text
 import qualified Text.LaTeX as LTX
@@ -25,8 +24,10 @@ import           UnitTyped.SI.Meta
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
 
-import           Model.Concepts
+
+import           Model.Disk
 import           Model.Values
+
 
 import           Text.Authoring
 import           Text.Authoring.TH
@@ -60,25 +61,35 @@ innerRadius =    mkVal 0.35
 outerRadius =    mkVal 300   
 snowlineRadius = mkVal 2.7
 
-innerSH = OrbitalRadius `being` innerRadius $ scaleHeight
-outerSH = OrbitalRadius `being` outerRadius $ scaleHeight
-snowlineSH = OrbitalRadius `being` snowlineRadius $ scaleHeight
+innerSH    = scaleHeight mmsnModel $ equatorAt innerRadius     
+outerSH    = scaleHeight mmsnModel $ equatorAt outerRadius     
+snowlineSH = scaleHeight mmsnModel $ equatorAt snowlineRadius  
 
 mmsnStandardSurfaceDensity :: GramPerCm2 Double
 mmsnStandardSurfaceDensity = mkVal 1700
 
-
-surfaceDensityGas :: Given OrbitalRadius => GramPerCm2 Double
-surfaceDensityGas = autoc $ 
-  cutoff *|
-   mmsnStandardSurfaceDensity |*|
-   (fmap (**(-1.5)) $ r |/| (1 *| astronomicalUnit))
+mmsnModel :: Disk
+mmsnModel 
+  = Disk
+  { inclinationAngle = 0
+  , gasSurfaceDensity = sdGas
+  , temperature = tem
+  }
   where
-    r :: AU Double
-    r = the OrbitalRadius
-    cutoff =
-      sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
-      sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
+    sdGas :: Coord -> GramPerCm2 Double
+    sdGas (Coord r _) = autoc $ 
+      cutoff *|
+       mmsnStandardSurfaceDensity |*|
+       (fmap (**(-1.5)) $ r |/| (1 *| astronomicalUnit))
+      where
+        cutoff =
+          sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
+          sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
+
+    tem :: Coord -> KelvinUnit Double
+    tem (Coord r _) = 280 *| kelvin |*|
+       (fmap (**(-0.5)) $ r |/| (1 *| astronomicalUnit))
+
 
 surfaceDensityGasDoc :: MonadAuthoring s w m => m ()
 surfaceDensityGasDoc =  
@@ -89,19 +100,16 @@ surfaceDensityGasDoc =
 
 
 
-densityGas :: (Given OrbitalRadius, Given ZCoordinate) => GramPerCm3 Double
-densityGas = autoc $
-  factor *| surfaceDensityGas |/| h
+densityGas :: Disk -> Coord -> GramPerCm3 Double
+densityGas disk pos = autoc $
+  factor *| (gasSurfaceDensity disk pos) |/| h
   where
+    (Coord _ z) = pos
     factor = (2*pi)**(-1/2)
            * (exp(negate $ val (square z |/| (2 *| square h))))
-    z = the ZCoordinate
-    h = scaleHeight
+    h = scaleHeight disk pos
 
 
-temperature :: Given OrbitalRadius => Double :| Kelvin
-temperature = 280 *| kelvin |*|
-   (fmap (**(-0.5)) $ (the OrbitalRadius) |/| (1 *| astronomicalUnit))
 
 temperatureDoc :: MonadAuthoring s w m => m ()
 temperatureDoc =  
@@ -111,25 +119,29 @@ T\left(r\right)&=& 280
    |]
 
 
-soundSpeed :: Given OrbitalRadius => CmPerSec Double
-soundSpeed = U.sqrt $ autoc cssq
+soundSpeed :: Disk -> Coord -> CmPerSec Double
+soundSpeed disk pos = U.sqrt $ autoc cssq
   where
-    cssq = (kB |*| temperature) |/| (2.34 *| protonMass)
-      `as`  (square (centi meter) |/| square second)
+    cssq :: Cm2PerSec2 Double
+    cssq = autoc $ (kB |*| (temperature disk pos)) 
+               |/| (2.34 *| protonMass)
 
-orbitalAngularVelocity :: Given OrbitalRadius => Double :| Hertz
-orbitalAngularVelocity =
-  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| cubic (the OrbitalRadius)
+orbitalAngularVelocity :: Disk -> Coord -> Double :| Hertz
+orbitalAngularVelocity _ (Coord r _) =
+  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| cubic r
 
-orbitalVelocity :: Given OrbitalRadius => CmPerSec Double
-orbitalVelocity =
-  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| the OrbitalRadius
+orbitalVelocity :: Disk -> Coord -> CmPerSec Double
+orbitalVelocity  _ (Coord r _) =
+  U.sqrt $ autoc $ gravitationalConstant |*| solarMass |/| r
 
 
 
-scaleHeight :: Given OrbitalRadius => AU Double
-scaleHeight = autoc $ soundSpeed |/| orbitalAngularVelocity
-  where r = the OrbitalRadius
+scaleHeight :: Disk -> Coord -> AU Double
+scaleHeight disk = f
+  where 
+    f pos = 
+      autoc $ (soundSpeed disk pos) 
+          |/| (orbitalAngularVelocity disk pos)
 
 sigmoid :: Double -> Double
 sigmoid x = 1/(1+exp (negate x))
@@ -137,34 +149,3 @@ sigmoid x = 1/(1+exp (negate x))
 gaussian :: Double -> Double -> Double -> Double
 gaussian mu sigma x = 1/sqrt(2*pi* sigma^2) * exp (negate $ (/2) $ ((x-mu)/sigma)^2)
 
-pvDistribution :: AU Double -> CmPerSec Double -> Double
-pvDistribution r v = gaussian (val v0) (val cs) (val v)
-  where
-    cs :: CmPerSec Double
-    cs = OrbitalRadius `being` r0 $ soundSpeed
-
-    v0 :: CmPerSec Double
-    v0 = (sin inclination * signum (val r)) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
-    r0 :: AU Double
-    r0 = U.abs r
-
-chargedPVDistribution :: CmPerSec Double -> AU Double -> CmPerSec Double -> Double
-chargedPVDistribution vch r v = gaussian (val v0) (val cs) (val v)
-  where
-    cs :: CmPerSec Double
-    cs = OrbitalRadius `being` r0 $ soundSpeed |+| vch'
-
-    vch'
-      | val r0 < 100 = vch
-      | otherwise    = fmap (* ((val r0 /100)**(-1.5))) vch
-
-    v0 :: CmPerSec Double
-    v0 = (sin inclination * signum (val r)) *| (OrbitalRadius `being` r0 $ orbitalVelocity)
-    r0 :: AU Double
-    r0 = U.abs r
-
-relativePVDistribution :: CmPerSec Double -> AU Double -> CmPerSec Double -> Double
-relativePVDistribution vch r v = chargedPVDistribution vch r v - pvDistribution r v
-
-inclination :: Double
-inclination = 7/180*pi

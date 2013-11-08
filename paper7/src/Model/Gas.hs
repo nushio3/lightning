@@ -7,13 +7,12 @@
 module Model.Gas where
 
 import Control.Applicative
-import Data.Reflection.Typed
 import Text.Authoring
 import Text.Authoring.TH
 import UnitTyped
 import UnitTyped.Synonyms
 
-import Model.Concepts
+import Model.Disk
 import Model.Disk.Hayashi
 import Model.Values
 
@@ -117,9 +116,7 @@ airDensity = mkVal 1.2041e-3
 
 ppdDensity :: GramPerCm3 Double
 ppdDensity = 
-  OrbitalRadius `being` (mkVal 1) $
-  ZCoordinate `being` (mkVal 0) $
-  densityGas
+  densityGas mmsnModel $ Coord (mkVal 1) (mkVal 0)
 
 airNumberDensity :: PerCm3 Double
 airNumberDensity = autoc $ airDensity |/| airMix molecularMass

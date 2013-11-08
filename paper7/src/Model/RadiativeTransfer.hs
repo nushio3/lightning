@@ -7,15 +7,14 @@
 
 module Model.RadiativeTransfer where
 
-import           Data.Reflection.Typed
 import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
-import           Model.Concepts
 import Model.Gas
 import Model.Values
-import Model.Disk.Hayashi as MMSN
+import Model.Disk
+import Model.Disk.Hayashi 
 
 import           Text.Authoring
 import           Text.Authoring.TH
@@ -229,7 +228,7 @@ aboutLineObservation = do
    |]
    where
      tem100au :: KelvinUnit Double
-     tem100au = OrbitalRadius `being` (mkVal 100) $ MMSN.temperature
+     tem100au = temperature mmsnModel $ equatorAt (mkVal 100) 
 
      ligVel :: CmPerSec Double
      ligVel = mkVal 7e5

@@ -10,8 +10,6 @@ import Text.Authoring
 import Text.Authoring.TH
 
 
-
-
 aboutLatestDiskModel :: MonadAuthoring s w m => m ()
 aboutLatestDiskModel = do
   [rawQ| Recent disk observation suggests that the power-law index 

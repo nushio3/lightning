@@ -303,7 +303,7 @@ lineProfile disk j chem nu = foldl1 (|+|) $ map go splittedDisk
     nu0 = lineFrequency j chem
   
     go :: DiskPortion -> JanskyUnit Double
-    go (DiskPortion pos a0) = autoc $ (exp $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
+    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
       where
         phi :: Double
         phi = pos ^. azimuth

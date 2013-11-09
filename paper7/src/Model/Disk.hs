@@ -22,7 +22,7 @@ data Coord = Coord
   { _radius :: AU Double, 
     _altitude :: AU Double, 
     _azimuth :: Double }
-
+ deriving (Eq, Show)
 makeLenses ''Coord
 
 equatorAt :: AU Double -> Coord
@@ -39,7 +39,7 @@ data Disk = Disk {
 data DiskPortion = DiskPortion {
   center :: Coord,
   area :: Cm2 Double
-  }
+  } deriving (Eq, Show)
 
 splittedDisk :: [DiskPortion]
 splittedDisk = 
@@ -66,7 +66,7 @@ splittedDisk =
     radialBoundaries = [ 10 ** (fromInteger i / 10) | i <- [-10..30]]
     
     azimuthalBoundaries :: [Double]
-    azimuthalBoundaries = [(fromInteger i / 20 * pi) | i <- [0..40]]    
+    azimuthalBoundaries = [(fromInteger i / 2000 * pi) | i <- [0..4000]]    
 
     toCLR :: [Double] -> [(Double, (Double, Double))]
     toCLR xs = zipWith f xs (tail xs)

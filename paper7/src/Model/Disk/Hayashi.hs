@@ -7,6 +7,7 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
+import           Control.Lens
 import           Control.Monad.Identity
 import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
@@ -52,7 +53,8 @@ hayashiModelDoc = do
 \mathrm{where} ~~~ 
 h(r) &=& \frac{c_s}{\Omega}, \\
 c_s(r) &=& \sqrt{\frac{k_B T(r)}{\mu m_p}},\\
-\Omega(r) &=& \sqrt{\frac{G M_{\odot}}{r^3}}.
+\Omega_K(r) &=& \sqrt{\frac{G M_{\odot}}{r^3}},\\
+v_K(r)     &=& \sqrt{\frac{G M_{\odot}}{r}}.
 \end{eqnarray}
    |]
 
@@ -78,7 +80,7 @@ mmsnModel
   }
   where
     sdGas :: Coord -> GramPerCm2 Double
-    sdGas (Coord r _) = autoc $ 
+    sdGas pos = autoc $ 
       cutoff *|
        mmsnStandardSurfaceDensity |*|
        (fmap (**(-1.5)) $ r |/| (1 *| astronomicalUnit))
@@ -86,11 +88,13 @@ mmsnModel
         cutoff =
           sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
           sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
-
+        r = pos ^. radius 
+        
     tem :: Coord -> KelvinUnit Double
-    tem (Coord r _) = 280 *| kelvin |*|
+    tem pos = 280 *| kelvin |*|
        (fmap (**(-0.5)) $ r |/| (1 *| astronomicalUnit))
-
+      where
+        r = pos ^. radius
 
 surfaceDensityGasDoc :: MonadAuthoring s w m => m ()
 surfaceDensityGasDoc =  
@@ -101,17 +105,6 @@ surfaceDensityGasDoc =
 
 
 
-densityGas :: Disk -> Coord -> GramPerCm3 Double
-densityGas disk pos = autoc $
-  factor *| (gasSurfaceDensity disk pos) |/| h
-  where
-    (Coord _ z) = pos
-    factor = (2*pi)**(-1/2)
-           * (exp(negate $ val (square z |/| (2 *| square h))))
-    h = scaleHeight disk pos
-
-
-
 temperatureDoc :: MonadAuthoring s w m => m ()
 temperatureDoc =  
   [rawQ|
@@ -119,37 +112,4 @@ T\left(r\right)&=& 280
 \left(\frac{r}{1\mathrm{au}}\right)^{ -\frac{1}{2}}\mathrm{K}
    |]
 
-
-soundSpeed :: Disk -> Coord -> CmPerSec Double
-soundSpeed disk pos = U.sqrt $ autoc cssq
-  where
-    cssq :: Cm2PerSec2 Double
-    cssq = autoc $ (kB |*| (temperature disk pos)) 
-               |/| (2.34 *| protonMass)
-
-orbitalAngularVelocity :: Disk -> Coord -> Double :| Hertz
-orbitalAngularVelocity disk (Coord r _) =
-  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r
-  where
-    mSun = centralStarMass mSun
-    
-orbitalVelocity :: Disk -> Coord -> CmPerSec Double
-orbitalVelocity  disk (Coord r _) =
-  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r
-  where
-    mSun = centralStarMass mSun
-
-
-scaleHeight :: Disk -> Coord -> AU Double
-scaleHeight disk = f
-  where 
-    f pos = 
-      autoc $ (soundSpeed disk pos) 
-          |/| (orbitalAngularVelocity disk pos)
-
-sigmoid :: Double -> Double
-sigmoid x = 1/(1+exp (negate x))
-
-gaussian :: Double -> Double -> Double -> Double
-gaussian mu sigma x = 1/sqrt(2*pi* sigma^2) * exp (negate $ (/2) $ ((x-mu)/sigma)^2)
 

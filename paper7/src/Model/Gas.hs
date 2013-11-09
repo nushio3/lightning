@@ -116,7 +116,7 @@ airDensity = mkVal 1.2041e-3
 
 ppdDensity :: GramPerCm3 Double
 ppdDensity = 
-  densityGas mmsnModel $ Coord (mkVal 1) (mkVal 0)
+  densityGas mmsnModel $ equatorAt (mkVal 1) 
 
 airNumberDensity :: PerCm3 Double
 airNumberDensity = autoc $ airDensity |/| airMix molecularMass

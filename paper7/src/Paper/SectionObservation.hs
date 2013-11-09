@@ -83,9 +83,6 @@ $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSec
 \end{tabular}
   |]
 
-  aboutScoville
+  aboutLineObservation
 
-  raw "\n\n"
-
-  aboutLineObservation  
   return ()

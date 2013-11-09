@@ -19,6 +19,22 @@ import Model.Disk.Hayashi
 import           Text.Authoring
 import           Text.Authoring.TH
 
+
+
+
+aboutLineObservation :: MonadAuthoring s w m => m ()
+aboutLineObservation = do
+  aboutScoville
+
+  raw "\n\n"
+
+  aboutLineProperty
+
+  raw "\n\n"
+  
+  aboutLineProfile
+
+
 -- | From Alma OT
 dipoleMoment :: ChemicalSpecies -> DebyeOf Double 
 dipoleMoment N2HPlus = mkVal $ sqrt 11.56 
@@ -193,8 +209,8 @@ I(\nu_0) = B(\nu_0,T) \left(1-\exp (-\tau_{\nu_0}(N))\right)   .
   |]
 
 
-aboutLineObservation :: MonadAuthoring s w m => m ()
-aboutLineObservation = do
+aboutLineProperty :: MonadAuthoring s w m => m ()
+aboutLineProperty = do
   [rawQ|
    We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines.
    Their frequencies are                               
@@ -239,3 +255,24 @@ aboutLineObservation = do
 
      lr :: ChemicalSpecies -> JanskyUnit Double
      lr chem = autoc $ solidAngle *| lineRadiation 2 tem100au chem
+
+aboutLineProfile :: MonadAuthoring s w m => m ()
+aboutLineProfile = do
+  [rawQ|    
+   
+The spectral irradiance of the disk $E(\nu)$
+as a function of $\nu$ is
+   
+\begin{eqnarray}   
+E(\nu) &=& \frac{1}{D^2}
+\int \int I(\nu_0,r) \exp
+\left(
+- \frac{m c^2 d(\nu; \nu_0,r)^2}{2 k_B T {\nu_0}^2}
+\right) 
+r \mathit{dr} \mathit{d\varphi} \cos i ,\\
+\mathrm {where} ~~~
+d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber .
+\end{eqnarray}   
+   
+   |]
+

@@ -2,6 +2,7 @@ module Main where
 
 import Control.Applicative
 import Control.Monad
+import Model.Disk
 import Model.Disk.Hayashi 
 import Model.Gas
 import Model.RadiativeTransfer
@@ -31,11 +32,11 @@ main = do
   
 plotLineProfile :: IO ()  
 plotLineProfile = do
-  print $ lineProfile mmsnModel 2 HCOPlus (mkVal 267.55)
-  print $ lineProfile mmsnModel 2 HCOPlus (mkVal 267.56)
-  print $ lineProfile mmsnModel 2 HCOPlus (mkVal 267.564768765)  
-  print $ lineProfile mmsnModel 2 HCOPlus (mkVal 267.57)  
+  forM_ [-20..20] $ \dv -> do
+    print $ lineProfile disk 2 HCOPlus (mkVal $ dv/10)
   return ()  
+  where 
+    disk = mmsnModel{inclinationAngle=0.5}
 
                   
                   

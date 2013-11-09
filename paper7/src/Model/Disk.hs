@@ -63,10 +63,10 @@ splittedDisk =
     phis = toCLR azimuthalBoundaries
     
     radialBoundaries :: [Double]
-    radialBoundaries = [ 10 ** (fromInteger i / 10) | i <- [-10..30]]
+    radialBoundaries = [ 10 ** (fromInteger i / 100) | i <- [-10..300]]
     
     azimuthalBoundaries :: [Double]
-    azimuthalBoundaries = [(fromInteger i / 2000 * pi) | i <- [0..4000]]    
+    azimuthalBoundaries = [(fromInteger i / 200 * pi) | i <- [0..400]]    
 
     toCLR :: [Double] -> [(Double, (Double, Double))]
     toCLR xs = zipWith f xs (tail xs)

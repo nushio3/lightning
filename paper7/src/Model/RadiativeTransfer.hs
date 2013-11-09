@@ -296,12 +296,9 @@ d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber
    
    |]
 
-lineProfile :: Disk -> Int -> ChemicalSpecies -> (GHz Double -> JanskyUnit Double)
-lineProfile disk j chem nu = foldl1 (|+|) $ map go splittedDisk
+lineProfile :: Disk -> Int -> ChemicalSpecies -> (KmPerSec Double -> JanskyUnit Double)
+lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
   where
-    nu0 :: GHz Double
-    nu0 = lineFrequency j chem
-  
     go :: DiskPortion -> JanskyUnit Double
     go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
       where
@@ -312,14 +309,11 @@ lineProfile disk j chem nu = foldl1 (|+|) $ map go splittedDisk
         incli = inclinationAngle disk
         
         expPart :: NoDimension Double
-        expPart = staticNrg |*| square dopplerDiff |/| (2 *| kB |*| temperature disk pos)
+        expPart =  autoc $ molecularMass chem |*| square dopplerDiff |/| (2 *| kB |*| temperature disk pos)
         
-        staticNrg :: JouleUnit Double
-        staticNrg = autoc $ molecularMass chem |*| square speedOfLight
-        
-        dopplerDiff :: NoDimension Double
-        dopplerDiff = (nu |-| nu0) |/| nu0 |-| 
-                      (cos phi * sin incli) *|orbitalVelocity disk pos |/| speedOfLight 
+        dopplerDiff :: KmPerSec Double
+        dopplerDiff = dv |-| 
+                      (cos phi * sin incli) *|orbitalVelocity disk pos 
         
         peakRadiance :: SpectralRadiance Double
         peakRadiance = 

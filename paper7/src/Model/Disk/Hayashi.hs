@@ -73,7 +73,8 @@ mmsnStandardSurfaceDensity = mkVal 1700
 mmsnModel :: Disk
 mmsnModel 
   = Disk
-  { inclinationAngle = 0
+  { distanceFromEarth = mkVal 100 
+  , inclinationAngle = 0
   , centralStarMass = solarMass
   , gasSurfaceDensity = sdGas
   , temperature = tem

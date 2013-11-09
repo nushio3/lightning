@@ -7,6 +7,7 @@
 
 module Model.RadiativeTransfer where
 
+import Control.Lens
 import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
@@ -57,8 +58,11 @@ fractionalAbundance100au _ = mkVal 0
 aboutFractionalAbundance :: MonadAuthoring s w m => m ()
 aboutFractionalAbundance = do  
   [rawQ|  
-   We adopt the XR+UV-new chemical process model of @{citet ["doi:10.1088/0004-637X/747/2/114"]},
-   and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ at 100au
+   For simplicity we assume that fractional abundances of the ion species are uniform
+   within the disk.
+   We adopt the values at 100au of the XR+UV-new chemical process model 
+   @{citep ["doi:10.1088/0004-637X/747/2/114"]},
+   and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ 
    are $#{ppValE 0 $ fractionalAbundance100au HCOPlus} $
    and $#{ppValE 0 $ fractionalAbundance100au N2HPlus} $,
    respectively. 
@@ -157,8 +161,8 @@ blackBodyRadiation nu tem = autoc $
       ie = (planckConstant |*| nu) |/| (kB |*| tem)
 
 
-lineRadiation :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
-lineRadiation j tem chem = (1 - exp (negate tau)) *| bbr
+lineRadiation100au :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
+lineRadiation100au j tem chem = (1 - exp (negate tau)) *| bbr
   where
     nu = lineFrequency j chem
     bbr = blackBodyRadiation (autoc nu) tem
@@ -173,7 +177,23 @@ lineRadiation j tem chem = (1 - exp (negate tau)) *| bbr
     ligVel = mkVal 7e5
     
 
+lineRadiation ::  PerCm2 Double -> CmPerSec Double -> Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
+lineRadiation colDens ligVel j tem chem = (1 - exp (negate tau)) *| bbr
+  where
+    nu = lineFrequency j chem
+    bbr = blackBodyRadiation (autoc nu) tem
     
+    n1 :: PerCm2 Double
+    n1 = scovilleFormulaAthermal j tem ligVel chem
+
+    tau :: Double
+    tau = val $ colDens |/| n1
+    
+    
+
+    
+
+
 
 -- http://www.cv.nrao.edu/course/astr534/Equations.html
 
@@ -254,7 +274,7 @@ aboutLineProperty = do
 
 
      lr :: ChemicalSpecies -> JanskyUnit Double
-     lr chem = autoc $ solidAngle *| lineRadiation 2 tem100au chem
+     lr chem = autoc $ solidAngle *| lineRadiation100au 2 tem100au chem
 
 aboutLineProfile :: MonadAuthoring s w m => m ()
 aboutLineProfile = do
@@ -276,3 +296,34 @@ d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber
    
    |]
 
+lineProfile :: Disk -> Int -> ChemicalSpecies -> (GHz Double -> JanskyUnit Double)
+lineProfile disk j chem nu = foldl1 (|+|) $ map go splittedDisk
+  where
+    nu0 :: GHz Double
+    nu0 = lineFrequency j chem
+  
+    go :: DiskPortion -> JanskyUnit Double
+    go (DiskPortion pos a0) = autoc $ (exp $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
+      where
+        phi :: Double
+        phi = pos ^. azimuth
+        
+        incli :: Double
+        incli = inclinationAngle disk
+        
+        expPart :: NoDimension Double
+        expPart = staticNrg |*| square dopplerDiff |/| (2 *| kB |*| temperature disk pos)
+        
+        staticNrg :: JouleUnit Double
+        staticNrg = autoc $ molecularMass chem |*| square speedOfLight
+        
+        dopplerDiff :: NoDimension Double
+        dopplerDiff = (nu |-| nu0) |/| nu0 |-| 
+                      (cos phi * sin incli) *|orbitalVelocity disk pos |/| speedOfLight 
+        
+        peakRadiance :: SpectralRadiance Double
+        peakRadiance = 
+          lineRadiation 
+            (gasSurfaceDensity disk pos |/| protonMass |*| fractionalAbundance100au chem) 
+            (soundSpeed disk pos) j (temperature disk pos) chem
+            

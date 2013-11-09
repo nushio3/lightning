@@ -21,14 +21,15 @@ import           Text.Authoring.TH
 data Coord = Coord
   { _radius :: AU Double, 
     _altitude :: AU Double, 
-    _azimuth :: NoDimension Double }
+    _azimuth :: Double }
 
 makeLenses ''Coord
 
 equatorAt :: AU Double -> Coord
-equatorAt r = Coord r (mkVal 0) (mkVal 0)
+equatorAt r = Coord r (mkVal 0) 0
 
 data Disk = Disk {
+  distanceFromEarth:: Pc Double,
   inclinationAngle :: Double,
   centralStarMass ::  GramUnit Double,
   gasSurfaceDensity :: Coord -> GramPerCm2 Double,
@@ -45,7 +46,7 @@ splittedDisk =
   [combine clrR clrP |  clrR <- rs, clrP <- phis]
   where
     combine (r0, (rL, rR)) (p0, (pL, pR)) =
-      DiskPortion (Coord (mkVal r0) (mkVal 0) (mkVal p0)) a0
+      DiskPortion (Coord (mkVal r0) (mkVal 0) p0) a0
         where
           a0 :: Cm2 Double
           a0 = autoc $ dr |*| r |*| dphi

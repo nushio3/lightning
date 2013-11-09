@@ -108,6 +108,7 @@ type KelvinUnit = Value '[ '(Temperature, POne)] '[ '(Kelvin, POne) ]
 type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 
 type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
+type Pc = Value '[ '(Length, POne)] '[ '(Parsec, POne) ]
 
 -- velocities
 type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]

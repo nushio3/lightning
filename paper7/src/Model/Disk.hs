@@ -21,12 +21,12 @@ import           Text.Authoring.TH
 data Coord = Coord
   { _radius :: AU Double, 
     _altitude :: AU Double, 
-    _azimuth :: Double }
+    _azimuth :: NoDimension Double }
 
 makeLenses ''Coord
 
 equatorAt :: AU Double -> Coord
-equatorAt r = Coord r (mkVal 0) 0
+equatorAt r = Coord r (mkVal 0) (mkVal 0)
 
 data Disk = Disk {
   inclinationAngle :: Double,
@@ -40,6 +40,38 @@ data DiskPortion = DiskPortion {
   area :: Cm2 Double
   }
 
+splittedDisk :: [DiskPortion]
+splittedDisk = 
+  [combine clrR clrP |  clrR <- rs, clrP <- phis]
+  where
+    combine (r0, (rL, rR)) (p0, (pL, pR)) =
+      DiskPortion (Coord (mkVal r0) (mkVal 0) (mkVal p0)) a0
+        where
+          a0 :: Cm2 Double
+          a0 = autoc $ dr |*| r |*| dphi
+          
+          dr :: AU Double
+          dr = mkVal (rR - rL)
+          dphi :: NoDimension Double
+          dphi = mkVal (pR - pL)
+          r :: AU Double
+          r = mkVal r0
+          
+          
+    rs = toCLR radialBoundaries
+    phis = toCLR azimuthalBoundaries
+    
+    radialBoundaries :: [Double]
+    radialBoundaries = [ 10 ** (fromInteger i / 10) | i <- [-10..30]]
+    
+    azimuthalBoundaries :: [Double]
+    azimuthalBoundaries = [(fromInteger i / 20 * pi) | i <- [0..40]]    
+
+    toCLR :: [Double] -> [(Double, (Double, Double))]
+    toCLR xs = zipWith f xs (tail xs)
+      where
+        f l r = ((l+r)/2, (l,r))
+        
 densityGas :: Disk -> Coord -> GramPerCm3 Double
 densityGas disk pos = autoc $
   factor *| (gasSurfaceDensity disk pos) |/| h

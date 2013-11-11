@@ -20,5 +20,6 @@ aboutLatestDiskModel = do
           @{citep ["bibcode:2002ApJ...581..357K",
                    "bibcode:2009ApJ...700.1502A",
                    "bibcode:2010ApJ...723.1241A",
-                   "bibcode:2013ASPC..476..387A"]}
+                   "bibcode:2013ASPC..476..387A",
+                   "doi:10.1146/annurev-astro-081710-102548" {- Review -}  ]}
          . |]

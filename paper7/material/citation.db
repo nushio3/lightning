@@ -336,6 +336,19 @@
       DOI={10.1086/432796}, number={2}, journal={The Astrophysical Journal}, publisher={IOP
       Publishing}, author={Inutsuka, Shu-ichiro and Sano, Takayoshi}, year={2005},
       month={Aug}, pages={L155-L158}}'
+- - doi:10.1088/0004-637X/722/2/1607
+  - - ! '@article{Walsh_Millar_Nomura_2010, title={CHEMICAL PROCESSES IN PROTOPLANETARY
+      DISKS}, volume={722}, url={http://dx.doi.org/10.1088/0004-637X/722/2/1607},
+      DOI={10.1088/0004-637X/722/2/1607}, number={2}, journal={The Astrophysical Journal},
+      publisher={IOP Publishing}, author={Walsh, Catherine and Millar, T. J. and Nomura,
+      Hideko}, year={2010}, month={Oct}, pages={1607-1623}}'
+- - doi:10.1088/0004-637X/747/2/114
+  - - ! '@article{alsh_Nomura_Millar_Aikawa_2012, title={CHEMICAL PROCESSES IN PROTOPLANETARY
+      DISKS. II. ON THE IMPORTANCE OF PHOTOCHEMISTRY AND X-RAY IONIZATION}, volume={747},
+      url={http://dx.doi.org/10.1088/0004-637X/747/2/114}, DOI={10.1088/0004-637X/747/2/114},
+      number={2}, journal={The Astrophysical Journal}, publisher={IOP Publishing},
+      author={Walsh, Catherine and Nomura, Hideko and Millar, T. J. and Aikawa, Yuri},
+      year={2012}, month={Mar}, pages={114}}'
 - - doi:10.1103/RevModPhys.12.87
   - - ! '@article{Druyvesteyn_Penning_1940, title={The Mechanism of Electrical Discharges
       in Gases of Low Pressure}, volume={12}, url={http://dx.doi.org/10.1103/RevModPhys.12.87},

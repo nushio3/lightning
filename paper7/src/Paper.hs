@@ -50,7 +50,7 @@ abstractText :: Text.Text
 abstractText = LTX.render abstract
 
 abstract :: LaTeX
-abstract = TeXRaw "We study lightning distribution in protoplanetary disks."
+abstract = TeXRaw "We study the possibility of observationally distinguishing lightning models in protoplanetary disks."
 
 
 genBodyText :: IO (Text.Text, Text.Text)
@@ -91,4 +91,4 @@ The parallel computations are based on @{marlow2013}.
 sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
   command1 "section" $ esc "Conclusion"
-  esc "distribution was shown."
+  esc "Lightning is observable with ALMA."

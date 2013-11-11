@@ -7,12 +7,15 @@
 
 module Model.RadiativeTransfer where
 
+import           Data.Reflection.Typed
 import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
+import           Model.Concepts
 import Model.Gas
 import Model.Values
+import Model.Disk.Hayashi as MMSN
 
 import           Text.Authoring
 import           Text.Authoring.TH
@@ -25,18 +28,35 @@ dipoleMoment DCOPlus = mkVal $ sqrt 15.21
 dipoleMoment _ = mkVal 0
 
 -- | From WMN 2010
-columnDensitySpec :: ChemicalSpecies -> PerCm2 Double 
-columnDensitySpec N2HPlus = 6e11
-columnDensitySpec HCOPlus = 4.7e13
-columnDensitySpec DCOPlus = 0.00194e-2 * columnDensitySpec HCOPlus
-columnDensitySpec _ = 0
+columnDensity100au :: ChemicalSpecies -> PerCm2 Double 
+columnDensity100au H2 = mkVal 2.0e23
+columnDensity100au x  = columnDensity100au H2 |*| fractionalAbundance100au x
+
+fractionalAbundance100au :: ChemicalSpecies -> NoDimension Double 
+fractionalAbundance100au N2HPlus = mkVal $ (5.5e11 / 2.0e23)
+fractionalAbundance100au HCOPlus = mkVal $ (4.3e13 / 2.0e23)
+fractionalAbundance100au DCOPlus = 0.00194e-2 *| fractionalAbundance100au HCOPlus
+fractionalAbundance100au _ = mkVal 0
+
 
 aboutFractionalAbundance :: MonadAuthoring s w m => m ()
 aboutFractionalAbundance = do  
   [rawQ|  
-   The column densities of $\rm HCO^{+}$ and $\rm DCO^{+}~3-2$ 
-   are $#{ppValE 0 $ columnDensitySpec HCOPlus}$
-  $\rm N2H^{+}~3-2$ lines.
+   We adopt the XR+UV-new chemical process model of @{citet ["doi:10.1088/0004-637X/747/2/114"]},
+   and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ at 100au
+   are $#{ppValE 0 $ fractionalAbundance100au HCOPlus} $
+   and $#{ppValE 0 $ fractionalAbundance100au N2HPlus} $,
+   respectively. 
+   We assume the fractional abundance of $\rm DCO^{+}$ to be
+   $#{ppValE 0 $ fractionalAbundance100au DCOPlus}$, based on the
+   hydrogen isotope ratio data in
+   @{citet["bibcode:2009LanB...4B...44L"]}.
+
+   Therefore, the column densities of $\rm HCO^{+}$, $\rm DCO^{+}$ and $\rm N_2H^{+}$
+   are $#{ppValE 0 $ columnDensity100au HCOPlus} {\rm cm^{ -2}}$,
+   $#{ppValE 0 $ columnDensity100au DCOPlus} {\rm cm^{ -2}}$,
+   and $#{ppValE 0 $ columnDensity100au N2HPlus} {\rm cm^{ -2}}$,
+   respectively.
    |]
 
 
@@ -71,6 +91,17 @@ N_{\tau_{\nu 0}=1} =
 
 scovilleFormula :: Int -> KelvinUnit Double -> ChemicalSpecies -> PerCm2 Double
 scovilleFormula j tex chem = 
+  scovilleFormulaAthermal j tex vgas chem 
+  where
+    vgas :: CmPerSec Double
+    vgas = U.sqrt $ autoc $ exitationNrg |/| molecularMass chem
+
+    exitationNrg :: JouleUnit Double
+    exitationNrg = autoc $ kB |*| tex
+
+    
+scovilleFormulaAthermal :: Int -> KelvinUnit Double -> CmPerSec Double -> ChemicalSpecies -> PerCm2 Double
+scovilleFormulaAthermal j tex vgas chem = 
   autoc $ 
     factor *|
     (exitationNrg |*| vgas) |/| 
@@ -94,9 +125,6 @@ scovilleFormula j tex chem =
     exitationNrg :: JouleUnit Double
     exitationNrg = autoc $ kB |*| tex
 
-    vgas :: MeterPerSec Double
-    vgas = U.sqrt $ autoc $ exitationNrg |/| molecularMass chem
-
     deb :: DebyeOf Double
     deb = dipoleMoment chem
     
@@ -114,9 +142,23 @@ blackBodyRadiation nu tem = autoc $
       ie = (planckConstant |*| nu) |/| (kB |*| tem)
 
 
-lineRadiation :: Int -> KelvinUnit Double -> PerCm2 Double -> ChemicalSpecies -> SpectralRadiance Double
-lineRadiation j tem colDensHydrogen chem = undefined
+lineRadiation :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
+lineRadiation j tem chem = (1 - exp (negate tau)) *| bbr
+  where
+    nu = lineFrequency j chem
+    bbr = blackBodyRadiation (autoc nu) tem
+    
+    n1 :: PerCm2 Double
+    n1 = scovilleFormulaAthermal j tem ligVel chem
 
+    tau :: Double
+    tau = val $ columnDensity100au chem |/| n1
+    
+    ligVel :: CmPerSec Double
+    ligVel = mkVal 7e5
+    
+
+    
 
 -- http://www.cv.nrao.edu/course/astr534/Equations.html
 
@@ -155,15 +197,46 @@ I(\nu_0) = B(\nu_0,T) \left(1-\exp (-\tau_{\nu_0}(N))\right)   .
 aboutLineObservation :: MonadAuthoring s w m => m ()
 aboutLineObservation = do
   [rawQ|
-   We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N2H^{+}~3-2$ lines.
+   We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines.
    Their frequencies are                               
    $#{ppValF "%5.2f" (lineFrequency 2 HCOPlus)}$GHz,
    $#{ppValF "%5.2f" (lineFrequency 2 DCOPlus)}$GHz and
    $#{ppValF "%5.2f" (lineFrequency 2 N2HPlus)}$GHz, respectively.
-                                                     
-                                                     
-   $#{ppValE 2 $ scovilleFormula 2 (mkVal 15) HCOPlus}$,
-   $#{ppValE 2 $ scovilleFormula 2 (mkVal 15) DCOPlus}$ and   
-   $#{ppValE 2 $ scovilleFormula 2 (mkVal 15) N2HPlus}$,
+   At 100au of the MMSN disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
+   Therefore, $N_{\tau_{\nu 0}=1}$ for the three lines are
+   $#{ppValE 2 $ scovilleFormula 2 tem100au HCOPlus} ~{\rm cm^{ -2}}$,
+   $#{ppValE 2 $ scovilleFormula 2 tem100au DCOPlus} ~{\rm cm^{ -2}}$ and   
+   $#{ppValE 2 $ scovilleFormula 2 tem100au N2HPlus} ~{\rm cm^{ -2}}$, respectively,
+   given no lightning and that the molecules are in their thermal velocities.
+   
+   On the other hand, $N_{\tau_{\nu 0}=1}$ for the three lines are
+   $#{ppValE 2 $ scovilleFormulaAthermal 2 tem100au ligVel HCOPlus} ~{\rm cm^{ -2}}$,
+   $#{ppValE 2 $ scovilleFormulaAthermal 2 tem100au ligVel DCOPlus} ~{\rm cm^{ -2}}$ and   
+   $#{ppValE 2 $ scovilleFormulaAthermal 2 tem100au ligVel N2HPlus} ~{\rm cm^{ -2}}$, respectively,
+   if the molecules are accelerated by the lightning electric field.
+
+
+   @{aboutFractionalAbundance}
+
+
+   For a disk 100pc distant from the Earth, and lightning area of $10000 ~ {\rm au}^2$,
+   the spectral flux density of the signals are
+   $#{ppValE 1 $ lr HCOPlus} {\rm Jy}$,
+   $#{ppValE 1 $ lr DCOPlus} {\rm Jy}$ and
+   $#{ppValE 1 $ lr N2HPlus} {\rm Jy}$ for
+   $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines, respectively.
+
    |]
-    
+   where
+     tem100au :: KelvinUnit Double
+     tem100au = OrbitalRadius `being` (mkVal 100) $ MMSN.temperature
+
+     ligVel :: CmPerSec Double
+     ligVel = mkVal 7e5
+     
+     solidAngle :: Double
+     solidAngle = 206264 ** (-2)
+
+
+     lr :: ChemicalSpecies -> JanskyUnit Double
+     lr chem = autoc $ solidAngle *| lineRadiation 2 tem100au chem

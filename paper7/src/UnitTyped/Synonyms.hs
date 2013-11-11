@@ -1,8 +1,12 @@
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE EmptyDataDecls #-}
+{-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeOperators #-}
 
 module UnitTyped.Synonyms where
 
+import           Data.Typeable
 import           Text.Printf
 import           UnitTyped
 import           UnitTyped.SI
@@ -64,8 +68,25 @@ type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne),
 
 type JouleM3 =  Value '[ '(Mass, POne),  '(Length, PFive),  '(Time, NTwo)] '[ '(Joule, POne), '(Meter, PThree) ] 
 
+
+
+-- see the table in http://en.wikipedia.org/wiki/Spectral_irradiance
 type SpectralRadiance = 
-    Value '[ '(Mass, POne), '(Time, NTwo)] '[ '(Watt, POne), '(Meter, NTwo), '(Hertz, NOne) ] 
+    Value '[ '(Mass, POne), '(Time, NTwo)] '[ '(Watt, POne), '(Meter, NTwo), '(Hertz, NOne) {- Steradian, NOne -}  ] 
+
+
+
+-- | Spectral Flux Density
+type SpectralFluxDensity = '[ '(Mass, POne), '(Time, NTwo)] 
+-- |Unit of EDP
+data Jansky
+        deriving Typeable
+
+instance Convertible Jansky where
+        factor _ = 1e-26
+        showunit _ = "Jy"
+        type DimensionOf Jansky = SpectralFluxDensity
+type JanskyUnit = Value SpectralFluxDensity '[ '(Jansky, POne) ]
 
 
 -- energies

@@ -1,3 +1,4 @@
+
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE FlexibleContexts #-}
@@ -17,7 +18,6 @@ import           Model.Breakdown (aboutAir)
 import           Text.Authoring
 import           Text.Authoring.TH 
 
-
 sectionModel :: MonadAuthoring s w m => m ()
 sectionModel = do
   command1 "section" $ raw "Model"
@@ -26,7 +26,7 @@ sectionModel = do
   
   aboutDielectricStrengthOfAir
 
-  command1 "subsection" $ raw "Breakdown Models"
+  command1 "subsection" $ raw "Breakdown Models on Earth"
   aboutThreeDischargeModel
   
   raw "\n\n"
@@ -41,6 +41,6 @@ sectionModel = do
 
   aboutLatestDiskModel
 
-  command1 "subsection" $ raw "Discharge Models"  
+  command1 "subsection" $ raw "Breakdonw Models on Protoplanetary Disks"  
 
   aboutDiskDischarge

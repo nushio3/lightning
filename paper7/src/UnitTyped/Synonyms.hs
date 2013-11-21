@@ -51,11 +51,11 @@ type NoDimension = Value '[] '[]
 -- Nonweighted units
 ----------------------------------------------------------------
 
+type HertzUnit =  Value '[ '(Time, NOne)] '[ '(Second, NOne) ] 
 type PerSecond =  Value '[ '(Time, NOne)] '[ '(Second, NOne) ] 
 type PerCm3 =  Value '[ '(Length, NThree)] '[ '(Centi Meter, NThree) ] 
 type PerCm2 =  Value '[ '(Length, NTwo)] '[ '(Centi Meter, NTwo) ] 
 type PerCm =  Value '[ '(Length, NOne)] '[ '(Centi Meter, NOne) ] 
-
 type GHz =  Value '[ '(Time, NOne)] '[ '(Giga Hertz, POne) ] 
 
 ----------------------------------------------------------------
@@ -108,6 +108,7 @@ type KelvinUnit = Value '[ '(Temperature, POne)] '[ '(Kelvin, POne) ]
 type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
 
 type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
+type Pc = Value '[ '(Length, POne)] '[ '(Parsec, POne) ]
 
 -- velocities
 type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]

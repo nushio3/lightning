@@ -7,18 +7,34 @@
 
 module Model.RadiativeTransfer where
 
-import           Data.Reflection.Typed
+import Control.Lens
 import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
-import           Model.Concepts
 import Model.Gas
 import Model.Values
-import Model.Disk.Hayashi as MMSN
+import Model.Disk
+import Model.Disk.Hayashi 
 
 import           Text.Authoring
 import           Text.Authoring.TH
+
+
+
+
+aboutLineObservation :: MonadAuthoring s w m => m ()
+aboutLineObservation = do
+  aboutScoville
+
+  raw "\n\n"
+
+  aboutLineProperty
+
+  raw "\n\n"
+  
+  aboutLineProfile
+
 
 -- | From Alma OT
 dipoleMoment :: ChemicalSpecies -> DebyeOf Double 
@@ -42,8 +58,11 @@ fractionalAbundance100au _ = mkVal 0
 aboutFractionalAbundance :: MonadAuthoring s w m => m ()
 aboutFractionalAbundance = do  
   [rawQ|  
-   We adopt the XR+UV-new chemical process model of @{citet ["doi:10.1088/0004-637X/747/2/114"]},
-   and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ at 100au
+   For simplicity we assume that fractional abundances of the ion species are uniform
+   within the disk.
+   We adopt the values at 100au of the XR+UV-new chemical process model 
+   @{citep ["doi:10.1088/0004-637X/747/2/114"]},
+   and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ 
    are $#{ppValE 0 $ fractionalAbundance100au HCOPlus} $
    and $#{ppValE 0 $ fractionalAbundance100au N2HPlus} $,
    respectively. 
@@ -142,8 +161,8 @@ blackBodyRadiation nu tem = autoc $
       ie = (planckConstant |*| nu) |/| (kB |*| tem)
 
 
-lineRadiation :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
-lineRadiation j tem chem = (1 - exp (negate tau)) *| bbr
+lineRadiation100au :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
+lineRadiation100au j tem chem = (1 - exp (negate tau)) *| bbr
   where
     nu = lineFrequency j chem
     bbr = blackBodyRadiation (autoc nu) tem
@@ -158,7 +177,23 @@ lineRadiation j tem chem = (1 - exp (negate tau)) *| bbr
     ligVel = mkVal 7e5
     
 
+lineRadiation ::  PerCm2 Double -> CmPerSec Double -> Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
+lineRadiation colDens ligVel j tem chem = (1 - exp (negate tau)) *| bbr
+  where
+    nu = lineFrequency j chem
+    bbr = blackBodyRadiation (autoc nu) tem
     
+    n1 :: PerCm2 Double
+    n1 = scovilleFormulaAthermal j tem ligVel chem
+
+    tau :: Double
+    tau = val $ colDens |/| n1
+    
+    
+
+    
+
+
 
 -- http://www.cv.nrao.edu/course/astr534/Equations.html
 
@@ -194,8 +229,8 @@ I(\nu_0) = B(\nu_0,T) \left(1-\exp (-\tau_{\nu_0}(N))\right)   .
   |]
 
 
-aboutLineObservation :: MonadAuthoring s w m => m ()
-aboutLineObservation = do
+aboutLineProperty :: MonadAuthoring s w m => m ()
+aboutLineProperty = do
   [rawQ|
    We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines.
    Their frequencies are                               
@@ -229,7 +264,7 @@ aboutLineObservation = do
    |]
    where
      tem100au :: KelvinUnit Double
-     tem100au = OrbitalRadius `being` (mkVal 100) $ MMSN.temperature
+     tem100au = temperature mmsnModel $ equatorAt (mkVal 100) 
 
      ligVel :: CmPerSec Double
      ligVel = mkVal 7e5
@@ -239,4 +274,50 @@ aboutLineObservation = do
 
 
      lr :: ChemicalSpecies -> JanskyUnit Double
-     lr chem = autoc $ solidAngle *| lineRadiation 2 tem100au chem
+     lr chem = autoc $ solidAngle *| lineRadiation100au 2 tem100au chem
+
+aboutLineProfile :: MonadAuthoring s w m => m ()
+aboutLineProfile = do
+  [rawQ|    
+   
+The spectral irradiance of the disk $E(\nu)$
+as a function of $\nu$ is
+   
+\begin{eqnarray}   
+E(\nu) &=& \frac{1}{D^2}
+\int \int I(\nu_0,r) \exp
+\left(
+- \frac{m c^2 d(\nu; \nu_0,r)^2}{2 k_B T {\nu_0}^2}
+\right) 
+r \mathit{dr} \mathit{d\varphi} \cos i ,\\
+\mathrm {where} ~~~
+d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber .
+\end{eqnarray}   
+   
+   |]
+
+lineProfile :: Disk -> Int -> ChemicalSpecies -> (KmPerSec Double -> JanskyUnit Double)
+lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
+  where
+    go :: DiskPortion -> JanskyUnit Double
+    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
+      where
+        phi :: Double
+        phi = pos ^. azimuth
+        
+        incli :: Double
+        incli = inclinationAngle disk
+        
+        expPart :: NoDimension Double
+        expPart =  autoc $ molecularMass chem |*| square dopplerDiff |/| (2 *| kB |*| temperature disk pos)
+        
+        dopplerDiff :: KmPerSec Double
+        dopplerDiff = dv |-| 
+                      (cos phi * sin incli) *|orbitalVelocity disk pos 
+        
+        peakRadiance :: SpectralRadiance Double
+        peakRadiance = 
+          lineRadiation 
+            (gasSurfaceDensity disk pos |/| protonMass |*| fractionalAbundance100au chem) 
+            (soundSpeed disk pos) j (temperature disk pos) chem
+            

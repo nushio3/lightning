@@ -1,7 +1,5 @@
 module Figure.DiskSection where
 
-import Data.Reflection.Typed
-import Model.Concepts
 import Model.Disk.Hayashi 
 import Text.Printf
 import UnitTyped(val, (*|))
@@ -23,7 +21,7 @@ writeSectionData fn = do
       ]
           
     z :: Double -> Double -> Double
-    z x y = 
-      OrbitalRadius `being` x *| astronomicalUnit$
-      ZCoordinate `being` y *| astronomicalUnit $      
-      val densityGas 
+    z x y = 0 -- error "TODO: Figure.DiskSection"
+--       OrbitalRadius `being` x *| astronomicalUnit$
+--       ZCoordinate `being` y *| astronomicalUnit $      
+--       val densityGas 

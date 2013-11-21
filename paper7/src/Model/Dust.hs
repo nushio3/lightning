@@ -5,9 +5,7 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Dust where
 
-import           Data.Reflection.Typed
 import           Data.Monoid ((<>))
-import           Model.Concepts
 import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX

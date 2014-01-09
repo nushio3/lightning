@@ -78,6 +78,7 @@ mmsnModel
   , centralStarMass = solarMass
   , gasSurfaceDensity = sdGas
   , temperature = tem
+  , bulkMotionSpeed = soundSpeed mmsnModel
   }
   where
     sdGas :: Coord -> GramPerCm2 Double

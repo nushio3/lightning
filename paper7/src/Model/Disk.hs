@@ -33,7 +33,8 @@ data Disk = Disk {
   inclinationAngle :: Double,
   centralStarMass ::  GramUnit Double,
   gasSurfaceDensity :: Coord -> GramPerCm2 Double,
-  temperature :: Coord -> KelvinUnit Double
+  temperature :: Coord -> KelvinUnit Double,
+  bulkMotionSpeed :: Coord -> CmPerSec Double
   }
 
 data DiskPortion = DiskPortion {

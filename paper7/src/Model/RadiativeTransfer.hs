@@ -319,5 +319,5 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         peakRadiance = 
           lineRadiation 
             (gasSurfaceDensity disk pos |/| protonMass |*| fractionalAbundance100au chem) 
-            (soundSpeed disk pos) j (temperature disk pos) chem
+            (bulkMotionSpeed disk pos) j (temperature disk pos) chem
             

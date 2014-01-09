@@ -7,12 +7,13 @@ import Model.Disk.Hayashi
 import Model.Gas
 import Model.RadiativeTransfer
 import Text.Printf
-import UnitTyped (mkVal,autoc)
+import UnitTyped (mkVal,autoc,val)
 import           UnitTyped.SI.Meta
 import           UnitTyped.SI.Derived.Length
 import           UnitTyped.Synonyms
 import System.IO
 import System.Process
+import Text.Printf
 
 data BreakdownModel 
   = Conventional
@@ -32,13 +33,18 @@ main = do
   
 plotLineProfile :: IO ()  
 plotLineProfile = do
-  forM_ [-20..20] $ \dv -> do
-    print $ lineProfile disk 2 HCOPlus (mkVal $ dv/10)
+  forM_ [-60..60] $ \idv -> do
+    let 
+        x = idv / 30
+        y = val $ lineProfile disk 2 HCOPlus (mkVal $ x)
+        
+    printf "%f %f\n" x y
   return ()  
   where 
-    disk = mmsnModel{inclinationAngle=0.5}
+    disk = mmsnModel{inclinationAngle=0.122}
 
                   
+
                   
 -- plotBM :: Bool -> BreakdownModel -> IO ()  
 -- plotBM isRelative bm = do

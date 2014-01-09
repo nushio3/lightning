@@ -37,6 +37,8 @@ sectionObservation = do
   raw "Observations of $\\mathrm{HCO}^{+}$  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
+  raw "We can distinguish lightning model by observing such charged molecules. The reason is as follows."
+  raw "\n\n"  
   [rawQ|  
 Magnetorotational instability (MRI) creates electric field $E$. 
 The breakdown model sets upper limit $E \leq E_{\rm crit}$ to the electric field amplitude.
@@ -47,7 +49,7 @@ while the mean free path $l_{\rm mfp}$ is inversely proportional to the gas numb
 This means that the obtained kinetic energy $\varepsilon$ does not depend on the gas number density.
 It only depends on the lightning model, so the value is the same anywhere in a protoplanetary disk,
 provided that the lightning model does not change within the protoplanetary disk. Each model predicts
-the maximum velocities of the chemical elements as follows (units are cm/s);
+the maximum velocities of the chemical elements as follows (units are in cm/s);
 
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
@@ -72,7 +74,7 @@ Note that I have used inelastic electron mean free path ($#{ppValE 1 mfpPpd15}$ 
 We should use chemical-species specific collisional cross section instead. This is a TODO.
 
 We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.
-The cross sections are as follows@{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
+The cross sections are as follows @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
 
   \begin{tabular} {ccc}
 species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\

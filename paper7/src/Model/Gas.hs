@@ -114,15 +114,15 @@ elCrossSection _  _  = mkVal 0
 airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
 
-ppdDensity :: GramPerCm3 Double
-ppdDensity = 
-  densityGas mmsnModel $ equatorAt (mkVal 1) 
+ppdDensity :: Coord -> GramPerCm3 Double
+ppdDensity pos = 
+  densityGas mmsnModel $ pos
 
 airNumberDensity :: PerCm3 Double
 airNumberDensity = autoc $ airDensity |/| airMix molecularMass
 
-ppdNumberDensity :: PerCm3 Double
-ppdNumberDensity = autoc $ ppdDensity |/| ppdMix molecularMass
+ppdNumberDensity :: Coord -> PerCm3 Double
+ppdNumberDensity pos = autoc $ (ppdDensity pos) |/| ppdMix molecularMass
 
 
 mfpAir12 :: Cm Double
@@ -132,11 +132,13 @@ mfpAir12E :: Cm Double
 mfpAir12E = autoc $ 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
 
 
-mfpPpd15 :: Cm Double
-mfpPpd15 = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ inelCrossSection 15)
+mfpPpd15 :: Coord -> Cm Double
+mfpPpd15 pos = 
+  autoc $ 1 /| ppdNumberDensity pos |/| (ppdMix $ inelCrossSection 15)
 
-mfpPpd15E :: Cm Double
-mfpPpd15E = autoc $ 1 /| ppdNumberDensity |/| (ppdMix $ elCrossSection 15)
+mfpPpd15E :: Coord -> Cm Double
+mfpPpd15E pos 
+  = autoc $ 1 /| ppdNumberDensity pos |/| (ppdMix $ elCrossSection 15)
 
 
    
@@ -145,9 +147,10 @@ airDielectricStrengthT :: VoltPerCm Double
 airDielectricStrengthT = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
-ppdDielectricStrengthT :: VoltPerCm Double
-ppdDielectricStrengthT = autoc $ w |/| (mfpPpd15 |*| elementaryCharge)
-  where w = mkVal 15 :: ElectronVolt Double
+ppdDielectricStrengthT :: Coord -> VoltPerCm Double
+ppdDielectricStrengthT pos = 
+  autoc $ w |/| (mfpPpd15 pos |*| elementaryCharge)
+    where w = mkVal 15 :: ElectronVolt Double
 
 
 
@@ -159,8 +162,9 @@ airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| m
     ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
     bigM = autoc $ airMix molecularMass    :: GramUnit Double
 
-ppdDielectricStrengthDP :: VoltPerCm Double
-ppdDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpPpd15E) 
+ppdDielectricStrengthDP :: Coord -> VoltPerCm Double
+ppdDielectricStrengthDP pos = 
+ autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpPpd15E pos) 
   where
     w = mkVal 15                           :: ElectronVolt Double
     ratio = sqrt $ val ratioD              :: Double
@@ -180,9 +184,9 @@ airDielectricStrengthR = autoc $
     z = airMix atomicNumber
     n = airNumberDensity
 
-ppdDielectricStrengthR :: VoltPerCm Double
-ppdDielectricStrengthR = autoc $ 
-  (20.2/(8*pi)) *| (e3 |*| z |*| ppdNumberDensity)
+ppdDielectricStrengthR :: Coord -> VoltPerCm Double
+ppdDielectricStrengthR pos = autoc $ 
+  (20.2/(8*pi)) *| (e3 |*| z |*| ppdNumberDensity pos)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
@@ -191,6 +195,6 @@ ppdDielectricStrengthR = autoc $
     
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = ppdMix atomicNumber
-    n = ppdNumberDensity
+    n = ppdNumberDensity pos
 
 

@@ -33,14 +33,35 @@ main = do
   
 plotLineProfile :: IO ()  
 plotLineProfile = do
-  forM_ [-60..60] $ \idv -> do
-    let 
-        x = idv / 30
-        y = val $ lineProfile disk 2 HCOPlus (mkVal $ x)
-        
-    printf "%f %f\n" x y
-  return ()  
+  let 
+      fnOut :: String
+      fnOut = "tmp/lineProfile.eps"                
+
+  fn <- writeLineProfile HCOPlus
+  gnuplot 
+    [ "set term postscript enhanced 30 color"
+    , "set grid"
+    , "set xlabel 'velocity [km/s]'"
+    , "set ylabel 'spectral flux density [Jy]'"
+    , printf "set out '%s'" fnOut
+    , printf "plot '%s't '' w l lw 2" fn
+    ]
+
+
+
+
+writeLineProfile :: ChemicalSpecies -> IO FilePath
+writeLineProfile chem = do
+  writeFile fn $ unlines $ map (toLine . (/60)) [-120..120]
+  return fn
   where 
+    fn = printf "tmp/chem%s.txt" (show chem)
+
+    toLine :: Double -> String
+    toLine x = 
+      let y = val $ lineProfile disk 2 chem (mkVal $ x) 
+      in printf "%f %f" x y
+
     disk = mmsnModel{inclinationAngle=0.122}
 
                   

@@ -25,6 +25,9 @@ data Coord = Coord
  deriving (Eq, Show)
 makeLenses ''Coord
 
+equatorAt1au :: Coord
+equatorAt1au = Coord (mkVal 1) (mkVal 0) 0
+
 equatorAt :: AU Double -> Coord
 equatorAt r = Coord r (mkVal 0) 0
 
@@ -64,10 +67,10 @@ splittedDisk =
     phis = toCLR azimuthalBoundaries
     
     radialBoundaries :: [Double]
-    radialBoundaries = [ 10 ** (fromInteger i / 100) | i <- [-10..300]]
+    radialBoundaries = [ 10 ** (fromInteger i / 10) | i <- [-10..30]]
     
     azimuthalBoundaries :: [Double]
-    azimuthalBoundaries = [(fromInteger i / 200 * pi) | i <- [0..400]]    
+    azimuthalBoundaries = [(fromInteger i / 20 * pi) | i <- [0..40]]    
 
     toCLR :: [Double] -> [(Double, (Double, Double))]
     toCLR xs = zipWith f xs (tail xs)

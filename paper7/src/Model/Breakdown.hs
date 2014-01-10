@@ -15,7 +15,7 @@ import UnitTyped.Synonyms
 
 import Model.Gas
 
-data DischargeModel 
+data BreakdownModel 
   = TownsendBreakdown
   | DPBreakdown
   | RunawayBreakdown

@@ -47,9 +47,6 @@ plotLineProfile = do
     , printf "plot '%s't '' w l lw 2" fn
     ]
 
-
-
-
 writeLineProfile :: ChemicalSpecies -> IO FilePath
 writeLineProfile chem = do
   writeFile fn $ unlines $ map (toLine . (/60)) [-120..120]

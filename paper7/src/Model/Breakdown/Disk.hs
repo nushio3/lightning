@@ -13,7 +13,7 @@ import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
-
+import Model.Breakdown
 import Model.Disk
 import Model.Gas
 import Model.Values

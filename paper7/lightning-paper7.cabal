@@ -27,6 +27,7 @@ library
     Model.Breakdown
     Model.Breakdown.Disk
     Model.Disk
+    Model.Disk.Derived
     Model.Disk.Hayashi
     Model.Disk.Recent
     Model.Dust

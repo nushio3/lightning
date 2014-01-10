@@ -15,6 +15,11 @@ import UnitTyped.Synonyms
 
 import Model.Gas
 
+data DischargeModel 
+  = TownsendBreakdown
+  | DPBreakdown
+  | RunawayBreakdown
+  deriving (Eq, Show)
 
 [declareLabels| ntpAirDielectricStrength, takahashiDischargeFormula |]
   

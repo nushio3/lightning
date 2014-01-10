@@ -32,12 +32,12 @@ equatorAt :: AU Double -> Coord
 equatorAt r = Coord r (mkVal 0) 0
 
 data Disk = Disk {
-  distanceFromEarth:: Pc Double,
-  inclinationAngle :: Double,
-  centralStarMass ::  GramUnit Double,
+  distanceFromEarth :: Pc Double,
+  inclinationAngle  :: Double,
+  centralStarMass   :: GramUnit Double,
   gasSurfaceDensity :: Coord -> GramPerCm2 Double,
-  temperature :: Coord -> KelvinUnit Double,
-  bulkMotionSpeed :: Coord -> CmPerSec Double
+  temperature       :: Coord -> KelvinUnit Double,
+  bulkMotionSpeed   :: Coord -> CmPerSec Double
   }
 
 data DiskPortion = DiskPortion {

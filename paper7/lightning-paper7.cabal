@@ -92,7 +92,8 @@ executable make-figures
   hs-source-dirs:    exe-src/
   Build-Depends:     base
                    , lightning-paper7
-
+                   
+                   , lens
                    , process
                    , unittyped
 -- Test-Suite doctest

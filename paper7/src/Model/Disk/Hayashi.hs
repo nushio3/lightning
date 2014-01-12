@@ -63,25 +63,25 @@ innerRadius =    mkVal 0.35
 outerRadius =    mkVal 300   
 snowlineRadius = mkVal 2.7
 
-innerSH    = scaleHeight mmsnModel $ equatorAt innerRadius     
-outerSH    = scaleHeight mmsnModel $ equatorAt outerRadius     
-snowlineSH = scaleHeight mmsnModel $ equatorAt snowlineRadius  
+innerSH    = mmsnModel >$< equatorAt innerRadius     ^.scaleHeight
+outerSH    = mmsnModel >$< equatorAt outerRadius     ^.scaleHeight
+snowlineSH = mmsnModel >$< equatorAt snowlineRadius  ^.scaleHeight
 
 mmsnStandardSurfaceDensity :: GramPerCm2 Double
 mmsnStandardSurfaceDensity = mkVal 1700
 
 mmsn1au :: Environment
-mmsn1au = (mmsnModel, equatorAt1au)
+mmsn1au = mmsnModel >$< equatorAt1au
 
 mmsnModel :: Disk
 mmsnModel 
   = Disk
-  { distanceFromEarth = mkVal 100 
-  , inclinationAngle = 0
-  , centralStarMass = solarMass
-  , gasSurfaceDensityField = sdGas
-  , temperatureField = tem
-  , lightningAcceleratorField = const $ mkVal 0
+  { _distanceFromEarth = mkVal 100 
+  , _inclinationAngle = 0
+  , _centralStarMass = solarMass
+  , _gasSurfaceDensityField = sdGas
+  , _temperatureField = tem
+  , _lightningAcceleratorField = const $ mkVal 0
   }
   where
     sdGas :: Coord -> GramPerCm2 Double

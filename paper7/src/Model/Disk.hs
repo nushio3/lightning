@@ -44,14 +44,17 @@ data Disk = Disk {
   }
 makeClassy ''Disk
 
-gasSurfaceDensity :: Environment -> GramPerCm2 Double
-gasSurfaceDensity env = env ^. gasSurfaceDensityField $ env^.coord
-temperature :: Environment -> KelvinUnit Double
-temperature env = env ^. temperatureField $ env^.coord
-lightningAccelerator :: Environment -> VoltPerCm Double
-lightningAccelerator env = env^.lightningAcceleratorField $ env^.coord
+gasSurfaceDensity :: Getter Environment (GramPerCm2 Double)
+gasSurfaceDensity = Lens.to $ \env ->  env ^. gasSurfaceDensityField $ env^.coord
+temperature :: Getter Environment (KelvinUnit Double)
+temperature = Lens.to $ \env -> env ^. temperatureField $ env^.coord
+lightningAccelerator :: Getter Environment (VoltPerCm Double)
+lightningAccelerator = Lens.to $ \env ->  env^.lightningAcceleratorField $ env^.coord
 
 newtype Environment = Environment (Disk,Coord)
+(>$<) :: Disk -> Coord -> Environment
+a >$< b = Environment (a,b)
+
 makeWrapped ''Environment
 
                                             
@@ -97,44 +100,41 @@ splittedDisk =
       where
         f l r = ((l+r)/2, (l,r))
         
-densityGas :: Environment -> GramPerCm3 Double
-densityGas env = autoc $
-  factor *| gasSurfaceDensity env |/| h
-  where
-    z = pos ^. altitude
-    factor = (2*pi)**(-1/2)
-           * (exp(negate $ val (square z |/| (2 *| square h))))
-    h = scaleHeight env
-    
-    pos = env^.coord
+densityGas :: Getter Environment (GramPerCm3 Double)
+densityGas = Lens.to go where 
+  go env = autoc $ factor *| (env^.gasSurfaceDensity) |/| h where
+      z = pos ^. altitude
+      factor = (2*pi)**(-1/2)
+             * (exp(negate $ val (square z |/| (2 *| square h))))
+      h = env^.scaleHeight
+      pos = env^.coord 
 
-soundSpeed :: Environment -> CmPerSec Double
-soundSpeed env = U.sqrt $ autoc cssq
-  where
-    cssq :: Cm2PerSec2 Double
-    cssq = autoc $ (kB |*| (temperature env)) 
-               |/| (2.34 *| protonMass)
+soundSpeed :: Getter Environment (CmPerSec Double)
+soundSpeed = Lens.to (go . (^.)) where
+  go env = U.sqrt $ autoc cssq where
+      cssq :: Cm2PerSec2 Double
+      cssq = autoc $ (kB |*| env temperature) 
+                 |/| (2.34 *| protonMass)
 
-orbitalAngularVelocity :: Environment -> HertzUnit Double 
-orbitalAngularVelocity env =
-  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r
-  where
-    mSun = env ^. centralStarMass 
-    r = env ^. radius
-    
+orbitalAngularVelocity :: Getter Environment (HertzUnit Double)
+orbitalAngularVelocity = Lens.to go where
+  go env0 = U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r where
+    mSun = env centralStarMass 
+    r = env radius
+    env = (env0^.)
 
-orbitalVelocity :: Environment -> CmPerSec Double
-orbitalVelocity  env =
-  U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r
-  where
+orbitalVelocity :: Getter Environment (CmPerSec Double)
+orbitalVelocity = Lens.to go where
+  go  env = U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r where
     mSun = env ^. centralStarMass 
     r = env ^. radius
 
 
-scaleHeight :: Environment -> AU Double
-scaleHeight env =
-      autoc $ soundSpeed env
-          |/| orbitalAngularVelocity env
+scaleHeight :: Getter Environment (AU Double)
+scaleHeight = Lens.to go where
+  go env =
+      autoc $ (env ^. soundSpeed)
+          |/| (env ^. orbitalAngularVelocity)
 
 sigmoid :: Double -> Double
 sigmoid x = 1/(1+exp (negate x))

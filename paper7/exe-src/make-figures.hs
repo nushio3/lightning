@@ -1,7 +1,9 @@
 module Main where
 
 import Control.Applicative
+import Control.Lens
 import Control.Monad
+
 import Model.Disk
 import Model.Disk.Hayashi 
 import Model.Gas
@@ -59,7 +61,7 @@ writeLineProfile chem = do
       let y = val $ lineProfile disk 2 chem (mkVal $ x) 
       in printf "%f %f" x y
 
-    disk = mmsnModel{inclinationAngle=0.122}
+    disk = mmsnModel & inclinationAngle .~ 0.122
 
                   
 

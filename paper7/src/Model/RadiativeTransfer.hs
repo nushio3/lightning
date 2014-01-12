@@ -20,15 +20,13 @@ import Model.Disk.Hayashi
 import           Text.Authoring
 import           Text.Authoring.TH
 
-
-
 fieldToVelocity :: Environment -> ChemicalSpecies -> CmPerSec Double
-fieldToVelocity env@(disk,pos) chem = U.sqrt $ v2
+fieldToVelocity env chem = U.sqrt $ v2
   where                     
     ef :: VoltPerCm Double
-    ef = lightningAccelerator env
+    ef = env ^. lightningAccelerator 
     v2 :: Cm2PerSec2 Double
-    v2 = autoc $ elementaryCharge |*| ef |*| mfpPpd15 pos |/| m 
+    v2 = autoc $ elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
     m :: GramUnit Double
     m = autoc $ molecularMass chem 
 
@@ -275,7 +273,7 @@ aboutLineProperty = do
    |]
    where
      tem100au :: KelvinUnit Double
-     tem100au = temperatureField mmsnModel $ equatorAt (mkVal 100) 
+     tem100au = view temperature (mmsnModel >$< equatorAt (mkVal 100)) 
 
      ligVel :: CmPerSec Double
      ligVel = mkVal 7e5
@@ -311,26 +309,28 @@ lineProfile :: Disk -> Int -> ChemicalSpecies -> (KmPerSec Double -> JanskyUnit 
 lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
   where
     go :: DiskPortion -> JanskyUnit Double
-    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
+    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (env's distanceFromEarth)
       where
-        env = (disk,pos)
-        
+        env = disk >$< pos
+        env's = (env ^.)        
+
         phi :: Double
-        phi = pos ^. azimuth
+        phi = env's azimuth
         
         incli :: Double
-        incli = inclinationAngle disk
+        incli = env's inclinationAngle 
         
         expPart :: NoDimension Double
-        expPart =  autoc $ molecularMass chem |*| square dopplerDiff |/| (2 *| kB |*| temperatureField disk pos)
+        expPart =  autoc $ molecularMass chem |*| square dopplerDiff 
+          |/| (2 *| kB |*| (env's temperature))
         
         dopplerDiff :: KmPerSec Double
         dopplerDiff = dv |-| 
-                      (cos phi * sin incli) *|orbitalVelocity disk pos 
+                      (cos phi * sin incli) *| (env's orbitalVelocity)
         
         peakRadiance :: SpectralRadiance Double
         peakRadiance = 
           lineRadiation 
-            (gasSurfaceDensityField disk pos |/| protonMass |*| fractionalAbundance100au chem) 
-            (fieldToVelocity env chem) j (temperatureField disk pos) chem
-            
+            (env's gasSurfaceDensity |/| protonMass |*| fractionalAbundance100au chem) 
+            (fieldToVelocity env chem) j (env's temperature) chem
+           

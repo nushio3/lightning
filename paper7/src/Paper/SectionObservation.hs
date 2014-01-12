@@ -5,7 +5,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 module Paper.SectionObservation where
 
-import           Control.Lens(_1, (%~), (&))
+import           Control.Lens(_1, (%~), (&), view)
 import           Control.Monad.State
 import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
@@ -30,9 +30,9 @@ import           Text.Authoring.TH
 sectionObservation :: MonadAuthoring s w m => m ()
 sectionObservation = do
   let
-      mmsn1auT  = mmsn1au & _1 %~ lightenedDisk TownsendBreakdown
-      mmsn1auDP = mmsn1au & _1 %~ lightenedDisk DPBreakdown
-      mmsn1auR  = mmsn1au & _1 %~ lightenedDisk RunawayBreakdown
+      mmsn1auT  = mmsn1au & disk %~ lightenedDisk TownsendBreakdown
+      mmsn1auDP = mmsn1au & disk %~ lightenedDisk DPBreakdown
+      mmsn1auR  = mmsn1au & disk %~ lightenedDisk RunawayBreakdown
   
   
   command1 "section" $ raw "Observation"
@@ -74,7 +74,7 @@ R
   \\
 \end{tabular}
  
-Note that I have used inelastic electron mean free path ($#{ppValE 1 $ mfpPpd15 $ equatorAt1au}$ cm at $r=1$ au.)
+Note that I have used inelastic electron mean free path ($#{ppValE 1 $ view mfpPpd15 mmsn1au}$ cm at $r=1$ au.)
 We should use chemical-species specific collisional cross section instead. This is a TODO.
 
 We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.

@@ -7,6 +7,7 @@
 module Model.Gas where
 
 import Control.Applicative
+import Control.Lens as Lens
 import Text.Authoring
 import Text.Authoring.TH
 import UnitTyped
@@ -114,15 +115,15 @@ elCrossSection _  _  = mkVal 0
 airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
 
-ppdDensity :: Coord -> GramPerCm3 Double
-ppdDensity pos = 
-  densityGas mmsnModel $ pos
+ppdDensity :: Getter Environment (GramPerCm3 Double)
+ppdDensity = densityGas
 
 airNumberDensity :: PerCm3 Double
 airNumberDensity = autoc $ airDensity |/| airMix molecularMass
 
-ppdNumberDensity :: Coord -> PerCm3 Double
-ppdNumberDensity pos = autoc $ (ppdDensity pos) |/| ppdMix molecularMass
+ppdNumberDensity :: Getter Environment (PerCm3 Double)
+ppdNumberDensity = Lens.to $ 
+  \env -> autoc $ (env ^. ppdDensity) |/| ppdMix molecularMass
 
 
 mfpAir12 :: Cm Double
@@ -132,13 +133,13 @@ mfpAir12E :: Cm Double
 mfpAir12E = autoc $ 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
 
 
-mfpPpd15 :: Coord -> Cm Double
-mfpPpd15 pos = 
-  autoc $ 1 /| ppdNumberDensity pos |/| (ppdMix $ inelCrossSection 15)
+mfpPpd15 :: Getter Environment (Cm Double)
+mfpPpd15 = Lens.to $ \env -> 
+  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
 
-mfpPpd15E :: Coord -> Cm Double
-mfpPpd15E pos 
-  = autoc $ 1 /| ppdNumberDensity pos |/| (ppdMix $ elCrossSection 15)
+mfpPpd15E :: Getter Environment (Cm Double)
+mfpPpd15E = Lens.to $ \env->
+  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ elCrossSection 15)
 
 
    
@@ -147,10 +148,10 @@ airDielectricStrengthT :: VoltPerCm Double
 airDielectricStrengthT = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
-ppdDielectricStrengthT :: Coord -> VoltPerCm Double
-ppdDielectricStrengthT pos = 
-  autoc $ w |/| (mfpPpd15 pos |*| elementaryCharge)
-    where w = mkVal 15 :: ElectronVolt Double
+ppdDielectricStrengthT :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthT = Lens.to go where
+  go env = autoc $ w |/| ((env^.mfpPpd15) |*| elementaryCharge) where
+    w = mkVal 15 :: ElectronVolt Double
 
 
 
@@ -162,10 +163,9 @@ airDielectricStrengthDP = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| m
     ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
     bigM = autoc $ airMix molecularMass    :: GramUnit Double
 
-ppdDielectricStrengthDP :: Coord -> VoltPerCm Double
-ppdDielectricStrengthDP pos = 
- autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| mfpPpd15E pos) 
-  where
+ppdDielectricStrengthDP :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthDP = Lens.to go where
+  go env = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| (env^.mfpPpd15E)) where
     w = mkVal 15                           :: ElectronVolt Double
     ratio = sqrt $ val ratioD              :: Double
     ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
@@ -184,17 +184,17 @@ airDielectricStrengthR = autoc $
     z = airMix atomicNumber
     n = airNumberDensity
 
-ppdDielectricStrengthR :: Coord -> VoltPerCm Double
-ppdDielectricStrengthR pos = autoc $ 
-  (20.2/(8*pi)) *| (e3 |*| z |*| ppdNumberDensity pos)
-             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
-  
-  where
-    nrg :: JouleUnit Double
-    nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
-    
-    e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
-    z = ppdMix atomicNumber
-    n = ppdNumberDensity pos
+ppdDielectricStrengthR :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthR = Lens.to go where
+  go env = autoc $ 
+    (20.2/(8*pi)) *| (e3 |*| z |*| n)
+             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg) 
+    where
+      nrg :: JouleUnit Double
+      nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+      
+      e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
+      z = ppdMix atomicNumber
+      n = env ^. ppdNumberDensity 
 
 

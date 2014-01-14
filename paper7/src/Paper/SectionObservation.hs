@@ -5,6 +5,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 module Paper.SectionObservation where
 
+import           Control.Lens(_1, (%~), (&))
 import           Control.Monad.State
 import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
@@ -13,8 +14,10 @@ import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
+import Model.Breakdown
 import Model.Disk
 import Model.Disk.Hayashi
+import Model.Disk.Derived
 import Model.Gas
 import Model.Values
 import Model.RadiativeTransfer
@@ -26,6 +29,12 @@ import           Text.Authoring.TH
 
 sectionObservation :: MonadAuthoring s w m => m ()
 sectionObservation = do
+  let
+      mmsn1auT  = mmsn1au & _1 %~ lightenedDisk TownsendBreakdown
+      mmsn1auDP = mmsn1au & _1 %~ lightenedDisk DPBreakdown
+      mmsn1auR  = mmsn1au & _1 %~ lightenedDisk RunawayBreakdown
+  
+  
   command1 "section" $ raw "Observation"
   
   [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
@@ -49,19 +58,19 @@ the maximum velocities of the chemical elements as follows (units are in cm/s);
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
 T  
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auT HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auT DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auT N2HPlus }$
   \\
 DP
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auDP HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auDP DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auDP N2HPlus }$
   \\
 R 
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
-  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auR HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auR DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1auR N2HPlus }$
   \\
 \end{tabular}
  

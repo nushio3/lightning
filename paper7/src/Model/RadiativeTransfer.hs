@@ -30,7 +30,7 @@ fieldToVelocity env@(disk,pos) chem = U.sqrt $ v2
     v2 :: Cm2PerSec2 Double
     v2 = autoc $ elementaryCharge |*| ef |*| mfpPpd15 pos |/| m 
     m :: GramUnit Double
-    m = autoc $ atomicNumber chem |*| protonMass
+    m = autoc $ molecularMass chem 
 
 
 

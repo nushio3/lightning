@@ -70,6 +70,9 @@ snowlineSH = scaleHeight mmsnModel $ equatorAt snowlineRadius
 mmsnStandardSurfaceDensity :: GramPerCm2 Double
 mmsnStandardSurfaceDensity = mkVal 1700
 
+mmsn1au :: Environment
+mmsn1au = (mmsnModel, equatorAt1au)
+
 mmsnModel :: Disk
 mmsnModel 
   = Disk

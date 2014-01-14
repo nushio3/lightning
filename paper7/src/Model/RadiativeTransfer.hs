@@ -22,6 +22,17 @@ import           Text.Authoring.TH
 
 
 
+fieldToVelocity :: Environment -> ChemicalSpecies -> CmPerSec Double
+fieldToVelocity env@(disk,pos) chem = U.sqrt $ v2
+  where                     
+    ef :: VoltPerCm Double
+    ef = lightningAccelerator env
+    v2 :: Cm2PerSec2 Double
+    v2 = autoc $ elementaryCharge |*| ef |*| mfpPpd15 pos |/| m 
+    m :: GramUnit Double
+    m = autoc $ atomicNumber chem |*| protonMass
+
+
 
 aboutLineObservation :: MonadAuthoring s w m => m ()
 aboutLineObservation = do
@@ -302,6 +313,8 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
     go :: DiskPortion -> JanskyUnit Double
     go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (distanceFromEarth disk)
       where
+        env = (disk,pos)
+        
         phi :: Double
         phi = pos ^. azimuth
         
@@ -319,5 +332,5 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         peakRadiance = 
           lineRadiation 
             (gasSurfaceDensityField disk pos |/| protonMass |*| fractionalAbundance100au chem) 
-            (lightningField disk pos) j (temperatureField disk pos) chem
+            (fieldToVelocity env chem) j (temperatureField disk pos) chem
             

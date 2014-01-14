@@ -14,6 +14,7 @@ import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
 
 import Model.Disk
+import Model.Disk.Hayashi
 import Model.Gas
 import Model.Values
 import Model.RadiativeTransfer
@@ -21,15 +22,6 @@ import Model.RadiativeTransfer
 import           Text.Authoring
 import           Text.Authoring.TH
 
-p0 = equatorAt1au
-
-fieldToVelocity :: Double -> VoltPerCm Double -> CmPerSec Double
-fieldToVelocity m' ef = U.sqrt $ v2
-  where                     
-    v2 :: Cm2PerSec2 Double
-    v2 = autoc $ elementaryCharge |*| ef |*| mfpPpd15 p0 |/| m 
-    m :: GramUnit Double
-    m = autoc $ m' *| protonMass
 
 
 sectionObservation :: MonadAuthoring s w m => m ()
@@ -57,23 +49,23 @@ the maximum velocities of the chemical elements as follows (units are in cm/s);
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
 T  
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthT p0}$
-  & $#{ppValE 1 $ fieldToVelocity 30 $ ppdDielectricStrengthT p0}$
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthT p0}$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
   \\
 DP
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthDP p0}$
-  & $#{ppValE 1 $ fieldToVelocity 30 $ ppdDielectricStrengthDP p0}$
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthDP p0}$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
   \\
 R 
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthR p0}$
-  & $#{ppValE 1 $ fieldToVelocity 30 $ ppdDielectricStrengthR p0}$
-  & $#{ppValE 1 $ fieldToVelocity 29 $ ppdDielectricStrengthR p0}$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au DCOPlus }$
+  & $#{ppValE 1 $ fieldToVelocity mmsn1au N2HPlus }$
   \\
 \end{tabular}
  
-Note that I have used inelastic electron mean free path ($#{ppValE 1 $ mfpPpd15 p0}$ cm at $r=1$ au.)
+Note that I have used inelastic electron mean free path ($#{ppValE 1 $ mfpPpd15 $ equatorAt1au}$ cm at $r=1$ au.)
 We should use chemical-species specific collisional cross section instead. This is a TODO.
 
 We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.

@@ -1,6 +1,8 @@
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
@@ -11,6 +13,7 @@ import           UnitTyped
 import           UnitTyped.Synonyms
 import qualified UnitTyped.NoPrelude as U
 import           Control.Lens
+import qualified Control.Lens as Lens
 import           UnitTyped
 import           UnitTyped.Synonyms
 
@@ -23,7 +26,7 @@ data Coord = Coord
     _altitude :: AU Double, 
     _azimuth :: Double }
  deriving (Eq, Show)
-makeLenses ''Coord
+makeClassy ''Coord
 
 equatorAt1au :: Coord
 equatorAt1au = Coord (mkVal 1) (mkVal 0) 0
@@ -32,27 +35,35 @@ equatorAt :: AU Double -> Coord
 equatorAt r = Coord r (mkVal 0) 0
 
 data Disk = Disk {
-  distanceFromEarth :: Pc Double,
-  inclinationAngle  :: Double,
-  centralStarMass   :: GramUnit Double,
-  gasSurfaceDensityField :: Coord -> GramPerCm2 Double,
-  temperatureField       :: Coord -> KelvinUnit Double,
-  lightningAcceleratorField         :: Coord -> VoltPerCm Double
+  _distanceFromEarth :: Pc Double,
+  _inclinationAngle  :: Double,
+  _centralStarMass   :: GramUnit Double,
+  _gasSurfaceDensityField :: Coord -> GramPerCm2 Double,
+  _temperatureField       :: Coord -> KelvinUnit Double,
+  _lightningAcceleratorField         :: Coord -> VoltPerCm Double
   }
+makeClassy ''Disk
 
-gasSurfaceDensity :: Environment ->  GramPerCm2 Double
-gasSurfaceDensity (disk, pos) = gasSurfaceDensityField disk pos
-temperature :: Environment ->  KelvinUnit Double
-temperature (disk, pos) = temperatureField disk pos
-lightningAccelerator :: Environment ->  VoltPerCm Double
-lightningAccelerator (disk, pos) = lightningAcceleratorField disk pos
+gasSurfaceDensity :: Environment -> GramPerCm2 Double
+gasSurfaceDensity env = env ^. gasSurfaceDensityField $ env^.coord
+temperature :: Environment -> KelvinUnit Double
+temperature env = env ^. temperatureField $ env^.coord
+lightningAccelerator :: Environment -> VoltPerCm Double
+lightningAccelerator env = env^.lightningAcceleratorField $ env^.coord
 
-type Environment = (Disk, Coord)
+newtype Environment = Environment (Disk,Coord)
+makeWrapped ''Environment
+
+                                            
+instance HasDisk Environment where disk = unwrapped . _1
+instance HasCoord Environment where coord = unwrapped . _2
+
 
 data DiskPortion = DiskPortion {
-  center :: Coord,
-  area :: Cm2 Double
+  _center :: Coord,
+  _area :: Cm2 Double
   } deriving (Eq, Show)
+makeClassy ''DiskPortion
 
 splittedDisk :: [DiskPortion]
 splittedDisk = 
@@ -86,43 +97,44 @@ splittedDisk =
       where
         f l r = ((l+r)/2, (l,r))
         
-densityGas :: Disk -> Coord -> GramPerCm3 Double
-densityGas disk pos = autoc $
-  factor *| (gasSurfaceDensityField disk pos) |/| h
+densityGas :: Environment -> GramPerCm3 Double
+densityGas env = autoc $
+  factor *| gasSurfaceDensity env |/| h
   where
     z = pos ^. altitude
     factor = (2*pi)**(-1/2)
            * (exp(negate $ val (square z |/| (2 *| square h))))
-    h = scaleHeight disk pos
+    h = scaleHeight env
+    
+    pos = env^.coord
 
-soundSpeed :: Disk -> Coord -> CmPerSec Double
-soundSpeed disk pos = U.sqrt $ autoc cssq
+soundSpeed :: Environment -> CmPerSec Double
+soundSpeed env = U.sqrt $ autoc cssq
   where
     cssq :: Cm2PerSec2 Double
-    cssq = autoc $ (kB |*| (temperatureField disk pos)) 
+    cssq = autoc $ (kB |*| (temperature env)) 
                |/| (2.34 *| protonMass)
 
-orbitalAngularVelocity :: Disk -> Coord -> HertzUnit Double 
-orbitalAngularVelocity disk pos =
+orbitalAngularVelocity :: Environment -> HertzUnit Double 
+orbitalAngularVelocity env =
   U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r
   where
-    mSun = centralStarMass disk
-    r = pos ^. radius
+    mSun = env ^. centralStarMass 
+    r = env ^. radius
     
-orbitalVelocity :: Disk -> Coord -> CmPerSec Double
-orbitalVelocity  disk pos =
+
+orbitalVelocity :: Environment -> CmPerSec Double
+orbitalVelocity  env =
   U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r
   where
-    mSun = centralStarMass disk
-    r = pos ^. radius
+    mSun = env ^. centralStarMass 
+    r = env ^. radius
 
 
-scaleHeight :: Disk -> Coord -> AU Double
-scaleHeight disk = f
-  where 
-    f pos = 
-      autoc $ (soundSpeed disk pos) 
-          |/| (orbitalAngularVelocity disk pos)
+scaleHeight :: Environment -> AU Double
+scaleHeight env =
+      autoc $ soundSpeed env
+          |/| orbitalAngularVelocity env
 
 sigmoid :: Double -> Double
 sigmoid x = 1/(1+exp (negate x))

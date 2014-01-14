@@ -35,9 +35,9 @@ data Disk = Disk {
   distanceFromEarth :: Pc Double,
   inclinationAngle  :: Double,
   centralStarMass   :: GramUnit Double,
-  gasSurfaceDensity :: Coord -> GramPerCm2 Double,
-  temperature       :: Coord -> KelvinUnit Double,
-  bulkMotionSpeed   :: Coord -> CmPerSec Double
+  gasSurfaceDensityField :: Coord -> GramPerCm2 Double,
+  temperatureField       :: Coord -> KelvinUnit Double,
+  lightningField         :: Coord -> CmPerSec Double
   }
 
 data DiskPortion = DiskPortion {
@@ -79,7 +79,7 @@ splittedDisk =
         
 densityGas :: Disk -> Coord -> GramPerCm3 Double
 densityGas disk pos = autoc $
-  factor *| (gasSurfaceDensity disk pos) |/| h
+  factor *| (gasSurfaceDensityField disk pos) |/| h
   where
     z = pos ^. altitude
     factor = (2*pi)**(-1/2)
@@ -90,7 +90,7 @@ soundSpeed :: Disk -> Coord -> CmPerSec Double
 soundSpeed disk pos = U.sqrt $ autoc cssq
   where
     cssq :: Cm2PerSec2 Double
-    cssq = autoc $ (kB |*| (temperature disk pos)) 
+    cssq = autoc $ (kB |*| (temperatureField disk pos)) 
                |/| (2.34 *| protonMass)
 
 orbitalAngularVelocity :: Disk -> Coord -> HertzUnit Double 

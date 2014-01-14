@@ -44,7 +44,7 @@ hayashiModelDoc = do
   environment "eqnarray" $ do
     surfaceDensityGasDoc
     raw ",\\\\"
-    temperatureDoc
+    temperatureFieldDoc
     raw "."
 
   [rawQ| The assumption of the hydrostatic equilibrium leads to the vertical distribution of the gas
@@ -76,9 +76,9 @@ mmsnModel
   { distanceFromEarth = mkVal 100 
   , inclinationAngle = 0
   , centralStarMass = solarMass
-  , gasSurfaceDensity = sdGas
-  , temperature = tem
-  , bulkMotionSpeed = soundSpeed mmsnModel
+  , gasSurfaceDensityField = sdGas
+  , temperatureField = tem
+  , lightningField = soundSpeed mmsnModel
   }
   where
     sdGas :: Coord -> GramPerCm2 Double
@@ -107,8 +107,8 @@ surfaceDensityGasDoc =
 
 
 
-temperatureDoc :: MonadAuthoring s w m => m ()
-temperatureDoc =  
+temperatureFieldDoc :: MonadAuthoring s w m => m ()
+temperatureFieldDoc =  
   [rawQ|
 T\left(r\right)&=& 280
 \left(\frac{r}{1\mathrm{au}}\right)^{ -\frac{1}{2}}\mathrm{K}

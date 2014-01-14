@@ -264,7 +264,7 @@ aboutLineProperty = do
    |]
    where
      tem100au :: KelvinUnit Double
-     tem100au = temperature mmsnModel $ equatorAt (mkVal 100) 
+     tem100au = temperatureField mmsnModel $ equatorAt (mkVal 100) 
 
      ligVel :: CmPerSec Double
      ligVel = mkVal 7e5
@@ -309,7 +309,7 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         incli = inclinationAngle disk
         
         expPart :: NoDimension Double
-        expPart =  autoc $ molecularMass chem |*| square dopplerDiff |/| (2 *| kB |*| temperature disk pos)
+        expPart =  autoc $ molecularMass chem |*| square dopplerDiff |/| (2 *| kB |*| temperatureField disk pos)
         
         dopplerDiff :: KmPerSec Double
         dopplerDiff = dv |-| 
@@ -318,6 +318,6 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         peakRadiance :: SpectralRadiance Double
         peakRadiance = 
           lineRadiation 
-            (gasSurfaceDensity disk pos |/| protonMass |*| fractionalAbundance100au chem) 
-            (bulkMotionSpeed disk pos) j (temperature disk pos) chem
+            (gasSurfaceDensityField disk pos |/| protonMass |*| fractionalAbundance100au chem) 
+            (lightningField disk pos) j (temperatureField disk pos) chem
             

@@ -6,3 +6,4 @@ import Model.Disk.Hayashi
 
 lightnedDisk :: BreakdownModel -> Disk
 lightnedDisk = undefined
+

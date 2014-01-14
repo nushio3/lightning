@@ -78,7 +78,7 @@ mmsnModel
   , centralStarMass = solarMass
   , gasSurfaceDensityField = sdGas
   , temperatureField = tem
-  , lightningField = soundSpeed mmsnModel
+  , lightningAcceleratorField = const $ mkVal 0
   }
   where
     sdGas :: Coord -> GramPerCm2 Double

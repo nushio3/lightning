@@ -37,8 +37,17 @@ data Disk = Disk {
   centralStarMass   :: GramUnit Double,
   gasSurfaceDensityField :: Coord -> GramPerCm2 Double,
   temperatureField       :: Coord -> KelvinUnit Double,
-  lightningField         :: Coord -> CmPerSec Double
+  lightningAcceleratorField         :: Coord -> VoltPerCm Double
   }
+
+gasSurfaceDensity :: Environment ->  GramPerCm2 Double
+gasSurfaceDensity (disk, pos) = gasSurfaceDensityField disk pos
+temperature :: Environment ->  KelvinUnit Double
+temperature (disk, pos) = temperatureField disk pos
+lightningAccelerator :: Environment ->  VoltPerCm Double
+lightningAccelerator (disk, pos) = lightningAcceleratorField disk pos
+
+type Environment = (Disk, Coord)
 
 data DiskPortion = DiskPortion {
   center :: Coord,

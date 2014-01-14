@@ -42,12 +42,12 @@ Dielectric strength of an insulating material is the maximum amplitude
 of the electric field the subject material does not cause the electric
 breakdown. It is physical property of central importance for discharge 
 physics.
-
 Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
 mystery that lightning takes place under electric field amplitude well below the 
-dielectric strength of air. On the one hand, 
-the dielectric strength of air at normal temperature and pressure (NTP; 
-$20^{\circ}{\rm C}$ and 1atm)
+dielectric strength of air. 
+
+On the one hand, the dielectric strength of air at normal temperature and pressure 
+(NTP; $20^{\circ}{\rm C}$ and 1atm)
 is well established from laboratory experiments @{citeDSofAir}: |]
 
   environment "eqnarray" $ [rawQ| E_0 = 30 {\rm kV/cm}. @{label ntpAirDielectricStrength}|]

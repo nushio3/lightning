@@ -4,12 +4,12 @@ import Development.Shake
 import Development.Shake.FilePath
 import Figure.DiskSection (writeSectionData)
 import Figure.Gnuplot (gnuplot)
-import GlobalConfig (workDir)
+import GlobalConfig 
 import Text.Printf
 
 rulesFigures :: Rules ()
 rulesFigures = do
-  workDir </> "fig1.eps" *> \outFn -> do
+  figureDir </> "fig1.eps" *> \outFn -> do
     let motoFn = workDir </> "dat1.txt"
     need [motoFn]
     liftIO $ gnuplot
@@ -24,5 +24,5 @@ rulesFigures = do
       , printf "splot '%s'" motoFn 
       ]
     
-  workDir </> "dat1.txt" *> \outFn -> do
+  figureDir </> "dat1.txt" *> \outFn -> do
     liftIO $ writeSectionData outFn 

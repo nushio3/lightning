@@ -46,10 +46,10 @@ plotLineProfile = do
       
     let plotFnsStr :: String
         plotFnsStr = intercalate "," $
-          [printf "'%s't '' w l lw 2" fn | fn <- fns]
+          [printf "'%s't '%s' w l lw 2" fn tag | (fn,tag) <- fns]
       
     gnuplot 
-      [ "set term postscript enhanced 30 color"
+      [ "set term postscript enhanced 30 color solid"
       , "set grid"
       , "set xlabel 'velocity [km/s]'"
       , "set ylabel 'spectral flux density [Jy]'"
@@ -57,13 +57,19 @@ plotLineProfile = do
       , "plot " ++ plotFnsStr
       ]
 
-writeLineProfile :: ChemicalSpecies -> Maybe BreakdownModel -> IO FilePath
+writeLineProfile :: ChemicalSpecies -> Maybe BreakdownModel -> IO (FilePath,String)
 writeLineProfile chem mbd = do
   hPutStrLn stderr fn
   writeFile fn $ unlines $ map (toLine . (/60)) [-180..180]
-  return fn
+  return (fn,tag)
   where 
     fn = printf "%s/chem%s-%s.txt" figureDir (show chem) (maybe "no" show mbd)
+
+    tag = maybe "no" toTag mbd
+    
+    toTag TownsendBreakdown = "T"
+    toTag DPBreakdown = "DP"
+    toTag RunawayBreakdown = "R"
 
     toLine :: Double -> String
     toLine x = 
@@ -72,6 +78,6 @@ writeLineProfile chem mbd = do
 
     disk = mmsnModel 
            & inclinationAngle .~ 0.122
-           & maybe id lightenedDisk mbd
+           & maybe id lightenedDiskEx mbd
            
                   

@@ -261,14 +261,12 @@ aboutLineProperty = do
 
 
    @{aboutFractionalAbundance}
-
-
-   For a disk 100pc distant from the Earth, and lightning area of $10000 ~ {\rm au}^2$,
-   the spectral flux density of the signals are
-   $#{ppValE 1 $ lr HCOPlus} {\rm Jy}$,
-   $#{ppValE 1 $ lr DCOPlus} {\rm Jy}$ and
-   $#{ppValE 1 $ lr N2HPlus} {\rm Jy}$ for
-   $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines, respectively.
+   We can see that the disk is optically thick for
+   $\rm HCO^{+}~3-2$ line at 100au. On the other hand, it is optically thin for 
+   $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines. Once lightning takes place,
+   however, all the three lines becomes optically thick. Observational consequence of this are
+   brighter and broadened line profiles.
+   
 
    |]
    where

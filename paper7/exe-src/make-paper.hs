@@ -13,6 +13,7 @@ import Paper(writePaper)
 main :: IO ()
 main = do
   _ <- system $ printf "mkdir -p %s" workDir
+  _ <- system $ printf "mkdir -p %s" figureDir
   shakeArgs shakeOptions $ do
     want [workDir </> "paper.pdf"]
     rulesExt

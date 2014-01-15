@@ -322,7 +322,8 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         
         expPart :: NoDimension Double
         expPart =  autoc $ molecularMass chem |*| square dopplerDiff 
-          |/| (2 *| kB |*| (env's temperature))
+          |/| (2 *| kB |*| env's temperature |+| 
+               molecularMass chem |*| square (fieldToVelocity env chem))
         
         dopplerDiff :: KmPerSec Double
         dopplerDiff = dv |-| 

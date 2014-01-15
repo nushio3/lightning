@@ -21,6 +21,8 @@ data BreakdownModel
   | RunawayBreakdown
   deriving (Eq, Show)
 
+breakdownModels = [TownsendBreakdown, DPBreakdown, RunawayBreakdown]
+
 [declareLabels| ntpAirDielectricStrength, takahashiDischargeFormula |]
   
 

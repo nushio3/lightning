@@ -27,4 +27,4 @@ lightenedDiskEx bm disk0 = disk0 & lightningAcceleratorField .~ laf
       
     boundBy pos x = 
       let r = val $ pos ^. radius in
-        if r > 100 then x else mkVal 0                                
+        if (2<r && r < 20) then x else mkVal 0                                

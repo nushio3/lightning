@@ -25,6 +25,7 @@ sync:
 	git pull
 
 paper: build
+# ./dist/build/make-figures/make-figures
 	./dist/build/make-paper/make-paper
 
 presentation: build

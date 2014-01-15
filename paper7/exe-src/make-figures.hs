@@ -36,35 +36,37 @@ main = do
 plotLineProfile :: IO ()  
 plotLineProfile = do
 
-  forM_ [HCOPlus, DCOPlus, N2HPlus] $ \chem -> do
-    let 
-      fnOut :: String
-      fnOut = printf "%s/lineProfile-%s.eps" figureDir (show chem)
-    
-    fns <- forM (Nothing: map Just breakdownModels) $ \mbdm -> do
-      writeLineProfile chem mbdm
-      
-    let plotFnsStr :: String
-        plotFnsStr = intercalate "," $
-          [printf "'%s't '%s' w l lw 2" fn tag | (fn,tag) <- fns]
-      
-    gnuplot 
-      [ "set term postscript enhanced 30 color solid"
-      , "set grid"
-      , "set xlabel 'velocity [km/s]'"
-      , "set ylabel 'spectral flux density [Jy]'"
-      , printf "set out '%s'" fnOut
-      , "plot " ++ plotFnsStr
-      ]
+  forM_ [False,True] $ \exMode -> do
+    forM_ [HCOPlus, DCOPlus, N2HPlus] $ \chem -> do
+      let 
+        fnOut :: String
+        fnOut = printf "%s/lineProfile-%s-%s.eps" figureDir (show chem)
+                       (if exMode then "ex" else "00")      
 
-writeLineProfile :: ChemicalSpecies -> Maybe BreakdownModel -> IO (FilePath,String)
-writeLineProfile chem mbd = do
+      fns <- forM (Nothing: map Just breakdownModels) $ \mbdm -> do
+        writeLineProfile exMode chem mbdm
+        
+      let plotFnsStr :: String
+          plotFnsStr = intercalate "," $
+            [printf "'%s't '%s' w l lw 2" fn tag | (fn,tag) <- fns]
+        
+      gnuplot 
+        [ "set term postscript enhanced 30 color solid"
+        , "set grid"
+        , "set xlabel 'velocity [km/s]'"
+        , "set ylabel 'spectral flux density [Jy]'"
+        , printf "set out '%s'" fnOut
+        , "plot " ++ plotFnsStr
+        ]
+
+writeLineProfile :: Bool -> ChemicalSpecies -> Maybe BreakdownModel -> IO (FilePath,String)
+writeLineProfile exMode chem mbd = do
   hPutStrLn stderr fn
   writeFile fn $ unlines $ map (toLine . (/60)) [-180..180]
   return (fn,tag)
   where 
-    fn = printf "%s/chem%s-%s.txt" figureDir (show chem) (maybe "no" show mbd)
-
+    fn = printf "%s/chem%s-%s-%s.txt" figureDir (show chem) (maybe "no" show mbd)
+                (if exMode then "ex" else "00")
     tag = maybe "no" toTag mbd
     
     toTag TownsendBreakdown = "T"
@@ -77,7 +79,8 @@ writeLineProfile chem mbd = do
       in printf "%f %f" x y
 
     disk = mmsnModel 
-           & inclinationAngle .~ 0.122
-           & maybe id lightenedDiskEx mbd
+           & distanceFromEarth .~ mkVal 56
+           & inclinationAngle .~ (7*pi/180)
+           & maybe id (if exMode then lightenedDiskEx else lightenedDisk) mbd
            
                   

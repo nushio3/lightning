@@ -100,14 +100,39 @@ $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSec
 subsectionFigures :: MonadAuthoring s w m => m ()
 subsectionFigures = do
   [rawQ|
-   \begin{figure}
-    
-   \includegraphics[angle=270,width=5cm]{figure/lineProfile-HCOPlus.eps}
-    
-   \includegraphics[angle=270,width=5cm]{figure/lineProfile-DCOPlus.eps}
-    
-   \includegraphics[angle=270,width=5cm]{figure/lineProfile-N2HPlus.eps}
+   \subsection{Line Profile Prediction by Radiative Transfer}
    
-   \caption{this figure rocks!}
+   \begin{figure}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-HCOPlus-00.eps}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-DCOPlus-00.eps}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-N2HPlus-00.eps}
+   \caption{
+    The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
+      assuming that the lightning takes place in the entire disk.
+    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
+    no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
+    runaway breakdown model, respectively.
+           }\label{fig-lightning-00}
+
    \end{figure}    
+    
+   \begin{figure}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-HCOPlus-ex.eps}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-DCOPlus-ex.eps}
+   \includegraphics[angle=270,width=8cm]{figure/lineProfile-N2HPlus-ex.eps}
+   \caption{
+    The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
+      assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{20au}$ of the disk.
+    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in \ref{fig-lightning-00}.
+   }\label{fig-lightning-ex}
+   \end{figure}    
+    
+    We calculated the line profiles for the three ion species in disk with different lightning models,
+    to see if we can distinguish the lightning models from the line observations.
+
+    We assume that our model disk is located at the same position as
+    TW Hya i.e. at the distance of 56pc and the
+    inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
+    
+   
    |]

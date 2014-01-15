@@ -40,7 +40,6 @@ rulesExt = do
       runnerFn :: FilePath
       runnerFn = "run.sh"
     liftIO $ do
-      system $ "./dist/build/make-figures/make-figures"
       writeFile (workDir </> runnerFn) cmd
       system $ "chmod 755 " ++ (workDir </> runnerFn)
       system $ printf "cd %s; ./%s;" workDir runnerFn

@@ -330,6 +330,14 @@
       DOI={10.1070/PU2001v044n11ABEH000939}, number={11}, journal={Physics-Uspekhi},
       publisher={Uspekhi Fizicheskikh Nauk Journal}, author={Gurevich, Aleksandr V
       and Zybin, Kirill P}, year={2001}, month={Nov}, pages={1119-1140}}'
+- - doi:10.1086/421063
+  - - ! '@article{Blake_Hogerheijde_et_al__2004, title={Imaging the Disk around TW
+      Hydrae with the Submillimeter Array}, volume={616}, url={http://dx.doi.org/10.1086/421063},
+      DOI={10.1086/421063}, number={1}, journal={The Astrophysical Journal}, publisher={IOP
+      Publishing}, author={Qi, Chunhua and Ho, Paul T. P. and Wilner, David J. and
+      Takakuwa, Shigehisa and Hirano, Naomi and Ohashi, Nagayoshi and Bourke, Tyler
+      L. and Zhang, Qizhou and Blake, Geoffrey A. and Hogerheijde, Michiel and et
+      al.}, year={2004}, month={Nov}, pages={L11-L14}}'
 - - doi:10.1086/432796
   - - ! '@article{Inutsuka_Sano_2005, title={Self-sustained Ionization and Vanishing
       Dead Zones in Protoplanetary Disks}, volume={628}, url={http://dx.doi.org/10.1086/432796},

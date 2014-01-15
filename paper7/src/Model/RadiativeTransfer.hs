@@ -264,8 +264,8 @@ aboutLineProperty = do
    We can see that the disk is optically thick for
    $\rm HCO^{+}~3-2$ line at 100au. On the other hand, it is optically thin for 
    $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines. Once lightning takes place,
-   however, all the three lines becomes optically thick. Observational consequence of this are
-   brighter and broadened line profiles.
+   however, all the three lines becomes optically thin because molecular speed becomes faster. 
+   Observational consequence of this are brighter and broadened line profiles.
    
 
    |]

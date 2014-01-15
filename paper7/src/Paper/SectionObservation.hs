@@ -91,4 +91,23 @@ $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSec
 
   aboutLineObservation
 
+  subsectionFigures
+
   return ()
+
+
+
+subsectionFigures :: MonadAuthoring s w m => m ()
+subsectionFigures = do
+  [rawQ|
+   \begin{figure}
+    
+   \includegraphics[angle=270,width=5cm]{figure/lineProfile-HCOPlus.eps}
+    
+   \includegraphics[angle=270,width=5cm]{figure/lineProfile-DCOPlus.eps}
+    
+   \includegraphics[angle=270,width=5cm]{figure/lineProfile-N2HPlus.eps}
+   
+   \caption{this figure rocks!}
+   \end{figure}    
+   |]

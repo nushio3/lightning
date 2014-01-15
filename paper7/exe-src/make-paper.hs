@@ -40,6 +40,7 @@ rulesExt = do
       runnerFn :: FilePath
       runnerFn = "run.sh"
     liftIO $ do
+      system $ "./dist/build/make-figures/make-figures"
       writeFile (workDir </> runnerFn) cmd
       system $ "chmod 755 " ++ (workDir </> runnerFn)
       system $ printf "cd %s; ./%s;" workDir runnerFn
@@ -52,8 +53,7 @@ rulesFiles = do
   ["//paper.tex", "//the.bib"] *>> \[outFn,bibFn] -> do
     let src = "./material/template.tex"
         exe = "./dist/build/make-paper/make-paper"
-        exe2 = "./dist/build/make-figures/make-figures"
-    need [src,exe,exe2]
+    need [src,exe]
     liftIO $ writePaper src outFn bibFn
 
   "dist//*.cls" *> \out -> do

@@ -122,7 +122,7 @@ subsectionFigures = do
    \includegraphics[angle=270,width=8cm]{figure/lineProfile-N2HPlus-ex.eps}
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{20au}$ of the disk.
+      assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
     The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in \ref{fig-lightning-00}.
    }\label{fig-lightning-ex}
    \end{figure}    

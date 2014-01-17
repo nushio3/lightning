@@ -90,5 +90,13 @@ The parallel computations are based on @{marlow2013}.
 
 sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
-  command1 "section" $ esc "Conclusion"
-  esc "Lightning is observable with ALMA."
+  command1 "section" $ esc "Conclusions and Discussions."
+  [escQ|   
+   We have shown that some
+   lightning models are observationally distinguishable with ALMA.
+   It is possible to reject some of the lightning models based on ground observations.
+   Our lightning models treated here are very simple. To apply this work to more realistic
+   disk models are beyond the scope of this paper, and left as a useful direction
+   for future research.
+
+   |]

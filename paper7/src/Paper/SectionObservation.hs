@@ -123,7 +123,7 @@ subsectionFigures = do
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
       assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
-    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in \ref{fig-lightning-00}.
+    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in Figure \ref{fig-lightning-00}.
    }\label{fig-lightning-ex}
    \end{figure}    
     
@@ -134,5 +134,10 @@ subsectionFigures = do
     TW Hya i.e. at the distance of 56pc and the
     inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
     
+    In Figure \ref{fig-lightning-00}, we assumed that the lightning takes place in the entire disk.
+    In Figure \ref{fig-lightning-00}, we assumed that
+    the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
+
    
+   TODO: ALMA sensitivity estimations.
    |]

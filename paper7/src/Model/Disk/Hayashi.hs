@@ -96,7 +96,7 @@ mmsnModel
         r = pos ^. radius 
         
     tem :: Coord -> KelvinUnit Double
-    tem pos = 280 *| kelvin |*|
+    tem pos = 140 *| kelvin |*|
        (fmap (**(-0.5)) $ r |/| (1 *| astronomicalUnit))
       where
         r = pos ^. radius

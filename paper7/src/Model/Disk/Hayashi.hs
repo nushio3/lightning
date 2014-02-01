@@ -49,14 +49,29 @@ hayashiModelDoc = do
 
   [rawQ| The assumption of the hydrostatic equilibrium leads to the vertical distribution of the gas
 \begin{eqnarray}
-\rho(r,z)&=&\rho_0(r) \exp \left(-\frac{z^2}{2h^2}\right), \\
+\rho(r,z)&=&\rho_0(r) \exp \left(-\frac{z^2}{2h^2}\right) \nonumber \\
+&=&  #{ppValE 2 $ mmsn1au ^. densityGas } 
+\left(\frac{r}{1\mathrm{au}}\right)^{ -\frac{3}{2}}
+\exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{g ~ cm^{ -3 }}}  ,\\
 \mathrm{where} ~~~ 
-h(r) &=& \frac{c_s}{\Omega}, \\
+h(r) &=& \frac{c_s}{\Omega} \nonumber \\
+&=&   #{ppValE 2 $ mmsn1au ^. scaleHeight} 
+\left(\frac{r}{1\mathrm{au}}\right)^{ \frac{5}{4}}  {\mathrm{au}} , 
+ \\
 c_s(r) &=& \sqrt{\frac{k_B T(r)}{\mu m_p}},\\
 \Omega_K(r) &=& \sqrt{\frac{G M_{\odot}}{r^3}},\\
 v_K(r)     &=& \sqrt{\frac{G M_{\odot}}{r}}.
 \end{eqnarray}
    |]
+
+  [rawQ| Therefore the number density of $\mathrm{H_2}$ is
+\begin{eqnarray}
+n_{\mathrm{H_2}}(r,z)
+&=&  #{ppValE 2 $ mmsn1au ^. numberDensityGas } 
+\exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{cm^{ -3 }}}  .\\
+\end{eqnarray}
+   |]
+
 
 innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double
 innerRadius =    mkVal 0.35  

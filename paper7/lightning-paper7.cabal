@@ -97,6 +97,18 @@ executable make-figures
                    , lens
                    , process
                    , unittyped
+
+executable make-lime-figures
+  main-is:           make-lime-figures.hs           
+  Ghc-Options:       -Wall -O2
+  hs-source-dirs:    exe-src/
+  Build-Depends:     base
+                   , lightning-paper7
+                   
+                   , lens
+                   , process
+                   , unittyped
+
 -- Test-Suite doctest
 --   Type:                 exitcode-stdio-1.0
 --   HS-Source-Dirs:       test

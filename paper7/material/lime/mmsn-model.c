@@ -28,13 +28,13 @@ input(inputPars *par, image *img){
   par->minScale	   		= 0.5*AU;
   par->pIntensity    	= 4000;
   par->sinkPoints    	= 3000;
-  par->dust				= "jena_thin_e6.tab";
+  par->dust				= "material/lime/jena_thin_e6.tab";
   par->moldatfile[0] 	= moldata_file_name;
 
   par->sampling			= 0;
 
-  par->outputfile 		= "populations.pop";
-  par->gridfile			= "grid.vtk";
+  par->outputfile 		= "material/lime/populations.pop";
+  par->gridfile			= "material/lime/grid.vtk";
 
   /* 
    * Definitions for image #0. Add blocks for additional images.

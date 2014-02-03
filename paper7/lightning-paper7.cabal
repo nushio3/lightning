@@ -22,6 +22,7 @@ library
   exposed-modules:   
     Figure.DiskSection
     Figure.Gnuplot
+    Figure.Lime
     Figure.Shake
     GlobalConfig
     Model.Breakdown

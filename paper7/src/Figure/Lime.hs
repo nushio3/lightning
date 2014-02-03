@@ -11,19 +11,24 @@ data LimeConfig
   , _imageFileName :: FilePath
   }
 
+defaultLimeConfig = LimeConfig
+  { _moldataFileName = "material/lime/hco+@xpol.dat"
+  , _imageFileName = "material/lime/tmp.fits"
+  }
+
 makeClassy ''LimeConfig
 
 execLime :: LimeConfig -> IO ()
 execLime conf = do
   let tmpFn = "material/lime/tmp.c"         
-  writeLimeConfig tmpFn conf         
-  system $ printf "lime %s" tmpFn         
+  generateLimeC tmpFn conf         
+  system $ printf "yes '' | lime %s" tmpFn         
   return ()
 
-writeLimeConfig :: FilePath -> LimeConfig -> IO ()
-writeLimeConfig fp conf = writeFile fp $ unlines
+generateLimeC :: FilePath -> LimeConfig -> IO ()
+generateLimeC fp conf = writeFile fp $ unlines
   [ printf "char moldata_file_name[] = \"%s\";" $ conf ^. moldataFileName
   , printf "char img_file_name[] = \"%s\";" $ conf ^. imageFileName 
   , printf "moldata_abundance = %f;" (2.2e-10 :: Double)
-  , "#include \"mmsn-mode.c\""
+  , "#include \"mmsn-model.c\""
   ]

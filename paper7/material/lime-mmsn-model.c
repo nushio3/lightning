@@ -14,9 +14,6 @@
 #include "math.h"
 #include "lime.h"
 
-const int mol_mode_id=2;
-char* moldata_file_name[3] = {"hco+@xpol.dat","dco+@xpol.dat", "n2h+@xpol.dat"};
-char* img_file_name[3] = {"image-hco+.fits","image-dco+.fits", "image-n2h+.fits"};
 // double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
 
 /******************************************************************************/
@@ -27,12 +24,12 @@ input(inputPars *par, image *img){
   /*
    * Basic parameters. See cheat sheet for details.
    */
-  par->radius			= 5000*AU;
+  par->radius			= 2000*AU;
   par->minScale	   		= 0.5*AU;
-  par->pIntensity    	= 16000;
-  par->sinkPoints    	= 6000;
+  par->pIntensity    	= 4000;
+  par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
-  par->moldatfile[0] 	= moldata_file_name[mol_mode_id];
+  par->moldatfile[0] 	= moldata_file_name;
 
   par->sampling			= 0;
 
@@ -46,13 +43,13 @@ input(inputPars *par, image *img){
   img[0].nchan			= 40;		  // Number of channels
   img[0].velres			= 50.;       // Channel resolution in m/s
   img[0].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
-  img[0].pxls			= 200;	      // Pixels per dimension
-  img[0].imgres			= 0.1;		  // Resolution in arc seconds
+  img[0].pxls			= 400;	      // Pixels per dimension
+  img[0].imgres			= 0.05;		  // Resolution in arc seconds
   img[0].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
   img[0].distance		= 56*PC;	  // source distance in m
   img[0].source_vel		= 0;          // source velocity in m/s
   img[0].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
-  img[0].filename		= img_file_name[mol_mode_id];	// Output filename
+  img[0].filename		= img_file_name;	// Output filename
 
 }
 
@@ -79,8 +76,8 @@ density(double x, double y, double z, double *density){
    * Calculate a spherical power-law density profile
    * (Multiply with 1e6 to go to SI-units)
    */
-  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5);
-  if (r > 300*AU) density[0] = 0;
+  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5)
+    * exp(-r/(300*AU));
   if (r < 0.1*AU) density[0] = 0;
 }
 
@@ -107,10 +104,8 @@ abundance(double x, double y, double z, double *abundance){
    * function of (x,y,z).
    */
   //  double aba[3] = {2.2e-10, 4.2e-15, 2.8e-12};
-    double aba[3] = {2.2e-10, 0.66e-10, 2.8e-12};
 
-  abundance[0] = aba[mol_mode_id];
-
+  abundance[0] = moldata_abundance;
 }
 
 /******************************************************************************/

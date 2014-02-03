@@ -78,7 +78,8 @@ aboutFractionalAbundance = do
    We assume the fractional abundance of $\rm DCO^{+}$ to be
    $#{ppValE 0 $ fractionalAbundance100au DCOPlus}$, based on the
    hydrogen isotope ratio data in
-   @{citet["bibcode:2009LanB...4B...44L"]}.
+   @{citet["bibcode:2009LanB...4B...44L"]}. The new paper by
+   @{citet["bibcode:2013A&A...557A.132M"]} reports enhancement of DCO.
 
    Therefore, the column densities of $\rm HCO^{+}$, $\rm DCO^{+}$ and $\rm N_2H^{+}$
    are $#{ppValE 0 $ columnDensity100au HCOPlus} {\rm cm^{ -2}}$,

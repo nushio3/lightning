@@ -1,4 +1,4 @@
 cd ..
 source ./sourceme.bash
 cd example
-lime mmsn-model.c
+yes '' | lime mmsn-model.c

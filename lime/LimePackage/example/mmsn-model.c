@@ -29,8 +29,8 @@ input(inputPars *par, image *img){
    */
   par->radius			= 2000*AU;
   par->minScale	   		= 0.5*AU;
-  par->pIntensity    	= 100000;
-  par->sinkPoints    	=  10000;
+  par->pIntensity    	= 4000;
+  par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
   par->moldatfile[0] 	= moldata_file_name[mol_mode_id];
 
@@ -79,8 +79,8 @@ density(double x, double y, double z, double *density){
    * Calculate a spherical power-law density profile
    * (Multiply with 1e6 to go to SI-units)
    */
-  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5);
-  if (r > 300*AU) density[0] = 0;
+  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5)
+    * exp(-r/(300*AU));
   if (r < 0.1*AU) density[0] = 0;
 }
 

@@ -96,7 +96,9 @@ type JouleUnit = Value Energy  '[ '(Joule, POne)]
 type JouleSecond = Value '[ '(Time, ('Neg 'One)), '(Mass, ('Pos 'One)), '(Length, ('Pos ('Suc 'One))) ] '[ '(Joule, ('Pos 'One)), '(Second, ('Pos 'One)) ]
 
 
+-- velocities
 type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]
+type MPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
 
 type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]  
 

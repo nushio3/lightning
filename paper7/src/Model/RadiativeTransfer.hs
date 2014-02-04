@@ -58,8 +58,8 @@ columnDensity100au H2 = mkVal 2.0e23
 columnDensity100au x  = columnDensity100au H2 |*| fractionalAbundance100au x
 
 fractionalAbundance100au :: ChemicalSpecies -> NoDimension Double 
-fractionalAbundance100au N2HPlus = mkVal $ (5.5e11 / 2.0e23)
-fractionalAbundance100au HCOPlus = mkVal $ (4.3e13 / 2.0e23)
+fractionalAbundance100au N2HPlus = mkVal $ 5.3e-10 --(5.5e11 / 2.0e23)
+fractionalAbundance100au HCOPlus = mkVal $ 9.0e-9 --(4.3e13 / 2.0e23)
 fractionalAbundance100au DCOPlus = 0.00194e-2 *| fractionalAbundance100au HCOPlus
 fractionalAbundance100au _ = mkVal 0
 

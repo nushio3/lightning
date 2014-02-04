@@ -4,7 +4,7 @@ module GlobalConfig where
 type Real = Double
 
 workDir :: FilePath
-workDir = "dist/output"
+workDir = "output"
 
 figureDir :: FilePath
-figureDir = "dist/output/figure"
+figureDir = "output/figure"

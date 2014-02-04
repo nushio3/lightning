@@ -24,7 +24,7 @@ input(inputPars *par, image *img){
   /*
    * Basic parameters. See cheat sheet for details.
    */
-  par->radius			= 2000*AU;
+  par->radius			= 500*AU;
   par->minScale	   		= 0.5*AU;
   par->pIntensity    	= 4000;
   par->sinkPoints    	= 3000;
@@ -44,7 +44,7 @@ input(inputPars *par, image *img){
   img[0].velres			= VelocityResolution;       // Channel resolution in m/s
   img[0].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
   img[0].pxls			= 400;	      // Pixels per dimension
-  img[0].imgres			= 0.05;		  // Resolution in arc seconds
+  img[0].imgres			= 0.025;  // Resolution in arc seconds
   img[0].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
   img[0].distance		= 56*PC;	  // source distance in m
   img[0].source_vel		= 0;          // source velocity in m/s
@@ -136,7 +136,7 @@ doppler(double x, double y, double z, double *doppler){
   double thermal_velocity = 0 ; //sqrt(284.6 * tmp[0]);
     */
 
-  if(LightningInnerRadius*AU <= r && r <= LightningOuterRacdius*AU )
+  if(LightningInnerRadius*AU <= r && r <= LightningOuterRadius*AU )
     *doppler = sqrt(pow(LightningVelocity,2.0) + pow(thermal_velocity,2.0));
   else
     *doppler = thermal_velocity;

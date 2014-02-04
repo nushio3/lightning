@@ -1,38 +1,84 @@
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell, RankNTypes #-}
 module Figure.Lime where
 
 import Control.Lens
+import Data.Char
 import System.Process
 import Text.Printf
+import UnitTyped (val,autoc)
+import UnitTyped.Synonyms (MPerSec)
+import Model.Breakdown
+import Model.Gas
+import Model.RadiativeTransfer
+import Model.Disk
+import Model.Disk.Derived
+import Model.Disk.Hayashi
 
 data LimeConfig 
   = LimeConfig 
-  { _moldataFileName :: FilePath
-  , _molAbundance :: Double
-  , _imageFileName :: FilePath
-  , _pvDataFileName :: FilePath
-  , _pvEpsFileName :: FilePath
+  { _targetMolecule :: ChemicalSpecies
+  , _targetLightningModel :: Maybe BreakdownModel
+  , _fileNameBody :: String
   , _velocityChannelNumber :: Int
   , _velocityResolution :: Double
-  , _lightningVelocity :: Double
   , _lightningInnerRadius :: Double
   , _lightningOuterRadius :: Double 
   }
+makeClassy ''LimeConfig
 
 defaultLimeConfig = LimeConfig
-  { _moldataFileName = "material/lime/hco+@xpol.dat"
-  , _molAbundance = 2.2e-8
-  , _imageFileName = "material/lime/tmp.fits"
-  , _pvDataFileName = "material/lime/tmp-pv.txt"
-  , _pvEpsFileName = "material/lime/tmp-pv.eps"
-  , _velocityChannelNumber = 120
-  , _velocityResolution = 50
-  , _lightningVelocity = 490
-  , _lightningInnerRadius = 100
-  , _lightningOuterRadius = 200
+  { _targetMolecule = HCOPlus
+  , _targetLightningModel = Just TownsendBreakdown
+  , _fileNameBody = "LgRg"
+  , _velocityChannelNumber = 201
+  , _velocityResolution = 200
+  , _lightningInnerRadius = 50
+  , _lightningOuterRadius = 100
   }
 
-makeClassy ''LimeConfig
+moldataFileName :: Getter LimeConfig FilePath
+moldataFileName = to go
+  where
+    go conf = case conf^.targetMolecule of
+      HCOPlus -> "material/lime/hco+@xpol.dat"
+      DCOPlus -> "material/lime/dco+@xpol.dat"
+      N2HPlus -> "material/lime/n2h+@xpol.dat"
+      x       -> error $ "unknown species: " ++ show x
+
+molAbundance :: Getter LimeConfig Double
+molAbundance = to go
+  where 
+    go conf = val $ fractionalAbundance100au $ conf^.targetMolecule
+
+
+mkFileNameGetter :: String -> Getter LimeConfig String
+mkFileNameGetter ext = to go
+  where
+    go conf = printf "material/lime-output/%s-%s-%s-R%d_%d-V%fx%d%s"
+      (conf ^. fileNameBody) 
+      (show $ conf ^. targetMolecule)
+      (filter isUpper $ show $ conf ^. targetLightningModel)
+      (round $ conf ^. lightningInnerRadius :: Int)
+      (round $ conf ^. lightningOuterRadius :: Int)
+      (conf ^. velocityResolution)
+      (conf ^. velocityChannelNumber)
+      ext
+
+imageFileName  = mkFileNameGetter ".fits"
+pvDataFileName = mkFileNameGetter "-pv.txt"
+pvEpsFileName  = mkFileNameGetter "-pv.eps"
+
+lightningVelocity :: Getter LimeConfig Double
+lightningVelocity = to go
+  where 
+    go :: LimeConfig -> Double
+    go conf = val
+      (autoc $ fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
+       :: MPerSec Double)  
+    disk1 conf = case (conf^.targetLightningModel) of
+      Nothing -> mmsn1au
+      Just bm -> mmsn1au & disk %~ lightenedDisk bm
+
 
 execLime :: LimeConfig -> IO ()
 execLime conf = do

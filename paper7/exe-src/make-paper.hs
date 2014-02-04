@@ -55,10 +55,10 @@ rulesFiles = do
     need [src,exe]
     liftIO $ writePaper src outFn bibFn
 
-  "dist//*.cls" *> \out -> do
+  "output//*.cls" *> \out -> do
     let src = "material" </> takeFileName out
     copyFile' src out
 
-  "dist//*.bst" *> \out -> do
+  "output//*.bst" *> \out -> do
     let src = "material" </> takeFileName out
     copyFile' src out

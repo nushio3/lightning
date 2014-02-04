@@ -2,6 +2,7 @@
 module Figure.Lime where
 
 import Control.Lens
+import Control.Monad
 import Data.Char
 import System.Process
 import Text.Printf
@@ -23,7 +24,7 @@ data LimeConfig
   , _velocityResolution :: Double
   , _lightningInnerRadius :: Double
   , _lightningOuterRadius :: Double 
-  }
+  } deriving (Eq, Show)
 makeClassy ''LimeConfig
 
 defaultLimeConfig = LimeConfig
@@ -35,6 +36,23 @@ defaultLimeConfig = LimeConfig
   , _lightningInnerRadius = 50
   , _lightningOuterRadius = 100
   }
+
+limeConfigSuite :: [LimeConfig]
+limeConfigSuite = do
+  wideMode <- [False, True]
+  let conf0
+        | wideMode = defaultLimeConfig
+                   & velocityChannelNumber .~ 201
+                   & velocityResolution .~ 200
+        | otherwise= defaultLimeConfig
+                   & velocityChannelNumber .~ 80
+                   & velocityResolution .~ 50
+  chem <- [HCOPlus, DCOPlus, N2HPlus]
+  lm <- Nothing : map Just breakdownModels
+  return $ conf0 
+         & targetMolecule .~ chem
+         & targetLightningModel .~ lm
+
 
 moldataFileName :: Getter LimeConfig FilePath
 moldataFileName = to go
@@ -80,18 +98,19 @@ lightningVelocity = to go
       Just bm -> mmsn1au & disk %~ lightenedDisk bm
 
 
-execLime :: LimeConfig -> IO ()
-execLime conf = do
-  let tmpFn = "material/lime/tmp.c"         
-      tmpPyFn = "material/lime/tmp.py"         
-      tmpGnuplotFn = "material/lime/tmp.gnuplot"         
+execLime :: Bool -> LimeConfig -> IO ()
+execLime really conf = do
+  let tmpFn = conf ^. mkFileNameGetter ".c"         
+      tmpPyFn =conf ^. mkFileNameGetter ".py"         
+      tmpGnuplotFn =conf ^. mkFileNameGetter ".gnuplot"         
   generateLimeC tmpFn conf         
-  system $ printf "yes '' | lime %s" tmpFn         
   generatePy tmpPyFn conf         
-  system $ printf "python %s %s" tmpPyFn tmpFn
   generateGnuplot tmpGnuplotFn conf         
-  system $ printf "gnuplot %s" tmpGnuplotFn
-  return ()
+  when really $ do 
+    system $ printf "yes '' | lime %s" tmpFn         
+    system $ printf "python %s %s" tmpPyFn tmpFn
+    system $ printf "gnuplot %s" tmpGnuplotFn
+    return ()
 
 generateLimeC :: FilePath -> LimeConfig -> IO ()
 generateLimeC fp conf = writeFile fp $ unlines

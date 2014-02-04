@@ -128,8 +128,8 @@ doppler(double x, double y, double z, double *doppler){
   
   double tmp;
   tmp =  280 * pow(r/AU, -0.5);
-  double alpha = 1.8e-3;
-  double thermal_velocity = alpha * sqrt(4127 * tmp);
+  double alpha = 1e-3;
+  double thermal_velocity = sqrt(alpha) * sqrt(4127 * tmp);
 
   /*
   double tmp[1];

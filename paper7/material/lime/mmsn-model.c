@@ -29,19 +29,19 @@ input(inputPars *par, image *img){
   par->pIntensity    	= 4000;
   par->sinkPoints    	= 3000;
   par->dust				= "material/lime/jena_thin_e6.tab";
-  par->moldatfile[0] 	= moldata_file_name;
+  par->moldatfile[0] 	= MoldataFileName;
 
   par->sampling			= 0;
 
   par->outputfile 		= "material/lime/populations.pop";
   par->gridfile			= "material/lime/grid.vtk";
-
+  
   /* 
    * Definitions for image #0. Add blocks for additional images.
    */
   
-  img[0].nchan			= 40;		  // Number of channels
-  img[0].velres			= 50.;       // Channel resolution in m/s
+  img[0].nchan			= VelocityChannelNumber;		  // Number of channels
+  img[0].velres			= VelocityResolution;       // Channel resolution in m/s
   img[0].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
   img[0].pxls			= 400;	      // Pixels per dimension
   img[0].imgres			= 0.05;		  // Resolution in arc seconds
@@ -49,7 +49,7 @@ input(inputPars *par, image *img){
   img[0].distance		= 56*PC;	  // source distance in m
   img[0].source_vel		= 0;          // source velocity in m/s
   img[0].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
-  img[0].filename		= img_file_name;	// Output filename
+  img[0].filename		= ImageFileName;	// Output filename
 
 }
 
@@ -105,7 +105,7 @@ abundance(double x, double y, double z, double *abundance){
    */
   //  double aba[3] = {2.2e-10, 4.2e-15, 2.8e-12};
 
-  abundance[0] = moldata_abundance;
+  abundance[0] = MolAbundance;
 }
 
 /******************************************************************************/
@@ -118,7 +118,19 @@ doppler(double x, double y, double z, double *doppler){
    * Note that *doppler is a pointer, not an array. 
    * Remember the * in front of doppler.
    */
-  *doppler = 200.;
+
+  double r;
+  r=sqrt(x*x+y*y);
+  
+  double tmp[1];
+  temperature(x,y,z,tmp);
+  double thermal_velocity = sqrt(284.6 * tmp[0]);
+
+
+  if(LightningInnerRadius <= r && r <= LightningOuterRadius )
+    *doppler = sqrt(pow(LightningVelocity,2.0) + pow(thermal_velocity,2.0));
+  else
+    *doppler = thermal_velocity;
 }
 
 /******************************************************************************/

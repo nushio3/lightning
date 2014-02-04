@@ -86,13 +86,19 @@ density(double x, double y, double z, double *density){
 void
 temperature(double x, double y, double z, double *temperature){
   int i,x0=0;
-  double r;
+  double r,v;
   /*
    * Calculate coordinate distance from origin
    */
   r=sqrt(x*x+y*y);
+
+  if(LightningInnerRadius <= r && r <= LightningOuterRadius )
+    v = LightningVelocity;
+  else
+    v = 0;
+
   temperature[0]=temperature[1]=
-    280 * pow(r/AU, -0.5);
+    280 * pow(r/AU, -0.5) + v*v/284.6;
 }
 
 /******************************************************************************/
@@ -122,15 +128,22 @@ doppler(double x, double y, double z, double *doppler){
   double r;
   r=sqrt(x*x+y*y);
   
+  double tmp;
+  tmp =  280 * pow(r/AU, -0.5);
+  double thermal_velocity = sqrt(284.6 * tmp);
+  *doppler = thermal_velocity;
+
+  /*
   double tmp[1];
   temperature(x,y,z,tmp);
-  double thermal_velocity = sqrt(284.6 * tmp[0]);
+  double thermal_velocity = 0 ; //sqrt(284.6 * tmp[0]);
 
 
   if(LightningInnerRadius <= r && r <= LightningOuterRadius )
     *doppler = sqrt(pow(LightningVelocity,2.0) + pow(thermal_velocity,2.0));
   else
     *doppler = thermal_velocity;
+    */
 }
 
 /******************************************************************************/

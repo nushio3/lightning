@@ -107,7 +107,7 @@ abundance(double x, double y, double z, double *abundance){
    * function of (x,y,z).
    */
   //  double aba[3] = {2.2e-10, 4.2e-15, 2.8e-12};
-    double aba[3] = {2.2e-10, 0.66e-10, 2.8e-12};
+    double aba[3] = {1e-8, 0.66e-10, 2.8e-12};
 
   abundance[0] = aba[mol_mode_id];
 
@@ -123,7 +123,10 @@ doppler(double x, double y, double z, double *doppler){
    * Note that *doppler is a pointer, not an array. 
    * Remember the * in front of doppler.
    */
-  *doppler = 200.;
+  double tmp[1];
+  temperature(x,y,z,tmp);
+
+  *doppler = sqrt(284.6 * tmp[0]);
 }
 
 /******************************************************************************/

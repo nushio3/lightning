@@ -26,6 +26,8 @@ input(inputPars *par, image *img){
   par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
   par->moldatfile[0] 	= "hco+@xpol.dat";
+  par->moldatfile[0] 	= "n2h+@xpol.dat";
+
   par->sampling			= 0;
 
   par->outputfile 		= "populations.pop";

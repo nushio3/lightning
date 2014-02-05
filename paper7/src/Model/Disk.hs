@@ -17,7 +17,9 @@ import qualified Control.Lens as Lens
 import           UnitTyped
 import           UnitTyped.Synonyms
 
+
 import           Model.Values
+import           Model.Gas
 import           Text.Authoring
 import           Text.Authoring.TH
 
@@ -109,6 +111,16 @@ densityGas = Lens.to go where
       h = env^.scaleHeight
       pos = env^.coord 
 
+numberDensityGas :: Getter Environment (PerCm3 Double)
+numberDensityGas = Lens.to go where 
+  go env = autoc $ factor *| (env^.gasSurfaceDensity) |/| h |/| molecularMass H2 where
+      z = pos ^. altitude
+      factor = (2*pi)**(-1/2)
+             * (exp(negate $ val (square z |/| (2 *| square h))))
+      h = env^.scaleHeight
+      pos = env^.coord 
+
+
 soundSpeed :: Getter Environment (CmPerSec Double)
 soundSpeed = Lens.to (go . (^.)) where
   go env = U.sqrt $ autoc cssq where
@@ -141,4 +153,47 @@ sigmoid x = 1/(1+exp (negate x))
 
 gaussian :: Double -> Double -> Double -> Double
 gaussian mu sigma x = 1/sqrt(2*pi* sigma^2) * exp (negate $ (/2) $ ((x-mu)/sigma)^2)
+
+
+ppdDensity :: Getter Environment (GramPerCm3 Double)
+ppdDensity = densityGas
+
+
+ppdNumberDensity :: Getter Environment (PerCm3 Double)
+ppdNumberDensity = Lens.to $ 
+  \env -> autoc $ (env ^. ppdDensity) |/| ppdMix molecularMass
+
+mfpPpd15 :: Getter Environment (Cm Double)
+mfpPpd15 = Lens.to $ \env -> 
+  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
+
+mfpPpd15E :: Getter Environment (Cm Double)
+mfpPpd15E = Lens.to $ \env->
+  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ elCrossSection 15)
+
+ppdDielectricStrengthT :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthT = Lens.to go where
+  go env = autoc $ w |/| ((env^.mfpPpd15) |*| elementaryCharge) where
+    w = mkVal 15 :: ElectronVolt Double
+
+ppdDielectricStrengthDP :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthDP = Lens.to go where
+  go env = autoc $ ratio *| w |/| (0.43 *| elementaryCharge |*| (env^.mfpPpd15E)) where
+    w = mkVal 15                           :: ElectronVolt Double
+    ratio = sqrt $ val ratioD              :: Double
+    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
+    bigM = autoc $ ppdMix molecularMass    :: GramUnit Double
+
+ppdDielectricStrengthR :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthR = Lens.to go where
+  go env = autoc $ 
+    (20.2/(8*pi)) *| (e3 |*| z |*| n)
+             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg) 
+    where
+      nrg :: JouleUnit Double
+      nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+      
+      e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
+      z = ppdMix atomicNumber
+      n = env ^. ppdNumberDensity 
 

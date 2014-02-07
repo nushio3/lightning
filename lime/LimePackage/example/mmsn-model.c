@@ -14,7 +14,7 @@
 #include "math.h"
 #include "lime.h"
 
-const int mol_mode_id=0;
+const int mol_mode_id=2;
 char* moldata_file_name[3] = {"hco+@xpol.dat","dco+@xpol.dat", "n2h+@xpol.dat"};
 char* img_file_name[3] = {"image-hco+.fits","image-dco+.fits", "image-n2h+.fits"};
 // double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
@@ -27,10 +27,10 @@ input(inputPars *par, image *img){
   /*
    * Basic parameters. See cheat sheet for details.
    */
-  par->radius			= 2000*AU;
+  par->radius			= 5000*AU;
   par->minScale	   		= 0.5*AU;
-  par->pIntensity    	= 8000;
-  par->sinkPoints    	= 6000;
+  par->pIntensity    	= 4000;
+  par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
   par->moldatfile[0] 	= moldata_file_name[mol_mode_id];
 

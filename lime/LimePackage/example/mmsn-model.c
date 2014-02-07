@@ -14,8 +14,10 @@
 #include "math.h"
 #include "lime.h"
 
+const int mol_mode_id=1;
+char* moldata_file_name[3] = {"hco+@xpol.dat","dco+@xpol.dat", "n2h+@xpol.dat"};
 char* img_file_name[3] = {"image-hco+.fits","image-dco+.fits", "image-n2h+.fits"};
-double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
+// double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
 
 /******************************************************************************/
 
@@ -30,9 +32,7 @@ input(inputPars *par, image *img){
   par->pIntensity    	= 4000;
   par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
-  par->moldatfile[0] 	= "hco+@xpol.dat";
-  par->moldatfile[1] 	= "dco+@xpol.dat";
-  par->moldatfile[2] 	= "n2h+@xpol.dat";
+  par->moldatfile[0] 	= moldata_file_name[mol_mode_id];
 
   par->sampling			= 0;
 
@@ -43,20 +43,17 @@ input(inputPars *par, image *img){
    * Definitions for image #0. Add blocks for additional images.
    */
   
-  for (i = 0; i < 3; ++i) {
-    img[i].nchan			= 41;		  // Number of channels
-    img[i].velres			= 50.;       // Channel resolution in m/s
-    img[i].freq  = line_freq[i];
-    img[i].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
-    img[i].freq
-    img[i].pxls			= 100;	      // Pixels per dimension
-    img[i].imgres			= 0.1;		  // Resolution in arc seconds
-    img[i].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
-    img[i].distance		= 140*PC;	  // source distance in m
-    img[i].source_vel		= 0;          // source velocity in m/s
-    img[i].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
-    img[i].filename		= img_file_name[i];	// Output filename
-  }
+  img[0].nchan			= 40;		  // Number of channels
+  img[0].velres			= 50.;       // Channel resolution in m/s
+  img[0].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
+  img[0].pxls			= 100;	      // Pixels per dimension
+  img[0].imgres			= 0.1;		  // Resolution in arc seconds
+  img[0].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
+  img[0].distance		= 140*PC;	  // source distance in m
+  img[0].source_vel		= 0;          // source velocity in m/s
+  img[0].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
+  img[0].filename		= img_file_name[mol_mode_id];	// Output filename
+
 }
 
 /******************************************************************************/
@@ -109,9 +106,11 @@ abundance(double x, double y, double z, double *abundance){
    * Here we use a constant abundance. Could be a 
    * function of (x,y,z).
    */
-  abundance[0] = 2.2e-10;
-  abundance[1] = 2.8e-12;
-  abundance[2] = 4.2e-15;
+  //  double aba[3] = {2.2e-10, 4.2e-15, 2.8e-12};
+    double aba[3] = {2.2e-10, 0.66e-10, 2.8e-12};
+
+  abundance[0] = aba[mol_mode_id];
+
 }
 
 /******************************************************************************/

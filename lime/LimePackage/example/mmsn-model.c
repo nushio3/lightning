@@ -14,7 +14,7 @@
 #include "math.h"
 #include "lime.h"
 
-const int mol_mode_id=1;
+const int mol_mode_id=0;
 char* moldata_file_name[3] = {"hco+@xpol.dat","dco+@xpol.dat", "n2h+@xpol.dat"};
 char* img_file_name[3] = {"image-hco+.fits","image-dco+.fits", "image-n2h+.fits"};
 // double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
@@ -29,8 +29,8 @@ input(inputPars *par, image *img){
    */
   par->radius			= 2000*AU;
   par->minScale	   		= 0.5*AU;
-  par->pIntensity    	= 4000;
-  par->sinkPoints    	= 3000;
+  par->pIntensity    	= 8000;
+  par->sinkPoints    	= 6000;
   par->dust				= "jena_thin_e6.tab";
   par->moldatfile[0] 	= moldata_file_name[mol_mode_id];
 
@@ -46,10 +46,10 @@ input(inputPars *par, image *img){
   img[0].nchan			= 40;		  // Number of channels
   img[0].velres			= 50.;       // Channel resolution in m/s
   img[0].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
-  img[0].pxls			= 100;	      // Pixels per dimension
+  img[0].pxls			= 200;	      // Pixels per dimension
   img[0].imgres			= 0.1;		  // Resolution in arc seconds
   img[0].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
-  img[0].distance		= 140*PC;	  // source distance in m
+  img[0].distance		= 56*PC;	  // source distance in m
   img[0].source_vel		= 0;          // source velocity in m/s
   img[0].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
   img[0].filename		= img_file_name[mol_mode_id];	// Output filename

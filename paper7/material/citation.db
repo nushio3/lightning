@@ -248,6 +248,31 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2013A&A...557A.132M
+  - - ! '@ARTICLE{2013A&A...557A.132M,'
+    - ! '   author = {{Mathews}, G.~S. and {Klaassen}, P.~D. and {Juh{\''a}sz}, A.
+      and '
+    - ! "\t{Harsono}, D. and {Chapillon}, E. and {van Dishoeck}, E.~F. and "
+    - ! "\t{Espada}, D. and {de Gregorio-Monsalvo}, I. and {Hales}, A. and "
+    - ! "\t{Hogerheijde}, M.~R. and {Mottram}, J.~C. and {Rawlings}, M.~G. and "
+    - ! "\t{Takahashi}, S. and {Testi}, L.},"
+    - ! '    title = "{ALMA imaging of the CO snowline of the HD 163296 disk with
+      DCO$^{+}$}",'
+    - ! '  journal = {\aap},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1307.3420},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {stars: pre-main sequence, protoplanetary disks, submillimeter:
+      stars, stars: individual: HD 163296},'
+    - ! '     year = 2013,'
+    - ! '    month = sep,'
+    - ! '   volume = 557,'
+    - ! '      eid = {A132},'
+    - ! '    pages = {A132},'
+    - ! '      doi = {10.1051/0004-6361/201321600},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013A%26A...557A.132M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2013ASPC..476..387A
   - - ! '@INPROCEEDINGS{2013ASPC..476..387A,'
     - ! '   author = {{Akiyama}, E. and {Momose}, M. and {Tsukagoshi}, T. and {Kitamura},

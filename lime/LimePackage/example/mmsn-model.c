@@ -14,7 +14,8 @@
 #include "math.h"
 #include "lime.h"
 
-char* img_file_name[3] = {"image-hco+.fits","image-n2h+.fits","image-dco+.fits"};
+char* img_file_name[3] = {"image-hco+.fits","image-dco+.fits", "image-n2h+.fits"};
+double line_freq[3] = {267.5648e9, 216.1204e9, 279.5175e9};
 
 /******************************************************************************/
 
@@ -30,8 +31,8 @@ input(inputPars *par, image *img){
   par->sinkPoints    	= 3000;
   par->dust				= "jena_thin_e6.tab";
   par->moldatfile[0] 	= "hco+@xpol.dat";
-  par->moldatfile[1] 	= "n2h+@xpol.dat";
-  par->moldatfile[2] 	= "dco+@xpol.dat";
+  par->moldatfile[1] 	= "dco+@xpol.dat";
+  par->moldatfile[2] 	= "n2h+@xpol.dat";
 
   par->sampling			= 0;
 
@@ -43,15 +44,16 @@ input(inputPars *par, image *img){
    */
   
   for (i = 0; i < 3; ++i) {
-    img[i].nchan			= 60;		  // Number of channels
-    img[i].velres			= 500.;       // Channel resolution in m/s
-    img[i].trans			= 3;          // zero-indexed J quantum number
+    img[i].nchan			= 41;		  // Number of channels
+    img[i].velres			= 50.;       // Channel resolution in m/s
+    img[i].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
+    img[i].freq
     img[i].pxls			= 100;	      // Pixels per dimension
     img[i].imgres			= 0.1;		  // Resolution in arc seconds
     img[i].theta			= 0.122;		  // 0: face-on, pi/2: edge-on
     img[i].distance		= 140*PC;	  // source distance in m
     img[i].source_vel		= 0;          // source velocity in m/s
-    img[i].unit			= 0;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
+    img[i].unit			= 1;		  // 0:Kelvin 1:Jansky/pixel 2:SI 3:Lsun/pixel 4:tau
     img[i].filename		= img_file_name[i];	// Output filename
   }
 }
@@ -79,7 +81,9 @@ density(double x, double y, double z, double *density){
    * Calculate a spherical power-law density profile
    * (Multiply with 1e6 to go to SI-units)
    */
-  density[0] = 4.09e14 * exp(-r*r/(2*h*h)) * pow(r/AU, -1.5);
+  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5);
+  if (r > 300*AU) density[0] = 0;
+  if (r < 0.1*AU) density[0] = 0;
 }
 
 /******************************************************************************/
@@ -119,7 +123,7 @@ doppler(double x, double y, double z, double *doppler){
    * Note that *doppler is a pointer, not an array. 
    * Remember the * in front of doppler.
    */
-  *doppler = 0.;
+  *doppler = 200.;
 }
 
 /******************************************************************************/
@@ -144,8 +148,8 @@ velocity(double x, double y, double z, double *vel){
   /*
    * Vector transformation back into Cartesian basis
    */
-  vel[0]=v*cos(phi);
-  vel[1]=v*sin(phi);
+  vel[0]=-sin(phi)*v;
+  vel[1]= cos(phi)*v;
   vel[2]=0;
 }
 

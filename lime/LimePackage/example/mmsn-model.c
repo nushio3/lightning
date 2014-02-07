@@ -46,6 +46,7 @@ input(inputPars *par, image *img){
   for (i = 0; i < 3; ++i) {
     img[i].nchan			= 41;		  // Number of channels
     img[i].velres			= 50.;       // Channel resolution in m/s
+    img[i].freq  = line_freq[i];
     img[i].trans			= 2;          // zero-indexed J quantum number (2 indicates 3-2 transition.)
     img[i].freq
     img[i].pxls			= 100;	      // Pixels per dimension

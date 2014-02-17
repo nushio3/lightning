@@ -23,7 +23,9 @@ data LimeConfig
   , _velocityChannelNumber :: Int
   , _velocityResolution :: Double
   , _lightningInnerRadius :: Double
-  , _lightningOuterRadius :: Double 
+  , _lightningOuterRadius :: Double
+  , _particleNumber :: Int
+  , _sinkParticleNumber :: Int
   } deriving (Eq, Show)
 makeClassy ''LimeConfig
 
@@ -35,6 +37,8 @@ defaultLimeConfig = LimeConfig
   , _velocityResolution = 200
   , _lightningInnerRadius = 50
   , _lightningOuterRadius = 100
+  , _particleNumber = 4000
+  , _sinkParticleNumber = 3000
   }
 
 limeConfigSuite :: [LimeConfig]
@@ -49,10 +53,13 @@ limeConfigSuite = do
                    & velocityResolution .~ 50
   chem <- [HCOPlus, DCOPlus, N2HPlus]
   lm <- Nothing : map Just breakdownModels
+  let reso  = 8000 :: Double
+      sreso = 3000 * (reso/4000)**(2/3)
   return $ conf0 
          & targetMolecule .~ chem
          & targetLightningModel .~ lm
-
+         & particleNumber .~ (round reso)
+         & sinkParticleNumber .~ (round sreso)
 
 moldataFileName :: Getter LimeConfig FilePath
 moldataFileName = to go
@@ -61,7 +68,7 @@ moldataFileName = to go
       HCOPlus -> "material/lime/hco+@xpol.dat"
       DCOPlus -> "material/lime/dco+@xpol.dat"
       N2HPlus -> "material/lime/n2h+@xpol.dat"
-      x       -> error $ "unknown species: " ++ show x
+      x       -> error $ "line data unknown for species: " ++ show x
 
 molAbundance :: Getter LimeConfig Double
 molAbundance = to go
@@ -72,8 +79,9 @@ molAbundance = to go
 mkFileNameGetter :: String -> Getter LimeConfig String
 mkFileNameGetter ext = to go
   where
-    go conf = printf "material/lime-output/%s-%s-%s-R%d_%d-V%fx%d%s"
+    go conf = printf "material/lime-output/%s%dk-%s-%s-R%d_%d-V%fx%d%s"
       (conf ^. fileNameBody) 
+      ((conf ^. particleNumber) `div` 1000) 
       (show $ conf ^. targetMolecule)
       (filter isUpper $ show $ conf ^. targetLightningModel)
       (round $ conf ^. lightningInnerRadius :: Int)
@@ -122,6 +130,8 @@ generateLimeC fp conf = writeFile fp $ unlines
   , printf "double LightningVelocity = %f;" $ conf ^. lightningVelocity
   , printf "double LightningInnerRadius = %f;" $ conf ^. lightningInnerRadius
   , printf "double LightningOuterRadius = %f;" $ conf ^. lightningOuterRadius
+  , printf "int ParticleNumber = %d;" $ conf ^. particleNumber
+  , printf "int SinkParticleNumber = %d;" $ conf ^. sinkParticleNumber
   , "#include \"mmsn-model.c\""
   ]
 
@@ -135,10 +145,10 @@ generatePy fp conf = writeFile fp $ unlines
   , printf "fp = open('%s','w')" $ conf^. pvDataFileName
   , "for i in range(nv):"
   , printf
-    "    vL = (-%d * 0.5 + i) * %f" 
+    "    vL = (-%d * 0.5 + i - 0.5) * %f" 
          (conf ^. velocityChannelNumber) (conf ^. velocityResolution)
   , printf
-    "    vR = (-%d * 0.5 + i + 1) * %f" 
+    "    vR = (-%d * 0.5 + i + 0.5) * %f" 
          (conf ^. velocityChannelNumber) (conf ^. velocityResolution)
   , "    jy = img[i].sum()"
   , "    print >> fp, vL, jy"

@@ -26,8 +26,8 @@ input(inputPars *par, image *img){
    */
   par->radius			= 500*AU;
   par->minScale	   		= 0.5*AU;
-  par->pIntensity    	= 64000;
-  par->sinkPoints    	= 32000;
+  par->pIntensity    	=  ParticleNumber;
+  par->sinkPoints    	=  SinkParticleNumber;
   par->dust				= "material/lime/jena_thin_e6.tab";
   par->moldatfile[0] 	= MoldataFileName;
 

@@ -8,6 +8,7 @@
 module Model.RadiativeTransfer where
 
 import Control.Lens
+import Control.Monad
 import UnitTyped
 import qualified UnitTyped.NoPrelude as U
 import UnitTyped.Synonyms
@@ -60,7 +61,7 @@ columnDensity100au x  = columnDensity100au H2 |*| fractionalAbundance100au x
 fractionalAbundance100au :: ChemicalSpecies -> NoDimension Double 
 fractionalAbundance100au N2HPlus = mkVal $ 5.3e-10 --(5.5e11 / 2.0e23)
 fractionalAbundance100au HCOPlus = mkVal $ 9.0e-9 --(4.3e13 / 2.0e23)
-fractionalAbundance100au DCOPlus = 0.00194e-2 *| fractionalAbundance100au HCOPlus
+fractionalAbundance100au DCOPlus = 0.3 *| fractionalAbundance100au HCOPlus
 fractionalAbundance100au _ = mkVal 0
 
 
@@ -75,12 +76,25 @@ aboutFractionalAbundance = do
    are $#{ppValE 0 $ fractionalAbundance100au HCOPlus} $
    and $#{ppValE 0 $ fractionalAbundance100au N2HPlus} $,
    respectively. 
+  |]
+
+  when False $ [rawQ|  
    We assume the fractional abundance of $\rm DCO^{+}$ to be
    $#{ppValE 0 $ fractionalAbundance100au DCOPlus}$, based on the
    hydrogen isotope ratio data in
    @{citet["bibcode:2009LanB...4B...44L"]}. The new paper by
    @{citet["bibcode:2013A&A...557A.132M"]} reports enhancement of DCO.
+   |]
 
+
+  [rawQ|  
+   We assume the fractional abundance of $\rm DCO^{+}$ to be
+   $#{ppValE 0 $ fractionalAbundance100au DCOPlus}$, based on the
+   observations by @{citet["bibcode:2013A&A...557A.132M"]}.
+   |]
+  
+
+  [rawQ|  
    Therefore, the column densities of $\rm HCO^{+}$, $\rm DCO^{+}$ and $\rm N_2H^{+}$
    are $#{ppValE 0 $ columnDensity100au HCOPlus} {\rm cm^{ -2}}$,
    $#{ppValE 0 $ columnDensity100au DCOPlus} {\rm cm^{ -2}}$,

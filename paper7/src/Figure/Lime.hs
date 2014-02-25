@@ -53,7 +53,7 @@ limeConfigSuite = do
                    & velocityResolution .~ 50
   chem <- [HCOPlus, DCOPlus, N2HPlus]
   lm <- Nothing : map Just breakdownModels
-  let reso  = 8000 :: Double
+  let reso  = 16000 :: Double
       sreso = 3000 * (reso/4000)**(2/3)
   return $ conf0 
          & targetMolecule .~ chem

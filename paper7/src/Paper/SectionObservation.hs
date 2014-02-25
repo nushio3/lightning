@@ -102,19 +102,6 @@ subsectionFigures = do
   [rawQ|
    \subsection{Line Profile Prediction by Radiative Transfer}
    
-   \begin{figure}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-HCOPlus-00.eps}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-DCOPlus-00.eps}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-N2HPlus-00.eps}
-   \caption{
-    The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place in the entire disk.
-    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
-    no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
-    runaway breakdown model, respectively.
-           }\label{fig-lightning-00}
-
-   \end{figure}    
     
    \begin{figure}
    \includegraphics[angle=270,width=8cm]{figure/lineProfile-HCOPlus-ex.eps}
@@ -124,7 +111,7 @@ subsectionFigures = do
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
       assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
     The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in Figure \ref{fig-lightning-00}.
-   }\label{fig-lightning-ex}
+   }\label{fig-lightning-lp}
    \end{figure}    
     
     We calculated the line profiles for the three ion species in disk with different lightning models,

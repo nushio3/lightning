@@ -104,13 +104,15 @@ subsectionFigures = do
    
     
    \begin{figure}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-HCOPlus-ex.eps}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-DCOPlus-ex.eps}
-   \includegraphics[angle=270,width=8cm]{figure/lineProfile-N2HPlus-ex.eps}
+   \includegraphics[angle=270,width=8cm]{figure/mix-HCOPlus-V50x80-pv.eps}
+   \includegraphics[angle=270,width=8cm]{figure/mix-DCOPlus-V50x80-pv.eps}
+   \includegraphics[angle=270,width=8cm]{figure/mix-N2HPlus-V50x80-pv.eps}
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
-    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} are the same meanings as in Figure \ref{fig-lightning-00}.
+      assuming that the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
+    The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
+    no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
+    runaway breakdown model, respectively.
    }\label{fig-lightning-lp}
    \end{figure}    
     
@@ -121,10 +123,24 @@ subsectionFigures = do
     TW Hya i.e. at the distance of 56pc and the
     inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
     
-    In Figure \ref{fig-lightning-00}, we assumed that the lightning takes place in the entire disk.
-    In Figure \ref{fig-lightning-00}, we assumed that
-    the lightning takes place at $ \mathrm{2au} < r <  \mathrm{200au}$ of the disk.
+    In Figure \ref{fig-lightning-lp}, we assumed that
+    the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
 
-   
+   \begin{figure}
+   \begin{tabular}{ccccccc}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-24.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-32.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-36.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-40.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-44.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-48.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-56.eps} 
+   \end{tabular}
+   \caption{
+   Simulated Observations.
+   }
+   \end{figure}
    TODO: ALMA sensitivity estimations.
    |]
+
+

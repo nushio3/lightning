@@ -128,16 +128,24 @@ subsectionFigures = do
 
    \begin{figure}
    \begin{tabular}{ccccccc}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-24.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-32.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-36.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-40.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-44.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-48.eps}  \hspace{ -2.6cm}& \hspace{ -2.6cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-56.eps} 
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-56.eps}  \\
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-56.eps}  
    \end{tabular}
    \caption{
-   Simulated Observations.
+   Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.
+   No lightning model (upper row) and Runaway breakdown model (lower row).
    }
    \end{figure}
    TODO: ALMA sensitivity estimations.

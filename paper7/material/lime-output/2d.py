@@ -26,7 +26,7 @@ set xtics nomirror rotate by 90
 {setytics}
 {setcb}
 set title 'v={dopplerVel}km/s'
-set out 'material/lime-output/2d-no-{index}.eps'
+set out 'material/lime-output/2d-r-{index}.eps'
 splot 'material/lime-output/2d.txt' t ''
 """
     v = velRes * (i-40)
@@ -37,10 +37,13 @@ splot 'material/lime-output/2d.txt' t ''
     fp = open('material/lime-output/2d.txt','w')
     for x in range(img0.shape[2]):
         for y in range(img0.shape[1]):
-            ax = (200-x) * 0.025 * 56
-            ay = (y-200) * 0.025 * 56
-            print >> fp, ax, ay, img2[i,y,x] * perBeam
-        print >> fp, ''    
+            if (x%2==0 and y%2==0):
+                ax = (200-x) * 0.025 * 56
+                ay = (y-200) * 0.025 * 56
+                avg4 = (img2[i,y,x] + img2[i,y+1,x] + img2[i,y+1,x+1] + img2[i,y,x+1])/4.0
+                print >> fp, ax, ay, avg4 * perBeam
+        if (x%2==0):
+            print >> fp, ''    
     fp.close
     subprocess.call('gnuplot material/lime-output/2d.gnuplot', shell=True)
 

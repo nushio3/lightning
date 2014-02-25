@@ -79,14 +79,14 @@ molAbundance = to go
 mkFileNameGetter :: String -> Getter LimeConfig String
 mkFileNameGetter ext = to go
   where
-    go conf = printf "material/lime-output/%s%dk-%s-%s-R%d_%d-V%fx%d%s"
+    go conf = printf "material/lime-output/%s%dk-%s-%s-R%d_%d-V%dx%d%s"
       (conf ^. fileNameBody) 
       ((conf ^. particleNumber) `div` 1000) 
       (show $ conf ^. targetMolecule)
       (filter isUpper $ show $ conf ^. targetLightningModel)
       (round $ conf ^. lightningInnerRadius :: Int)
       (round $ conf ^. lightningOuterRadius :: Int)
-      (conf ^. velocityResolution)
+      (round $ conf ^. velocityResolution :: Int)
       (conf ^. velocityChannelNumber)
       ext
 

@@ -146,8 +146,8 @@ subsectionFigures = do
    \caption{
    Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.
    No lightning model (upper row) and Runaway breakdown model (lower row).
-   Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$
-   where beam area of 0.9 $\mathrm{arcsec}^{2}$ is assumed.
+   Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
+   We assume beam size $0''.65 \times 0''44$.
    }
    \end{figure}
    TODO: ALMA sensitivity estimations.

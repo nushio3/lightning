@@ -35,8 +35,8 @@ defaultLimeConfig = LimeConfig
   , _fileNameBody = "LgRg"
   , _velocityChannelNumber = 201
   , _velocityResolution = 200
-  , _lightningInnerRadius = 50
-  , _lightningOuterRadius = 100
+  , _lightningInnerRadius = 100
+  , _lightningOuterRadius = 200
   , _particleNumber = 4000
   , _sinkParticleNumber = 3000
   }

@@ -61,6 +61,7 @@ library
     , transformers
     , shake
     , units
+    , units-defs
 
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/

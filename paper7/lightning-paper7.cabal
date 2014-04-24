@@ -20,6 +20,8 @@ Data-Files:          material/aastex.cls
 
 library
   exposed-modules:   
+    Data.Metrology.Synonyms
+
     Figure.DiskSection
     Figure.Gnuplot
     Figure.Lime
@@ -40,7 +42,7 @@ library
     Paper.SectionModel
     Paper.SectionObservation
 
-    UnitTyped.Synonyms
+
 
   other-modules:     Paths_lightning_paper7
   build-depends:     
@@ -58,7 +60,7 @@ library
     , text
     , transformers
     , shake
-    , unittyped >= 0.3.1
+    , units
 
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    src/
@@ -96,7 +98,7 @@ executable make-figures
                    
                    , lens
                    , process
-                   , unittyped
+
 
 executable make-lime-figures
   main-is:           make-lime-figures.hs           
@@ -107,7 +109,7 @@ executable make-lime-figures
                    
                    , lens
                    , process
-                   , unittyped
+
 
 -- Test-Suite doctest
 --   Type:                 exitcode-stdio-1.0

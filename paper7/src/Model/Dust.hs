@@ -9,14 +9,7 @@ import           Data.Monoid ((<>))
 import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
-import           UnitTyped
-import           UnitTyped.SI
-import           UnitTyped.SI.Constants
-import           UnitTyped.SI.Meta
-import           UnitTyped.SI.Derived.Length
-import           UnitTyped.SI.Derived.Time
-import           UnitTyped.Synonyms
-import qualified UnitTyped.NoPrelude as U
+import           Data.Metrology.Synonyms
 
 
 dustSurfaceCharge :: CoulombPerCm2 Double

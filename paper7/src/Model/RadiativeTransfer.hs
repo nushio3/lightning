@@ -9,9 +9,8 @@ module Model.RadiativeTransfer where
 
 import Control.Lens
 import Control.Monad
-import UnitTyped
-import qualified UnitTyped.NoPrelude as U
-import UnitTyped.Synonyms
+import Data.Metrology
+import Data.Metrology.Synonyms
 
 import Model.Gas
 import Model.Values

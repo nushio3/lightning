@@ -4,19 +4,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeOperators #-}
 
-module UnitTyped.Synonyms where
+module Data.Metrology.Synonyms where
 
 import           Data.Typeable
 import           Text.Printf
-import           UnitTyped
-import           UnitTyped.SI
-import           UnitTyped.SI.Constants
-import           UnitTyped.SI.Meta
-import           UnitTyped.SI.Derived
-import           UnitTyped.SI.Derived.Length
-import           UnitTyped.SI.Derived.Time
-import           UnitTyped.SI.Derived.Mass
-import qualified UnitTyped.NoPrelude as U
 
 ----------------------------------------------------------------
 -- Pretty Printing Functions

@@ -1,8 +1,8 @@
 module Model.Values where
 
-import UnitTyped
-import qualified UnitTyped.SI.Constants as C
-import UnitTyped.Synonyms
+import Data.Metrology
+import qualified Model.Values as C
+import Data.Metrology.Synonyms
 
 ----------------------------------------------------------------
 -- Mass units

@@ -116,6 +116,8 @@ type Meter2 = Meter :^ Two
 type Cm2 = (Centi :@ Meter) :^ Two
 
 
+type GravitationalConstantUnit = 
+  (Meter :^ Three) :* ((Kilo :@ Gram) :^ MOne) :* (Second :^ MTwo)
 
 ----------------------------------------------------------------
 -- Electric Units
@@ -133,6 +135,7 @@ type PermittivityUnit =
   (Second :^ Four) :*
   (Ampere :^ Two)
 
+-- mu0
 type PermeabilityUnit = 
   ((Kilo :@ Gram) :^ One) :*
   (Meter :^ One) :*

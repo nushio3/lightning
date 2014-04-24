@@ -19,6 +19,6 @@ writeSectionData fn = do
           
     z :: Double -> Double -> Double
     z x y = 0 -- error "TODO: Figure.DiskSection"
---       OrbitalRadius `being` x *| astronomicalUnit$
---       ZCoordinate `being` y *| astronomicalUnit $      
+--       OrbitalRadius `being` x *. astronomicalUnit$
+--       ZCoordinate `being` y *. astronomicalUnit $      
 --       val densityGas 

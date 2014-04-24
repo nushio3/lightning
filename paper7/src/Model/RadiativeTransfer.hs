@@ -26,7 +26,7 @@ fieldToVelocity env chem = U.sqrt $ v2
     ef :: VoltPerCm Double
     ef = env ^. lightningAccelerator 
     v2 :: Cm2PerSec2 Double
-    v2 = autoc $ elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
+    v2 = autoc $ elementaryCharge .* ef .* (env^.mfpPpd15) ./ m 
     m :: GramUnit Double
     m = autoc $ molecularMass chem 
 
@@ -55,12 +55,12 @@ dipoleMoment _ = mkVal 0
 -- | From WMN 2010
 columnDensity100au :: ChemicalSpecies -> PerCm2 Double 
 columnDensity100au H2 = mkVal 2.0e23
-columnDensity100au x  = columnDensity100au H2 |*| fractionalAbundance100au x
+columnDensity100au x  = columnDensity100au H2 .* fractionalAbundance100au x
 
 fractionalAbundance100au :: ChemicalSpecies -> NoDimension Double 
 fractionalAbundance100au N2HPlus = mkVal $ 5.3e-10 --(5.5e11 / 2.0e23)
 fractionalAbundance100au HCOPlus = mkVal $ 9.0e-9 --(4.3e13 / 2.0e23)
-fractionalAbundance100au DCOPlus = 0.3 *| fractionalAbundance100au HCOPlus
+fractionalAbundance100au DCOPlus = 0.3 *. fractionalAbundance100au HCOPlus
 fractionalAbundance100au _ = mkVal 0
 
 
@@ -103,13 +103,13 @@ aboutFractionalAbundance = do
 
 
 rotationalConst :: ChemicalSpecies -> PerSecond Double 
-rotationalConst N2HPlus = autoc $ speedOfLight |*| (mkVal 3.1079 :: PerCm Double)
-rotationalConst HCOPlus = autoc $ speedOfLight |*| (mkVal 2.9750 :: PerCm Double)
-rotationalConst DCOPlus = autoc $ speedOfLight |*| (mkVal 2.4030 :: PerCm Double)
+rotationalConst N2HPlus = autoc $ speedOfLight .* (mkVal 3.1079 :: PerCm Double)
+rotationalConst HCOPlus = autoc $ speedOfLight .* (mkVal 2.9750 :: PerCm Double)
+rotationalConst DCOPlus = autoc $ speedOfLight .* (mkVal 2.4030 :: PerCm Double)
 rotationalConst _ = mkVal 0
 
 lineFrequency :: Int -> ChemicalSpecies -> GHz Double 
-lineFrequency j chem = autoc $ (1+fromIntegral j :: Double) *| rotationalConst chem
+lineFrequency j chem = autoc $ (1+fromIntegral j :: Double) *. rotationalConst chem
 
 
 aboutScovilleFormula :: MonadAuthoring s w m => m ()
@@ -136,27 +136,27 @@ scovilleFormula j tex chem =
   scovilleFormulaAthermal j tex vgas chem 
   where
     vgas :: CmPerSec Double
-    vgas = U.sqrt $ autoc $ exitationNrg |/| molecularMass chem
+    vgas = U.sqrt $ autoc $ exitationNrg ./ molecularMass chem
 
     exitationNrg :: JouleUnit Double
-    exitationNrg = autoc $ kB |*| tex
+    exitationNrg = autoc $ kB .* tex
 
     
 scovilleFormulaAthermal :: Int -> KelvinUnit Double -> CmPerSec Double -> ChemicalSpecies -> PerCm2 Double
 scovilleFormulaAthermal j tex vgas chem = 
   autoc $ 
-    factor *|
-    (exitationNrg |*| vgas) |/| 
-    (rotB |*| dipoleInteraction)
+    factor *.
+    (exitationNrg .* vgas) ./ 
+    (rotB .* dipoleInteraction)
   where
     factor :: Double
     factor = (3 / (2*pi*pi)) / (realJ+1) * exp(val firstExp)  * (1 - exp(- val secondExp))
     
     firstExp :: NoDimension Double
-    firstExp = (realJ * (realJ+1)) *| (planckConstant |*| rotB)  |/| (exitationNrg)
+    firstExp = (realJ * (realJ+1)) *. (planckConstant .* rotB)  ./ (exitationNrg)
     
     secondExp :: NoDimension Double
-    secondExp = ((2*realJ) *| planckConstant |*| rotB)  |/| (exitationNrg)
+    secondExp = ((2*realJ) *. planckConstant .* rotB)  ./ (exitationNrg)
     
     realJ :: Double
     realJ = fromIntegral j
@@ -165,27 +165,27 @@ scovilleFormulaAthermal j tex vgas chem =
     rotB = rotationalConst chem
     
     exitationNrg :: JouleUnit Double
-    exitationNrg = autoc $ kB |*| tex
+    exitationNrg = autoc $ kB .* tex
 
     deb :: DebyeOf Double
     deb = dipoleMoment chem
     
     dipoleInteraction :: JouleM3 Double
-    dipoleInteraction = autoc $  (deb |*| deb) |/| vacuumPermittivity
+    dipoleInteraction = autoc $  (deb .* deb) ./ vacuumPermittivity
 
 blackBodyRadiation :: PerSecond Double -> KelvinUnit Double -> SpectralRadiance Double
 blackBodyRadiation nu tem = autoc $ 
-  factor *| planckConstant |*| cubic nu |/| square speedOfLight
+  factor *. planckConstant .* cubic nu ./ square speedOfLight
     where
       factor :: Double
       factor = 2 / (exp (val ie) - 1)
       
       ie :: NoDimension Double
-      ie = (planckConstant |*| nu) |/| (kB |*| tem)
+      ie = (planckConstant .* nu) ./ (kB .* tem)
 
 
 lineRadiation100au :: Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
-lineRadiation100au j tem chem = (1 - exp (negate tau)) *| bbr
+lineRadiation100au j tem chem = (1 - exp (negate tau)) *. bbr
   where
     nu = lineFrequency j chem
     bbr = blackBodyRadiation (autoc nu) tem
@@ -194,14 +194,14 @@ lineRadiation100au j tem chem = (1 - exp (negate tau)) *| bbr
     n1 = scovilleFormulaAthermal j tem ligVel chem
 
     tau :: Double
-    tau = val $ columnDensity100au chem |/| n1
+    tau = val $ columnDensity100au chem ./ n1
     
     ligVel :: CmPerSec Double
     ligVel = mkVal 7e5
     
 
 lineRadiation ::  PerCm2 Double -> CmPerSec Double -> Int -> KelvinUnit Double -> ChemicalSpecies -> SpectralRadiance Double
-lineRadiation colDens ligVel j tem chem = (1 - exp (negate tau)) *| bbr
+lineRadiation colDens ligVel j tem chem = (1 - exp (negate tau)) *. bbr
   where
     nu = lineFrequency j chem
     bbr = blackBodyRadiation (autoc nu) tem
@@ -210,7 +210,7 @@ lineRadiation colDens ligVel j tem chem = (1 - exp (negate tau)) *| bbr
     n1 = scovilleFormulaAthermal j tem ligVel chem
 
     tau :: Double
-    tau = val $ colDens |/| n1
+    tau = val $ colDens ./ n1
     
     
 
@@ -295,7 +295,7 @@ aboutLineProperty = do
 
 
      lr :: ChemicalSpecies -> JanskyUnit Double
-     lr chem = autoc $ solidAngle *| lineRadiation100au 2 tem100au chem
+     lr chem = autoc $ solidAngle *. lineRadiation100au 2 tem100au chem
 
 aboutLineProfile :: MonadAuthoring s w m => m ()
 aboutLineProfile = do
@@ -321,7 +321,7 @@ lineProfile :: Disk -> Int -> ChemicalSpecies -> (KmPerSec Double -> JanskyUnit 
 lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
   where
     go :: DiskPortion -> JanskyUnit Double
-    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *| peakRadiance |*| a0 |/| square (env's distanceFromEarth)
+    go (DiskPortion pos a0) = autoc $ (exp $ negate $ val expPart) *. peakRadiance .* a0 ./ square (env's distanceFromEarth)
       where
         env = disk >$< pos
         env's = (env ^.)        
@@ -333,17 +333,17 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         incli = env's inclinationAngle 
         
         expPart :: NoDimension Double
-        expPart =  autoc $ molecularMass chem |*| square dopplerDiff 
-          |/| (2 *| kB |*| env's temperature |+| 
-               molecularMass chem |*| square (fieldToVelocity env chem))
+        expPart =  autoc $ molecularMass chem .* square dopplerDiff 
+          ./ (2 *. kB .* env's temperature |+| 
+               molecularMass chem .* square (fieldToVelocity env chem))
         
         dopplerDiff :: KmPerSec Double
         dopplerDiff = dv |-| 
-                      (cos phi * sin incli) *| (env's orbitalVelocity)
+                      (cos phi * sin incli) *. (env's orbitalVelocity)
         
         peakRadiance :: SpectralRadiance Double
         peakRadiance = 
           lineRadiation 
-            (env's gasSurfaceDensity |/| protonMass |*| fractionalAbundance100au chem) 
+            (env's gasSurfaceDensity ./ protonMass .* fractionalAbundance100au chem) 
             (fieldToVelocity env chem) j (env's temperature) chem
            

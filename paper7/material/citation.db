@@ -1,0 +1,467 @@
+- - ! "bibcode:\t2009LanB...4B...44L"
+  - - ! '@ARTICLE{2009LanB...4B...44L,'
+    - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
+    - ! '    title = "{Abundances of the Elements in the Solar System}",'
+    - ! '  journal = {Landolt B{\"o}rnstein},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0901.1149},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {solar abundances, solar system abundances, condensation temperatures},'
+    - ! '     year = 2009,'
+    - ! '    pages = {44},'
+    - ! '      doi = {10.1007/978-3-540-88055-4_34},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1981PThPS..70...35H
+  - - ! '@ARTICLE{1981PThPS..70...35H,'
+    - ! '   author = {{Hayashi}, C.},'
+    - ! '    title = "{Structure of the Solar Nebula, Growth and Decay of Magnetic
+      Fields and Effects of Magnetic and Turbulent Viscosities on the Nebula}",'
+    - ! '  journal = {Progress of Theoretical Physics Supplement},'
+    - ! '     year = 1981,'
+    - ! '   volume = 70,'
+    - ! '    pages = {35-53},'
+    - ! '      doi = {10.1143/PTPS.70.35},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1981PThPS..70...35H},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1983JMSJ...61...656
+  - - ! '@ARTICLE{1983JMSJ.. 61...656,'
+    - ! '   author = {{Takahashi}, T.},'
+    - ! '    title = "{Electric Structure of Oceanic Tropical Clouds and Charge Separation
+      Processes}",'
+    - ! '  journal = {Journal of the Meteorological Society of Japan. Ser. II},'
+    - ! '     year = 1983,'
+    - ! '   volume = 61,'
+    - ! '   number = 4,'
+    - ! '    pages = {656-669},'
+    - ! '}'
+- - bibcode:1986ApJ...303..416S
+  - - ! '@ARTICLE{1986ApJ...303..416S,'
+    - ! '   author = {{Scoville}, N.~Z. and {Sargent}, A.~I. and {Sanders}, D.~B.
+      and '
+    - ! "\t{Claussen}, M.~J. and {Masson}, C.~R. and {Lo}, K.~Y. and {Phillips}, T.~G."
+    - ! "\t},"
+    - ! '    title = "{High-resolution mapping of molecular outflows in NGC 2071,
+      W49, and NGC 7538}",'
+    - ! '  journal = {\apj},'
+    - ! ' keywords = {ASTRONOMICAL MAPS, EMISSION SPECTRA, GAS FLOW, MOLECULAR CLOUDS,
+      MOLECULAR FLOW, NEBULAE, STELLAR WINDS, CONTINUOUS SPECTRA, FLOW VELOCITY, H
+      II REGIONS, HIGH RESOLUTION, MILLIMETER WAVES, RADIO INTERFEROMETERS, STELLAR
+      EVOLUTION},'
+    - ! '     year = 1986,'
+    - ! '    month = apr,'
+    - ! '   volume = 303,'
+    - ! '    pages = {416-432},'
+    - ! '      doi = {10.1086/164086},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1986ApJ...303..416S},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1989GeCoA..53..197A
+  - - ! '@ARTICLE{1989GeCoA..53..197A,'
+    - ! '   author = {{Anders}, E. and {Grevesse}, N.},'
+    - ! '    title = "{Abundances of the elements - Meteoritic and solar}",'
+    - ! '  journal = {\gca},'
+    - ! ' keywords = {ABUNDANCE, CHEMICAL ANALYSIS, CHONDRITES, METEORITIC COMPOSITION,
+      PHOTOSPHERE, SOLAR CORONA, ENERGETIC PARTICLES, ISOTOPES, SOLAR WIND, METEORITES,
+      ABUNDANCE, SAMPLES, METEORITE, CI CHONDRITES, SUN, CORONA, PHOTOSPHERE, REVIEW,
+      ELEMENTS, FRACTIONATION, SOLAR SYSTEM, NUCLIDES, SOLAR WIND, CHARGED PARTICLES,
+      RARE GASES, REFRACTORY ELEMENTS, COMETS, SIDEROPHILES, VOLATILES, NUCLEOSYNTHESIS,
+      HALLEY, COMPARISONS},'
+    - ! '     year = 1989,'
+    - ! '    month = jan,'
+    - ! '   volume = 53,'
+    - ! '    pages = {197-214},'
+    - ! '      doi = {10.1016/0016-7037(89)90286-X},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1989GeCoA..53..197A},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1999JAtS...56.1561T
+  - - ! '@ARTICLE{1999JAtS...56.1561T,'
+    - ! '   author = {{Takahashi}, T. and {Tajiri}, T. and {Sonoi}, Y.},'
+    - ! '    title = "{Charges on Graupel and Snow Crystals and the Electrical Structure
+      of Winter Thunderstorms.}",'
+    - ! '  journal = {Journal of Atmospheric Sciences},'
+    - ! '     year = 1999,'
+    - ! '    month = jun,'
+    - ! '   volume = 56,'
+    - ! '    pages = {1561-1578},'
+    - ! '      doi = {10.1175/1520-0469(1999)056<1561:COGASC>2.0.CO;2},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2002ApJ...581..357K
+  - - ! '@ARTICLE{2002ApJ...581..357K,'
+    - ! '   author = {{Kitamura}, Y. and {Momose}, M. and {Yokogawa}, S. and {Kawabe},
+      R. and '
+    - ! "\t{Tamura}, M. and {Ida}, S.},"
+    - ! '    title = "{Investigation of the Physical Properties of Protoplanetary
+      Disks around T Tauri Stars by a 1 Arcsecond Imaging Survey: Evolution and Diversity
+      of the Disks in Their Accretion Stage}",'
+    - ! '  journal = {\apj},'
+    - ! ' keywords = {Stars: Circumstellar Matter, Stars: Planetary Systems: Formation,
+      Radio Lines: Stars, Stars: Pre-Main-Sequence},'
+    - ! '     year = 2002,'
+    - ! '    month = dec,'
+    - ! '   volume = 581,'
+    - ! '    pages = {357-380},'
+    - ! '      doi = {10.1086/344223},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002ApJ...581..357K},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2002JGRD..107.4075M
+  - - ! '@ARTICLE{2002JGRD..107.4075M,'
+    - ! '   author = {{Mansell}, E.~R. and {MacGorman}, D.~R. and {Ziegler}, C.~L.
+      and '
+    - ! "\t{Straka}, J.~M.},"
+    - ! '    title = "{Simulated three-dimensional branched lightning in a numerical
+      thunderstorm model}",'
+    - ! '  journal = {Journal of Geophysical Research (Atmospheres)},'
+    - ! ' keywords = {Meteorology and Atmospheric Dynamics, Meteorology and Atmospheric
+      Dynamics: Atmospheric electricity, Meteorology and Atmospheric Dynamics: Lightning,
+      Meteorology and Atmospheric Dynamics: Numerical modeling and data assimilation,},'
+    - ! '     year = 2002,'
+    - ! '    month = may,'
+    - ! '   volume = 107,'
+    - ! '      eid = {4075},'
+    - ! '    pages = {4075},'
+    - ! '      doi = {10.1029/2000JD000244},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2009ApJ...700.1502A
+  - - ! '@ARTICLE{2009ApJ...700.1502A,'
+    - ! '   author = {{Andrews}, S.~M. and {Wilner}, D.~J. and {Hughes}, A.~M. and '
+    - ! "\t{Qi}, C. and {Dullemond}, C.~P.},"
+    - ! '    title = "{Protoplanetary Disk Structures in Ophiuchus}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0906.0730},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {accretion, accretion disks, circumstellar matter, planetary
+      systems: protoplanetary disks, solar system: formation, stars: pre-main sequence},'
+    - ! '     year = 2009,'
+    - ! '    month = aug,'
+    - ! '   volume = 700,'
+    - ! '    pages = {1502-1523},'
+    - ! '      doi = {10.1088/0004-637X/700/2/1502},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009ApJ...700.1502A},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2009LanB...4B...44L
+  - - ! '@ARTICLE{2009LanB...4B...44L,'
+    - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
+    - ! '    title = "{Abundances of the Elements in the Solar System}",'
+    - ! '  journal = {Landolt B{\"o}rnstein},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0901.1149},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {solar abundances, solar system abundances, condensation temperatures},'
+    - ! '     year = 2009,'
+    - ! '    pages = {44},'
+    - ! '      doi = {10.1007/978-3-540-88055-4_34},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2010ApJ...720..480O
+  - - ! '@ARTICLE{2010ApJ...720..480O,'
+    - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
+      E.~A. and '
+    - ! "\t{Andrews}, S.~M. and {Espaillat}, C. and {van Kempen}, T.~A. and "
+    - ! "\t{Wilner}, D.~J. and {Pascucci}, I.},"
+    - ! '    title = "{The Disk Imaging Survey of Chemistry with SMA. I. Taurus Protoplanetary
+      Disk Data}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1007.1476},'
+    - ! ' primaryClass = "astro-ph.GA",'
+    - ! ' keywords = {astrochemistry, ISM: molecules, protoplanetary disks, radio
+      lines: ISM, stars: formation, techniques: high angular resolution},'
+    - ! '     year = 2010,'
+    - ! '    month = sep,'
+    - ! '   volume = 720,'
+    - ! '    pages = {480-493},'
+    - ! '      doi = {10.1088/0004-637X/720/1/480},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...720..480O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2010ApJ...723.1241A
+  - - ! '@ARTICLE{2010ApJ...723.1241A,'
+    - ! '   author = {{Andrews}, S.~M. and {Wilner}, D.~J. and {Hughes}, A.~M. and '
+    - ! "\t{Qi}, C. and {Dullemond}, C.~P.},"
+    - ! '    title = "{Protoplanetary Disk Structures in Ophiuchus. II. Extension
+      to Fainter Sources}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1007.5070},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {accretion, accretion disks, circumstellar matter, planetary
+      systems, protoplanetary disks, stars: pre-main sequence},'
+    - ! '     year = 2010,'
+    - ! '    month = nov,'
+    - ! '   volume = 723,'
+    - ! '    pages = {1241-1254},'
+    - ! '      doi = {10.1088/0004-637X/723/2/1241},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010ApJ...723.1241A},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2010MNRAS.401.2641M
+  - - ! '@ARTICLE{2010MNRAS.401.2641M,'
+    - ! '   author = {{Muranushi}, T.},'
+    - ! '    title = "{Dust-dust collisional charging and lightning in protoplanetary
+      discs}",'
+    - ! '  journal = {\mnras},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0908.1575},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {plasmas, turbulence, methods: numerical, meteors, meteoroids,
+      planetary systems: formation, planetary systems: protoplanetary discs},'
+    - ! '     year = 2010,'
+    - ! '    month = feb,'
+    - ! '   volume = 401,'
+    - ! '    pages = {2641-2664},'
+    - ! '      doi = {10.1111/j.1365-2966.2009.15848.x},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2010MNRAS.401.2641M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2011ApJ...734...98O
+  - - ! '@ARTICLE{2011ApJ...734...98O,'
+    - ! '   author = {{{\"O}berg}, K.~I. and {Qi}, C. and {Fogel}, J.~K.~J. and {Bergin},
+      E.~A. and '
+    - ! "\t{Andrews}, S.~M. and {Espaillat}, C. and {Wilner}, D.~J. and "
+    - ! "\t{Pascucci}, I. and {Kastner}, J.~H.},"
+    - ! '    title = "{Disk Imaging Survey of Chemistry with SMA. II. Southern Sky
+      Protoplanetary Disk Data and Full Sample Statistics}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1104.1236},'
+    - ! ' primaryClass = "astro-ph.GA",'
+    - ! ' keywords = {astrochemistry, ISM: molecules, protoplanetary disks, radio
+      lines: ISM, stars: formation, techniques: high angular resolution},'
+    - ! '     year = 2011,'
+    - ! '    month = jun,'
+    - ! '   volume = 734,'
+    - ! '      eid = {98},'
+    - ! '    pages = {98},'
+    - ! '      doi = {10.1088/0004-637X/734/2/98},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2013A&A...557A.132M
+  - - ! '@ARTICLE{2013A&A...557A.132M,'
+    - ! '   author = {{Mathews}, G.~S. and {Klaassen}, P.~D. and {Juh{\''a}sz}, A.
+      and '
+    - ! "\t{Harsono}, D. and {Chapillon}, E. and {van Dishoeck}, E.~F. and "
+    - ! "\t{Espada}, D. and {de Gregorio-Monsalvo}, I. and {Hales}, A. and "
+    - ! "\t{Hogerheijde}, M.~R. and {Mottram}, J.~C. and {Rawlings}, M.~G. and "
+    - ! "\t{Takahashi}, S. and {Testi}, L.},"
+    - ! '    title = "{ALMA imaging of the CO snowline of the HD 163296 disk with
+      DCO$^{+}$}",'
+    - ! '  journal = {\aap},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1307.3420},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {stars: pre-main sequence, protoplanetary disks, submillimeter:
+      stars, stars: individual: HD 163296},'
+    - ! '     year = 2013,'
+    - ! '    month = sep,'
+    - ! '   volume = 557,'
+    - ! '      eid = {A132},'
+    - ! '    pages = {A132},'
+    - ! '      doi = {10.1051/0004-6361/201321600},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013A%26A...557A.132M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2013ASPC..476..387A
+  - - ! '@INPROCEEDINGS{2013ASPC..476..387A,'
+    - ! '   author = {{Akiyama}, E. and {Momose}, M. and {Tsukagoshi}, T. and {Kitamura},
+      Y.'
+    - ! "\t},"
+    - ! '    title = "{Temperature and Surface Density Structures of a Typical Full
+      Disk around MWC 480}",'
+    - booktitle = {Astronomical Society of the Pacific Conference Series},
+    - ! '     year = 2013,'
+    - ! '   series = {Astronomical Society of the Pacific Conference Series},'
+    - ! '   volume = 476,'
+    - ! '   editor = {{Kawabe}, R. and {Kuno}, N. and {Yamamoto}, S.},'
+    - ! '    month = oct,'
+    - ! '    pages = {387},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013ASPC..476..387A},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - doi:10.1002/andp.19303970303
+  - - ! '@article{Bethe_1930, title={Zur Theorie des Durchgangs schneller Korpuskularstrahlen
+      durch Materie}, volume={397}, url={http://dx.doi.org/10.1002/andp.19303970303},
+      DOI={10.1002/andp.19303970303}, number={3}, journal={Annalen der Physik}, publisher={Wiley
+      Blackwell (John Wiley &amp; Sons)}, author={Bethe, H.}, year={1930}, pages={325-400}}'
+- - doi:10.1006/icar.1999.6245
+  - - ! '@article{Desch_2000, title={The Generation of Lightning in the Solar Nebula},
+      volume={143}, url={http://dx.doi.org/10.1006/icar.1999.6245}, DOI={10.1006/icar.1999.6245},
+      number={1}, journal={Icarus}, publisher={Elsevier - Academic Press}, author={Desch,
+      S.J. and Cuzzi, J.N.}, year={2000}, month={Jan}, pages={87-105}}'
+- - doi:10.1007/BF01342532
+  - - ! "@article{Bethe_1932, title={Bremsformel f\xEF\xBF\xBDr Elektronen relativistischer
+      Geschwindigkeit}, volume={76}, url={http://dx.doi.org/10.1007/BF01342532}, DOI={10.1007/BF01342532},
+      number={5-6}, journal={Zeitschrift f\xEF\xBF\xBDr Physik}, publisher={Springer-Verlag},
+      author={Bethe, H.}, year={1932}, month={May}, pages={293-299}}"
+- - doi:10.1007/BF01344553
+  - - ! "@article{Bloch_1933, title={Bremsverm\xEF\xBF\xBDgen von Atomen mit mehreren
+      Elektronen}, volume={81}, url={http://dx.doi.org/10.1007/BF01344553}, DOI={10.1007/BF01344553},
+      number={5-6}, journal={Zeitschrift f\xEF\xBF\xBDr Physik}, publisher={Springer-Verlag},
+      author={Bloch, F.}, year={1933}, month={May}, pages={363-376}}"
+- - doi:10.1016/0375-9601(92)90348-P
+  - - ! '@article{vich_Milikh_Roussel-Dupre_1992, title={Runaway electron mechanism
+      of air breakdown and preconditioning during a thunderstorm}, volume={165}, url={http://dx.doi.org/10.1016/0375-9601(92)90348-P},
+      DOI={10.1016/0375-9601(92)90348-P}, number={5-6}, journal={Physics Letters A},
+      publisher={Elsevier }, author={Gurevich, A.V. and Milikh, G.M. and Roussel-Dupre,
+      R.}, year={1992}, month={Jun}, pages={463-468}}'
+- - doi:10.1016/S0092-640X(72)80002-0
+  - - ! '@article{Bertel_Joffre_Sklavenitis_1972, title={Energy loss, range, and bremsstrahlung
+      yield for 10-keV to 100-MeV electrons in various elements and chemical compounds},
+      volume={4}, url={http://dx.doi.org/10.1016/S0092-640X(72)80002-0}, DOI={10.1016/S0092-640X(72)80002-0},
+      journal={Atomic Data and Nuclear Data Tables}, publisher={Elsevier }, author={Pages,
+      Lucien and Bertel, Evelyne and Joffre, Henri and Sklavenitis, Laodamas}, year={1972},
+      month={Mar}, pages={1-27}}'
+- - doi:10.1029/96JD01625
+  - - ! '@article{ch_Helsdon_Detwiler_Smith_1996, title={Microphysical and electrical
+      evolution of a Florida thunderstorm: 1. Observations}, volume={101}, url={http://dx.doi.org/10.1029/96JD01625},
+      DOI={10.1029/96JD01625}, number={D14}, journal={Journal of Geophysical Research},
+      publisher={Wiley Blackwell (John Wiley &amp; Sons)}, author={French, Jeffrey
+      R. and Helsdon, John H. and Detwiler, Andrew G. and Smith, Paul L.}, year={1996},
+      month={Aug}, pages={18961}}'
+- - doi:10.1029/JD091iD01p01231
+  - - ! '@article{b_Pitter_Hallett_Saunders_1986, title={Early electrification and
+      precipitation development in a small, isolated Montana cumulonimbus}, volume={91},
+      url={http://dx.doi.org/10.1029/JD091iD01p01231}, DOI={10.1029/JD091iD01p01231},
+      number={D1}, journal={Journal of Geophysical Research}, publisher={Wiley Blackwell
+      (John Wiley &amp; Sons)}, author={Dye, J. E. and Jones, J. J. and Winn, W. P.
+      and Cerni, T. A. and Gardiner, B. and Lamb, D. and Pitter, R. L. and Hallett,
+      J. and Saunders, C. P. R.}, year={1986}, pages={1231}}'
+- - doi:10.1063/1.323084
+  - - ! '@article{Phelps_Griffiths_1976, title={Dependence of positive corona streamer
+      propagation on air pressure and water vapor content}, volume={47}, url={http://dx.doi.org/10.1063/1.323084},
+      DOI={10.1063/1.323084}, number={7}, journal={Journal of Applied Physics}, publisher={American
+      Institute of Physics}, author={Phelps, C. T. and Griffiths, R. F.}, year={1976},
+      pages={2929}}'
+- - doi:10.1063/1.329081
+  - - ! '@article{Chantry_1981, title={A critique of methods for calculating the dielectric
+      strength of gas mixtures}, volume={52}, url={http://dx.doi.org/10.1063/1.329081},
+      DOI={10.1063/1.329081}, number={4}, journal={Journal of Applied Physics}, publisher={American
+      Institute of Physics}, author={Chantry, P. J.}, year={1981}, pages={2731}}'
+- - doi:10.1070/PU2001v044n11ABEH000939
+  - - ! '@article{Gurevich_Zybin_2001, title={Runaway breakdown and electric discharges
+      in thunderstorms}, volume={44}, url={http://dx.doi.org/10.1070/PU2001v044n11ABEH000939},
+      DOI={10.1070/PU2001v044n11ABEH000939}, number={11}, journal={Physics-Uspekhi},
+      publisher={Uspekhi Fizicheskikh Nauk Journal}, author={Gurevich, Aleksandr V
+      and Zybin, Kirill P}, year={2001}, month={Nov}, pages={1119-1140}}'
+- - doi:10.1086/421063
+  - - ! '@article{Blake_Hogerheijde_et_al__2004, title={Imaging the Disk around TW
+      Hydrae with the Submillimeter Array}, volume={616}, url={http://dx.doi.org/10.1086/421063},
+      DOI={10.1086/421063}, number={1}, journal={The Astrophysical Journal}, publisher={IOP
+      Publishing}, author={Qi, Chunhua and Ho, Paul T. P. and Wilner, David J. and
+      Takakuwa, Shigehisa and Hirano, Naomi and Ohashi, Nagayoshi and Bourke, Tyler
+      L. and Zhang, Qizhou and Blake, Geoffrey A. and Hogerheijde, Michiel and et
+      al.}, year={2004}, month={Nov}, pages={L11-L14}}'
+- - doi:10.1086/432796
+  - - ! '@article{Inutsuka_Sano_2005, title={Self-sustained Ionization and Vanishing
+      Dead Zones in Protoplanetary Disks}, volume={628}, url={http://dx.doi.org/10.1086/432796},
+      DOI={10.1086/432796}, number={2}, journal={The Astrophysical Journal}, publisher={IOP
+      Publishing}, author={Inutsuka, Shu-ichiro and Sano, Takayoshi}, year={2005},
+      month={Aug}, pages={L155-L158}}'
+- - doi:10.1088/0004-637X/722/2/1607
+  - - ! '@article{Walsh_Millar_Nomura_2010, title={CHEMICAL PROCESSES IN PROTOPLANETARY
+      DISKS}, volume={722}, url={http://dx.doi.org/10.1088/0004-637X/722/2/1607},
+      DOI={10.1088/0004-637X/722/2/1607}, number={2}, journal={The Astrophysical Journal},
+      publisher={IOP Publishing}, author={Walsh, Catherine and Millar, T. J. and Nomura,
+      Hideko}, year={2010}, month={Oct}, pages={1607-1623}}'
+- - doi:10.1088/0004-637X/747/2/114
+  - - ! '@article{alsh_Nomura_Millar_Aikawa_2012, title={CHEMICAL PROCESSES IN PROTOPLANETARY
+      DISKS. II. ON THE IMPORTANCE OF PHOTOCHEMISTRY AND X-RAY IONIZATION}, volume={747},
+      url={http://dx.doi.org/10.1088/0004-637X/747/2/114}, DOI={10.1088/0004-637X/747/2/114},
+      number={2}, journal={The Astrophysical Journal}, publisher={IOP Publishing},
+      author={Walsh, Catherine and Nomura, Hideko and Millar, T. J. and Aikawa, Yuri},
+      year={2012}, month={Mar}, pages={114}}'
+- - doi:10.1103/RevModPhys.12.87
+  - - ! '@article{Druyvesteyn_Penning_1940, title={The Mechanism of Electrical Discharges
+      in Gases of Low Pressure}, volume={12}, url={http://dx.doi.org/10.1103/RevModPhys.12.87},
+      DOI={10.1103/RevModPhys.12.87}, number={2}, journal={Reviews of Modern Physics},
+      publisher={American Physical Society}, author={Druyvesteyn, M. J. and Penning,
+      F. M.}, year={1940}, month={Apr}, pages={87-174}}'
+- - doi:10.1146/annurev-astro-081710-102548
+  - - ! '@article{Williams_Cieza_2011, title={Protoplanetary Disks and Their Evolution},
+      volume={49}, url={http://dx.doi.org/10.1146/annurev-astro-081710-102548}, DOI={10.1146/annurev-astro-081710-102548},
+      number={1}, journal={Annual Review of Astronomy and Astrophysics}, publisher={Annual
+      Reviews}, author={Williams, Jonathan P. and Cieza, Lucas A.}, year={2011}, month={Sep},
+      pages={67-117}}'
+- - isbn:3-540-29692-1
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "K. R. Lang",'
+    - ! '        TITLE = "Astrophysical formulae",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin",'
+    - ! '        YEAR ="2006"}'
+- - isbn:3-540-64296-X
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Y. Itikawa.",'
+    - ! '        TITLE = "Interactions of photons and electrons with atoms",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2000"}'
+- - isbn:354044338X
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "W. Martienssen",'
+    - ! '        TITLE = "Interactions of photons and electrons with molecules",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2003"}'
+- - isbn:3540653473
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Y. Itikawa.",'
+    - ! '        TITLE = "Collisions of electrons with atomic ions",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin [u.a.]",'
+    - ! '        YEAR ="2001"}'
+- - isbn:978-0-521-75618-1
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Malcolm S. Longair",'
+    - ! '        TITLE = "High energy astrophysics",'
+    - ! '        PUBLISHER = "Cambridge University Press",'
+    - ! '        ADDRESS = "Cambridge",'
+    - ! '        YEAR ="2010"}'
+- - isbn:978-3-642-64760-4
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Yuri P. Raizer",'
+    - ! '        TITLE = "Gas discharge physics",'
+    - ! '        PUBLISHER = "Springer",'
+    - ! '        ADDRESS = "Berlin",'
+    - ! '        YEAR ="1997"}'
+- - isbn:9780028645865
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "J. S. Rigden",'
+    - ! '        TITLE = "[A - D].",'
+    - ! '        PUBLISHER = "Macmillan Reference USA",'
+    - ! '        ADDRESS = "New York",'
+    - ! '        YEAR ="1996"}'
+- - isbn:9781449335946
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "{Marlow}, S.",'
+    - ! '        TITLE = "Parallel and Concurrent Programming in Haskell.",'
+    - ! '        PUBLISHER = "Oreilly \& Associates Inc",'
+    - ! '        ADDRESS = "",'
+    - ! '        YEAR ="2013"}'
+- - isbn:9784130627184
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "{Takahashi}, T.",'
+    - ! '        TITLE = "Kaminari no Kagaku",'
+    - ! '        PUBLISHER = "Tokyo Daigaku Shuppankai",'
+    - ! '        YEAR ="2009"}'
+- - special:nist-estar
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "M.J. {Berger} and J.S. {Coursey} and M.A. {Zucker} and
+      J. {Chang}",'
+    - ! '        TITLE = "Stopping-Power and Range Tables for Electrons, Protons,
+      and Helium Ions",'
+    - ! '        PUBLISHER = "NIST, Physical Measurement Laboratory",'
+    - ! '        URL = "http://www.nist.gov/pml/data/star/index.cfm",'
+    - ! '        YEAR ="2009"}'

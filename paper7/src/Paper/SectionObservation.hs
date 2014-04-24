@@ -10,9 +10,8 @@ import           Control.Monad.State
 import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
 
-import UnitTyped
-import qualified UnitTyped.NoPrelude as U
-import UnitTyped.Synonyms
+import Data.Metrology
+import Data.Metrology.Synonyms
 
 import Model.Breakdown
 import Model.Disk
@@ -128,20 +127,20 @@ subsectionFigures = do
 
    \begin{figure}
    \begin{tabular}{ccccccc}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-no-56.eps}  \\
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-r-56.eps}  
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-N-56.eps}  \\
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  
    \end{tabular}
    \caption{
    Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.

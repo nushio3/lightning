@@ -1,8 +1,8 @@
 module Model.Constants where
 
-import UnitTyped
-import UnitTyped.Synonyms
-import qualified UnitTyped.NoPrelude as U
+import Data.Metrology
+import Data.Metrology.Synonyms
+import qualified Data.Metrology.NoPrelude as U
 
 electronMass :: Kg Double
 electronMass = mkVal 9.10938291e-31

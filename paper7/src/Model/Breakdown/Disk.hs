@@ -10,9 +10,8 @@ import Control.Lens
 import Text.Authoring
 import Text.Authoring.TH
 
-import UnitTyped
-import qualified UnitTyped.NoPrelude as U
-import UnitTyped.Synonyms
+import Data.Metrology
+import Data.Metrology.Synonyms
 
 import Model.Breakdown
 import Model.Disk

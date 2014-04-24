@@ -6,7 +6,7 @@ import Model.Disk
 import Model.Gas
 import Model.Disk.Hayashi
 
-import UnitTyped
+import Data.Metrology
 
 lightenedDisk :: BreakdownModel -> Disk -> Disk
 lightenedDisk bm disk0 = disk0 & lightningAcceleratorField .~ laf

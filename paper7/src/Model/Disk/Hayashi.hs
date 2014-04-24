@@ -17,13 +17,7 @@ import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
-import           UnitTyped
-import           UnitTyped.SI
-import           UnitTyped.SI.Derived.Length
-import           UnitTyped.SI.Derived.Time
-import           UnitTyped.SI.Meta
-import           UnitTyped.Synonyms
-import qualified UnitTyped.NoPrelude as U
+import           Data.Metrology.Synonyms
 
 
 import           Model.Disk

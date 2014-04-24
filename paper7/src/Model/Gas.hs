@@ -10,8 +10,8 @@ import Control.Applicative
 import Control.Lens as Lens
 import Text.Authoring
 import Text.Authoring.TH
-import UnitTyped
-import UnitTyped.Synonyms
+import Data.Metrology
+import Data.Metrology.Synonyms
 
 import Model.Values
 

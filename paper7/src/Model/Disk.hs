@@ -9,13 +9,10 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk where
 
-import           UnitTyped
-import           UnitTyped.Synonyms
-import qualified UnitTyped.NoPrelude as U
+import           Data.Metrology
+import           Data.Metrology.Synonyms
 import           Control.Lens
 import qualified Control.Lens as Lens
-import           UnitTyped
-import           UnitTyped.Synonyms
 
 
 import           Model.Values

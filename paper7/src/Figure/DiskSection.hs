@@ -2,9 +2,6 @@ module Figure.DiskSection where
 
 import Model.Disk.Hayashi 
 import Text.Printf
-import UnitTyped(val, (*|))
-import           UnitTyped.SI.Derived.Length
-import UnitTyped.Synonyms
 
 writeSectionData :: FilePath -> IO ()
 writeSectionData fn = do

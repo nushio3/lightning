@@ -6,8 +6,6 @@ import Control.Monad
 import Data.Char
 import System.Process
 import Text.Printf
-import UnitTyped (val,autoc)
-import UnitTyped.Synonyms (MPerSec)
 import Model.Breakdown
 import Model.Gas
 import Model.RadiativeTransfer

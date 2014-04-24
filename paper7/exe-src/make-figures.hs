@@ -14,10 +14,10 @@ import Model.Disk.Derived
 import Model.Gas
 import Model.RadiativeTransfer
 import Text.Printf
-import UnitTyped (mkVal,autoc,val)
-import           UnitTyped.SI.Meta
-import           UnitTyped.SI.Derived.Length
-import           UnitTyped.Synonyms
+import Data.Metrology (mkVal,autoc,val)
+import           Data.Metrology.SI.Meta
+import           Data.Metrology.SI.Derived.Length
+import           Data.Metrology.Synonyms
 import System.IO
 import System.Process
 import Text.Printf

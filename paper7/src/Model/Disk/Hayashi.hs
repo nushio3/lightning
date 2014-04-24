@@ -95,18 +95,18 @@ mmsnModel
   where
     sdGas :: Coord -> GramPerCm2 Double
     sdGas pos = autoc $ 
-      cutoff *|
-       mmsnStandardSurfaceDensity |*|
-       (fmap (**(-1.5)) $ r |/| (1 *| astronomicalUnit))
+      cutoff *.
+       mmsnStandardSurfaceDensity .*
+       (fmap (**(-1.5)) $ r ./ (1 *. astronomicalUnit))
       where
         cutoff =
-          sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
-          sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
+          sigmoid (val $ (r |-| innerRadius) ./ innerSH) *
+          sigmoid (negate $ val $ (r |-| outerRadius) ./ outerSH)
         r = pos ^. radius 
         
     tem :: Coord -> KelvinUnit Double
-    tem pos = 140 *| kelvin |*|
-       (fmap (**(-0.5)) $ r |/| (1 *| astronomicalUnit))
+    tem pos = 140 *. kelvin .*
+       (fmap (**(-0.5)) $ r ./ (1 *. astronomicalUnit))
       where
         r = pos ^. radius
 

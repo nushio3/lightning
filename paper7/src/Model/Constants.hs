@@ -14,8 +14,8 @@ solarMass :: Kg Double
 solarMass = mkVal 1.98892e30
 
 lightSpeed :: MeterPerSec Double
-lightSpeed = U.sqrt $ autoc $ (one :: NoDimension Double) |/| 
-     (vacuumPermittivity |*| vacuumPermeability)
+lightSpeed = U.sqrt $ autoc $ (one :: NoDimension Double) ./ 
+     (vacuumPermittivity .* vacuumPermeability)
     
 
 

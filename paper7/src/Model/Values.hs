@@ -26,13 +26,16 @@ protonMass = 1.67262178e-24 % Gram
 speedOfLight :: Compatible l CmPerSec => Velocity l Double
 speedOfLight =  29979245800 % (undefined :: CmPerSec)
 
+
+elementaryCharge :: (Compatible l Coulomb) => Charge l Double
+elementaryCharge = 1.60217657e-19 % Coulomb
+
+
+gravitationalConstant :: (Compatible l GravitationalConstantUnit) 
+  => MkGenQu (DimFactorsOf GravitationalConstantUnit) l Double
+gravitationalConstant = 6.67384e-11 % (undefined :: GravitationalConstantUnit)
+
 {-
-
-elementaryCharge :: Coulomb Double
-elementaryCharge = mkVal 1.60217657e-19
-
-gravitationalConstant = C.g
-
 kB = C.kB
 
 

@@ -1,28 +1,32 @@
+{-# LANGUAGE ConstraintKinds #-}
 module Model.Values where
 
 import Data.Metrology
-import qualified Model.Values as C
 import Data.Metrology.Synonyms
+import Data.Metrology.SI.Units
+import Data.Metrology.SI.GenTypes
 
 ----------------------------------------------------------------
 -- Mass units
 ----------------------------------------------------------------
 
-solarMass :: GramUnit Double
-solarMass = mkVal 1.98892e33
+solarMass :: Compatible l Gram => Mass l Double
+solarMass = 1.98892e33 % Gram
 
-earthMass :: GramUnit Double
-earthMass = mkVal 5.9742e24
+earthMass :: Compatible l Gram => Mass l Double
+earthMass = 5.9742e24 % Gram
 
-electronMass :: GramUnit Double
-electronMass = mkVal 9.10938291e-28
+electronMass :: Compatible l Gram => Mass l Double
+electronMass = 9.10938291e-28 % Gram
 
-protonMass :: GramUnit Double
-protonMass = mkVal 1.67262178e-24
+protonMass :: Compatible l Gram => Mass l Double
+protonMass = 1.67262178e-24 % Gram
 
 
-speedOfLight :: CmPerSec Double
-speedOfLight = mkVal 29979245800
+speedOfLight :: Compatible l CmPerSec => Velocity l Double
+speedOfLight =  29979245800 % (undefined :: CmPerSec)
+
+{-
 
 elementaryCharge :: Coulomb Double
 elementaryCharge = mkVal 1.60217657e-19
@@ -47,3 +51,4 @@ planckConstant = mkVal 6.6260695729e-34
 -- |Reduced Planck constant
 hbar ::  JouleSecond Double
 hbar = mkVal $ 6.6260695729e-34 / 2 / pi
+-}

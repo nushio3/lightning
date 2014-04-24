@@ -6,18 +6,20 @@
 
 module Data.Metrology.Synonyms where
 
-import           Data.Typeable
+import           Data.Metrology
+import           Data.Metrology.SI
+import           Data.Metrology.Unsafe
 import           Text.Printf
 
 ----------------------------------------------------------------
 -- Pretty Printing Functions
 ----------------------------------------------------------------
 
-ppValF :: PrintfArg x => String -> Value a b x -> String
-ppValF fmtStr (Value x) = printf fmtStr x
+ppValF :: PrintfArg x => String -> Qu d l x -> String
+ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
-ppValE :: PrintfArg x => Int -> Value a b x -> String
-ppValE d (Value x) = ret
+ppValE :: PrintfArg x => Int -> Qu d l x -> String
+ppValE d (Qu x) = ret
   where
     fmtStr :: String
     fmtStr = printf "%%.%de" d
@@ -32,128 +34,116 @@ ppValE d (Value x) = ret
       _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
 
 
-----------------------------------------------------------------
--- Nondimensionals
-----------------------------------------------------------------
-
-type NoDimension = Value '[] '[]
 
 ----------------------------------------------------------------
 -- Nonweighted units
 ----------------------------------------------------------------
 
-type HertzUnit =  Value '[ '(Time, NOne)] '[ '(Second, NOne) ] 
-type PerSecond =  Value '[ '(Time, NOne)] '[ '(Second, NOne) ] 
-type PerCm3 =  Value '[ '(Length, NThree)] '[ '(Centi Meter, NThree) ] 
-type PerCm2 =  Value '[ '(Length, NTwo)] '[ '(Centi Meter, NTwo) ] 
-type PerCm =  Value '[ '(Length, NOne)] '[ '(Centi Meter, NOne) ] 
-type GHz =  Value '[ '(Time, NOne)] '[ '(Giga Hertz, POne) ] 
+type PerSecond =  Number :/ Second
+type PerCm3 =  Second :^ MThree
+type PerCm2 =  Second :^ MTwo
+type PerCm = (Centi :@ Meter) :^ MTwo 
+type GHz =  (Giga :@ Hertz)
 
 ----------------------------------------------------------------
 -- Weighted units
 ----------------------------------------------------------------
 
 -- densities
-type GramPerCm2 =  Value '[ '(Mass, POne),  '(Length, NTwo)] '[ '(Gram, POne), '(Centi Meter, NTwo) ] 
-type GramPerCm3 =  Value '[ '(Mass, POne),  '(Length, NThree)] '[ '(Gram, POne), '(Centi Meter, NThree) ] 
+type GramPerCm2 = Gram :* PerCm2
+type GramPerCm3 = Gram :* PerCm3 
 
-type JouleM3 =  Value '[ '(Mass, POne),  '(Length, PFive),  '(Time, NTwo)] '[ '(Joule, POne), '(Meter, PThree) ] 
-
+type JouleM3 = Joule :/ (Meter :^ Three)
 
 
 -- see the table in http://en.wikipedia.org/wiki/Spectral_irradiance
-type SpectralRadiance = 
-    Value '[ '(Mass, POne), '(Time, NTwo)] '[ '(Watt, POne), '(Meter, NTwo), '(Hertz, NOne) {- Steradian, NOne -}  ] 
-
+type SpectralRadiance = Watt :/ (Meter :^ Two) :/ Hertz
 
 
 -- | Spectral Flux Density
-type SpectralFluxDensity = '[ '(Mass, POne), '(Time, NTwo)] 
+-- type SpectralFluxDensity = '[ '(Mass, POne), '(Time, NTwo)] 
 -- |Unit of EDP
-data Jansky
-        deriving Typeable
+data Jansky = Jansky
+instance Show Jansky where show _ = "Jy"
 
-instance Convertible Jansky where
-        factor _ = 1e-26
-        showunit _ = "Jy"
-        type DimensionOf Jansky = SpectralFluxDensity
-type JanskyUnit = Value SpectralFluxDensity '[ '(Jansky, POne) ]
+instance Unit Jansky where
+  type BaseUnit Jansky = Joule :/ (Meter :^ Two) :* Second
+  conversionRatio _ = 1e-26
 
 
 -- energies
-type ElectronVolt = Value Energy '[ '(Ev, POne)]
-type JouleUnit = Value Energy  '[ '(Joule, POne)]
+data ElectronVolt = ElectronVolt
+instance Show ElectronVolt where show _ = "eV"
+instance Unit ElectronVolt where
+  type BaseUnit ElectronVolt = Joule 
+  conversionRatio _ = 1.60217657e-19
 
-type JouleSecond = Value '[ '(Time, ('Neg 'One)), '(Mass, ('Pos 'One)), '(Length, ('Pos ('Suc 'One))) ] '[ '(Joule, ('Pos 'One)), '(Second, ('Pos 'One)) ]
 
+type JouleSecond = Joule :* Second
 
--- velocities
-type KmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Kilo Meter, POne), '(Second, NOne) ]
-type MPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
-
-type Kg = Value '[ '(Mass, POne)] '[ '(Kilo Gram, POne) ]  
-
-type GramUnit = Value '[ '(Mass, POne)] '[ '(Gram, POne) ]  
-type GramPerMole = Value '[ '(Mass, POne)] '[ '(Gram, POne), '(Mole, NOne) ]  
-
-type KelvinUnit = Value '[ '(Temperature, POne)] '[ '(Kelvin, POne) ] 
-
-type AU = Value '[ '(Length, POne)] '[ '(AstronomicalUnit, POne) ] 
-
-type Cm = Value '[ '(Length, POne)] '[ '(Centi Meter, POne) ]
-type Pc = Value '[ '(Length, POne)] '[ '(Parsec, POne) ]
 
 -- velocities
-type CmPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Centi Meter, POne), '(Second, NOne) ]
-type MeterPerSec = Value '[ '(Length, POne),  '(Time, NOne)] '[ '(Meter, POne), '(Second, NOne) ]
+type KmPerSec = (Kilo :@ Meter) :/ Second
+type MPerSec = Meter :/ Second
+type CmPerSec = (Centi :@ Meter) :/ Second
+
+type Kg = Kilo :@ Gram
+
+type GramPerMole = Gram :/ Mole
+
+
+data AU = AU
+instance Show AU where show _ = "au"
+instance Unit AU where
+  type BaseUnit AU = Meter
+  conversionRatio _ = 149597870700 
+
+data Parsec = Parsec
+instance Show Parsec where show _ = "pc"
+instance Unit Parsec where
+  type BaseUnit Parsec = Meter
+  conversionRatio _ = 3.08567758e16
+
+
 
 -- squared velocities
-type Cm2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Centi Meter, PTwo), '(Second, NTwo) ]
-type Meter2PerSec2 = Value '[ '(Length, PTwo),  '(Time, NTwo)] '[ '(Meter, PTwo), '(Second, NTwo) ]
-type Sec2PerMeter2 = Value '[ '(Length, NTwo),  '(Time, PTwo)] '[ '(Meter, NTwo), '(Second, PTwo) ]
+type Cm2PerSec2 = CmPerSec :^ Two
+type Meter2PerSec2 = MPerSec :^ Two
+type Sec2PerMeter2 = MPerSec :^ MTwo
 
 -- areas
-type Meter2 = Value '[ '(Length, PTwo)] '[ '(Meter, PTwo)]
-type Cm2 = Value '[ '(Length, PTwo)] '[ '(Centi Meter, PTwo)]
+type Meter2 = Meter :^ Two
+type Cm2 = (Centi :@ Meter) :^ Two
 
 
 
 ----------------------------------------------------------------
 -- Electric Units
 ----------------------------------------------------------------
-type VoltUnit = Value ElectricPotential '[ '(Volt, POne)]
-
-type VoltPerCm = Value 
-  '[ '(Current, NOne), '(Mass, POne), '(Length, POne), '(Time, NThree) ]
-  '[ '(Volt, POne) , '(Centi Meter, NOne)]
-type KVPerCm = Value 
-  '[ '(Current, NOne), '(Mass, POne), '(Length, POne), '(Time, NThree) ]
-  '[ '(Kilo Volt, POne) , '(Centi Meter, NOne)]
+type VoltPerCm = Volt :/ (Centi :@ Meter)
+type KVPerCm = (Kilo :@ Volt) :/ (Centi :@ Meter)
 
 
-type CoulombPerCm2 = 
-  Value
-    '[ '(Current, POne), '(Length, NTwo), '(Time, POne)]
-    '[ '(Ampere, POne), '(Centi Meter, NTwo), '(Second, POne) ] 
-
-type Coulomb = 
-  Value
-    '[ '(Current, POne), '(Time, POne)]
-    '[ '(Ampere, POne), '(Second, POne) ] 
+type CoulombPerCm2 = Coulomb :/ Cm2
 
 -- eps0
 type PermittivityUnit = 
-  Value
-    '[ '(Mass, NOne),  '(Length, NThree), '(Time, PFour), '(Current, PTwo)]
-    '[ '(Kilo Gram, NOne) , '(Meter, NThree), '(Second, PFour), '(Ampere, PTwo)] 
+  ((Kilo :@ Gram) :^ MOne) :*
+  (Meter :^ MThree) :*
+  (Second :^ Four) :*
+  (Ampere :^ Two)
 
--- mu0
 type PermeabilityUnit = 
-  Value
-    '[ '(Mass, POne),  '(Length, POne), '(Time, NTwo), '(Current, NTwo)]
-    '[ '(Kilo Gram, POne) , '(Meter, POne), '(Second, NTwo), '(Ampere, NTwo)] 
+  ((Kilo :@ Gram) :^ One) :*
+  (Meter :^ One) :*
+  (Second :^ MTwo) :*
+  (Ampere :^ MTwo)
+
 
 -- dipole moment
-type DebyeOf = Value ElectricDipoleMoment '[ '(Debye, POne)]
-
+data Debye = Debye
+instance Unit Debye where
+  type BaseUnit Debye = Coulomb :* Meter
+  conversionRatio _ = 1e-21/299792458
+  
   

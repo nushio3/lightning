@@ -44,7 +44,7 @@ ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
 ppdMix func = 0.9219 *. func H2 |+| 7.7718e-2 *. func He 
               |+| 2.262326e-4 *. func CO |+| 1.3404e-4 *. func O2
 
-atomicNumber :: ChemicalSpecies -> Qu '[] l Double 
+atomicNumber :: ChemicalSpecies -> QuOfUL Number MySU
 atomicNumber H2 = scalar 2
 atomicNumber He = scalar 2
 atomicNumber N2 = scalar 14
@@ -150,20 +150,17 @@ airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| 
     ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
     bigM = (airMix molecularMass |/| avogadroConstant) :: Mass MySU Double
 
-{-
+
 airDielectricStrengthR :: QuOfUL VoltPerCm MySU
-airDielectricStrengthR = 
+airDielectricStrengthR = redim $
   (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
     nrg :: Energy MySU Double
-    nrg = electronMass |*| speedOfLight |*| speedOfLight
+    nrg = redim $ electronMass |*| speedOfLight |*| speedOfLight
     
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = airMix atomicNumber
-    n = airNumberDensity
 
 
-
--}

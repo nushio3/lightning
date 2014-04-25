@@ -174,9 +174,9 @@ We assume that air consists of
 78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fraction).
 Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
 The ionization energy of these chemical species are
-$\Delta W_{\rm N_2} = #{val $ ionizationEnergy N2} {\rm eV}$,
-$\Delta W_{\rm O_2} = #{val $ ionizationEnergy O2} {\rm eV}$, and
-$\Delta W_{\rm Ar}  = #{val $ ionizationEnergy Ar} {\rm eV}$, respectively.
+$\Delta W_{\rm N_2} = #{ppValF "%.1f" $ ionizationEnergy N2} {\rm eV}$,
+$\Delta W_{\rm O_2} = #{ppValF "%.1f" $ ionizationEnergy O2} {\rm eV}$, and
+$\Delta W_{\rm Ar}  = #{ppValF "%.1f" $ ionizationEnergy Ar} {\rm eV}$, respectively.
 Of these $\Delta W_{\rm O_2} \sim 12 {\rm eV}$ is the smallest, so we estimate
 the electric field amplitude $E_{\rm crit}$ required to accelerate the electron
 upto 12eV; i.e. we solve $12 {\rm eV} = e E_{\rm crit} l_{\rm mfp}$.

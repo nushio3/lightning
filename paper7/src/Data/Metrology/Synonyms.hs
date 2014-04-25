@@ -1,3 +1,4 @@
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE EmptyDataDecls #-}
@@ -19,8 +20,13 @@ type MySU = SI
 -- Pretty Printing Functions
 ----------------------------------------------------------------
 
+-- TODO: The behavior of ppVal functions are critically different between unittyped and units. This should be fixed.
+
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
+
+ppValFIn :: (Unit u, Compatible l u) => u -> String -> QuOfUL u l -> String
+ppValFIn u fmtStr x = printf fmtStr (x#u) 
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
 ppValE d (Qu x) = ret

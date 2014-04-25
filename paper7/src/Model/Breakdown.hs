@@ -202,7 +202,7 @@ where $M$ is the mass of the collision partner,
 and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
 In the case of the air at NTP,
 since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
-$M = #{ppValE 2 $ (autoc $ airMix molecularMass :: GramUnit Double)} {\rm g}$.
+$M = #{ppValE 2 $ (airMix molecularMass # Gram)} {\rm g}$.
 Note that $l_{\rm mfp}$ in Druyversteyn-Penning model means elastic
 mean free path
 $l_{\rm mfp} = (n_n \sigma_{el})^{ -1} = #{ppValE 2 mfpAir12E} {\rm cm}$ which 

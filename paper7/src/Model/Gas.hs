@@ -72,9 +72,9 @@ http://www.astro.uni-koeln.de/cdms
 -}
 
 rotationalConstant :: ChemicalSpecies -> PerSecond Double
-rotationalConstant HCOPlus = autoc $ speedOfLight .* (mkVal 1.4875 :: PerCm Double)
-rotationalConstant DCOPlus = autoc $ speedOfLight .* (mkVal 1.2015 :: PerCm Double)
-rotationalConstant N2HPlus = autoc $ speedOfLight .* (mkVal 1.55395 :: PerCm Double)
+rotationalConstant HCOPlus = autoc $ speedOfLight |*| (mkVal 1.4875 :: PerCm Double)
+rotationalConstant DCOPlus = autoc $ speedOfLight |*| (mkVal 1.2015 :: PerCm Double)
+rotationalConstant N2HPlus = autoc $ speedOfLight |*| (mkVal 1.55395 :: PerCm Double)
 
 rotationalConstant c       = error $ "rotational constant undefined for : " ++ show c
 
@@ -114,41 +114,41 @@ airDensity :: GramPerCm3 Double
 airDensity = mkVal 1.2041e-3
 
 airNumberDensity :: PerCm3 Double
-airNumberDensity = autoc $ airDensity ./ airMix molecularMass
+airNumberDensity = autoc $ airDensity |/| airMix molecularMass
 
 
 mfpAir12 :: Cm Double
-mfpAir12 = autoc $ 1 /| airNumberDensity ./ (airMix $ inelCrossSection 12)
+mfpAir12 = autoc $ 1 /| airNumberDensity |/| (airMix $ inelCrossSection 12)
 
 mfpAir12E :: Cm Double
-mfpAir12E = autoc $ 1 /| airNumberDensity ./ (airMix $ elCrossSection 12)
+mfpAir12E = autoc $ 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
 
 
 airDielectricStrengthT :: VoltPerCm Double
-airDielectricStrengthT = autoc $ w ./ (mfpAir12 .* elementaryCharge)
+airDielectricStrengthT = autoc $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = mkVal 12 :: ElectronVolt Double
                         
 
 
 airDielectricStrengthDP :: VoltPerCm Double
-airDielectricStrengthDP = autoc $ ratio *. w ./ (0.43 *. elementaryCharge .* mfpAir12E) 
+airDielectricStrengthDP = autoc $ ratio *. w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
   where
     w = mkVal 12                           :: ElectronVolt Double
     ratio = sqrt $ val ratioD              :: Double
-    ratioD = autoc $ electronMass ./ bigM :: NoDimension Double
+    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
     bigM = autoc $ airMix molecularMass    :: GramUnit Double
 
 
 airDielectricStrengthR :: VoltPerCm Double
 airDielectricStrengthR = autoc $ 
-  (20.2/(8*pi)) *. (e3 .* z .* airNumberDensity)
-             ./ (vacuumPermittivity .* vacuumPermittivity .* nrg)
+  (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
+             |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
     nrg :: JouleUnit Double
-    nrg = autoc $ electronMass .* speedOfLight .* speedOfLight
+    nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
     
-    e3 = elementaryCharge .* elementaryCharge .* elementaryCharge 
+    e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = airMix atomicNumber
     n = airNumberDensity
 

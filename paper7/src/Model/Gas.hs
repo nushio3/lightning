@@ -141,24 +141,24 @@ airDielectricStrengthT = redim $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = 12 % ElectronVolt
                     
 
-{-
+
 airDielectricStrengthDP :: QuOfUL VoltPerCm MySU 
-airDielectricStrengthDP = autoc $ ratio *. w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
+airDielectricStrengthDP = ratio *. w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
   where
-    w = mkVal 12                           :: ElectronVolt Double
-    ratio = sqrt $ val ratioD              :: Double
-    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
-    bigM = autoc $ airMix molecularMass    :: GramUnit Double
+    w = 12 % ElectronVolt
+    ratio = qSqrt $  ratioD         :: Scalar
+    ratioD =  electronMass |/| bigM :: Scalar
+    bigM = airMix molecularMass |*| avogadroConstant
 
 
-airDielectricStrengthR :: VoltPerCm Double
-airDielectricStrengthR = autoc $ 
+airDielectricStrengthR :: QuOfUL VoltPerCm MySU
+airDielectricStrengthR = 
   (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
-    nrg :: JouleUnit Double
-    nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+    nrg :: Energy MySU Double
+    nrg = electronMass |*| speedOfLight |*| speedOfLight
     
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
     z = airMix atomicNumber
@@ -166,4 +166,3 @@ airDielectricStrengthR = autoc $
 
 
 
--}

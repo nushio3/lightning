@@ -11,6 +11,10 @@ import           Data.Metrology.SI
 import           Data.Metrology.Unsafe
 import           Text.Printf
 
+
+-- My System of Units in this paper
+type MySU = SI
+
 ----------------------------------------------------------------
 -- Pretty Printing Functions
 ----------------------------------------------------------------
@@ -40,9 +44,9 @@ ppValE d (Qu x) = ret
 ----------------------------------------------------------------
 
 type PerSecond =  Number :/ Second
-type PerCm3 =  Second :^ MThree
-type PerCm2 =  Second :^ MTwo
-type PerCm = (Centi :@ Meter) :^ MTwo 
+type PerCm3 =  (Centi :@ Meter) :^ MThree
+type PerCm2 = (Centi :@ Meter) :^ MTwo
+type PerCm = (Centi :@ Meter) :^ MOne
 type GHz =  (Giga :@ Hertz)
 
 ----------------------------------------------------------------

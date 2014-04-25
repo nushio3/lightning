@@ -143,14 +143,14 @@ airDielectricStrengthT = redim $ w |/| (mfpAir12 |*| elementaryCharge)
 
 
 airDielectricStrengthDP :: QuOfUL VoltPerCm MySU 
-airDielectricStrengthDP = ratio *. w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
+airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
   where
     w = 12 % ElectronVolt
-    ratio = qSqrt $  ratioD         :: Scalar
-    ratioD =  electronMass |/| bigM :: Scalar
-    bigM = airMix molecularMass |*| avogadroConstant
+    ratio = qSqrt $  ratioD         :: QuOfUL Number MySU
+    ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
+    bigM = (airMix molecularMass |/| avogadroConstant) :: Mass MySU Double
 
-
+{-
 airDielectricStrengthR :: QuOfUL VoltPerCm MySU
 airDielectricStrengthR = 
   (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
@@ -166,3 +166,4 @@ airDielectricStrengthR =
 
 
 
+-}

@@ -116,8 +116,10 @@ type Meter2 = Meter :^ Two
 type Cm2 = (Centi :@ Meter) :^ Two
 
 
-type GravitationalConstantUnit = 
+type SIGCUnit =
   (Meter :^ Three) :* ((Kilo :@ Gram) :^ MOne) :* (Second :^ MTwo)
+type SIkBUnit = Joule :/ Kelvin
+
 
 ----------------------------------------------------------------
 -- Electric Units
@@ -129,14 +131,14 @@ type KVPerCm = (Kilo :@ Volt) :/ (Centi :@ Meter)
 type CoulombPerCm2 = Coulomb :/ Cm2
 
 -- eps0
-type PermittivityUnit = 
+type SIPermittivityUnit = 
   ((Kilo :@ Gram) :^ MOne) :*
   (Meter :^ MThree) :*
   (Second :^ Four) :*
   (Ampere :^ Two)
 
 -- mu0
-type PermeabilityUnit = 
+type SIPermeabilityUnit = 
   ((Kilo :@ Gram) :^ One) :*
   (Meter :^ One) :*
   (Second :^ MTwo) :*

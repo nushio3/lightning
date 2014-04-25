@@ -18,7 +18,7 @@ import Data.Metrology.Synonyms
 import Data.Metrology.SI.GenTypes
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.SI.Units
-
+import Data.Metrology.Z
 
 
 import Model.Values
@@ -101,24 +101,24 @@ ionizationEnergy = go
     go He  = 24.58 % ElectronVolt
     go _   = undefined
 
-inelCrossSection :: Int -> ChemicalSpecies -> Length MySU Double    
-inelCrossSection 12 N2 = 0.8e-16   % (Centi :@ Meter)
-inelCrossSection 12 O2 = 1.8e-16   % (Centi :@ Meter)
-inelCrossSection 12 Ar = 0         % (Centi :@ Meter)
-inelCrossSection 15 H2 = 1.57e-16  % (Centi :@ Meter)
-inelCrossSection 15 O2 = 1.81e-16  % (Centi :@ Meter)
-inelCrossSection 15 CO = 0.051e-16 % (Centi :@ Meter)
-inelCrossSection _  _  = 0         % (Centi :@ Meter)
+inelCrossSection :: Int -> ChemicalSpecies -> Area MySU Double    
+inelCrossSection 12 N2 = 0.8e-16   % (Centi :@ Meter :^ pTwo)
+inelCrossSection 12 O2 = 1.8e-16   % (Centi :@ Meter :^ pTwo)
+inelCrossSection 12 Ar = 0         % (Centi :@ Meter :^ pTwo)
+inelCrossSection 15 H2 = 1.57e-16  % (Centi :@ Meter :^ pTwo)
+inelCrossSection 15 O2 = 1.81e-16  % (Centi :@ Meter :^ pTwo)
+inelCrossSection 15 CO = 0.051e-16 % (Centi :@ Meter :^ pTwo)
+inelCrossSection _  _  = 0         % (Centi :@ Meter :^ pTwo)
 
-elCrossSection :: Int -> ChemicalSpecies -> Length MySU Double    
-elCrossSection 12 N2 = 11.6e-16  % (Centi :@ Meter)
-elCrossSection 12 O2 = 9.00e-16  % (Centi :@ Meter)
-elCrossSection 12 Ar = 17.4e-16  % (Centi :@ Meter)
-elCrossSection 15 H2 = 6.62e-16  % (Centi :@ Meter)
-elCrossSection 15 O2 = 8.89e-16  % (Centi :@ Meter)
-elCrossSection 15 CO = 10.89e-16 % (Centi :@ Meter)
-elCrossSection 15 He = 3.55e-16  % (Centi :@ Meter)
-elCrossSection _  _  = 0         % (Centi :@ Meter)
+elCrossSection :: Int -> ChemicalSpecies -> Area MySU Double    
+elCrossSection 12 N2 = 11.6e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection 12 O2 = 9.00e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection 12 Ar = 17.4e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection 15 H2 = 6.62e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection 15 O2 = 8.89e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection 15 CO = 10.89e-16 % (Centi :@ Meter :^ pTwo)
+elCrossSection 15 He = 3.55e-16  % (Centi :@ Meter :^ pTwo)
+elCrossSection _  _  = 0         % (Centi :@ Meter :^ pTwo)
 
 airDensity :: Density MySU Double
 airDensity = 1.2041 % (kilo Gram :/ Meter :^ pThree)

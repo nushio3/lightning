@@ -31,27 +31,28 @@ elementaryCharge :: (Compatible l Coulomb) => Charge l Double
 elementaryCharge = 1.60217657e-19 % Coulomb
 
 
-gravitationalConstant :: (Compatible l GravitationalConstantUnit) 
-  => MkGenQu (DimFactorsOf GravitationalConstantUnit) l Double
-gravitationalConstant = 6.67384e-11 % (undefined :: GravitationalConstantUnit)
+gravitationalConstant :: Compatible l SIGCUnit => QuOfUL SIGCUnit l
+gravitationalConstant = 6.67384e-11 % (undefined :: SIGCUnit)
 
-{-
-kB = C.kB
+kB :: Compatible l SIkBUnit => QuOfUL SIkBUnit l
+kB = 1.3806488e-23 % (undefined :: SIkBUnit)
 
 
 -- eps0
-vacuumPermittivity :: PermittivityUnit Double
-vacuumPermittivity = mkVal $ 1 / (4 * pi * 1e-7 * 299792458**2)
-  
+vacuumPermittivity :: Compatible l SIPermittivityUnit
+  => QuOfUL SIPermittivityUnit l
+vacuumPermittivity =  
+  (1 / (4 * pi * 1e-7 * 299792458**2)) % (undefined :: SIPermittivityUnit)
 -- mu0                     
-vacuumPermeability :: PermeabilityUnit Double
-vacuumPermeability = mkVal $ 4 * pi * 1e-7
+vacuumPermeability :: Compatible l SIPermeabilityUnit 
+  => QuOfUL SIPermeabilityUnit l
+vacuumPermeability = (4 * pi * 1e-7) % (undefined :: SIPermeabilityUnit)
 
 -- |Planck constant
-planckConstant :: JouleSecond Double
-planckConstant = mkVal 6.6260695729e-34
+planckConstant :: Compatible l JouleSecond 
+  => QuOfUL JouleSecond l
+planckConstant =  (6.6260695729e-34) % (undefined :: JouleSecond)
 
 -- |Reduced Planck constant
-hbar ::  JouleSecond Double
-hbar = mkVal $ 6.6260695729e-34 / 2 / pi
--}
+hbar ::  Compatible l JouleSecond   => QuOfUL JouleSecond l
+hbar = (1 / 2 / pi) *. planckConstant

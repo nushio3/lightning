@@ -337,9 +337,9 @@ lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
         incli = env's inclinationAngle 
         
         expPart :: Double
-        expPart =  (#Number) $ molecularMass chem |*| qSq dopplerDiff 
+        expPart =  (#Number) $ molecularMass chem |/| avogadroConstant |*| qSq dopplerDiff 
           |/| (2 *| kB |*| env's temperature |+| 
-               molecularMass chem |*| qSq (fieldToVelocity env chem))
+               molecularMass chem |/| avogadroConstant |*| qSq (fieldToVelocity env chem))
         
         dopplerDiff :: Velocity
         dopplerDiff = dv |-| 

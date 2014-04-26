@@ -7,6 +7,7 @@ import Model.Gas
 import Model.Disk.Hayashi
 
 import Data.Metrology
+import Data.Metrology.Synonyms
 
 lightenedDisk :: BreakdownModel -> Disk -> Disk
 lightenedDisk bm disk0 = disk0 & lightningAcceleratorField .~ laf
@@ -26,5 +27,5 @@ lightenedDiskEx bm disk0 = disk0 & lightningAcceleratorField .~ laf
       RunawayBreakdown  -> \pos -> boundBy pos $ disk0 >$< pos ^. ppdDielectricStrengthR      
       
     boundBy pos x = 
-      let r = val $ pos ^. radius in
-        if (2<r && r < 200) then x else mkVal 0                                
+      let r =  pos ^. radius in
+        if (2%AU |<| r && r |<| 200%AU) then x else zero                                

@@ -11,8 +11,9 @@
 module Model.Disk where
 
 import           Data.Metrology
+import           Data.Metrology.Show
 import           Data.Metrology.Synonyms
-import           Control.Lens
+import           Control.Lens hiding ((#))
 import qualified Control.Lens as Lens
 
 
@@ -24,7 +25,7 @@ import           Text.Authoring.TH
 data Coord = Coord
   { _radius :: Length,
     _altitude :: Length,
-    _azimuth :: Double }
+    _azimuth :: Double } deriving (Show)
 makeClassy ''Coord
 
 equatorAt1au :: Coord
@@ -57,14 +58,14 @@ a >$< b = Environment (a,b)
 makeWrapped ''Environment
 
                                             
-instance HasDisk Environment where disk = _Unwrapped . _1
-instance HasCoord Environment where coord = _Unwrapped . _2
+instance HasDisk Environment where disk = _Wrapped' . _1
+instance HasCoord Environment where coord = _Wrapped' . _2
 
 
 data DiskPortion = DiskPortion {
   _center :: Coord,
   _area :: Area
-  } deriving (Eq, Show)
+  } deriving (Show)
 makeClassy ''DiskPortion
 
 splittedDisk :: [DiskPortion]
@@ -72,13 +73,13 @@ splittedDisk =
   [combine clrR clrP |  clrR <- rs, clrP <- phis]
   where
     combine (r0, (rL, rR)) (p0, (pL, pR)) =
-      DiskPortion (Coord (r0 % AU) (0 % AU) p0) a0
+      DiskPortion (Coord r (0 % AU) p0) a0
         where
           a0 :: Area
-          a0 = autoc $ dr |*| r |*| dphi
+          a0 = redim $ dr |*| r |*| dphi
           
           dr :: Length
-          dr = (rR - rL)
+          dr = (rR - rL) % AU
           dphi :: QofU Number
           dphi = (pR - pL) % Number
           r :: Length
@@ -99,50 +100,49 @@ splittedDisk =
       where
         f l r = ((l+r)/2, (l,r))
         
-densityGas :: Getter Environment (GramPerCm3 Double)
+densityGas :: Getter Environment Density
 densityGas = Lens.to go where 
-  go env = autoc $ factor *. (env^.gasSurfaceDensity) |/| h where
+  go env = redim $ factor *| (env^.gasSurfaceDensity) |/| h where
       z = pos ^. altitude
       factor = (2*pi)**(-1/2)
-             * (exp(negate $ val (square z |/| (2 *. square h))))
+             * (exp(negate $ (# Number) (qSq z |/| (2 *| qSq h))))
       h = env^.scaleHeight
       pos = env^.coord 
 
-numberDensityGas :: Getter Environment (PerCm3 Double)
+numberDensityGas :: Getter Environment (QofU PerCm3)
 numberDensityGas = Lens.to go where 
-  go env = autoc $ factor *. (env^.gasSurfaceDensity) |/| h |/| molecularMass H2 where
+  go env = redim $ factor *| (env^.gasSurfaceDensity) |/| h |/| molecularMass H2 |*| avogadroConstant where
       z = pos ^. altitude
       factor = (2*pi)**(-1/2)
-             * (exp(negate $ val (square z |/| (2 *. square h))))
+             * (exp(negate $ (# Number) (qSq z |/| (2 *| qSq h))))
       h = env^.scaleHeight
       pos = env^.coord 
 
 
-soundSpeed :: Getter Environment (CmPerSec Double)
-soundSpeed = Lens.to (go . (^.)) where
-  go env = U.sqrt $ autoc cssq where
-      cssq :: Cm2PerSec2 Double
-      cssq = autoc $ (kB |*| env temperature) 
-                 |/| (2.34 *. protonMass)
+soundSpeed :: Getter Environment Velocity
+soundSpeed = Lens.to go where
+  go env = qSqrt cssq where
+      cssq :: QofU Cm2PerSec2
+      cssq = redim $ (kB |*| (env^.temperature) )
+                 |/| (2.34 *| protonMass)
 
-orbitalAngularVelocity :: Getter Environment (HertzUnit Double)
+orbitalAngularVelocity :: Getter Environment Frequency
 orbitalAngularVelocity = Lens.to go where
-  go env0 = U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| cubic r where
-    mSun = env centralStarMass 
-    r = env radius
-    env = (env0^.)
+  go env = qSqrt $ gravitationalConstant |*| mSun |/| qCube r where
+    mSun = env ^. centralStarMass :: Mass
+    r = env ^. radius :: Length
 
-orbitalVelocity :: Getter Environment (CmPerSec Double)
+orbitalVelocity :: Getter Environment Velocity
 orbitalVelocity = Lens.to go where
-  go  env = U.sqrt $ autoc $ gravitationalConstant |*| mSun |/| r where
+  go env = redim $ qSqrt $ gravitationalConstant |*| mSun |/| r where
     mSun = env ^. centralStarMass 
     r = env ^. radius
 
 
-scaleHeight :: Getter Environment (AU Double)
+scaleHeight :: Getter Environment Length
 scaleHeight = Lens.to go where
   go env =
-      autoc $ (env ^. soundSpeed)
+      redim $ (env ^. soundSpeed)
           |/| (env ^. orbitalAngularVelocity)
 
 sigmoid :: Double -> Double
@@ -152,21 +152,21 @@ gaussian :: Double -> Double -> Double -> Double
 gaussian mu sigma x = 1/sqrt(2*pi* sigma^2) * exp (negate $ (/2) $ ((x-mu)/sigma)^2)
 
 
-ppdDensity :: Getter Environment (GramPerCm3 Double)
+ppdDensity :: Getter Environment Density
 ppdDensity = densityGas
 
 
-ppdNumberDensity :: Getter Environment (PerCm3 Double)
+ppdNumberDensity :: Getter Environment (QofU PerCm3)
 ppdNumberDensity = Lens.to $ 
-  \env -> autoc $ (env ^. ppdDensity) |/| ppdMix molecularMass
+  \env -> redim $ (env ^. ppdDensity) |/| ppdMix molecularMass |*| avogadroConstant
 
-mfpPpd15 :: Getter Environment (Cm Double)
+mfpPpd15 :: Getter Environment Length
 mfpPpd15 = Lens.to $ \env -> 
-  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
+  redim $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
 
-mfpPpd15E :: Getter Environment (Cm Double)
+mfpPpd15E :: Getter Environment Length
 mfpPpd15E = Lens.to $ \env->
-  autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ elCrossSection 15)
+  redim $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ elCrossSection 15)
 
 ppdDielectricStrengthT :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthT = Lens.to go where
@@ -175,17 +175,17 @@ ppdDielectricStrengthT = Lens.to go where
 
 ppdDielectricStrengthDP :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthDP = Lens.to go where
-  go env = redim $ ratio *. w |/| (0.43 *. elementaryCharge |*| (env^.mfpPpd15E)) where
+  go env = redim $ ratio |*| w |/| (0.43 *| elementaryCharge |*| (env^.mfpPpd15E)) where
     w = 15 % ElectronVolt
-    ratio = qSqrt $  ratioD         :: QuOfUL Number MySU
-    ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
+    ratio = qSqrt $  ratioD        :: QofU Number
+    ratioD = electronMass |/| bigM :: QofU Number
     bigM = (ppdMix molecularMass |/| avogadroConstant) :: Mass
 
 
 ppdDielectricStrengthR :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthR = Lens.to go where
   go env = redim $ 
-    (20.2/(8*pi)) *. (e3 |*| z |*| n)
+    (20.2/(8*pi)) *| (e3 |*| z |*| n)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg) 
     where
       nrg :: Energy

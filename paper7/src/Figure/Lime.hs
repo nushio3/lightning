@@ -13,6 +13,11 @@ import Model.Disk
 import Model.Disk.Derived
 import Model.Disk.Hayashi
 
+import Data.Metrology.Synonyms
+import Data.Metrology
+import Data.Metrology.SI.Prefixes
+import Data.Metrology.SI.Units
+
 data LimeConfig 
   = LimeConfig 
   { _targetMolecule :: ChemicalSpecies
@@ -71,7 +76,7 @@ moldataFileName = to go
 molAbundance :: Getter LimeConfig Double
 molAbundance = to go
   where 
-    go conf = val $ fractionalAbundance100au $ conf^.targetMolecule
+    go conf = (#Number) $ fractionalAbundance100au $ conf^.targetMolecule
 
 
 mkFileNameGetter :: String -> Getter LimeConfig String
@@ -96,7 +101,7 @@ lightningVelocity :: Getter LimeConfig Double
 lightningVelocity = to go
   where 
     go :: LimeConfig -> Double
-    go conf = val
+    go conf = (# kilo Meter :/ Second)
       (autoc $ fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
        :: MPerSec Double)  
     disk1 conf = case (conf^.targetLightningModel) of

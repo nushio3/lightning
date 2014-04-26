@@ -7,7 +7,7 @@
 {-# LANGUAGE TypeOperators #-}
 module Model.Disk.Hayashi where
 
-import           Control.Lens
+import           Control.Lens hiding ((#))
 import           Control.Monad.Identity
 import           Control.Monad.RWS (tell)
 import           Control.Monad.IO.Class
@@ -17,7 +17,11 @@ import qualified Text.LaTeX as LTX
 import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
+
+import           Data.Metrology
+import           Data.Metrology.SI.Units
 import           Data.Metrology.Synonyms
+
 
 
 import           Model.Disk
@@ -67,17 +71,17 @@ n_{\mathrm{H_2}}(r,z)
    |]
 
 
-innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: AU Double
-innerRadius =    mkVal 0.35  
-outerRadius =    mkVal 300   
-snowlineRadius = mkVal 2.7
+innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: Length
+innerRadius =     0.35 % AU
+outerRadius =     300  % AU
+snowlineRadius =  2.7  % AU
 
 innerSH    = mmsnModel >$< equatorAt innerRadius     ^.scaleHeight
 outerSH    = mmsnModel >$< equatorAt outerRadius     ^.scaleHeight
 snowlineSH = mmsnModel >$< equatorAt snowlineRadius  ^.scaleHeight
 
-mmsnStandardSurfaceDensity :: GramPerCm2 Double
-mmsnStandardSurfaceDensity = mkVal 1700
+mmsnStandardSurfaceDensity :: QofU GramPerCm2
+mmsnStandardSurfaceDensity =  1700 % (undefined :: GramPerCm2)
 
 mmsn1au :: Environment
 mmsn1au = mmsnModel >$< equatorAt1au
@@ -85,28 +89,28 @@ mmsn1au = mmsnModel >$< equatorAt1au
 mmsnModel :: Disk
 mmsnModel 
   = Disk
-  { _distanceFromEarth = mkVal 100 
+  { _distanceFromEarth = 100 % AU
   , _inclinationAngle = 0
   , _centralStarMass = solarMass
   , _gasSurfaceDensityField = sdGas
   , _temperatureField = tem
-  , _lightningAcceleratorField = const $ mkVal 0
+  , _lightningAcceleratorField = const $ zero
   }
   where
-    sdGas :: Coord -> GramPerCm2 Double
-    sdGas pos = autoc $ 
-      cutoff *.
-       mmsnStandardSurfaceDensity |*|
-       (fmap (**(-1.5)) $ r |/| (1 *. astronomicalUnit))
+    sdGas :: Coord -> QofU GramPerCm2 
+    sdGas pos = 
+      cutoff *|
+       mmsnStandardSurfaceDensity |*
+       ( (**(-1.5)) $ (# Number) $ r |/| (1 % AU))
       where
         cutoff =
-          sigmoid (val $ (r |-| innerRadius) |/| innerSH) *
-          sigmoid (negate $ val $ (r |-| outerRadius) |/| outerSH)
+          sigmoid ((# Number) $ (r |-| innerRadius) |/| innerSH) *
+          sigmoid (negate $ (# Number) $ (r |-| outerRadius) |/| outerSH)
         r = pos ^. radius 
         
-    tem :: Coord -> KelvinUnit Double
-    tem pos = 140 *. kelvin |*|
-       (fmap (**(-0.5)) $ r |/| (1 *. astronomicalUnit))
+    tem :: Coord -> Temperature
+    tem pos = 140 % Kelvin  |*
+       ( (**(-0.5)) $ (# Number) $ r |/| (1 % AU))
       where
         r = pos ^. radius
 

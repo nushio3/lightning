@@ -28,7 +28,7 @@ fieldToVelocity env chem = qSqrt $ v2
     ef :: QofU VoltPerCm 
     ef = env ^. lightningAccelerator 
     v2 :: QofU Cm2PerSec2 
-    v2 = elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
+    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
     m :: Mass
     m = molecularMass chem |/| avogadroConstant
 
@@ -138,14 +138,14 @@ scovilleFormula j tex chem =
   scovilleFormulaAthermal j tex vgas chem 
   where
     vgas :: Velocity
-    vgas = qSqrt $ exitationNrg |/| molecularMass chem |/| avogadroConstant
+    vgas = redim $ qSqrt $ exitationNrg |/| (molecularMass chem |/| avogadroConstant)
 
     exitationNrg :: Energy
     exitationNrg =  kB |*| tex
 
     
 scovilleFormulaAthermal :: Int -> Temperature -> Velocity -> ChemicalSpecies -> QofU PerCm2 
-scovilleFormulaAthermal j tex vgas chem = 
+scovilleFormulaAthermal j tex vgas chem = redim $ 
     factor *|
     (exitationNrg |*| vgas) |/| 
     (rotB |*| dipoleInteraction)
@@ -171,11 +171,10 @@ scovilleFormulaAthermal j tex vgas chem =
     deb :: QofU Debye
     deb = dipoleMoment chem
     
-    dipoleInteraction :: QofU JouleM3 
-    dipoleInteraction =   (deb |*| deb) |/| vacuumPermittivity
+    dipoleInteraction = (deb |*| deb) |/| vacuumPermittivity
 
 blackBodyRadiation :: Frequency -> Temperature -> QofU SpectralRadiance 
-blackBodyRadiation nu tem = 
+blackBodyRadiation nu tem = redim $ 
   factor *| planckConstant |*| qCube nu |/| qSq speedOfLight
     where
       factor :: Double

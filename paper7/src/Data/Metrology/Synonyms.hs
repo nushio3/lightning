@@ -78,7 +78,7 @@ data Jansky = Jansky
 instance Show Jansky where show _ = "Jy"
 
 instance Unit Jansky where
-  type BaseUnit Jansky = Joule :/ (Meter :^ Two) :* Second
+  type BaseUnit Jansky = Joule :/ (Meter :^ Two) 
   conversionRatio _ = 1e-26
 
 

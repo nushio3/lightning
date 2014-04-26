@@ -15,7 +15,6 @@ import Text.Authoring.TH
 import Data.Metrology
 import Data.Metrology.AltOperators
 import Data.Metrology.Synonyms
-import Data.Metrology.SI.GenTypes
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.SI.Units
 import Data.Metrology.Z
@@ -81,7 +80,7 @@ http://www.sron.rug.nl/~vdtak/ratran/frames.html
 http://www.astro.uni-koeln.de/cdms
 -}
 
-rotationalConstant :: ChemicalSpecies -> Frequency MySU Double
+rotationalConstant :: ChemicalSpecies -> Frequency
 rotationalConstant HCOPlus = speedOfLight |*| 1.4875 % (Number :/ Centi :@ Meter)
 rotationalConstant DCOPlus = speedOfLight |*| 1.2015  % (Number :/ Centi :@ Meter)
 rotationalConstant N2HPlus = speedOfLight |*| 1.55395  % (Number :/ Centi :@ Meter)
@@ -89,7 +88,7 @@ rotationalConstant N2HPlus = speedOfLight |*| 1.55395  % (Number :/ Centi :@ Met
 rotationalConstant c       = error $ "rotational constant undefined for : " ++ show c
 
 
-ionizationEnergy :: ChemicalSpecies -> Energy MySU Double
+ionizationEnergy :: ChemicalSpecies -> Energy
 ionizationEnergy = go
   where
     go H2  = 15.43 % ElectronVolt
@@ -101,7 +100,7 @@ ionizationEnergy = go
     go He  = 24.58 % ElectronVolt
     go _   = undefined
 
-inelCrossSection :: Int -> ChemicalSpecies -> Area MySU Double    
+inelCrossSection :: Int -> ChemicalSpecies -> Area    
 inelCrossSection 12 N2 = 0.8e-16   % (Centi :@ Meter :^ pTwo)
 inelCrossSection 12 O2 = 1.8e-16   % (Centi :@ Meter :^ pTwo)
 inelCrossSection 12 Ar = 0         % (Centi :@ Meter :^ pTwo)
@@ -110,7 +109,7 @@ inelCrossSection 15 O2 = 1.81e-16  % (Centi :@ Meter :^ pTwo)
 inelCrossSection 15 CO = 0.051e-16 % (Centi :@ Meter :^ pTwo)
 inelCrossSection _  _  = 0         % (Centi :@ Meter :^ pTwo)
 
-elCrossSection :: Int -> ChemicalSpecies -> Area MySU Double    
+elCrossSection :: Int -> ChemicalSpecies -> Area    
 elCrossSection 12 N2 = 11.6e-16  % (Centi :@ Meter :^ pTwo)
 elCrossSection 12 O2 = 9.00e-16  % (Centi :@ Meter :^ pTwo)
 elCrossSection 12 Ar = 17.4e-16  % (Centi :@ Meter :^ pTwo)
@@ -120,7 +119,7 @@ elCrossSection 15 CO = 10.89e-16 % (Centi :@ Meter :^ pTwo)
 elCrossSection 15 He = 3.55e-16  % (Centi :@ Meter :^ pTwo)
 elCrossSection _  _  = 0         % (Centi :@ Meter :^ pTwo)
 
-airDensity :: Density MySU Double
+airDensity :: Density
 airDensity = 1.2041 % (kilo Gram :/ Meter :^ pThree)
 
 
@@ -129,10 +128,10 @@ airNumberDensity :: QuOfUL PerCm3 MySU
 airNumberDensity = redim $ airDensity |/| airMix molecularMass |*| avogadroConstant
 
 
-mfpAir12 :: Length MySU Double
+mfpAir12 :: Length
 mfpAir12 = redim $ 1 /| airNumberDensity |/| (airMix $ inelCrossSection 12)
 
-mfpAir12E :: Length MySU Double
+mfpAir12E :: Length
 mfpAir12E = 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
 
 
@@ -148,7 +147,7 @@ airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| 
     w = 12 % ElectronVolt
     ratio = qSqrt $  ratioD         :: QuOfUL Number MySU
     ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
-    bigM = (airMix molecularMass |/| avogadroConstant) :: Mass MySU Double
+    bigM = (airMix molecularMass |/| avogadroConstant) :: Mass
 
 
 airDielectricStrengthR :: QuOfUL VoltPerCm MySU
@@ -157,7 +156,7 @@ airDielectricStrengthR = redim $
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where
-    nrg :: Energy MySU Double
+    nrg :: Energy
     nrg = redim $ electronMass |*| speedOfLight |*| speedOfLight
     
     e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 

@@ -7,6 +7,7 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE TypeFamilies #-}
 module Model.Disk where
 
 import           Data.Metrology
@@ -21,33 +22,32 @@ import           Text.Authoring
 import           Text.Authoring.TH
 
 data Coord = Coord
-  { _radius :: AU Double, 
-    _altitude :: AU Double, 
+  { _radius :: Length,
+    _altitude :: Length,
     _azimuth :: Double }
- deriving (Eq, Show)
 makeClassy ''Coord
 
 equatorAt1au :: Coord
-equatorAt1au = Coord (mkVal 1) (mkVal 0) 0
+equatorAt1au = Coord (1 % AU) (0 % AU) 0
 
-equatorAt :: AU Double -> Coord
-equatorAt r = Coord r (mkVal 0) 0
+equatorAt :: Length -> Coord
+equatorAt r = Coord r (0 % AU) 0
 
 data Disk = Disk {
-  _distanceFromEarth :: Pc Double,
+  _distanceFromEarth :: Length ,
   _inclinationAngle  :: Double,
-  _centralStarMass   :: GramUnit Double,
-  _gasSurfaceDensityField :: Coord -> GramPerCm2 Double,
-  _temperatureField       :: Coord -> KelvinUnit Double,
-  _lightningAcceleratorField         :: Coord -> VoltPerCm Double
+  _centralStarMass   :: Mass,
+  _gasSurfaceDensityField :: Coord -> QofU GramPerCm2,
+  _temperatureField       :: Coord -> Temperature,
+  _lightningAcceleratorField         :: Coord -> QofU VoltPerCm 
   }
 makeClassy ''Disk
 
-gasSurfaceDensity :: Getter Environment (GramPerCm2 Double)
+gasSurfaceDensity :: Getter Environment (QofU GramPerCm2)
 gasSurfaceDensity = Lens.to $ \env ->  env ^. gasSurfaceDensityField $ env^.coord
-temperature :: Getter Environment (KelvinUnit Double)
+temperature :: Getter Environment Temperature
 temperature = Lens.to $ \env -> env ^. temperatureField $ env^.coord
-lightningAccelerator :: Getter Environment (VoltPerCm Double)
+lightningAccelerator :: Getter Environment (QofU VoltPerCm)
 lightningAccelerator = Lens.to $ \env ->  env^.lightningAcceleratorField $ env^.coord
 
 newtype Environment = Environment (Disk,Coord)
@@ -57,13 +57,13 @@ a >$< b = Environment (a,b)
 makeWrapped ''Environment
 
                                             
-instance HasDisk Environment where disk = unwrapped . _1
-instance HasCoord Environment where coord = unwrapped . _2
+instance HasDisk Environment where disk = _Unwrapped . _1
+instance HasCoord Environment where coord = _Unwrapped . _2
 
 
 data DiskPortion = DiskPortion {
   _center :: Coord,
-  _area :: Cm2 Double
+  _area :: Area
   } deriving (Eq, Show)
 makeClassy ''DiskPortion
 
@@ -72,17 +72,17 @@ splittedDisk =
   [combine clrR clrP |  clrR <- rs, clrP <- phis]
   where
     combine (r0, (rL, rR)) (p0, (pL, pR)) =
-      DiskPortion (Coord (mkVal r0) (mkVal 0) p0) a0
+      DiskPortion (Coord (r0 % AU) (0 % AU) p0) a0
         where
-          a0 :: Cm2 Double
+          a0 :: Area
           a0 = autoc $ dr |*| r |*| dphi
           
-          dr :: AU Double
-          dr = mkVal (rR - rL)
-          dphi :: NoDimension Double
-          dphi = mkVal (pR - pL)
-          r :: AU Double
-          r = mkVal r0
+          dr :: Length
+          dr = (rR - rL)
+          dphi :: QofU Number
+          dphi = (pR - pL) % Number
+          r :: Length
+          r = r0 % AU
           
           
     rs = toCLR radialBoundaries
@@ -168,27 +168,28 @@ mfpPpd15E :: Getter Environment (Cm Double)
 mfpPpd15E = Lens.to $ \env->
   autoc $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ elCrossSection 15)
 
-ppdDielectricStrengthT :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthT :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthT = Lens.to go where
-  go env = autoc $ w |/| ((env^.mfpPpd15) |*| elementaryCharge) where
-    w = mkVal 15 :: ElectronVolt Double
+  go env = redim $ w |/| ((env^.mfpPpd15) |*| elementaryCharge) where
+    w = 15 % ElectronVolt
 
-ppdDielectricStrengthDP :: Getter Environment (VoltPerCm Double)
+ppdDielectricStrengthDP :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthDP = Lens.to go where
-  go env = autoc $ ratio *. w |/| (0.43 *. elementaryCharge |*| (env^.mfpPpd15E)) where
-    w = mkVal 15                           :: ElectronVolt Double
-    ratio = sqrt $ val ratioD              :: Double
-    ratioD = autoc $ electronMass |/| bigM :: NoDimension Double
-    bigM = autoc $ ppdMix molecularMass    :: GramUnit Double
+  go env = redim $ ratio *. w |/| (0.43 *. elementaryCharge |*| (env^.mfpPpd15E)) where
+    w = 15 % ElectronVolt
+    ratio = qSqrt $  ratioD         :: QuOfUL Number MySU
+    ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
+    bigM = (ppdMix molecularMass |/| avogadroConstant) :: Mass
 
-ppdDielectricStrengthR :: Getter Environment (VoltPerCm Double)
+
+ppdDielectricStrengthR :: Getter Environment (QofU VoltPerCm)
 ppdDielectricStrengthR = Lens.to go where
-  go env = autoc $ 
+  go env = redim $ 
     (20.2/(8*pi)) *. (e3 |*| z |*| n)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg) 
     where
-      nrg :: JouleUnit Double
-      nrg = autoc $ electronMass |*| speedOfLight |*| speedOfLight
+      nrg :: Energy
+      nrg = redim $ electronMass |*| speedOfLight |*| speedOfLight
       
       e3 = elementaryCharge |*| elementaryCharge |*| elementaryCharge 
       z = ppdMix atomicNumber

@@ -465,3 +465,8 @@
     - ! '        PUBLISHER = "NIST, Physical Measurement Laboratory",'
     - ! '        URL = "http://www.nist.gov/pml/data/star/index.cfm",'
     - ! '        YEAR ="2009"}'
+- - special:units
+  - - ! ' @article{Weirich_2013, title={Unit-Polymorphic Quantity Calculus in Haskell
+      [Experience Report]}, journal={To be Submitted in Proceedings of the 19th ACM
+      SIGPLAN international conference on Functional programming - ICFP }, publisher={ACM
+      Press}, author={Muranushi, Takayuki and Eisenberg, Richard A.}, year={2014}}'

@@ -24,7 +24,7 @@ data LimeConfig
   , _targetLightningModel :: Maybe BreakdownModel
   , _fileNameBody :: String
   , _velocityChannelNumber :: Int
-  , _velocityResolution :: Double
+  , _velocityResolution :: Double --- TODO: check if these units are correctly presented.
   , _lightningInnerRadius :: Double
   , _lightningOuterRadius :: Double
   , _particleNumber :: Int
@@ -101,9 +101,8 @@ lightningVelocity :: Getter LimeConfig Double
 lightningVelocity = to go
   where 
     go :: LimeConfig -> Double
-    go conf = (# (kilo Meter :/ Second))
-      (redim $ fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
-       :: MPerSec Double)  
+    go conf = (# (kilo Meter :/ Second)) $
+      fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
     disk1 conf = case (conf^.targetLightningModel) of
       Nothing -> mmsn1au
       Just bm -> mmsn1au & disk %~ lightenedDisk bm

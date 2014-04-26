@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell, RankNTypes #-}
 module Figure.Lime where
 
-import Control.Lens
+import Control.Lens hiding ((#))
 import Control.Monad
 import Data.Char
 import System.Process
@@ -101,8 +101,8 @@ lightningVelocity :: Getter LimeConfig Double
 lightningVelocity = to go
   where 
     go :: LimeConfig -> Double
-    go conf = (# kilo Meter :/ Second)
-      (autoc $ fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
+    go conf = (# (kilo Meter :/ Second))
+      (redim $ fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
        :: MPerSec Double)  
     disk1 conf = case (conf^.targetLightningModel) of
       Nothing -> mmsn1au

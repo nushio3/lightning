@@ -10,7 +10,9 @@ module Model.Breakdown where
 import Text.Authoring
 import Text.Authoring.TH
 import Data.Metrology
+import Data.Metrology.SI.Units
 import Data.Metrology.Synonyms
+import Model.Values
 
 
 import Model.Gas
@@ -25,6 +27,10 @@ breakdownModels = [TownsendBreakdown, DPBreakdown, RunawayBreakdown]
 
 [declareLabels| ntpAirDielectricStrength, takahashiDischargeFormula |]
   
+
+bigMOfAir :: QuOfUL Gram MySU
+bigMOfAir = airMix molecularMass |/| avogadroConstant
+
 
 
 aboutDielectricStrengthOfAir :: MonadAuthoring s w m => m ()    
@@ -188,7 +194,7 @@ the mean inelastic cross section of air at 12eV is
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
-$E_{\rm crit} = #{ppValF "%.0f" $ fmap (1e-3*) airDielectricStrengthT} {\rm kV/cm}$,
+$E_{\rm crit} = #{ppValF "%.0f" $ 1e-3 *| airDielectricStrengthT} {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 
@@ -203,7 +209,8 @@ and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon 
 In the case of the air at NTP,
 since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
 
-  [rawQ| $M = #{ppValE 2 (airMix molecularMass |/| avogadroConstant)} {\rm g}$. |] -- TODO: user gram here. 
+
+  [rawQ| $M = #{ppValE 2 bigMOfAir} {\rm g}$. |] -- TODO: user gram here. 
 
 
   [rawQ|
@@ -217,7 +224,7 @@ can be calculated from elastic cross sections of the elemental molecules at 12eV
  #{ppValE 2 (elCrossSection 12 Ar)} {\rm cm^{ -2}}$,
 respectively, for $\rm N_2, O_2, Ar$, see @{citet ["isbn:3-540-64296-X", "isbn:354044338X"]}.)
 Therefore,
-$E_{\rm crit} = #{ppValF "%.2f" $ fmap (1e-3*) airDielectricStrengthDP} {\rm kV/cm}$.
+$E_{\rm crit} = #{ppValF "%.2f" $ 1e-3*| airDielectricStrengthDP} {\rm kV/cm}$.
 
 Finally, according to the runaway breakdown model the dielectric strength
 $E_{\rm crit}$ is the electric field amplitude where
@@ -262,7 +269,7 @@ which is
 \begin{eqnarray}
 E_{\rm crit} 
 &=& \frac{e^3 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a_{\rm min}, \nonumber \\
-&=&  #{ppValF "%.1f" $ fmap (1e-3*) airDielectricStrengthR} {\rm kV/cm}.
+&=&  #{ppValF "%.1f" $ 1e-3 *| airDielectricStrengthR} {\rm kV/cm}.
 \end{eqnarray}
    |]
 

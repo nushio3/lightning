@@ -256,11 +256,7 @@ aboutLineProperty :: MonadAuthoring s w m => m ()
 aboutLineProperty = do
   [rawQ|
    We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines.
-   Their frequencies are       bg
-
-
-
-                        
+   Their frequencies are       
    $#{ppValF "%5.2f" (lineFrequency 2 HCOPlus)}$GHz,
    $#{ppValF "%5.2f" (lineFrequency 2 DCOPlus)}$GHz and
    $#{ppValF "%5.2f" (lineFrequency 2 N2HPlus)}$GHz, respectively.

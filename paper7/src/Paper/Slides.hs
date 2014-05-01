@@ -21,9 +21,11 @@ import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import qualified Text.LaTeX as LTX
 
-import           Paper.SectionModel (sectionModel)
-import           Paper.SectionObservation (sectionObservation)
-import           Paper.SectionAcknowledgement (sectionAcknowledgement)
+import           Model.Gas
+
+import           Data.Metrology.Synonyms
+import           Data.Metrology.LaTeX
+
 
 
 writePaper :: FilePath -> FilePath -> FilePath -> IO ()
@@ -65,6 +67,11 @@ sectionSlides = do
       raw "{c|ccc}"
       [rawQ|  & $\rm N_2$ & $\rm O_2$ & $\rm Ar$ \\ |]
       [rawQ| Volume fraction & 78\% & 21\% & 1\% \\|]
+      [rawQ| $\Delta W$ 
+             & #{ppF "%.2f" ElectronVolt $ ionizationEnergy N2}   
+             & #{ppF "%.2f" ElectronVolt $ ionizationEnergy O2}   
+             & #{ppF "%.2f" ElectronVolt $ ionizationEnergy Ar}   
+             \\|]      
   environment "frame" $ do
     environment "itemize" $ do
       raw "\\item meter \\pause"            

@@ -4,7 +4,7 @@
 
 --
 
-module Data.Metrology.LaTeX  where
+module Data.Metrology.LaTeX (ppIn, ppE, ppF) where
 
 import Data.Proxy (Proxy(..))
 import Data.List
@@ -14,31 +14,34 @@ import Data.Metrology.Internal -- am I an expert?
 import Data.Metrology.Unsafe
 import Data.Metrology.Z
 import Data.Metrology
+import Data.Metrology.Synonyms
 
-class ShowUnitFactor (dims :: [Factor *]) where
-  showDims :: Proxy dims -> ([String], [String])
+import Text.Printf
 
-instance ShowUnitFactor '[] where
-  showDims _ = ([], [])
+class LaTeXUnitFactor (dims :: [Factor *]) where
+  renderDims :: Proxy dims -> ([String], [String])
 
-instance (ShowUnitFactor rest, Show unit, SingI z)
-         => ShowUnitFactor (F unit z ': rest) where
-  showDims _ =
-    let (nums, denoms) = showDims (Proxy :: Proxy rest)
+instance LaTeXUnitFactor '[] where
+  renderDims _ = ([], [])
+
+instance (LaTeXUnitFactor rest, Show unit, SingI z)
+         => LaTeXUnitFactor (F unit z ': rest) where
+  renderDims _ =
+    let (nums, denoms) = renderDims (Proxy :: Proxy rest)
         baseStr        = show (undefined :: unit)
         power          = szToInt (sing :: Sing z)
         abs_power      = abs power
         str            = if abs_power == 1
                          then baseStr
-                         else baseStr ++ "^" ++ (show abs_power) in
+                         else baseStr ++ "^{" ++ (show abs_power) ++ "}" in
     case compare power 0 of
       LT -> (nums, str : denoms)
       EQ -> (nums, denoms)
       GT -> (str : nums, denoms)
 
-showFactor :: ShowUnitFactor dimspec => Proxy dimspec -> String
-showFactor p
-  = let (nums, denoms) = mapPair (build_string . sort) $ showDims p in
+renderFactor :: LaTeXUnitFactor dimspec => Proxy dimspec -> String
+renderFactor p
+  = let (nums, denoms) = mapPair (build_string . sort) $ renderDims p in
     case (length nums, length denoms) of
       (0, 0) -> ""
       (_, 0) -> " " ++ nums
@@ -56,33 +59,66 @@ showFactor p
     build_string_helper :: [String] -> String
     build_string_helper [] = ""
     build_string_helper [s] = s
-    build_string_helper (h:t) = h ++ " * " ++ build_string_helper t
+    build_string_helper (h:t) = h ++ " \\cdot " ++ build_string_helper t
 
--- enable showing of compound units:
-instance (Show u1, Show u2) => Show (u1 :* u2) where
-  show _ = show (undefined :: u1) ++ " " ++ show (undefined :: u2)
 
-instance (Show u1, Show u2) => Show (u1 :/ u2) where
-  show _ = show (undefined :: u1) ++ "/" ++ show (undefined :: u2)
+-- the classes of types we know how to render it in LaTeX
+class Render a where render :: a -> String
 
-instance (Show u1, SingI power) => Show (u1 :^ (power :: Z)) where
-  show _ = show (undefined :: u1) ++ "^" ++ show (szToInt (sing :: Sing power))
+-- enable rendering of compound units:
+instance (Render u1, Render u2) => Render (u1 :* u2) where
+  render _ = render (undefined :: u1) ++ " " ++ render (undefined :: u2)
 
--- enable showing of units with prefixes:
-instance (Show prefix, Show unit) => Show (prefix :@ unit) where
-  show _ = show (undefined :: prefix) ++ show (undefined :: unit)
+instance (Render u1, Render u2) => Render (u1 :/ u2) where
+  render _ = render (undefined :: u1) ++ "/" ++ render (undefined :: u2)
 
-instance (ShowUnitFactor (LookupList dims lcsu), Show n)
-           => Show (Qu dims lcsu n) where
-  show (Qu d) = (show d ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
+instance (Render u1, SingI power) => Render (u1 :^ (power :: Z)) where
+  render _ = render (undefined :: u1) ++ "^{" ++ show (szToInt (sing :: Sing power)) ++ "}"
 
-infix 1 `showIn`
+-- enable rendering of units with prefixes:
+instance (Show prefix, Render unit) => Render (prefix :@ unit) where
+  render _ = show (undefined :: prefix) ++ render (undefined :: unit)
 
--- | Show a dimensioned quantity in a given unit. (The default @Show@
--- instance always uses canonical units.)
-showIn :: ( ValidDLU dim lcsu unit
+instance (LaTeXUnitFactor (LookupList dims lcsu), Render n)
+           => Render (Qu dims lcsu n) where
+  render (Qu d) = (render d ++ renderFactor (Proxy :: Proxy (LookupList dims lcsu)))
+
+instance Render ElectronVolt where render = show
+
+-- | Render a dimensioned quantity with a given unit, with the default numerical representaion.
+ppIn :: ( ValidDLU dim lcsu unit
           , Fractional n
-          , Show unit
+          , Render unit
           , Show n )
-       => Qu dim lcsu n -> unit -> String
-showIn x u = show (x # u) ++ " " ++ show u
+       => unit -> Qu dim lcsu n ->  String
+ppIn u x  = show (x # u) ++ " {\\rm " ++ render u ++ "}"
+
+-- | Render a dimensioned quantity with a given unit and given digits of precision, adequetly using the powers of 10.
+ppE :: ( ValidDLU dim lcsu unit
+          , Fractional n
+          , Render unit
+          , PrintfArg n ) => Int -> unit -> Qu dim lcsu n  -> String
+ppE digits u x = ret ++ " {\\rm " ++ render u ++ "}"
+  where
+    fmtStr :: String
+    fmtStr = printf "%%.%de" digits
+    
+    protoStr :: String
+    protoStr = printf fmtStr (x#u)
+
+    (valPart,expPart) = break (=='e') protoStr
+    
+    ret = case expPart of
+      "e0" -> valPart
+      _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
+
+
+-- | Render a dimensioned quantity with a given unit, using the given printf formatter.
+ppF :: ( ValidDLU dim lcsu unit
+          , Fractional n
+          , Render unit
+          , PrintfArg n ) => String -> unit -> Qu dim lcsu n  -> String
+ppF fmtStr u x = protoStr ++ " {\\rm " ++ render u ++ "}"
+  where
+    protoStr :: String
+    protoStr = printf fmtStr (x#u)

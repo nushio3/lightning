@@ -9,7 +9,9 @@ import System.Directory (doesFileExist)
 import System.Process (system)
 import Text.Printf
 
-import Paper(writePaper)
+import Paper.Slides(writePaper)
+
+
 main :: IO ()
 main = do
   _ <- system $ printf "mkdir -p %s" workDir

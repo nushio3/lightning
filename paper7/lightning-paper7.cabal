@@ -41,7 +41,7 @@ library
     Paper.SectionAcknowledgement
     Paper.SectionModel
     Paper.SectionObservation
-
+    Paper.Slides
 
 
   other-modules:     Paths_lightning_paper7

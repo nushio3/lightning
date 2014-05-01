@@ -4,7 +4,7 @@
 
 --
 
-module Data.Metrology.LaTeX (ppIn, ppE, ppF) where
+module Data.Metrology.LaTeX (ppIn, ppE, ppF, ppFP) where
 
 import Data.Proxy (Proxy(..))
 import Data.List
@@ -15,6 +15,7 @@ import Data.Metrology.Unsafe
 import Data.Metrology.Z
 import Data.Metrology
 import Data.Metrology.Synonyms
+import Data.Metrology.SI.Units
 
 import Text.Printf
 
@@ -84,6 +85,8 @@ instance (LaTeXUnitFactor (LookupList dims lcsu), Render n)
   render (Qu d) = (render d ++ renderFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
 instance Render ElectronVolt where render = show
+instance Render Meter where render = show
+instance Render Volt where render = show                            
 
 -- | Render a dimensioned quantity with a given unit, with the default numerical representaion.
 ppIn :: ( ValidDLU dim lcsu unit
@@ -97,8 +100,8 @@ ppIn u x  = show (x # u) ++ " {\\rm " ++ render u ++ "}"
 ppE :: ( ValidDLU dim lcsu unit
           , Fractional n
           , Render unit
-          , PrintfArg n ) => Int -> unit -> Qu dim lcsu n  -> String
-ppE digits u x = ret ++ " {\\rm " ++ render u ++ "}"
+          , PrintfArg n ) => unit ->  Int -> Qu dim lcsu n  -> String
+ppE u digits x = ret ++ " {\\rm " ++ render u ++ "}"
   where
     fmtStr :: String
     fmtStr = printf "%%.%de" digits
@@ -113,12 +116,27 @@ ppE digits u x = ret ++ " {\\rm " ++ render u ++ "}"
       _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
 
 
+-- | Render a dimensioned quantity with a given unit, in given format, at the given powers of 10. It is sometimes useful to align the powers.
+ppFP :: ( ValidDLU dim lcsu unit
+          , Fractional n
+          , Render unit
+          , PrintfArg n ) => unit -> String -> Int -> Qu dim lcsu n  -> String
+ppFP u fmtStr power10 x = ret ++ " {\\rm " ++ render u ++ "}"
+  where
+    protoStr :: String
+    protoStr = printf fmtStr ((x#u) / 10^^power10) 
+
+    ret =  printf "%s \\times 10^{%d}" protoStr power10
+
+
+
+
 -- | Render a dimensioned quantity with a given unit, using the given printf formatter.
 ppF :: ( ValidDLU dim lcsu unit
           , Fractional n
           , Render unit
-          , PrintfArg n ) => String -> unit -> Qu dim lcsu n  -> String
-ppF fmtStr u x = protoStr ++ " {\\rm " ++ render u ++ "}"
+          , PrintfArg n ) => unit ->  String -> Qu dim lcsu n  -> String
+ppF u fmtStr x = protoStr ++ " {\\rm " ++ render u ++ "}"
   where
     protoStr :: String
     protoStr = printf fmtStr (x#u)

@@ -43,7 +43,7 @@ ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
 ppdMix func = 0.9219 *. func H2 |+| 7.7718e-2 *. func He 
               |+| 2.262326e-4 *. func CO |+| 1.3404e-4 *. func O2
 
-atomicNumber :: ChemicalSpecies -> QuOfUL Number MySU
+atomicNumber :: ChemicalSpecies -> QofU Number 
 atomicNumber H2 = scalar 2
 atomicNumber He = scalar 2
 atomicNumber N2 = scalar 14
@@ -57,7 +57,7 @@ atomicNumber N2HPlus = scalar 15
 
 
 
-molecularMass :: ChemicalSpecies -> QuOfUL GramPerMole MySU
+molecularMass :: ChemicalSpecies -> QofU GramPerMole 
 molecularMass H2      =   2   % (Gram :/ Mole)
 molecularMass He      =   4   % (Gram :/ Mole)
 molecularMass N2      =  28   % (Gram :/ Mole)  
@@ -124,7 +124,7 @@ airDensity = 1.2041 % (kilo Gram :/ Meter :^ pThree)
 
 
 
-airNumberDensity :: QuOfUL PerCm3 MySU
+airNumberDensity :: QofU PerCm3 
 airNumberDensity = redim $ airDensity |/| airMix molecularMass |*| avogadroConstant
 
 
@@ -135,22 +135,22 @@ mfpAir12E :: Length
 mfpAir12E = 1 /| airNumberDensity |/| (airMix $ elCrossSection 12)
 
 
-airDielectricStrengthT :: QuOfUL VoltPerCm MySU
+airDielectricStrengthT :: QofU VoltPerCm 
 airDielectricStrengthT = redim $ w |/| (mfpAir12 |*| elementaryCharge)
   where w = 12 % ElectronVolt
                     
 
 
-airDielectricStrengthDP :: QuOfUL VoltPerCm MySU 
+airDielectricStrengthDP :: QofU VoltPerCm 
 airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
   where
     w = 12 % ElectronVolt
-    ratio = qSqrt $  ratioD         :: QuOfUL Number MySU
-    ratioD =  electronMass |/| bigM :: QuOfUL Number MySU
+    ratio = qSqrt $  ratioD         :: QofU Number 
+    ratioD =  electronMass |/| bigM :: QofU Number 
     bigM = (airMix molecularMass |/| avogadroConstant) :: Mass
 
 
-airDielectricStrengthR :: QuOfUL VoltPerCm MySU
+airDielectricStrengthR :: QofU VoltPerCm 
 airDielectricStrengthR = redim $
   (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)

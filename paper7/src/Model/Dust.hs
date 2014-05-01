@@ -13,5 +13,5 @@ import           Data.Metrology
 import           Data.Metrology.Synonyms
 
 
-dustSurfaceCharge :: QuOfUL  CoulombPerCm2 MySU 
+dustSurfaceCharge :: QofU  CoulombPerCm2 
 dustSurfaceCharge = 1e-10 % (undefined :: CoulombPerCm2)

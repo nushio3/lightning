@@ -28,7 +28,7 @@ breakdownModels = [TownsendBreakdown, DPBreakdown, RunawayBreakdown]
 [declareLabels| ntpAirDielectricStrength, takahashiDischargeFormula |]
   
 
-bigMOfAir :: QuOfUL Gram MySU
+bigMOfAir :: QofU Gram 
 bigMOfAir = airMix molecularMass |/| avogadroConstant
 
 

@@ -31,23 +31,23 @@ elementaryCharge :: Charge
 elementaryCharge = 1.60217657e-19 % Coulomb
 
 
-gravitationalConstant :: QuOfUL SIGCUnit MySU
+gravitationalConstant :: QofU SIGCUnit 
 gravitationalConstant = 6.67384e-11 % (undefined :: SIGCUnit)
 
-kB :: QuOfUL SIkBUnit MySU
+kB :: QofU SIkBUnit 
 kB = 1.3806488e-23 % (undefined :: SIkBUnit)
 
 
 -- eps0
-vacuumPermittivity :: QuOfUL SIPermittivityUnit MySU
+vacuumPermittivity :: QofU SIPermittivityUnit 
 vacuumPermittivity =  
   (1 / (4 * pi * 1e-7 * 299792458**2)) % (undefined :: SIPermittivityUnit)
 -- mu0                     
-vacuumPermeability :: QuOfUL SIPermeabilityUnit MySU
+vacuumPermeability :: QofU SIPermeabilityUnit 
 vacuumPermeability = (4 * pi * 1e-7) % (undefined :: SIPermeabilityUnit)
 
 -- |Planck constant
-planckConstant :: QuOfUL JouleSecond MySU
+planckConstant :: QofU JouleSecond 
 planckConstant =  (6.6260695729e-34) % (undefined :: JouleSecond)
 
 -- |Reduced Planck constant

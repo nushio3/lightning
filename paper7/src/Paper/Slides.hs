@@ -61,9 +61,10 @@ sectionSlides :: MonadAuthoring s w m => m ()
 sectionSlides = do
   command1 "section" $ raw "Method"
   environment "frame" $ do
-    environment "itemize" $ do
-      raw "\\item Richard \\pause"
-      raw "\\item Takayuki \\pause"      
+    environment "tabular" $ do
+      raw "{c|ccc}"
+      [rawQ|  & $\rm N_2$ & $\rm O_2$ & $\rm Ar$ \\ |]
+      [rawQ| Volume fraction & 78\% & 21\% & 1\% \\|]
   environment "frame" $ do
     environment "itemize" $ do
       raw "\\item meter \\pause"            

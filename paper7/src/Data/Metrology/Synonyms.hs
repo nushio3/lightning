@@ -15,7 +15,7 @@ import qualified Data.Metrology.SI.Dims as D
 
 -- My System of Units in this paper
 type MySU = SI
-type QofU u = QuOfUL u MySU
+type QofU u = MkQu_ULN u MySU Double
 
 ----------------------------------------------------------------
 -- Pretty Printing Functions
@@ -26,7 +26,7 @@ type QofU u = QuOfUL u MySU
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
-ppValFIn :: (Unit u, CompatibleUnit l u) => u -> String -> QuOfUL u l -> String
+ppValFIn :: (Unit u, CompatibleUnit l u) => u -> String -> MkQu_ULN u l Double -> String
 ppValFIn u fmtStr x = printf fmtStr (x#u) 
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
@@ -174,42 +174,42 @@ instance Unit Debye where
 
 
 
-type Length              = MkGenQu D.Length              MySU Double
-type Mass                = MkGenQu D.Mass                MySU Double
-type Time                = MkGenQu D.Time                MySU Double
-type Current             = MkGenQu D.Current             MySU Double
-type Temperature         = MkGenQu D.Temperature         MySU Double
-type AmountOfSubstance   = MkGenQu D.AmountOfSubstance   MySU Double
-type LuminousIntensity   = MkGenQu D.LuminousIntensity   MySU Double
+type Length              = MkQu_DLN D.Length              MySU Double
+type Mass                = MkQu_DLN D.Mass                MySU Double
+type Time                = MkQu_DLN D.Time                MySU Double
+type Current             = MkQu_DLN D.Current             MySU Double
+type Temperature         = MkQu_DLN D.Temperature         MySU Double
+type AmountOfSubstance   = MkQu_DLN D.AmountOfSubstance   MySU Double
+type LuminousIntensity   = MkQu_DLN D.LuminousIntensity   MySU Double
 
-type Area                = MkGenQu D.Area                MySU Double
-type Volume              = MkGenQu D.Volume              MySU Double
-type Velocity            = MkGenQu D.Velocity            MySU Double
-type Acceleration        = MkGenQu D.Acceleration        MySU Double
-type Wavenumber          = MkGenQu D.Wavenumber          MySU Double
-type Density             = MkGenQu D.Density             MySU Double
-type SurfaceDensity      = MkGenQu D.SurfaceDensity      MySU Double
-type SpecificVolume      = MkGenQu D.SpecificVolume      MySU Double
-type CurrentDensity      = MkGenQu D.CurrentDensity      MySU Double
-type MagneticStrength    = MkGenQu D.MagneticStrength    MySU Double
-type Concentration       = MkGenQu D.Concentration       MySU Double
-type Luminance           = MkGenQu D.Luminance           MySU Double
-type Frequency           = MkGenQu D.Frequency           MySU Double
-type Force               = MkGenQu D.Force               MySU Double
-type Pressure            = MkGenQu D.Pressure            MySU Double
-type Energy              = MkGenQu D.Energy              MySU Double
-type Power               = MkGenQu D.Power               MySU Double
-type Charge              = MkGenQu D.Charge              MySU Double
-type ElectricPotential   = MkGenQu D.ElectricPotential   MySU Double
-type Capacitance         = MkGenQu D.Capacitance         MySU Double
-type Resistance          = MkGenQu D.Resistance          MySU Double
-type Conductance         = MkGenQu D.Conductance         MySU Double
-type MagneticFlux        = MkGenQu D.MagneticFlux        MySU Double
-type MagneticFluxDensity = MkGenQu D.MagneticFluxDensity MySU Double
-type Inductance          = MkGenQu D.Inductance          MySU Double
-type LuminousFlux        = MkGenQu D.LuminousFlux        MySU Double
-type Illuminance         = MkGenQu D.Illuminance         MySU Double
-type Kerma               = MkGenQu D.Kerma               MySU Double
-type CatalyticActivity   = MkGenQu D.CatalyticActivity   MySU Double
-type Momentum            = MkGenQu D.Momentum            MySU Double
+type Area                = MkQu_DLN D.Area                MySU Double
+type Volume              = MkQu_DLN D.Volume              MySU Double
+type Velocity            = MkQu_DLN D.Velocity            MySU Double
+type Acceleration        = MkQu_DLN D.Acceleration        MySU Double
+type Wavenumber          = MkQu_DLN D.Wavenumber          MySU Double
+type Density             = MkQu_DLN D.Density             MySU Double
+type SurfaceDensity      = MkQu_DLN D.SurfaceDensity      MySU Double
+type SpecificVolume      = MkQu_DLN D.SpecificVolume      MySU Double
+type CurrentDensity      = MkQu_DLN D.CurrentDensity      MySU Double
+type MagneticStrength    = MkQu_DLN D.MagneticStrength    MySU Double
+type Concentration       = MkQu_DLN D.Concentration       MySU Double
+type Luminance           = MkQu_DLN D.Luminance           MySU Double
+type Frequency           = MkQu_DLN D.Frequency           MySU Double
+type Force               = MkQu_DLN D.Force               MySU Double
+type Pressure            = MkQu_DLN D.Pressure            MySU Double
+type Energy              = MkQu_DLN D.Energy              MySU Double
+type Power               = MkQu_DLN D.Power               MySU Double
+type Charge              = MkQu_DLN D.Charge              MySU Double
+type ElectricPotential   = MkQu_DLN D.ElectricPotential   MySU Double
+type Capacitance         = MkQu_DLN D.Capacitance         MySU Double
+type Resistance          = MkQu_DLN D.Resistance          MySU Double
+type Conductance         = MkQu_DLN D.Conductance         MySU Double
+type MagneticFlux        = MkQu_DLN D.MagneticFlux        MySU Double
+type MagneticFluxDensity = MkQu_DLN D.MagneticFluxDensity MySU Double
+type Inductance          = MkQu_DLN D.Inductance          MySU Double
+type LuminousFlux        = MkQu_DLN D.LuminousFlux        MySU Double
+type Illuminance         = MkQu_DLN D.Illuminance         MySU Double
+type Kerma               = MkQu_DLN D.Kerma               MySU Double
+type CatalyticActivity   = MkQu_DLN D.CatalyticActivity   MySU Double
+type Momentum            = MkQu_DLN D.Momentum            MySU Double
 

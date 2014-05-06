@@ -1,5 +1,7 @@
 {-# LANGUAGE PolyKinds, DataKinds, TypeOperators, FlexibleInstances,
-             ScopedTypeVariables, FlexibleContexts, ConstraintKinds #-}
+             ScopedTypeVariables, FlexibleContexts, ConstraintKinds, 
+UndecidableInstances #-}
+{-# LANGUAGE OverlappingInstances #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
 --
@@ -84,9 +86,11 @@ instance (LaTeXUnitFactor (LookupList dims lcsu), Render n)
            => Render (Qu dims lcsu n) where
   render (Qu d) = (render d ++ renderFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
-instance Render ElectronVolt where render = show
-instance Render Meter where render = show
-instance Render Volt where render = show                            
+instance Show a => Render a where render = show
+
+-- instance Render ElectronVolt where render = show
+-- instance Render Meter where render = show
+-- instance Render Volt where render = show                            
 
 -- | Render a dimensioned quantity with a given unit, with the default numerical representaion.
 ppIn :: ( ValidDLU dim lcsu unit

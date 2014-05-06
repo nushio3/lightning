@@ -8,7 +8,7 @@
 module Data.Metrology.Synonyms where
 
 import           Data.Metrology
-import           Data.Metrology.SI
+import           Data.Metrology.SI.Poly
 import           Data.Metrology.Unsafe
 import           Text.Printf
 import qualified Data.Metrology.SI.Dims as D

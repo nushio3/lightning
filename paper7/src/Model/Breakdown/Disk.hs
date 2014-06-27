@@ -12,6 +12,7 @@ import Text.Authoring.TH
 
 import Data.Metrology
 import Data.Metrology.Synonyms
+import Data.Metrology.SI
 
 import Model.Breakdown
 import Model.Disk
@@ -35,11 +36,11 @@ Calculations similar to the previous section leads to the following values:
 \begin{eqnarray}
 \begin{array}{CCCCC}
 E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
- #{ppValE 1 $ mmsn1au^.ppdDielectricStrengthT} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
+ #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthT) (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
- #{ppValE 1 $ mmsn1au^.ppdDielectricStrengthDP} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
+ #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthDP)  (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
- #{ppValE 1 $ mmsn1au^.ppdDielectricStrengthR} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  .
+ #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthR)  (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  .
 \end{array}
 \end{eqnarray}
 

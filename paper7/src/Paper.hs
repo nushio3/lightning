@@ -83,6 +83,19 @@ our Solar System and carries unique evidences to understand stars and planet for
 Substantial progress has been made in the understanding of the lightning ignition mechanism 
 in these twenty years.
 
+Magnetorotational instability (MRI) creates electric field $E$. 
+The breakdown model sets upper limit $E \leq E_{\rm crit}$ to the electric field amplitude.
+Lightning bolts does not serve as a dominant observanional signal, contrary to intuition.
+This is because lightning is transient events, and typical radius of a lightning bolt $5000 l_{\rm mfp}$
+@{citep ["bibcode:1992ApJ...387..364P"]}
+is much smaller than the scaleheight. Most of the protoplanetary disk gas is containd in the region
+outside the lightning bolts. 
+We call this lightning matrix gas (LMG).
+The properties of LMG is no different from those of the disk gas without lightning,
+but differs in one point that LMG is subject to
+electric field $E \simeq E_{\rm crit}$. We study the observational feature of LMG.
+
+
 This work is based on the landmark review by @{takahashi2007}. 
 The parallel computations are based on @{marlow2013}.
 

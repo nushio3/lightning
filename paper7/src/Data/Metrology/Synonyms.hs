@@ -36,9 +36,14 @@ type QofU u = MkQu_ULN u MySU Double
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
+ppFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
+         u -> String
+ppFIn fmtStr x u = ppValFIn fmtStr x u  ++ "~{\\rm " ++ (show u) ++ "}"
+
 ppValFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
-            u -> String
-ppValFIn fmtStr x u = printf fmtStr (x#u)  ++ "~{\\rm " ++ (show u) ++ "}"
+         u -> String
+ppValFIn fmtStr x u = printf fmtStr (x#u)  
+
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
 ppValE d (Qu x) = ret
@@ -55,10 +60,14 @@ ppValE d (Qu x) = ret
       "e0" -> valPart
       _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
 
+ppEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
+      u -> String
+ppEIn d x u = ppValEIn d x u  ++ "~{\\rm " ++ (show u) ++ "}"
+
 
 ppValEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
-            u -> String
-ppValEIn d x u = ret  ++ "~{\\rm " ++ (show u) ++ "}"
+         u -> String
+ppValEIn d x u = ret
   where
     fmtStr :: String
     fmtStr = printf "%%.%de" d

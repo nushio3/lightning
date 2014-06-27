@@ -40,12 +40,11 @@ sectionObservation = do
   raw "Observations of $\\mathrm{HCO}^{+}$  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
-  raw "We can distinguish lightning model by observing such charged molecules. The reason is as follows."
+  raw "We can distinguish lightning model by observing such charged molecules."
   raw "\n\n"  
   [rawQ|  
-Magnetorotational instability (MRI) creates electric field $E$. 
-The breakdown model sets upper limit $E \leq E_{\rm crit}$ to the electric field amplitude.
-This electric field accelerates the charged chemical species.   
+
+The electric field of LMG accelerates the charged chemical species.   
 The kinetic energy $\varepsilon$ obtained by this mechanism is $\varepsilon = e E_{\rm crit} l_{\rm mfp}$.
 The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$
 while the mean free path $l_{\rm mfp}$ is inversely proportional to the gas number density $n_n$.

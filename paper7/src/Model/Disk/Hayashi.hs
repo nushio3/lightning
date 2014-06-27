@@ -53,7 +53,7 @@ hayashiModelDoc = do
 \exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{g ~ cm^{ -3 }}}  ,\\
 \mathrm{where} ~~~ 
 h(r) &=& \frac{c_s}{\Omega} \nonumber \\
-&=&   #{ppValE 2 $ mmsn1au ^. scaleHeight} 
+&=&   #{ppValEIn 2 (mmsn1au ^. scaleHeight) AU} 
 \left(\frac{r}{1\mathrm{au}}\right)^{ \frac{5}{4}}  {\mathrm{au}} , 
  \\
 c_s(r) &=& \sqrt{\frac{k_B T(r)}{\mu m_p}},\\

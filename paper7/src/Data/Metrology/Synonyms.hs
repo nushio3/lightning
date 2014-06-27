@@ -26,8 +26,9 @@ type QofU u = MkQu_ULN u MySU Double
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
-ppValFIn :: (Unit u, CompatibleUnit l u) => u -> String -> MkQu_ULN u l Double -> String
-ppValFIn u fmtStr x = printf fmtStr (x#u) 
+ppValFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
+            u -> String
+ppValFIn fmtStr x u = printf fmtStr (x#u)  ++ "~{\\rm " ++ (show u) ++ "}"
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
 ppValE d (Qu x) = ret

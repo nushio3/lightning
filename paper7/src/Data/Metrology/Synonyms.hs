@@ -14,7 +14,17 @@ import           Text.Printf
 import qualified Data.Metrology.SI.Dims as D
 
 -- My System of Units in this paper
-type MySU = SI
+type MySU = 
+  MkLCSU '[ (D.Length, Centi :@ Meter)
+          , (D.Mass, Gram)
+          , (D.Time, Second)
+          , (D.Current, Ampere)
+          , (D.Temperature, Kelvin)
+          , (D.AmountOfSubstance, Mole)
+          , (D.LuminousIntensity, Lumen)
+          ]
+
+
 type QofU u = MkQu_ULN u MySU Double
 
 ----------------------------------------------------------------
@@ -38,6 +48,23 @@ ppValE d (Qu x) = ret
     
     protoStr :: String
     protoStr = printf fmtStr x
+
+    (valPart,expPart) = break (=='e') protoStr
+    
+    ret = case expPart of
+      "e0" -> valPart
+      _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
+
+
+ppValEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
+            u -> String
+ppValEIn d x u = ret  ++ "~{\\rm " ++ (show u) ++ "}"
+  where
+    fmtStr :: String
+    fmtStr = printf "%%.%de" d
+    
+    protoStr :: String
+    protoStr = printf fmtStr (x#u)
 
     (valPart,expPart) = break (=='e') protoStr
     

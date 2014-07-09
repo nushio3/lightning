@@ -18,7 +18,7 @@ import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
 
-import           Data.Metrology
+import           Data.Metrology.Poly
 import           Data.Metrology.SI.Units
 import           Data.Metrology.Synonyms
 

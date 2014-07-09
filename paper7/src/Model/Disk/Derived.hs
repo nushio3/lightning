@@ -6,7 +6,7 @@ import Model.Disk
 import Model.Gas
 import Model.Disk.Hayashi
 
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 
 lightenedDisk :: BreakdownModel -> Disk -> Disk

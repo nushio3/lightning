@@ -10,7 +10,7 @@
 {-# LANGUAGE TypeFamilies #-}
 module Model.Disk where
 
-import           Data.Metrology
+import           Data.Metrology.Poly
 import           Data.Metrology.Show
 import           Data.Metrology.Synonyms
 import           Control.Lens hiding ((#))

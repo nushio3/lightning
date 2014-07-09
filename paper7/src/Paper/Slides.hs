@@ -28,7 +28,6 @@ import           Data.Metrology
 import           Data.Metrology.Synonyms
 import           Data.Metrology.SI.Units
 import           Data.Metrology.SI.Prefixes
-import           Data.Metrology.LaTeX
 
 
 

@@ -20,9 +20,7 @@ Data-Files:          material/aastex.cls
 
 library
   exposed-modules:   
-    Data.Metrology.AltOperators
     Data.Metrology.Synonyms
-    Data.Metrology.LaTeX
 
     Figure.DiskSection
     Figure.Gnuplot

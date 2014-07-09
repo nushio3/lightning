@@ -12,8 +12,7 @@ import Control.Applicative
 import Control.Lens as Lens
 import Text.Authoring
 import Text.Authoring.TH
-import Data.Metrology
-import Data.Metrology.AltOperators
+import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.SI.Units
@@ -36,12 +35,14 @@ data ChemicalSpecies
   | N2HPlus
   deriving (Eq, Show)    
 
-airMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
-airMix func = 0.78 *. func N2 |+| 0.21 *. func O2 |+| 0.01 *. func Ar
+airMix :: (ChemicalSpecies -> Qu d l Double) -> Qu (Normalize d) l Double
+airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 
-ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
-ppdMix func = 0.9219 *. func H2 |+| 7.7718e-2 *. func He 
-              |+| 2.262326e-4 *. func CO |+| 1.3404e-4 *. func O2
+ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu (Normalize d) l Double
+ppdMix func = 0.9219 *| func H2 |+| 7.7718e-2 *| func He 
+              |+| 2.262326e-4 *| func CO |+| 1.3404e-4 *| func O2
+
+scalar = quantity
 
 atomicNumber :: ChemicalSpecies -> QofU Number 
 atomicNumber H2 = scalar 2
@@ -142,7 +143,7 @@ airDielectricStrengthT = redim $ w |/| (mfpAir12 |*| elementaryCharge)
 
 
 airDielectricStrengthDP :: QofU VoltPerCm 
-airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| mfpAir12E) 
+airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *| elementaryCharge |*| mfpAir12E) 
   where
     w = 12 % ElectronVolt
     ratio = qSqrt $  ratioD         :: QofU Number 
@@ -152,7 +153,7 @@ airDielectricStrengthDP = redim $ ratio |*| w |/| (0.43 *. elementaryCharge |*| 
 
 airDielectricStrengthR :: QofU VoltPerCm 
 airDielectricStrengthR = redim $
-  (20.2/(8*pi)) *. (e3 |*| z |*| airNumberDensity)
+  (20.2/(8*pi)) *| (e3 |*| z |*| airNumberDensity)
              |/| (vacuumPermittivity |*| vacuumPermittivity |*| nrg)
   
   where

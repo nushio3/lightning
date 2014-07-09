@@ -9,7 +9,7 @@ module Model.RadiativeTransfer where
 
 import Control.Lens hiding ((#))
 import Control.Monad
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.SI.Units
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.Synonyms
@@ -325,7 +325,7 @@ lineProfile :: Disk -> Int -> ChemicalSpecies -> (Velocity -> QofU Jansky)
 lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
   where
     go :: DiskPortion -> QofU Jansky
-    go (DiskPortion pos a0) = redim $ (exp $ negate $ expPart) *| peakRadiance |*| a0 |/| qSq (env's distanceFromEarth)
+    go (DiskPortion pos a0) = redim $ (exp $ negate $ expPart) *| peakRadiance -- |*| a0 |/| qSq (env's distanceFromEarth)
       where
         env = disk >$< pos
         env's = (env ^.)        

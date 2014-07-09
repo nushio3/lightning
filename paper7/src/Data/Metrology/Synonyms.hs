@@ -7,7 +7,8 @@
 
 module Data.Metrology.Synonyms where
 
-import           Data.Metrology
+-- import           Data.Metrology
+import           Data.Metrology.Poly 
 import           Data.Metrology.SI.Poly
 import           Data.Metrology.Unsafe
 import           Text.Printf
@@ -42,7 +43,7 @@ ppFIn fmtStr x u = ppValFIn fmtStr x u  ++ "~{\\rm " ++ (show u) ++ "}"
 
 ppValFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
          u -> String
-ppValFIn fmtStr x u = printf fmtStr (x#u)  
+ppValFIn fmtStr x u = printf fmtStr (x  #  u)  
 
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
@@ -73,7 +74,7 @@ ppValEIn d x u = ret
     fmtStr = printf "%%.%de" d
     
     protoStr :: String
-    protoStr = printf fmtStr (x#u)
+    protoStr = printf fmtStr (x # u)
 
     (valPart,expPart) = break (=='e') protoStr
     

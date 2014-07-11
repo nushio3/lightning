@@ -14,7 +14,7 @@ import Model.Disk.Derived
 import Model.Disk.Hayashi
 
 import Data.Metrology.Synonyms
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.SI.Units
 

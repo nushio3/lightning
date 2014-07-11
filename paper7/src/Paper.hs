@@ -128,14 +128,12 @@ sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
   let takahashi2007 = citet ["isbn:9784130627184"]
       marlow2013    = citet ["isbn:9781449335946"]
-      keithWardle   = citep ["2014MNRAS.440...89K"]
+      keithWardle   = citep ["bibcode:2014MNRAS.440...89K"]
 
   command1 "section" $ esc "Conclusions and Discussions."
   [rawQ|   
 
-  \begin{itemize}
-  \item @{keithWardle} discusses circumplanetary disk LMG.
-  \end{itemize}
+  todo: @{keithWardle} discusses circumplanetary disk lightning.
 
 
    We have shown that some

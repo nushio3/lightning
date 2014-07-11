@@ -148,7 +148,9 @@ subsectionFigures = do
    We assume beam size $0''.65 \times 0''44$.
    }
    \end{figure}
-   TODO: ALMA sensitivity estimations.
+   
+   The optimal method for discreminating models under noisy observation has been studied.
+   We apply the matched filtering method @{citep ["isbn:9783527408863"]} to distinguish lightning model by ALMA .
    |]
 
 

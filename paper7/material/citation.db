@@ -425,6 +425,24 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2013ApJ...767L...2M},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2014MNRAS.440...89K
+  - - ! '@ARTICLE{2014MNRAS.440...89K,'
+    - ! '   author = {{Keith}, S.~L. and {Wardle}, M.},'
+    - ! '    title = "{Accretion in giant planet circumplanetary discs}",'
+    - ! '  journal = {\mnras},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1402.1180},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {accretion, accretion discs, magnetic fields, MHD, planets and
+      satellites: formation},'
+    - ! '     year = 2014,'
+    - ! '    month = may,'
+    - ! '   volume = 440,'
+    - ! '    pages = {89-105},'
+    - ! '      doi = {10.1093/mnras/stu245},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2014MNRAS.440...89K},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - doi:10.1002/andp.19303970303
   - - ! '@article{Bethe_1930, title={Zur Theorie des Durchgangs schneller Korpuskularstrahlen
       durch Materie}, volume={397}, url={http://dx.doi.org/10.1002/andp.19303970303},
@@ -546,6 +564,12 @@
       DOI={10.1103/RevModPhys.12.87}, number={2}, journal={Reviews of Modern Physics},
       publisher={American Physical Society}, author={Druyvesteyn, M. J. and Penning,
       F. M.}, year={1940}, month={Apr}, pages={87-174}}'
+- - doi:10.1109/PROC.1963.2383
+  - - ! " @article{North, title={An Analysis of the factors which determine signal/noise
+      discrimination in pulsed-carrier systems}, volume={51}, ISSN={0018-9219}, url={http://dx.doi.org/10.1109/PROC.1963.2383},
+      DOI={10.1109/proc.1963.2383}, number={7}, journal={Proceedings of the IEEE},
+      publisher={Institute of Electrical & Electronics Engineers (IEEE)}, year={1963},
+      author={North, D.O.}, pages={1016\xE2\x80\x931027}}"
 - - doi:10.1146/annurev-astro-081710-102548
   - - ! '@article{Williams_Cieza_2011, title={Protoplanetary Disks and Their Evolution},
       volume={49}, url={http://dx.doi.org/10.1146/annurev-astro-081710-102548}, DOI={10.1146/annurev-astro-081710-102548},

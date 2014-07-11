@@ -587,6 +587,14 @@
     - ! '        PUBLISHER = "Cambridge University Press",'
     - ! '        ADDRESS = "Cambridge",'
     - ! '        YEAR ="2010"}'
+- - isbn:978-3-527-40886-3
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Jolien D. E. Creighton and Warren G. Anderson",'
+    - ! '        TITLE = "Gravitational wave physics and astronomy an introduction
+      to theory, experiment and data analysis",'
+    - ! '        PUBLISHER = "Wiley-VCH-Verl.",'
+    - ! '        ADDRESS = "Weinheim",'
+    - ! '        YEAR ="2011"}'
 - - isbn:978-3-642-64760-4
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "Yuri P. Raizer",'

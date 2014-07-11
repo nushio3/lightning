@@ -10,7 +10,7 @@ import           Control.Monad.State
 import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
 
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 
 import Model.Breakdown
@@ -149,8 +149,6 @@ subsectionFigures = do
    }
    \end{figure}
    
-   The optimal method for discreminating models under noisy observation has been studied.
-   We apply the matched filtering method @{citep ["isbn:9783527408863"]} to distinguish lightning model by ALMA .
    |]
 
 

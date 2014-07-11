@@ -22,6 +22,7 @@ import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import qualified Text.LaTeX as LTX
 
 import           Paper.SectionModel (sectionModel)
+import           Paper.SectionMatchedFilter (sectionMF)
 import           Paper.SectionObservation (sectionObservation)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 
@@ -59,6 +60,7 @@ genBodyText = do
         sectionIntro
         sectionModel
         sectionObservation
+        sectionMF
         sectionConclusion
         sectionAcknowledgement
 

@@ -41,6 +41,7 @@ library
     Paper.SectionAcknowledgement
     Paper.SectionModel
     Paper.SectionObservation
+    Paper.SectionMatchedFilter
     Paper.Slides
 
 

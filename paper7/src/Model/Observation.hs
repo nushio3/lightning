@@ -1,4 +1,5 @@
 {-# LANGUAGE ConstraintKinds #-}
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -39,11 +40,24 @@ noiseLevelPerbeam DCOPlus = redim $ 13.3e-3 % Jansky
 noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky -- xxx
 noiseLevelPerbeam c = error $ "noise level undefined for : " ++ show c
 
-psdPerPixel :: ChemicalSpecies -> QofU (Jansky :^ Two)
-psdPerPixel chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize |/| pixelSize)
+pp2 :: ChemicalSpecies -> QofU (Jansky :^ Two)
+pp2 chem = redim $ noiseLevelPerbeam chem |^ sTwo
 
-psdPerSteradian :: ChemicalSpecies -> QofU (Jansky :^ Two) 
-psdPerSteradian chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize)
+-- psdPerPixel :: ChemicalSpecies -> QofU (Jansky :^ Two)
+-- psdPerPixel chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize |/| pixelSize)
+-- 
+-- psdPerAS2 :: ChemicalSpecies -> QofU (Jansky :^ Two) 
+-- psdPerAS2 chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize)
 
-modelNorm :: Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
-modelNorm Nothing (Just TownsendBreakdown) =  undefined
+measureOfSensitivity ::Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU Number
+measureOfSensitivity n c a b = modelNorm n c a b 
+
+modelNorm :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
+modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo)
+
+modelNorm' :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> Double
+
+#include "modelNorm50.hs"
+#include "modelNorm100.hs"
+
+modelNorm' _ _ _ _ = 0

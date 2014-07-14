@@ -11,7 +11,11 @@ import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
 
 import Data.Metrology.Poly
+import Data.Metrology.SI.Poly
 import Data.Metrology.Synonyms
+
+import Model.Gas
+import Model.Observation
 
 import           Text.Authoring
 import           Text.Authoring.TH
@@ -25,6 +29,14 @@ sectionMF = do
    in order to distinguish lightning model by ALMA.
    We follow the treatment by @{citet ["isbn:978-3-527-40886-3"]} .
 
-   Hoge
+   Given that the noise levels for $\mathrm{HCO}^{+}$,  $\mathrm{DCO}^{+}$ and  $\mathrm{N_2H}^{+}$ are
+   $#{ppEIn 3 (noiseLevelPerbeam HCOPlus) (Jansky) }$,
+   $#{ppEIn 3 (noiseLevelPerbeam DCOPlus) (Jansky) }$, and
+   $#{ppEIn 3 (noiseLevelPerbeam N2HPlus) (Jansky) }$, respectively,
+   their noise spectrum power density per square arcsecond are
+   $#{ppEIn 3 (psdPerAS2 HCOPlus) (Jansky :^sTwo) }$,
+   $#{ppEIn 3 (psdPerAS2 DCOPlus) (Jansky :^sTwo) }$, and
+   $#{ppEIn 3 (psdPerAS2 N2HPlus) (Jansky :^sTwo) }$, respectively.
+
   |]
 

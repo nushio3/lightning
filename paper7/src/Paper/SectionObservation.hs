@@ -37,7 +37,7 @@ sectionObservation = do
   command1 "section" $ raw "Observation"
   
   [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
-  raw "Observations of $\\mathrm{HCO}^{+}$  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
+  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
   raw "We can distinguish lightning model by observing such charged molecules."
@@ -139,11 +139,20 @@ subsectionFigures = do
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  \\
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-56.eps}  
    \end{tabular}
    \caption{
    Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.
-   No lightning model (upper row) and Runaway breakdown model (lower row).
+   No breakdown model (upper row),
+   Runaway breakdown taking place at $ \mathrm{50au} < r <  \mathrm{100au}$  (middle row), and
+   Runaway breakdown taking place at $ \mathrm{100au} < r <  \mathrm{200au}$  (lower row).
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
    We assume beam size $0''.65 \times 0''44$.
    }

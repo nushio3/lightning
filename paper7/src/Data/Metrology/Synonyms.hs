@@ -220,6 +220,9 @@ type Temperature         = MkQu_DLN D.Temperature         MySU Double
 type AmountOfSubstance   = MkQu_DLN D.AmountOfSubstance   MySU Double
 type LuminousIntensity   = MkQu_DLN D.LuminousIntensity   MySU Double
 
+type Angle               = Count MySU Double
+type SolidAngle          = Count MySU Double
+
 type Area                = MkQu_DLN D.Area                MySU Double
 type Volume              = MkQu_DLN D.Volume              MySU Double
 type Velocity            = MkQu_DLN D.Velocity            MySU Double

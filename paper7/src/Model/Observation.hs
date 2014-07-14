@@ -40,8 +40,8 @@ noiseLevelPerbeam DCOPlus = redim $ 13.3e-3 % Jansky
 noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky -- xxx
 noiseLevelPerbeam c = error $ "noise level undefined for : " ++ show c
 
-pp2 :: ChemicalSpecies -> QofU (Jansky :^ Two)
-pp2 chem = redim $ noiseLevelPerbeam chem |^ sTwo
+pp2 :: ChemicalSpecies -> QofU Jansky
+pp2 chem = noiseLevelPerbeam chem 
 
 -- psdPerPixel :: ChemicalSpecies -> QofU (Jansky :^ Two)
 -- psdPerPixel chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize |/| pixelSize)
@@ -50,10 +50,10 @@ pp2 chem = redim $ noiseLevelPerbeam chem |^ sTwo
 -- psdPerAS2 chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize)
 
 measureOfSensitivity ::Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU Number
-measureOfSensitivity n c a b = modelNorm n c a b 
+measureOfSensitivity n c a b = modelNorm n c a b |/|  modelNorm n c a b --- xxx : missing denominator here
 
 modelNorm :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
-modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo)
+modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo)  -- produces error here
 
 modelNorm' :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> Double
 

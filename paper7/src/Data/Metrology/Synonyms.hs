@@ -106,7 +106,7 @@ type JouleM3 = Joule :/ (Meter :^ Three)
 
 
 -- see the table in http://en.wikipedia.org/wiki/Spectral_irradiance
-type SpectralRadiance = Watt :/ (Meter :^ Two) :/ Hertz
+type SpectralRadiance = Joule :/ (Meter :^ Two) 
 
 
 -- | Spectral Flux Density

@@ -46,4 +46,4 @@ psdPerSteradian :: ChemicalSpecies -> QofU (Jansky :^ Two)
 psdPerSteradian chem = redim $ (2 *| noiseLevelPerbeam chem) |^ sTwo |/| (beamSize)
 
 modelNorm :: Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
-modelNorm Nothing (Just TownsendBreakdown) =  
+modelNorm Nothing (Just TownsendBreakdown) =  undefined

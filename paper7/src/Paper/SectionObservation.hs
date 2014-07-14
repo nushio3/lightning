@@ -56,7 +56,7 @@ the maximum velocities of the chemical elements as follows (units are in cm/s);
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
 T  
-  & $#{ppValE 1 $ fieldToVelocity mmsn1auT HCOPlus }$
+  & $#{ppValE 1 $ fieldToVelcioty mmsn1auT HCOPlus }$
   & $#{ppValE 1 $ fieldToVelocity mmsn1auT DCOPlus }$
   & $#{ppValE 1 $ fieldToVelocity mmsn1auT N2HPlus }$
   \\

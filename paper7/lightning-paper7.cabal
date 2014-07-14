@@ -35,6 +35,7 @@ library
     Model.Disk.Recent
     Model.Dust
     Model.Gas
+    Model.Observation
     Model.RadiativeTransfer
     Model.Values
     Paper

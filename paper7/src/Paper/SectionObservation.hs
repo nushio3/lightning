@@ -16,7 +16,7 @@ import Data.Metrology.Synonyms
 import Model.Breakdown
 import Model.Disk
 import Model.Disk.Hayashi
-import Model.Disk.Derived
+import Model.Disk.Derived       
 import Model.Gas
 import Model.Values
 import Model.RadiativeTransfer
@@ -39,7 +39,7 @@ sectionObservation = do
   command1 "subsection" $ raw "Estimation of the line signal strength"
   
   [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
-  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
+  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$    lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
   raw "We can distinguish lightning model by observing such charged molecules."

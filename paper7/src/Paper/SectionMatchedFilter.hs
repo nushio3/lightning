@@ -79,7 +79,7 @@ compareTables =
   @{compareTable 100 [HCOPlus]}
 
 
-  $\mathrm{DCO}^{+}$ $\mathrm{N_2H}^{+}$
+  $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$ lines.
 
   @{compareTable 50 [DCOPlus]}   @{compareTable 100 [DCOPlus]}
 
@@ -122,6 +122,45 @@ compareTable n chems =
       | otherwise         = show (length chems) ++ " species"
 
 
+upperLimitTable :: MonadAuthoring s w m => Int -> [ChemicalSpecies] ->  m ()
+upperLimitTable n chems = 
+  [rawQ| 
+  
+  \begin{tabular}{|c|ccc|}
+  \hline
+  #{chemStr} &  T#{n} & DP#{n} & R#{n} \\
+  \hline
+  N      &  #{pp no jtb} &  #{pp no jdpb} &  #{pp no jrb} \\
+  T#{n}  &               & #{pp jtb jdpb} &  #{pp jtb jrb} \\
+  DP#{n} &               &                &  #{pp jdpb jrb} \\
+  \hline
+  \end{tabular}
+
+   |]
+
+  where
+    pp a b = ppFIn "%.1f" (critRad a b) AU
+    critRad a b = qSqrt $ 
+       3 *| (r2 |^ sTwo |-| r1 |^ sTwo )
+       |/| qSum [measureOfSensitivity n chem  a b| chem <- chems]
+
+    r1 = (fromIntegral n) % AU
+    r2 = (fromIntegral n * 2) % AU
+
+    no = Nothing
+    jrb = Just RunawayBreakdown
+    jdpb = Just DPBreakdown
+    jtb = Just TownsendBreakdown
+
+    chemStr :: String
+    chemStr
+      | chems == [HCOPlus] = "$\\mathrm{HCO}^{+}$" 
+      | chems == [DCOPlus] = "$\\mathrm{DCO}^{+}$" 
+      | chems == [N2HPlus] = "$\\mathrm{N_2H}^{+}$"
+      | otherwise         = show (length chems) ++ " species"
+
+
+
 
 
 closingMF :: MonadAuthoring s w m => m ()
@@ -135,7 +174,16 @@ closingMF = do
    exists in forms of LMG clumps (protoplanetary ``cumulonibus clouds'') much smaller than the size of
    the protoplanetary disks.
    
-   The radius of LMG clump that satisfies
+   We can put the upper limit to the size of such LMG clumps by thresholding the measure-of-sensitivity.
+   For example, if the radii of LMG clumps is smaller than the values in the following tables,
+   they are not $3-\sigma$ detectable.
 
+   @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}
+   @{upperLimitTable 100 [HCOPlus, DCOPlus, N2HPlus]}
+
+   The above values ar upper limit to the size of the LMG clums that possibly exists
+   on 
+   $50{\mathrm{au}} < r < 100{\mathrm{au}}$ and
+   $100{\mathrm{au}} < r < 200{\mathrm{au}}$ orbit, respectively.    
   |]
 

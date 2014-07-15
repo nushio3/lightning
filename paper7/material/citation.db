@@ -13,6 +13,19 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:1979DSRA...26..123M
+  - - ! '@ARTICLE{1979DSRA...26..123M,'
+    - ! '   author = {{Munk}, W. and {Wunsch}, C.},'
+    - ! '    title = "{Ocean acoustic tomography: a scheme for large scale monitoring}",'
+    - ! '  journal = {Deep Sea Research A},'
+    - ! '     year = 1979,'
+    - ! '    month = feb,'
+    - ! '   volume = 26,'
+    - ! '    pages = {123-161},'
+    - ! '      doi = {10.1016/0198-0149(79)90073-6},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1979DSRA...26..123M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1981PThPS..70...35H
   - - ! '@ARTICLE{1981PThPS..70...35H,'
     - ! '   author = {{Hayashi}, C.},'
@@ -94,6 +107,20 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1992ApJ...387..364P},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:1996Icar..119..244J
+  - - ! '@ARTICLE{1996Icar..119..244J,'
+    - ! '   author = {{Jenkins}, J.~M. and {Doyle}, L.~R. and {Cullers}, D.~K.},'
+    - ! '    title = "{A Matched Filter Method for Ground-Based Sub-Noise Detection
+      of Terrestrial Extrasolar Planets in Eclipsing Binaries: Application to CM Draconis}",'
+    - ! '  journal = {\icarus},'
+    - ! '     year = 1996,'
+    - ! '    month = feb,'
+    - ! '   volume = 119,'
+    - ! '    pages = {244-260},'
+    - ! '      doi = {10.1006/icar.1996.0018},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1996Icar..119..244J},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1998A&A...331..121P
   - - ! '@ARTICLE{1998A&A...331..121P,'
     - ! '   author = {{Pilipp}, W. and {Hartquist}, T.~W. and {Morfill}, G.~E. and '
@@ -120,6 +147,49 @@
     - ! '    pages = {1561-1578},'
     - ! '      doi = {10.1175/1520-0469(1999)056<1561:COGASC>2.0.CO;2},'
     - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1999PhRvD..60b2002O
+  - - ! '@ARTICLE{1999PhRvD..60b2002O,'
+    - ! '   author = {{Owen}, B.~J. and {Sathyaprakash}, B.~S.},'
+    - ! '    title = "{Matched filtering of gravitational waves from inspiraling compact
+      binaries: Computational cost and template placement}",'
+    - ! '  journal = {\prd},'
+    - ! '   eprint = {gr-qc/9808076},'
+    - ! ' keywords = {Gravitational wave detectors and experiments, Data analysis:
+      algorithms and implementation, data management, Binary and multiple stars},'
+    - ! '     year = 1999,'
+    - ! '    month = jul,'
+    - ! '   volume = 60,'
+    - ! '   number = 2,'
+    - ! '      eid = {022002},'
+    - ! '    pages = {022002},'
+    - ! '      doi = {10.1103/PhysRevD.60.022002},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1999PhRvD..60b2002O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2000ApJ...535..338D
+  - - ! '@ARTICLE{2000ApJ...535..338D,'
+    - ! '   author = {{Doyle}, L.~R. and {Deeg}, H.~J. and {Kozhevnikov}, V.~P. and '
+    - ! "\t{Oetiker}, B. and {Mart{\\'{\\i}}n}, E.~L. and {Blue}, J.~E. and "
+    - ! "\t{Rottler}, L. and {Stone}, R.~P.~S. and {Ninkov}, Z. and {Jenkins}, J.~M.
+      and "
+    - ! "\t{Schneider}, J. and {Dunham}, E.~W. and {Doyle}, M.~F. and {Paleologou},
+      E."
+    - ! "\t},"
+    - ! '    title = "{Observational Limits on Terrestrial-sized Inner Planets around
+      the CM Draconis System Using the Photometric Transit Method with a Matched-Filter
+      Algorithm}",'
+    - ! '  journal = {\apj},'
+    - ! '   eprint = {astro-ph/0001177},'
+    - ! ' keywords = {Stars: Binaries: Eclipsing, Methods: Statistical, Stars: Planetary
+      Systems, stars: individual (CM Draconis), Techniques: Photometric},'
+    - ! '     year = 2000,'
+    - ! '    month = may,'
+    - ! '   volume = 535,'
+    - ! '    pages = {338-349},'
+    - ! '      doi = {10.1086/308830},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2000ApJ...535..338D},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2000Icar..143...87D
@@ -187,6 +257,21 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2003ApJS..147..167E
+  - - ! '@ARTICLE{2003ApJS..147..167E,'
+    - ! '   author = {{Ellingson}, S.~W. and {Hampson}, G.~A.},'
+    - ! '    title = "{Mitigation of Radar Interference in L-Band Radio Astronomy}",'
+    - ! '  journal = {\apjs},'
+    - ! ' keywords = {Instrumentation: Detectors, Methods: Analytical, Radio Continuum:
+      General, Radio Lines: General, Techniques: Radar Astronomy},'
+    - ! '     year = 2003,'
+    - ! '    month = jul,'
+    - ! '   volume = 147,'
+    - ! '    pages = {167-176},'
+    - ! '      doi = {10.1086/375025},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2003ApJS..147..167E},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2005ApJ...628L.155I
   - - ! '@ARTICLE{2005ApJ...628L.155I,'
     - ! '   author = {{Inutsuka}, S.-i. and {Sano}, T.},'
@@ -203,6 +288,29 @@
     - ! '    pages = {L155-L158},'
     - ! '      doi = {10.1086/432796},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2005ApJ...628L.155I},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2007PhRvD..76h4020V
+  - - ! '@ARTICLE{2007PhRvD..76h4020V,'
+    - ! '   author = {{Vaishnav}, B. and {Hinder}, I. and {Herrmann}, F. and {Shoemaker},
+      D.'
+    - ! "\t},"
+    - ! '    title = "{Matched filtering of numerical relativity templates of spinning
+      binary black holes}",'
+    - ! '  journal = {\prd},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0705.3829},'
+    - ! ' primaryClass = "gr-qc",'
+    - ! ' keywords = {Numerical relativity, Wave generation and sources, Classical
+      black holes, Experimental tests of gravitational theories},'
+    - ! '     year = 2007,'
+    - ! '    month = oct,'
+    - ! '   volume = 76,'
+    - ! '   number = 8,'
+    - ! '      eid = {084020},'
+    - ! '    pages = {084020},'
+    - ! '      doi = {10.1103/PhysRevD.76.084020},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2007PhRvD..76h4020V},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2009ApJ...700.1502A
@@ -423,6 +531,29 @@
     - ! '    pages = {L2},'
     - ! '      doi = {10.1088/2041-8205/767/1/L2},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2013ApJ...767L...2M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2013PhRvD..88d4026H
+  - - ! '@ARTICLE{2013PhRvD..88d4026H,'
+    - ! '   author = {{Hotokezaka}, K. and {Kiuchi}, K. and {Kyutoku}, K. and {Muranushi},
+      T. and '
+    - ! "\t{Sekiguchi}, Y.-i. and {Shibata}, M. and {Taniguchi}, K.},"
+    - ! '    title = "{Remnant massive neutron stars of binary neutron star mergers:
+      Evolution process and gravitational waveform}",'
+    - ! '  journal = {\prd},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1307.5888},'
+    - ! ' primaryClass = "astro-ph.HE",'
+    - ! ' keywords = {Numerical relativity, Gravitational waves: theory, Relativistic
+      stars: structure stability and oscillations},'
+    - ! '     year = 2013,'
+    - ! '    month = aug,'
+    - ! '   volume = 88,'
+    - ! '   number = 4,'
+    - ! '      eid = {044026},'
+    - ! '    pages = {044026},'
+    - ! '      doi = {10.1103/PhysRevD.88.044026},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013PhRvD..88d4026H},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2014MNRAS.440...89K

@@ -18,7 +18,7 @@ import qualified Text.LaTeX.Base.Class as LTX
 import qualified Text.LaTeX.Base.Commands as LTX
 import qualified Text.LaTeX.Packages.AMSMath as LTX
 
-import           Data.Metrology
+import           Data.Metrology.Poly
 import           Data.Metrology.SI.Units
 import           Data.Metrology.Synonyms
 
@@ -33,9 +33,11 @@ import           Text.Authoring.TH
 
 hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
-  citet1 "bibcode:1981PThPS..70...35H"
   
-  esc " has proposed the following minimum-mass solar nebula (MMSN) model of the protoplanetary disk."
+  esc "The minimum-mass solar nebula (MMSN) model "
+  citet1 "bibcode:1981PThPS..70...35H"
+  esc " has been widely used in the studies of the protoplanetary disk, with fruitful results."
+
   raw "\n\n"
   
   
@@ -53,7 +55,7 @@ hayashiModelDoc = do
 \exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{g ~ cm^{ -3 }}}  ,\\
 \mathrm{where} ~~~ 
 h(r) &=& \frac{c_s}{\Omega} \nonumber \\
-&=&   #{ppValE 2 $ mmsn1au ^. scaleHeight} 
+&=&   #{ppValEIn 2 (mmsn1au ^. scaleHeight) AU} 
 \left(\frac{r}{1\mathrm{au}}\right)^{ \frac{5}{4}}  {\mathrm{au}} , 
  \\
 c_s(r) &=& \sqrt{\frac{k_B T(r)}{\mu m_p}},\\

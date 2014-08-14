@@ -28,7 +28,6 @@ import           Data.Metrology
 import           Data.Metrology.Synonyms
 import           Data.Metrology.SI.Units
 import           Data.Metrology.SI.Prefixes
-import           Data.Metrology.LaTeX
 
 
 
@@ -80,28 +79,28 @@ sectionSlides = do
       [rawQ| \hline |]
       [rawQ| Volume fraction & 78\% & 21\% & 1\% \\|]
       [rawQ| $\Delta W$ 
-             & $#{ppF ElectronVolt "%.2f" $ ionizationEnergy N2}$   
-             & $#{ppF ElectronVolt "%.2f" $ ionizationEnergy O2}$   
-             & $#{ppF ElectronVolt "%.2f" $ ionizationEnergy Ar}$   
+             & $#{ppFIn "%.2f" (ionizationEnergy N2)  ElectronVolt}$   
+             & $#{ppFIn "%.2f" (ionizationEnergy O2)  ElectronVolt}$   
+             & $#{ppFIn "%.2f" (ionizationEnergy Ar)  ElectronVolt}$   
              \\|]      
       [rawQ| $\sigma_{\rm inel}$ 
-             & $#{ppFP cm2 "%.1f" (-16) $ inelCrossSection 12 N2}$   
-             & $#{ppFP cm2 "%.1f" (-16) $ inelCrossSection 12 O2}$   
-             & $#{ppFP cm2 "%.1f" (-16) $ inelCrossSection 12 Ar}$   
+             & $#{ppFIn "%.1f" ( inelCrossSection 12 N2) (centi Meter :^ sTwo)}$   
+             & $#{ppFIn "%.1f" ( inelCrossSection 12 O2) (centi Meter :^ sTwo)}$   
+             & $#{ppFIn "%.1f" ( inelCrossSection 12 Ar) (centi Meter :^ sTwo)}$   
              \\|]     
       [rawQ| \hline |]
     environment "itemize" $ do
       [rawQ| 
         \item
-          Air number density at NTP is $#{ppE cmM3 3 airNumberDensity}$ 
+          Air number density at NTP is $#{ppEIn 3 airNumberDensity cmM3 }$ 
         \item
           The mean inelastic cross section of air at 12eV is 
-          $#{ppE cm2 1 $ airMix $ inelCrossSection 12}$.
+          $#{ppEIn 1 (airMix $ inelCrossSection 12) cm2 }$.
         \item
-          $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppE (centi Meter) 1 mfpAir12}$ 
+          $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppEIn  1 mfpAir12 (centi Meter)}$ 
         \item
          This gives 
-         $E_{\rm crit} = #{ppF kvcm "%.2f" $ airDielectricStrengthT}$,
+         $E_{\rm crit} = #{ppFIn "%.2f" airDielectricStrengthT kvcm }$,
          which is in good agreement with lab experiments. |]
 
 

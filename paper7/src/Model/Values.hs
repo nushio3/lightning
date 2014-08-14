@@ -1,7 +1,7 @@
 {-# LANGUAGE ConstraintKinds, TypeOperators #-}
 module Model.Values where
 
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 import Data.Metrology.SI.Units
 import Data.Metrology.Z

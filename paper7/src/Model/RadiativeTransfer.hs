@@ -9,7 +9,7 @@ module Model.RadiativeTransfer where
 
 import Control.Lens hiding ((#))
 import Control.Monad
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.SI.Units
 import Data.Metrology.SI.Prefixes
 import Data.Metrology.Synonyms
@@ -28,7 +28,7 @@ fieldToVelocity env chem = qSqrt $ v2
     ef :: QofU VoltPerCm 
     ef = env ^. lightningAccelerator 
     v2 :: QofU Cm2PerSec2 
-    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
+    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15N2) |/| m 
     m :: Mass
     m = molecularMass chem |/| avogadroConstant
 
@@ -70,7 +70,9 @@ aboutFractionalAbundance :: MonadAuthoring s w m => m ()
 aboutFractionalAbundance = do  
   [rawQ|  
    For simplicity we assume that fractional abundances of the ion species are uniform
-   within the disk.
+   within the disk. The population of the ionized species can be drastically increased
+   or decreased as a result of lightning, but to estimate such population is beyond the
+   scope of this paper.
    We adopt the values at 100au of the XR+UV-new chemical process model 
    @{citep ["doi:10.1088/0004-637X/747/2/114"]},
    and assume that the fractional abundances of $\rm HCO^{+}$ and $\rm N_2H^{+}$ 
@@ -88,14 +90,14 @@ aboutFractionalAbundance = do
    |]
 
 
-  [rawQ|  
+  [rawQ| % 
    We assume the fractional abundance of $\rm DCO^{+}$ to be
    $#{ppValE 0 $ fractionalAbundance100au DCOPlus}$, based on the
    observations by @{citet["bibcode:2013A&A...557A.132M"]}.
    |]
   
 
-  [rawQ|  
+  [rawQ|  %
    Therefore, the column densities of $\rm HCO^{+}$, $\rm DCO^{+}$ and $\rm N_2H^{+}$
    are $#{ppValE 0 $ columnDensity100au HCOPlus} {\rm cm^{ -2}}$,
    $#{ppValE 0 $ columnDensity100au DCOPlus} {\rm cm^{ -2}}$,
@@ -257,16 +259,18 @@ aboutLineProperty = do
   [rawQ|
    We consider $\rm HCO^{+}~3-2$, $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines.
    Their frequencies are       
-   $#{ppValF "%5.2f" (lineFrequency 2 HCOPlus)}$GHz,
-   $#{ppValF "%5.2f" (lineFrequency 2 DCOPlus)}$GHz and
-   $#{ppValF "%5.2f" (lineFrequency 2 N2HPlus)}$GHz, respectively.
+   $#{ppValFIn "%5.2f" (lineFrequency 2 HCOPlus) (giga Hertz)}$GHz,
+   $#{ppValFIn "%5.2f" (lineFrequency 2 DCOPlus) (giga Hertz)}$GHz and
+   $#{ppValFIn "%5.2f" (lineFrequency 2 N2HPlus) (giga Hertz)}$GHz, respectively.
    At 100au of the MMSN disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
-   Therefore, $N_{\tau_{\nu 0}=1}$ for the three lines are
+   @{aboutFractionalAbundance}
+
+   Assuming that there is no lightning and that the molecules are in their thermal velocities,
+   $N_{\tau_{\nu 0}=1}$ for the three lines are
    $#{ppValE 2 $ scovilleFormula 2 tem100au HCOPlus} ~{\rm cm^{ -2}}$,
    $#{ppValE 2 $ scovilleFormula 2 tem100au DCOPlus} ~{\rm cm^{ -2}}$ and   
-   $#{ppValE 2 $ scovilleFormula 2 tem100au N2HPlus} ~{\rm cm^{ -2}}$, respectively,
-   given no lightning and that the molecules are in their thermal velocities.
-   
+   $#{ppValE 2 $ scovilleFormula 2 tem100au N2HPlus} ~{\rm cm^{ -2}}$, respectively.
+   %   
    On the other hand, $N_{\tau_{\nu 0}=1}$ for the three lines are
    $#{ppValE 2 $ scovilleFormulaAthermal 2 tem100au ligVel HCOPlus} ~{\rm cm^{ -2}}$,
    $#{ppValE 2 $ scovilleFormulaAthermal 2 tem100au ligVel DCOPlus} ~{\rm cm^{ -2}}$ and   
@@ -274,12 +278,12 @@ aboutLineProperty = do
    if the molecules are accelerated by the lightning electric field.
 
 
-   @{aboutFractionalAbundance}
-   We can see that the disk is optically thick for
-   $\rm HCO^{+}~3-2$ line at 100au. On the other hand, it is optically thin for 
-   $\rm DCO^{+}~3-2$ and  $\rm N_2H^{+}~3-2$ lines. Once lightning takes place,
-   however, all the three lines becomes optically thin because molecular speed becomes faster. 
-   Observational consequence of this are brighter and broadened line profiles.
+
+   We can see that the disk is optically thick for all of the lines at 100au.
+   However, 
+   all the three lines becomes two degrees of magnitude more transparent under the effect of the
+   critical electric field. This is a result of the molecular speed becoming faster. 
+   Consequently, observed line profiles are broadened.
    
 
    |]
@@ -321,7 +325,7 @@ lineProfile :: Disk -> Int -> ChemicalSpecies -> (Velocity -> QofU Jansky)
 lineProfile disk j chem dv = foldl1 (|+|) $ map go splittedDisk
   where
     go :: DiskPortion -> QofU Jansky
-    go (DiskPortion pos a0) = redim $ (exp $ negate $ expPart) *| peakRadiance |*| a0 |/| qSq (env's distanceFromEarth)
+    go (DiskPortion pos a0) = redim $ (exp $ negate $ expPart) *| peakRadiance -- |*| a0 |/| qSq (env's distanceFromEarth)
       where
         env = disk >$< pos
         env's = (env ^.)        

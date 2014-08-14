@@ -10,8 +10,9 @@ module Model.Breakdown where
 import Text.Authoring
 import Text.Authoring.TH
 import Data.Metrology
-import Data.Metrology.SI.Units
+import Data.Metrology.SI
 import Data.Metrology.Synonyms
+import Data.Metrology.Show
 import Model.Values
 
 
@@ -180,9 +181,9 @@ We assume that air consists of
 78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fraction).
 Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
 The ionization energy of these chemical species are
-$\Delta W_{\rm N_2} = #{ppValF "%.1f" $ ionizationEnergy N2} {\rm eV}$,
-$\Delta W_{\rm O_2} = #{ppValF "%.1f" $ ionizationEnergy O2} {\rm eV}$, and
-$\Delta W_{\rm Ar}  = #{ppValF "%.1f" $ ionizationEnergy Ar} {\rm eV}$, respectively.
+$\Delta W_{\rm N_2} = #{ppFIn "%.1f" (ionizationEnergy N2) ElectronVolt} $,
+$\Delta W_{\rm O_2} = #{ppFIn "%.1f" (ionizationEnergy O2) ElectronVolt}$, and
+$\Delta W_{\rm Ar}  = #{ppFIn "%.1f" (ionizationEnergy Ar) ElectronVolt}$, respectively.
 Of these $\Delta W_{\rm O_2} \sim 12 {\rm eV}$ is the smallest, so we estimate
 the electric field amplitude $E_{\rm crit}$ required to accelerate the electron
 upto 12eV; i.e. we solve $12 {\rm eV} = e E_{\rm crit} l_{\rm mfp}$.
@@ -207,24 +208,22 @@ under the electric field $E$ is
 where $M$ is the mass of the collision partner, 
 and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
 In the case of the air at NTP,
-since mean molecular weight of air is #{ppValF "%0.2f" $ airMix molecularMass},
-
-
-  [rawQ| $M = #{ppValE 2 bigMOfAir} {\rm g}$. |] -- TODO: user gram here. 
+since mean molecular weight of air is #{ppFIn "%0.2f" (airMix molecularMass) (Gram :/ Mole)},
+ $M = #{ppEIn 2  bigMOfAir Gram}$. |] 
 
 
   [rawQ|
 Note that $l_{\rm mfp}$ in Druyversteyn-Penning model means elastic
 mean free path
-$l_{\rm mfp} = (n_n \sigma_{el})^{ -1} = #{ppValE 2 mfpAir12E} {\rm cm}$ which 
-can be calculated from elastic cross sections of the elemental molecules at 12eV
+$l_{\rm mfp} = (n_n \sigma_{el})^{ -1} = #{ppValE 2 mfpAir12E} {\rm cm}$.
+$l_{\rm mfp}$ is calculated from elastic cross sections of the elemental molecules at 12eV
 ($\sigma_{el} = 
- #{ppValE 2 (elCrossSection 12 N2)}, 
- #{ppValE 2 (elCrossSection 12 O2)}, 
- #{ppValE 2 (elCrossSection 12 Ar)} {\rm cm^{ -2}}$,
+ #{ppEIn 2 (elCrossSection 12 N2) (centi Meter :^ pTwo)}, 
+ #{ppEIn 2 (elCrossSection 12 O2) (centi Meter :^ pTwo)}, 
+ #{ppEIn 2 (elCrossSection 12 Ar) (centi Meter :^ pTwo)}$,
 respectively, for $\rm N_2, O_2, Ar$, see @{citet ["isbn:3-540-64296-X", "isbn:354044338X"]}.)
 Therefore,
-$E_{\rm crit} = #{ppValF "%.2f" $ 1e-3*| airDielectricStrengthDP} {\rm kV/cm}$.
+$E_{\rm crit} = #{ppFIn "%.2f" airDielectricStrengthDP (kilo Volt :/ centi Meter)} $.
 
 Finally, according to the runaway breakdown model the dielectric strength
 $E_{\rm crit}$ is the electric field amplitude where
@@ -235,7 +234,7 @@ that  for them the ionization loss is the smallest.
 The ionization loss of an electron as a function of $\varepsilon$ 
 is formalized by 
 @{citet["doi:10.1002/andp.19303970303", "doi:10.1007/BF01342532","doi:10.1007/BF01344553"]}.
-We use the following form from
+We use the following form of Bethe formula from
 @{citationGen "citet[chap 5.5]" ["isbn:978-0-521-75618-1"]}:
    |]
 
@@ -269,24 +268,27 @@ which is
 \begin{eqnarray}
 E_{\rm crit} 
 &=& \frac{e^3 {\bar Z} n_n}{8 \pi {\epsilon_0}^2 m_e c^2}a_{\rm min}, \nonumber \\
-&=&  #{ppValF "%.1f" $ 1e-3 *| airDielectricStrengthR} {\rm kV/cm}.
+&=&  #{ppFIn "%.1f" airDielectricStrengthR (kilo Volt :/ centi Meter)} .
 \end{eqnarray}
    |]
 
 
 
   [rawQ|
-All three model states that the dielectric strength of the gas is proportional to
+All the three model state that the dielectric strength of the gas is proportional to
 the number density of the gas. 
 
 \begin{eqnarray}
 \begin{array}{CCCCC}
 E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
- #{ppValE 1 $ airDielectricStrengthT} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  , \\
+ #{ppFIn "%.1f"  airDielectricStrengthT  (kilo Volt :/ centi Meter)} \cdot 
+ \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}   , \\
 E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
- #{ppValE 1 $ airDielectricStrengthDP} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  , \\
+ #{ppFIn "%.1f"  airDielectricStrengthDP (kilo Volt :/ centi Meter)} \cdot
+ \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}  , \\
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
- #{ppValE 1 $ airDielectricStrengthR} \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right) \mathrm{V/cm}  .
+ #{ppFIn "%.1f"  airDielectricStrengthR  (kilo Volt :/ centi Meter)} \cdot
+ \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}   .
 \end{array}
 \end{eqnarray}
   |]

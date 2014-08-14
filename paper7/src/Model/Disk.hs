@@ -10,7 +10,8 @@
 {-# LANGUAGE TypeFamilies #-}
 module Model.Disk where
 
-import           Data.Metrology
+import           Data.Metrology.Poly
+import           Data.Metrology.SI.Poly (Meter(..))
 import           Data.Metrology.Show
 import           Data.Metrology.Synonyms
 import           Control.Lens hiding ((#))
@@ -163,6 +164,11 @@ ppdNumberDensity = Lens.to $
 mfpPpd15 :: Getter Environment Length
 mfpPpd15 = Lens.to $ \env -> 
   redim $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
+
+mfpPpd15N2 :: Getter Environment Length
+mfpPpd15N2 = Lens.to $ \env -> 
+  redim $ 1 /| (env^.ppdNumberDensity) |/| (1e-18 % (Meter :^ pTwo))
+
 
 mfpPpd15E :: Getter Environment Length
 mfpPpd15E = Lens.to $ \env->

@@ -1,4 +1,4 @@
-{-# LANGUAGE ConstraintKinds #-}
+                {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -10,13 +10,13 @@ import           Control.Monad.State
 import qualified Text.LaTeX as LTX
 import           Text.LaTeX.Base.Class (LaTeXC(..))
 
-import Data.Metrology
+import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 
 import Model.Breakdown
 import Model.Disk
 import Model.Disk.Hayashi
-import Model.Disk.Derived
+import Model.Disk.Derived       
 import Model.Gas
 import Model.Values
 import Model.RadiativeTransfer
@@ -35,17 +35,18 @@ sectionObservation = do
   
   
   command1 "section" $ raw "Observation"
+
+  command1 "subsection" $ raw "Estimation of the line signal strength"
   
   [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
-  raw "Observations of $\\mathrm{HCO}^{+}$  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
+  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$    lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
-  raw "We can distinguish lightning model by observing such charged molecules. The reason is as follows."
+  raw "We can distinguish lightning model by observing such charged molecules."
   raw "\n\n"  
   [rawQ|  
-Magnetorotational instability (MRI) creates electric field $E$. 
-The breakdown model sets upper limit $E \leq E_{\rm crit}$ to the electric field amplitude.
-This electric field accelerates the charged chemical species.   
+
+The electric field of LMG accelerates the charged chemical species.   
 The kinetic energy $\varepsilon$ obtained by this mechanism is $\varepsilon = e E_{\rm crit} l_{\rm mfp}$.
 The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$
 while the mean free path $l_{\rm mfp}$ is inversely proportional to the gas number density $n_n$.
@@ -72,9 +73,8 @@ R
   & $#{ppValE 1 $ fieldToVelocity mmsn1auR N2HPlus }$
   \\
 \end{tabular}
- 
-Note that I have used inelastic electron mean free path ($#{ppValE 1 $ view mfpPpd15 mmsn1au}$ cm at $r=1$ au.)
-We should use chemical-species specific collisional cross section instead. This is a TODO.
+
+TODO: provide link to appendix for  cross section model
 
 We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.
 The cross sections are as follows @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
@@ -100,6 +100,22 @@ subsectionFigures :: MonadAuthoring s w m => m ()
 subsectionFigures = do
   [rawQ|
    \subsection{Line Profile Prediction by Radiative Transfer}
+
+   We introduce the following seven disk models.
+
+   \begin{tabular}{|c|c|c|}   
+     \hline                             
+     disk model name & discharge & LMG region \\
+     \hline                                   
+     N   & no discharge  & \\
+     T50 & Townsend discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     T100 & Townsend discharge& $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\     
+     DB50 & Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\ 
+     DB100& Druyversteyn-Penning discharge & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\
+     R50 & runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
+     R100& runaway dischage & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\    
+     \hline
+   \end{tabular}
    
     
    \begin{figure}
@@ -115,15 +131,16 @@ subsectionFigures = do
    }\label{fig-lightning-lp}
    \end{figure}    
     
-    We calculated the line profiles for the three ion species in disk with different lightning models,
-    to see if we can distinguish the lightning models from the line observations.
-
+    We calculate the line profiles for the three ion species in disk with these seven disk models,
+    in order to study  the  ability to distinguishment the lightning model sfrom the line observations.
     We assume that our model disk is located at the same position as
     TW Hya i.e. at the distance of 56pc and the
     inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
+
+    In Figure \ref{fig-lightning-lp}, 
+    simulated integrated emission map of  $\mathrm{HCO}^{+}$ lines for
+    N, R50, and R100 disk models are shown.
     
-    In Figure \ref{fig-lightning-lp}, we assumed that
-    the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
 
    \begin{figure}
    \begin{tabular}{ccccccc}
@@ -140,16 +157,26 @@ subsectionFigures = do
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  \\
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-56.eps}  
    \end{tabular}
    \caption{
-   Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.
-   No lightning model (upper row) and Runaway breakdown model (lower row).
+   Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines for
+   disk models N (upper row),
+   R50 (middle row), and
+   R100  (lower row), respectively.
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
    We assume beam size $0''.65 \times 0''44$.
+   \label{figEmissionMap}
    }
    \end{figure}
-   TODO: ALMA sensitivity estimations.
+   
    |]
 
 

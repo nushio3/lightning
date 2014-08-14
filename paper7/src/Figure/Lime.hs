@@ -38,8 +38,8 @@ defaultLimeConfig = LimeConfig
   , _fileNameBody = "LgAK"
   , _velocityChannelNumber = 201
   , _velocityResolution = 200
-  , _lightningInnerRadius = 100
-  , _lightningOuterRadius = 200
+  , _lightningInnerRadius = 50
+  , _lightningOuterRadius = 100
   , _particleNumber = 4000
   , _sinkParticleNumber = 3000
   }
@@ -56,6 +56,7 @@ limeConfigSuite = do
                    & velocityResolution .~ 50
   chem <- [HCOPlus, DCOPlus, N2HPlus]
   lm <- Nothing : map Just breakdownModels
+  rin <- [25,50]
   let reso  = 16000 :: Double
       sreso = 3000 * (reso/4000)**(2/3)
   return $ conf0 
@@ -63,6 +64,8 @@ limeConfigSuite = do
          & targetLightningModel .~ lm
          & particleNumber .~ (round reso)
          & sinkParticleNumber .~ (round sreso)
+         & lightningInnerRadius .~ rin
+         & lightningOuterRadius .~ (2*rin)
 
 moldataFileName :: Getter LimeConfig FilePath
 moldataFileName = to go

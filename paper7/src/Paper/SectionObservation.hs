@@ -73,9 +73,8 @@ R
   & $#{ppValE 1 $ fieldToVelocity mmsn1auR N2HPlus }$
   \\
 \end{tabular}
- 
-Note that I have used inelastic electron mean free path ($#{ppValE 1 $ view mfpPpd15 mmsn1au}$ cm at $r=1$ au.)
-We should use chemical-species specific collisional cross section instead. This is a TODO.
+
+TODO: provide link to appendix for  cross section model
 
 We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.
 The cross sections are as follows @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.

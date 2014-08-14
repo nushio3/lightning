@@ -37,7 +37,6 @@ sectionModel = do
   command1 "subsubsection" $ raw "Minimum Mass Solar Nebula Model"  
   hayashiModelDoc  
 
-  command1 "subsubsection" $ raw "Latest Disk Models"    
 
   aboutLatestDiskModel
 

@@ -209,7 +209,7 @@ where $M$ is the mass of the collision partner,
 and the dielectric strength $E_{\rm crit}$ is the solution of $\langle \epsilon \rangle = \Delta W$.
 In the case of the air at NTP,
 since mean molecular weight of air is #{ppFIn "%0.2f" (airMix molecularMass) (Gram :/ Mole)},
- $M = #{ppEIn 2  bigMOfAir Gram}$. |] -- TODO: user gram here. 
+ $M = #{ppEIn 2  bigMOfAir Gram}$. |] 
 
 
   [rawQ|

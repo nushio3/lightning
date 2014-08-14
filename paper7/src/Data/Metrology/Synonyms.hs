@@ -32,7 +32,6 @@ type QofU u = MkQu_ULN u MySU Double
 -- Pretty Printing Functions
 ----------------------------------------------------------------
 
--- TODO: The behavior of ppVal functions are critically different between unittyped and units. This should be fixed.
 
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))

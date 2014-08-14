@@ -76,9 +76,9 @@ density(double x, double y, double z, double *density){
    * Calculate a spherical power-law density profile
    * (Multiply with 1e6 to go to SI-units)
    */
-  density[0] = 4.09e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.5)
-    * exp(-r/(300*AU));
-  if (r < 0.1*AU) density[0] = 0;
+  density[0] = 1.54e14 * exp(-z*z/(2*h*h)) * pow(r/AU, -1.0)
+    * exp(-3*r/(140*AU));
+  if (r < 3.5*AU) density[0] = 0;
 }
 
 /******************************************************************************/
@@ -96,7 +96,7 @@ temperature(double x, double y, double z, double *temperature){
   v = 0;
 
   temperature[0]=temperature[1]=
-    280 * pow(r/AU, -0.5) + v*v/284.6;
+    273 * pow(r/AU, -0.5) + v*v/284.6;
 }
 
 /******************************************************************************/
@@ -127,7 +127,7 @@ doppler(double x, double y, double z, double *doppler){
   r=sqrt(x*x+y*y);
   
   double tmp;
-  tmp =  280 * pow(r/AU, -0.5);
+  tmp =  273 * pow(r/AU, -0.5);
   double alpha = 1e-3;
   double thermal_velocity = sqrt(alpha) * sqrt(4127 * tmp);
 

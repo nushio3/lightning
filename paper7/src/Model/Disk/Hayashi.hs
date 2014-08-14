@@ -33,9 +33,11 @@ import           Text.Authoring.TH
 
 hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
-  citet1 "bibcode:1981PThPS..70...35H"
   
-  esc " has proposed the following minimum-mass solar nebula (MMSN) model of the protoplanetary disk."
+  esc "The minimum-mass solar nebula (MMSN) model "
+  citet1 "bibcode:1981PThPS..70...35H"
+  esc " has been widely used in the studies of the protoplanetary disk, with fruitful results."
+
   raw "\n\n"
   
   

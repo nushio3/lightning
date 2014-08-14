@@ -1,3 +1,31 @@
+- - arxiv:1402.6597
+  - - ! '@ARTICLE{2014A&A...564A..93M,'
+    - ! '   author = {{Menu}, J. and {van Boekel}, R. and {Henning}, T. and {Chandler},
+      C.~J. and '
+    - ! "\t{Linz}, H. and {Benisty}, M. and {Lacour}, S. and {Min}, M. and "
+    - ! "\t{Waelkens}, C. and {Andrews}, S.~M. and {Calvet}, N. and {Carpenter}, J.~M.
+      and "
+    - ! "\t{Corder}, S.~A. and {Deller}, A.~T. and {Greaves}, J.~S. and "
+    - ! "\t{Harris}, R.~J. and {Isella}, A. and {Kwon}, W. and {Lazio}, J. and "
+    - ! "\t{Le Bouquin}, J.-B. and {M{\\'e}nard}, F. and {Mundy}, L.~G. and "
+    - ! "\t{P{\\'e}rez}, L.~M. and {Ricci}, L. and {Sargent}, A.~I. and "
+    - ! "\t{Storm}, S. and {Testi}, L. and {Wilner}, D.~J.},"
+    - ! '    title = "{On the structure of the transition disk around TW Hydrae}",'
+    - ! '  journal = {\aap},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1402.6597},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {protoplanetary disks, techniques: interferometric, stars: individual:
+      TW Hya},'
+    - ! '     year = 2014,'
+    - ! '    month = apr,'
+    - ! '   volume = 564,'
+    - ! '      eid = {A93},'
+    - ! '    pages = {A93},'
+    - ! '      doi = {10.1051/0004-6361/201322961},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2014A%26A...564A..93M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - ! "bibcode:\t2009LanB...4B...44L"
   - - ! '@ARTICLE{2009LanB...4B...44L,'
     - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
@@ -216,6 +244,25 @@
     - ! '    pages = {537-544},'
     - ! '      doi = {10.1111/j.1945-5100.2000.tb01434.x},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2000M%26PS...35..537W},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2002ApJ...568.1008C
+  - - ! '@ARTICLE{2002ApJ...568.1008C,'
+    - ! '   author = {{Calvet}, N. and {D''Alessio}, P. and {Hartmann}, L. and {Wilner},
+      D. and '
+    - ! "\t{Walsh}, A. and {Sitko}, M.},"
+    - ! '    title = "{Evidence for a Developing Gap in a 10 Myr Old Protoplanetary
+      Disk}",'
+    - ! '  journal = {\apj},'
+    - ! '   eprint = {astro-ph/0201425},'
+    - ! ' keywords = {Accretion, Accretion Disks, Stars: Circumstellar Matter, Stars:
+      Formation, Stars: Pre-Main-Sequence},'
+    - ! '     year = 2002,'
+    - ! '    month = apr,'
+    - ! '   volume = 568,'
+    - ! '    pages = {1008-1016},'
+    - ! '      doi = {10.1086/339061},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002ApJ...568.1008C},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2002ApJ...581..357K
@@ -676,6 +723,14 @@
       DOI={10.1088/0004-637X/722/2/1607}, number={2}, journal={The Astrophysical Journal},
       publisher={IOP Publishing}, author={Walsh, Catherine and Millar, T. J. and Nomura,
       Hideko}, year={2010}, month={Oct}, pages={1607-1623}}'
+- - doi:10.1088/0004-637X/728/2/96
+  - - ! ' @article{Akeson_2011, title={RADIAL STRUCTURE IN THE TW Hya CIRCUMSTELLAR
+      DISK}, volume={728}, ISSN={1538-4357}, url={http://dx.doi.org/10.1088/0004-637X/728/2/96},
+      DOI={10.1088/0004-637x/728/2/96}, number={2}, journal={The Astrophysical Journal},
+      publisher={IOP Publishing}, author={Akeson, R. L. and Millan-Gabet, R. and Ciardi,
+      D. R. and Boden, A. F. and Sargent, A. I. and Monnier, J. D. and McAlister,
+      H. and ten Brummelaar, T. and Sturmann, J. and Sturmann, L. and et al.}, year={2011},
+      month={Feb}, pages={96}}'
 - - doi:10.1088/0004-637X/747/2/114
   - - ! '@article{alsh_Nomura_Millar_Aikawa_2012, title={CHEMICAL PROCESSES IN PROTOPLANETARY
       DISKS. II. ON THE IMPORTANCE OF PHOTOCHEMISTRY AND X-RAY IONIZATION}, volume={747},
@@ -689,6 +744,14 @@
       DOI={10.1088/0004-637x/765/2/114}, number={2}, journal={The Astrophysical Journal},
       publisher={IOP Publishing}, author={Dzyurkevich, Natalia and Turner, Neal J.
       and Henning, Thomas and Kley, Wilhelm}, year={2013}, month={Mar}, pages={114}}'
+- - doi:10.1093/pasj/65.6.123
+  - - ! " @article{Akiyama_2013, title={An Observational Study of the Temperature
+      and Surface Density Structures of a Typical Full Disk around MWC480}, volume={65},
+      ISSN={2053-051X}, url={http://dx.doi.org/10.1093/pasj/65.6.123}, DOI={10.1093/pasj/65.6.123},
+      number={6}, journal={Publications of the Astronomical Society of Japan}, publisher={Oxford
+      University Press (OUP)}, author={Akiyama, E. and Momose, M. and Kitamura, Y.
+      and Tsukagoshi, T. and Shimada, S. and Koyamatsu, S. and Hayashi, M.}, year={2013},
+      month={Dec}, pages={123\xE2\x80\x93123}}"
 - - doi:10.1103/RevModPhys.12.87
   - - ! '@article{Druyvesteyn_Penning_1940, title={The Mechanism of Electrical Discharges
       in Gases of Low Pressure}, volume={12}, url={http://dx.doi.org/10.1103/RevModPhys.12.87},

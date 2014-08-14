@@ -7,27 +7,49 @@
 
 module Data.Metrology.Synonyms where
 
-import           Data.Metrology
+-- import           Data.Metrology
+import           Data.Metrology.Poly 
 import           Data.Metrology.SI.Poly
 import           Data.Metrology.Unsafe
 import           Text.Printf
 import qualified Data.Metrology.SI.Dims as D
 
 -- My System of Units in this paper
-type MySU = SI
+type MySU = 
+  MkLCSU '[ (D.Length, Centi :@ Meter)
+          , (D.Mass, Gram)
+          , (D.Time, Second)
+          , (D.Current, Ampere)
+          , (D.Temperature, Kelvin)
+          , (D.AmountOfSubstance, Mole)
+          , (D.LuminousIntensity, Lumen)
+          ]
+
+
 type QofU u = MkQu_ULN u MySU Double
 
 ----------------------------------------------------------------
 -- Pretty Printing Functions
 ----------------------------------------------------------------
 
--- TODO: The behavior of ppVal functions are critically different between unittyped and units. This should be fixed.
 
 ppValF :: PrintfArg x => String -> Qu d l x -> String
 ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (LookupList dims lcsu)))
 
-ppValFIn :: (Unit u, CompatibleUnit l u) => u -> String -> MkQu_ULN u l Double -> String
-ppValFIn u fmtStr x = printf fmtStr (x#u) 
+ppFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
+         u -> String
+ppFIn fmtStr x u = ppValFIn fmtStr x u  ++ showUnitTeX u
+
+
+showUnitTeX u = "~{\\rm " ++ (map f1 $ show u) ++ "}"
+  where
+    f1 ' ' = '~'
+    f1 c   = c
+
+ppValFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
+         u -> String
+ppValFIn fmtStr x u = printf fmtStr (x  #  u)  
+
 
 ppValE :: PrintfArg x => Int -> Qu d l x -> String
 ppValE d (Qu x) = ret
@@ -37,6 +59,27 @@ ppValE d (Qu x) = ret
     
     protoStr :: String
     protoStr = printf fmtStr x
+
+    (valPart,expPart) = break (=='e') protoStr
+    
+    ret = case expPart of
+      "e0" -> valPart
+      _ -> printf "%s \\times 10^{%s}" valPart (drop 1 expPart)
+
+ppEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
+      u -> String
+ppEIn d x u = ppValEIn d x u  ++ showUnitTeX u
+
+
+ppValEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
+         u -> String
+ppValEIn d x u = ret
+  where
+    fmtStr :: String
+    fmtStr = printf "%%.%de" d
+    
+    protoStr :: String
+    protoStr = printf fmtStr (x # u)
 
     (valPart,expPart) = break (=='e') protoStr
     
@@ -68,7 +111,7 @@ type JouleM3 = Joule :/ (Meter :^ Three)
 
 
 -- see the table in http://en.wikipedia.org/wiki/Spectral_irradiance
-type SpectralRadiance = Watt :/ (Meter :^ Two) :/ Hertz
+type SpectralRadiance = Joule :/ (Meter :^ Two) 
 
 
 -- | Spectral Flux Density
@@ -78,7 +121,7 @@ data Jansky = Jansky
 instance Show Jansky where show _ = "Jy"
 
 instance Unit Jansky where
-  type BaseUnit Jansky = Joule :/ (Meter :^ Two) 
+  type BaseUnit Jansky = (Kilo :@ Gram) :/ (Second :^ Two)  --Joule :/ (Meter :^ Two) 
   conversionRatio _ = 1e-26
 
 
@@ -181,6 +224,9 @@ type Current             = MkQu_DLN D.Current             MySU Double
 type Temperature         = MkQu_DLN D.Temperature         MySU Double
 type AmountOfSubstance   = MkQu_DLN D.AmountOfSubstance   MySU Double
 type LuminousIntensity   = MkQu_DLN D.LuminousIntensity   MySU Double
+
+type Angle               = Count MySU Double
+type SolidAngle          = Count MySU Double
 
 type Area                = MkQu_DLN D.Area                MySU Double
 type Volume              = MkQu_DLN D.Volume              MySU Double

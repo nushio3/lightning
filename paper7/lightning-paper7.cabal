@@ -20,9 +20,7 @@ Data-Files:          material/aastex.cls
 
 library
   exposed-modules:   
-    Data.Metrology.AltOperators
     Data.Metrology.Synonyms
-    Data.Metrology.LaTeX
 
     Figure.DiskSection
     Figure.Gnuplot
@@ -37,12 +35,14 @@ library
     Model.Disk.Recent
     Model.Dust
     Model.Gas
+    Model.Observation
     Model.RadiativeTransfer
     Model.Values
     Paper
     Paper.SectionAcknowledgement
     Paper.SectionModel
     Paper.SectionObservation
+    Paper.SectionMatchedFilter
     Paper.Slides
 
 
@@ -63,7 +63,7 @@ library
     , transformers
     , singletons
     , shake
-    , units
+    , units >= 2.2
     , units-defs
 
   Ghc-Options:       -Wall -O2
@@ -106,7 +106,7 @@ executable make-figures
 
 
 executable make-lime-figures
-  buildable:         False
+  buildable:         True
   main-is:           make-lime-figures.hs           
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    exe-src/

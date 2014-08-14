@@ -1,3 +1,31 @@
+- - arxiv:1402.6597
+  - - ! '@ARTICLE{2014A&A...564A..93M,'
+    - ! '   author = {{Menu}, J. and {van Boekel}, R. and {Henning}, T. and {Chandler},
+      C.~J. and '
+    - ! "\t{Linz}, H. and {Benisty}, M. and {Lacour}, S. and {Min}, M. and "
+    - ! "\t{Waelkens}, C. and {Andrews}, S.~M. and {Calvet}, N. and {Carpenter}, J.~M.
+      and "
+    - ! "\t{Corder}, S.~A. and {Deller}, A.~T. and {Greaves}, J.~S. and "
+    - ! "\t{Harris}, R.~J. and {Isella}, A. and {Kwon}, W. and {Lazio}, J. and "
+    - ! "\t{Le Bouquin}, J.-B. and {M{\\'e}nard}, F. and {Mundy}, L.~G. and "
+    - ! "\t{P{\\'e}rez}, L.~M. and {Ricci}, L. and {Sargent}, A.~I. and "
+    - ! "\t{Storm}, S. and {Testi}, L. and {Wilner}, D.~J.},"
+    - ! '    title = "{On the structure of the transition disk around TW Hydrae}",'
+    - ! '  journal = {\aap},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1402.6597},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {protoplanetary disks, techniques: interferometric, stars: individual:
+      TW Hya},'
+    - ! '     year = 2014,'
+    - ! '    month = apr,'
+    - ! '   volume = 564,'
+    - ! '      eid = {A93},'
+    - ! '    pages = {A93},'
+    - ! '      doi = {10.1051/0004-6361/201322961},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2014A%26A...564A..93M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - ! "bibcode:\t2009LanB...4B...44L"
   - - ! '@ARTICLE{2009LanB...4B...44L,'
     - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'
@@ -11,6 +39,19 @@
     - ! '    pages = {44},'
     - ! '      doi = {10.1007/978-3-540-88055-4_34},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2009LanB...4B...44L},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1979DSRA...26..123M
+  - - ! '@ARTICLE{1979DSRA...26..123M,'
+    - ! '   author = {{Munk}, W. and {Wunsch}, C.},'
+    - ! '    title = "{Ocean acoustic tomography: a scheme for large scale monitoring}",'
+    - ! '  journal = {Deep Sea Research A},'
+    - ! '     year = 1979,'
+    - ! '    month = feb,'
+    - ! '   volume = 26,'
+    - ! '    pages = {123-161},'
+    - ! '      doi = {10.1016/0198-0149(79)90073-6},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1979DSRA...26..123M},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:1981PThPS..70...35H
@@ -77,6 +118,51 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1989GeCoA..53..197A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:1992ApJ...387..364P
+  - - ! '@ARTICLE{1992ApJ...387..364P,'
+    - ! '   author = {{Pilipp}, W. and {Hartquist}, T.~W. and {Morfill}, G.~E.},'
+    - ! '    title = "{Large electric fields in acoustic waves and the stimulation
+      of lightning discharges}",'
+    - ! '  journal = {\apj},'
+    - ! ' keywords = {Electric Discharges, Electric Fields, Lightning, Solar System
+      Evolution, Sound Waves, Chondrule, Computational Astrophysics, Gas Ionization,
+      Metal Ions, Plasma Dynamics, Wave Propagation},'
+    - ! '     year = 1992,'
+    - ! '    month = mar,'
+    - ! '   volume = 387,'
+    - ! '    pages = {364-371},'
+    - ! '      doi = {10.1086/171089},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1992ApJ...387..364P},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1996Icar..119..244J
+  - - ! '@ARTICLE{1996Icar..119..244J,'
+    - ! '   author = {{Jenkins}, J.~M. and {Doyle}, L.~R. and {Cullers}, D.~K.},'
+    - ! '    title = "{A Matched Filter Method for Ground-Based Sub-Noise Detection
+      of Terrestrial Extrasolar Planets in Eclipsing Binaries: Application to CM Draconis}",'
+    - ! '  journal = {\icarus},'
+    - ! '     year = 1996,'
+    - ! '    month = feb,'
+    - ! '   volume = 119,'
+    - ! '    pages = {244-260},'
+    - ! '      doi = {10.1006/icar.1996.0018},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1996Icar..119..244J},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1998A&A...331..121P
+  - - ! '@ARTICLE{1998A&A...331..121P,'
+    - ! '   author = {{Pilipp}, W. and {Hartquist}, T.~W. and {Morfill}, G.~E. and '
+    - ! "\t{Levy}, E.~H.},"
+    - ! '    title = "{Chondrule formation by lightning in the Protosolar Nebula?}",'
+    - ! '  journal = {\aap},'
+    - ! ' keywords = {METEORS, SOLAR SYSTEM: FORMATION, SOLAR SYSTEM: GENERAL, DUST},'
+    - ! '     year = 1998,'
+    - ! '    month = mar,'
+    - ! '   volume = 331,'
+    - ! '    pages = {121-146},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1998A%26A...331..121P},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1999JAtS...56.1561T
   - - ! '@ARTICLE{1999JAtS...56.1561T,'
     - ! '   author = {{Takahashi}, T. and {Tajiri}, T. and {Sonoi}, Y.},'
@@ -89,6 +175,94 @@
     - ! '    pages = {1561-1578},'
     - ! '      doi = {10.1175/1520-0469(1999)056<1561:COGASC>2.0.CO;2},'
     - ! '   url = {http://adsabs.harvard.edu/abs/1999JAtS...56.1561T},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1999PhRvD..60b2002O
+  - - ! '@ARTICLE{1999PhRvD..60b2002O,'
+    - ! '   author = {{Owen}, B.~J. and {Sathyaprakash}, B.~S.},'
+    - ! '    title = "{Matched filtering of gravitational waves from inspiraling compact
+      binaries: Computational cost and template placement}",'
+    - ! '  journal = {\prd},'
+    - ! '   eprint = {gr-qc/9808076},'
+    - ! ' keywords = {Gravitational wave detectors and experiments, Data analysis:
+      algorithms and implementation, data management, Binary and multiple stars},'
+    - ! '     year = 1999,'
+    - ! '    month = jul,'
+    - ! '   volume = 60,'
+    - ! '   number = 2,'
+    - ! '      eid = {022002},'
+    - ! '    pages = {022002},'
+    - ! '      doi = {10.1103/PhysRevD.60.022002},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1999PhRvD..60b2002O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2000ApJ...535..338D
+  - - ! '@ARTICLE{2000ApJ...535..338D,'
+    - ! '   author = {{Doyle}, L.~R. and {Deeg}, H.~J. and {Kozhevnikov}, V.~P. and '
+    - ! "\t{Oetiker}, B. and {Mart{\\'{\\i}}n}, E.~L. and {Blue}, J.~E. and "
+    - ! "\t{Rottler}, L. and {Stone}, R.~P.~S. and {Ninkov}, Z. and {Jenkins}, J.~M.
+      and "
+    - ! "\t{Schneider}, J. and {Dunham}, E.~W. and {Doyle}, M.~F. and {Paleologou},
+      E."
+    - ! "\t},"
+    - ! '    title = "{Observational Limits on Terrestrial-sized Inner Planets around
+      the CM Draconis System Using the Photometric Transit Method with a Matched-Filter
+      Algorithm}",'
+    - ! '  journal = {\apj},'
+    - ! '   eprint = {astro-ph/0001177},'
+    - ! ' keywords = {Stars: Binaries: Eclipsing, Methods: Statistical, Stars: Planetary
+      Systems, stars: individual (CM Draconis), Techniques: Photometric},'
+    - ! '     year = 2000,'
+    - ! '    month = may,'
+    - ! '   volume = 535,'
+    - ! '    pages = {338-349},'
+    - ! '      doi = {10.1086/308830},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2000ApJ...535..338D},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2000Icar..143...87D
+  - - ! '@ARTICLE{2000Icar..143...87D,'
+    - ! '   author = {{Desch}, S.~J. and {Cuzzi}, J.~N.},'
+    - ! '    title = "{The Generation of Lightning in the Solar Nebula}",'
+    - ! '  journal = {\icarus},'
+    - ! '     year = 2000,'
+    - ! '    month = jan,'
+    - ! '   volume = 143,'
+    - ! '    pages = {87-105},'
+    - ! '      doi = {10.1006/icar.1999.6245},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2000Icar..143...87D},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2000M&PS...35..537W
+  - - ! '@ARTICLE{2000M&PS...35..537W,'
+    - ! '   author = {{Wasilewski}, P. and {Dickinson}, T.},'
+    - ! '    title = "{Aspects of the validation of magnetic remanence in meteorites}",'
+    - ! '  journal = {Meteoritics and Planetary Science},'
+    - ! '     year = 2000,'
+    - ! '    month = may,'
+    - ! '   volume = 35,'
+    - ! '    pages = {537-544},'
+    - ! '      doi = {10.1111/j.1945-5100.2000.tb01434.x},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2000M%26PS...35..537W},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2002ApJ...568.1008C
+  - - ! '@ARTICLE{2002ApJ...568.1008C,'
+    - ! '   author = {{Calvet}, N. and {D''Alessio}, P. and {Hartmann}, L. and {Wilner},
+      D. and '
+    - ! "\t{Walsh}, A. and {Sitko}, M.},"
+    - ! '    title = "{Evidence for a Developing Gap in a 10 Myr Old Protoplanetary
+      Disk}",'
+    - ! '  journal = {\apj},'
+    - ! '   eprint = {astro-ph/0201425},'
+    - ! ' keywords = {Accretion, Accretion Disks, Stars: Circumstellar Matter, Stars:
+      Formation, Stars: Pre-Main-Sequence},'
+    - ! '     year = 2002,'
+    - ! '    month = apr,'
+    - ! '   volume = 568,'
+    - ! '    pages = {1008-1016},'
+    - ! '      doi = {10.1086/339061},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2002ApJ...568.1008C},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2002ApJ...581..357K
@@ -128,6 +302,62 @@
     - ! '    pages = {4075},'
     - ! '      doi = {10.1029/2000JD000244},'
     - ! '   url = {http://adsabs.harvard.edu/abs/2002JGRD..107.4075M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2003ApJS..147..167E
+  - - ! '@ARTICLE{2003ApJS..147..167E,'
+    - ! '   author = {{Ellingson}, S.~W. and {Hampson}, G.~A.},'
+    - ! '    title = "{Mitigation of Radar Interference in L-Band Radio Astronomy}",'
+    - ! '  journal = {\apjs},'
+    - ! ' keywords = {Instrumentation: Detectors, Methods: Analytical, Radio Continuum:
+      General, Radio Lines: General, Techniques: Radar Astronomy},'
+    - ! '     year = 2003,'
+    - ! '    month = jul,'
+    - ! '   volume = 147,'
+    - ! '    pages = {167-176},'
+    - ! '      doi = {10.1086/375025},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2003ApJS..147..167E},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2005ApJ...628L.155I
+  - - ! '@ARTICLE{2005ApJ...628L.155I,'
+    - ! '   author = {{Inutsuka}, S.-i. and {Sano}, T.},'
+    - ! '    title = "{Self-sustained Ionization and Vanishing Dead Zones in Protoplanetary
+      Disks}",'
+    - ! '  journal = {\apjl},'
+    - ! '   eprint = {astro-ph/0506131},'
+    - ! ' keywords = {Accretion, Accretion Disks, Magnetohydrodynamics: MHD, Stars:
+      Planetary Systems: Formation, Stars: Planetary Systems: Protoplanetary Disks,
+      Turbulence},'
+    - ! '     year = 2005,'
+    - ! '    month = aug,'
+    - ! '   volume = 628,'
+    - ! '    pages = {L155-L158},'
+    - ! '      doi = {10.1086/432796},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2005ApJ...628L.155I},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2007PhRvD..76h4020V
+  - - ! '@ARTICLE{2007PhRvD..76h4020V,'
+    - ! '   author = {{Vaishnav}, B. and {Hinder}, I. and {Herrmann}, F. and {Shoemaker},
+      D.'
+    - ! "\t},"
+    - ! '    title = "{Matched filtering of numerical relativity templates of spinning
+      binary black holes}",'
+    - ! '  journal = {\prd},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0705.3829},'
+    - ! ' primaryClass = "gr-qc",'
+    - ! ' keywords = {Numerical relativity, Wave generation and sources, Classical
+      black holes, Experimental tests of gravitational theories},'
+    - ! '     year = 2007,'
+    - ! '    month = oct,'
+    - ! '   volume = 76,'
+    - ! '   number = 8,'
+    - ! '      eid = {084020},'
+    - ! '    pages = {084020},'
+    - ! '      doi = {10.1103/PhysRevD.76.084020},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2007PhRvD..76h4020V},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
 - - bibcode:2009ApJ...700.1502A
@@ -248,6 +478,46 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2011ApJ...734...98O},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2012ApJ...760...56M
+  - - ! '@ARTICLE{2012ApJ...760...56M,'
+    - ! '   author = {{Muranushi}, T. and {Okuzumi}, S. and {Inutsuka}, S.-i.},'
+    - ! '    title = "{Interdependence of Electric Discharge and Magnetorotational
+      Instability in Protoplanetary Disks}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1210.2508},'
+    - ! ' primaryClass = "astro-ph.SR",'
+    - ! ' keywords = {instabilities, magnetohydrodynamics: MHD, planets and satellites:
+      formation, protoplanetary disks},'
+    - ! '     year = 2012,'
+    - ! '    month = nov,'
+    - ! '   volume = 760,'
+    - ! '      eid = {56},'
+    - ! '    pages = {56},'
+    - ! '      doi = {10.1088/0004-637X/760/1/56},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2012ApJ...760...56M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2012ApJ...761...58H
+  - - ! '@ARTICLE{2012ApJ...761...58H,'
+    - ! '   author = {{Hubbard}, A. and {McNally}, C.~P. and {Mac Low}, M.-M.},'
+    - ! '    title = "{Short Circuits in Thermally Ionized Plasmas: A Mechanism for
+      Intermittent Heating of Protoplanetary Disks}",'
+    - ! '  journal = {\apj},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1206.7096},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {instabilities, magnetic reconnection, magnetohydrodynamics:
+      MHD, meteorites, meteors, meteoroids, plasmas, protoplanetary disks },'
+    - ! '     year = 2012,'
+    - ! '    month = dec,'
+    - ! '   volume = 761,'
+    - ! '      eid = {58},'
+    - ! '    pages = {58},'
+    - ! '      doi = {10.1088/0004-637X/761/1/58},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2012ApJ...761...58H},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2013A&A...557A.132M
   - - ! '@ARTICLE{2013A&A...557A.132M,'
     - ! '   author = {{Mathews}, G.~S. and {Klaassen}, P.~D. and {Juh{\''a}sz}, A.
@@ -290,11 +560,78 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2013ASPC..476..387A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2013ApJ...767L...2M
+  - - ! '@ARTICLE{2013ApJ...767L...2M,'
+    - ! '   author = {{McNally}, C.~P. and {Hubbard}, A. and {Mac Low}, M.-M. and '
+    - ! "\t{Ebel}, D.~S. and {D'Alessio}, P.},"
+    - ! '    title = "{Mineral Processing by Short Circuits in Protoplanetary Disks}",'
+    - ! '  journal = {\apjl},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1301.1698},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {instabilities, magnetic reconnection, magnetohydrodynamics:
+      MHD, plasmas, protoplanetary disks},'
+    - ! '     year = 2013,'
+    - ! '    month = apr,'
+    - ! '   volume = 767,'
+    - ! '      eid = {L2},'
+    - ! '    pages = {L2},'
+    - ! '      doi = {10.1088/2041-8205/767/1/L2},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013ApJ...767L...2M},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2013PhRvD..88d4026H
+  - - ! '@ARTICLE{2013PhRvD..88d4026H,'
+    - ! '   author = {{Hotokezaka}, K. and {Kiuchi}, K. and {Kyutoku}, K. and {Muranushi},
+      T. and '
+    - ! "\t{Sekiguchi}, Y.-i. and {Shibata}, M. and {Taniguchi}, K.},"
+    - ! '    title = "{Remnant massive neutron stars of binary neutron star mergers:
+      Evolution process and gravitational waveform}",'
+    - ! '  journal = {\prd},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1307.5888},'
+    - ! ' primaryClass = "astro-ph.HE",'
+    - ! ' keywords = {Numerical relativity, Gravitational waves: theory, Relativistic
+      stars: structure stability and oscillations},'
+    - ! '     year = 2013,'
+    - ! '    month = aug,'
+    - ! '   volume = 88,'
+    - ! '   number = 4,'
+    - ! '      eid = {044026},'
+    - ! '    pages = {044026},'
+    - ! '      doi = {10.1103/PhysRevD.88.044026},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2013PhRvD..88d4026H},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2014MNRAS.440...89K
+  - - ! '@ARTICLE{2014MNRAS.440...89K,'
+    - ! '   author = {{Keith}, S.~L. and {Wardle}, M.},'
+    - ! '    title = "{Accretion in giant planet circumplanetary discs}",'
+    - ! '  journal = {\mnras},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1402.1180},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {accretion, accretion discs, magnetic fields, MHD, planets and
+      satellites: formation},'
+    - ! '     year = 2014,'
+    - ! '    month = may,'
+    - ! '   volume = 440,'
+    - ! '    pages = {89-105},'
+    - ! '      doi = {10.1093/mnras/stu245},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2014MNRAS.440...89K},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - doi:10.1002/andp.19303970303
   - - ! '@article{Bethe_1930, title={Zur Theorie des Durchgangs schneller Korpuskularstrahlen
       durch Materie}, volume={397}, url={http://dx.doi.org/10.1002/andp.19303970303},
       DOI={10.1002/andp.19303970303}, number={3}, journal={Annalen der Physik}, publisher={Wiley
       Blackwell (John Wiley &amp; Sons)}, author={Bethe, H.}, year={1930}, pages={325-400}}'
+- - doi:10.1006/icar.1997.5846
+  - - ! " @article{Gibbard_1997, title={On the Possibility of Lightning in the Protosolar
+      Nebula}, volume={130}, ISSN={0019-1035}, url={http://dx.doi.org/10.1006/icar.1997.5846},
+      DOI={10.1006/icar.1997.5846}, number={2}, journal={Icarus}, publisher={Elsevier
+      BV}, author={Gibbard, S and Levy E.H. and Morfill, G. E.}, year={1997}, month={Dec},
+      pages={517\xE2\x80\x93533}}"
 - - doi:10.1006/icar.1999.6245
   - - ! '@article{Desch_2000, title={The Generation of Lightning in the Solar Nebula},
       volume={143}, url={http://dx.doi.org/10.1006/icar.1999.6245}, DOI={10.1006/icar.1999.6245},
@@ -330,6 +667,12 @@
       publisher={Wiley Blackwell (John Wiley &amp; Sons)}, author={French, Jeffrey
       R. and Helsdon, John H. and Detwiler, Andrew G. and Smith, Paul L.}, year={1996},
       month={Aug}, pages={18961}}'
+- - doi:10.1029/JC076i024p05799
+  - - ! " @article{Phelps_1971, title={Field-enhanced propagation of corona streamers},
+      volume={76}, ISSN={0148-0227}, url={http://dx.doi.org/10.1029/JC076i024p05799},
+      DOI={10.1029/jc076i024p05799}, number={24}, journal={Journal of Geophysical
+      Research}, publisher={Wiley-Blackwell}, author={Phelps, C. T.}, year={1971},
+      month={Aug}, pages={5799\xE2\x80\x935806}}"
 - - doi:10.1029/JD091iD01p01231
   - - ! '@article{b_Pitter_Hallett_Saunders_1986, title={Early electrification and
       precipitation development in a small, isolated Montana cumulonimbus}, volume={91},
@@ -338,6 +681,11 @@
       (John Wiley &amp; Sons)}, author={Dye, J. E. and Jones, J. J. and Winn, W. P.
       and Cerni, T. A. and Gardiner, B. and Lamb, D. and Pitter, R. L. and Hallett,
       J. and Saunders, C. P. R.}, year={1986}, pages={1231}}'
+- - doi:10.1063/1.1656844
+  - - ! ' @article{Nasser_1968, title={Field Criterion for Sustained Streamer Propagation},
+      volume={39}, ISSN={0021-8979}, url={http://dx.doi.org/10.1063/1.1656844}, DOI={10.1063/1.1656844},
+      number={8}, journal={Journal of Applied Physics}, publisher={AIP Publishing},
+      author={Nasser, E.}, year={1968}, pages={3707}}'
 - - doi:10.1063/1.323084
   - - ! '@article{Phelps_Griffiths_1976, title={Dependence of positive corona streamer
       propagation on air pressure and water vapor content}, volume={47}, url={http://dx.doi.org/10.1063/1.323084},
@@ -375,6 +723,14 @@
       DOI={10.1088/0004-637X/722/2/1607}, number={2}, journal={The Astrophysical Journal},
       publisher={IOP Publishing}, author={Walsh, Catherine and Millar, T. J. and Nomura,
       Hideko}, year={2010}, month={Oct}, pages={1607-1623}}'
+- - doi:10.1088/0004-637X/728/2/96
+  - - ! ' @article{Akeson_2011, title={RADIAL STRUCTURE IN THE TW Hya CIRCUMSTELLAR
+      DISK}, volume={728}, ISSN={1538-4357}, url={http://dx.doi.org/10.1088/0004-637X/728/2/96},
+      DOI={10.1088/0004-637x/728/2/96}, number={2}, journal={The Astrophysical Journal},
+      publisher={IOP Publishing}, author={Akeson, R. L. and Millan-Gabet, R. and Ciardi,
+      D. R. and Boden, A. F. and Sargent, A. I. and Monnier, J. D. and McAlister,
+      H. and ten Brummelaar, T. and Sturmann, J. and Sturmann, L. and et al.}, year={2011},
+      month={Feb}, pages={96}}'
 - - doi:10.1088/0004-637X/747/2/114
   - - ! '@article{alsh_Nomura_Millar_Aikawa_2012, title={CHEMICAL PROCESSES IN PROTOPLANETARY
       DISKS. II. ON THE IMPORTANCE OF PHOTOCHEMISTRY AND X-RAY IONIZATION}, volume={747},
@@ -382,12 +738,32 @@
       number={2}, journal={The Astrophysical Journal}, publisher={IOP Publishing},
       author={Walsh, Catherine and Nomura, Hideko and Millar, T. J. and Aikawa, Yuri},
       year={2012}, month={Mar}, pages={114}}'
+- - doi:10.1088/0004-637X/765/2/114
+  - - ! ' @article{Dzyurkevich_2013, title={MAGNETIZED ACCRETION AND DEAD ZONES IN
+      PROTOSTELLAR DISKS}, volume={765}, ISSN={1538-4357}, url={http://dx.doi.org/10.1088/0004-637X/765/2/114},
+      DOI={10.1088/0004-637x/765/2/114}, number={2}, journal={The Astrophysical Journal},
+      publisher={IOP Publishing}, author={Dzyurkevich, Natalia and Turner, Neal J.
+      and Henning, Thomas and Kley, Wilhelm}, year={2013}, month={Mar}, pages={114}}'
+- - doi:10.1093/pasj/65.6.123
+  - - ! " @article{Akiyama_2013, title={An Observational Study of the Temperature
+      and Surface Density Structures of a Typical Full Disk around MWC480}, volume={65},
+      ISSN={2053-051X}, url={http://dx.doi.org/10.1093/pasj/65.6.123}, DOI={10.1093/pasj/65.6.123},
+      number={6}, journal={Publications of the Astronomical Society of Japan}, publisher={Oxford
+      University Press (OUP)}, author={Akiyama, E. and Momose, M. and Kitamura, Y.
+      and Tsukagoshi, T. and Shimada, S. and Koyamatsu, S. and Hayashi, M.}, year={2013},
+      month={Dec}, pages={123\xE2\x80\x93123}}"
 - - doi:10.1103/RevModPhys.12.87
   - - ! '@article{Druyvesteyn_Penning_1940, title={The Mechanism of Electrical Discharges
       in Gases of Low Pressure}, volume={12}, url={http://dx.doi.org/10.1103/RevModPhys.12.87},
       DOI={10.1103/RevModPhys.12.87}, number={2}, journal={Reviews of Modern Physics},
       publisher={American Physical Society}, author={Druyvesteyn, M. J. and Penning,
       F. M.}, year={1940}, month={Apr}, pages={87-174}}'
+- - doi:10.1109/PROC.1963.2383
+  - - ! " @article{North, title={An Analysis of the factors which determine signal/noise
+      discrimination in pulsed-carrier systems}, volume={51}, ISSN={0018-9219}, url={http://dx.doi.org/10.1109/PROC.1963.2383},
+      DOI={10.1109/proc.1963.2383}, number={7}, journal={Proceedings of the IEEE},
+      publisher={Institute of Electrical & Electronics Engineers (IEEE)}, year={1963},
+      author={North, D.O.}, pages={1016\xE2\x80\x931027}}"
 - - doi:10.1146/annurev-astro-081710-102548
   - - ! '@article{Williams_Cieza_2011, title={Protoplanetary Disks and Their Evolution},
       volume={49}, url={http://dx.doi.org/10.1146/annurev-astro-081710-102548}, DOI={10.1146/annurev-astro-081710-102548},
@@ -429,6 +805,14 @@
     - ! '        PUBLISHER = "Cambridge University Press",'
     - ! '        ADDRESS = "Cambridge",'
     - ! '        YEAR ="2010"}'
+- - isbn:978-3-527-40886-3
+  - - ! '    @BOOK{CiteKeyGoesHere,'
+    - ! '        AUTHOR = "Jolien D. E. Creighton and Warren G. Anderson",'
+    - ! '        TITLE = "Gravitational wave physics and astronomy an introduction
+      to theory, experiment and data analysis",'
+    - ! '        PUBLISHER = "Wiley-VCH-Verl.",'
+    - ! '        ADDRESS = "Weinheim",'
+    - ! '        YEAR ="2011"}'
 - - isbn:978-3-642-64760-4
   - - ! '    @BOOK{CiteKeyGoesHere,'
     - ! '        AUTHOR = "Yuri P. Raizer",'

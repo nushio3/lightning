@@ -28,7 +28,7 @@ fieldToVelocity env chem = qSqrt $ v2
     ef :: QofU VoltPerCm 
     ef = env ^. lightningAccelerator 
     v2 :: QofU Cm2PerSec2 
-    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15) |/| m 
+    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15N2) |/| m 
     m :: Mass
     m = molecularMass chem |/| avogadroConstant
 
@@ -281,9 +281,9 @@ aboutLineProperty = do
 
    We can see that the disk is optically thick for all of the lines at 100au.
    However, 
-   all the three lines becomes two degrees of magnitude more transparent as result of the
-   critical electric field. This is because molecular speed being faster. 
-   Observational consequence of this are broadened line profiles.
+   all the three lines becomes two degrees of magnitude more transparent under the effect of the
+   critical electric field. This is a result of the molecular speed becoming faster. 
+   Consequently, observed line profiles are broadened.
    
 
    |]

@@ -234,7 +234,7 @@ that  for them the ionization loss is the smallest.
 The ionization loss of an electron as a function of $\varepsilon$ 
 is formalized by 
 @{citet["doi:10.1002/andp.19303970303", "doi:10.1007/BF01342532","doi:10.1007/BF01344553"]}.
-We use the following form from
+We use the following form of Bethe formula from
 @{citationGen "citet[chap 5.5]" ["isbn:978-0-521-75618-1"]}:
    |]
 

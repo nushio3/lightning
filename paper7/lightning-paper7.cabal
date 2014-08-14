@@ -106,7 +106,7 @@ executable make-figures
 
 
 executable make-lime-figures
-  buildable:         False
+  buildable:         True
   main-is:           make-lime-figures.hs           
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    exe-src/

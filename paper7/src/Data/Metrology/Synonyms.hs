@@ -39,7 +39,13 @@ ppValF fmtStr (Qu x) = printf fmtStr x --  ++ showFactor (Proxy :: Proxy (Lookup
 
 ppFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
          u -> String
-ppFIn fmtStr x u = ppValFIn fmtStr x u  ++ "~{\\rm " ++ (show u) ++ "}"
+ppFIn fmtStr x u = ppValFIn fmtStr x u  ++ showUnitTeX u
+
+
+showUnitTeX u = "~{\\rm " ++ (map f1 $ show u) ++ "}"
+  where
+    f1 ' ' = '~'
+    f1 c   = c
 
 ppValFIn :: (Unit u, CompatibleUnit l u, Show u) => String -> MkQu_ULN u l Double -> 
          u -> String
@@ -63,7 +69,7 @@ ppValE d (Qu x) = ret
 
 ppEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 
       u -> String
-ppEIn d x u = ppValEIn d x u  ++ "~{\\rm " ++ (show u) ++ "}"
+ppEIn d x u = ppValEIn d x u  ++ showUnitTeX u
 
 
 ppValEIn ::  (Unit u, CompatibleUnit l u, Show u) => Int -> MkQu_ULN u l Double -> 

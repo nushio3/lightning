@@ -1,4 +1,4 @@
-{-# LANGUAGE ConstraintKinds #-}
+                {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -16,7 +16,7 @@ import Data.Metrology.Synonyms
 import Model.Breakdown
 import Model.Disk
 import Model.Disk.Hayashi
-import Model.Disk.Derived
+import Model.Disk.Derived       
 import Model.Gas
 import Model.Values
 import Model.RadiativeTransfer
@@ -35,9 +35,11 @@ sectionObservation = do
   
   
   command1 "section" $ raw "Observation"
+
+  command1 "subsection" $ raw "Estimation of the line signal strength"
   
   [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
-  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$ lines have been performed "
+  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$    lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
   raw "We can distinguish lightning model by observing such charged molecules."
@@ -99,6 +101,22 @@ subsectionFigures :: MonadAuthoring s w m => m ()
 subsectionFigures = do
   [rawQ|
    \subsection{Line Profile Prediction by Radiative Transfer}
+
+   We introduce the following seven disk models.
+
+   \begin{tabular}{|c|c|c|}   
+     \hline                             
+     disk model name & discharge & LMG region \\
+     \hline                                   
+     N   & no discharge  & \\
+     T50 & Townsend discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     T100 & Townsend discharge& $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\     
+     DB50 & Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\ 
+     DB100& Druyversteyn-Penning discharge & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\
+     R50 & runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
+     R100& runaway dischage & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\    
+     \hline
+   \end{tabular}
    
     
    \begin{figure}
@@ -114,15 +132,16 @@ subsectionFigures = do
    }\label{fig-lightning-lp}
    \end{figure}    
     
-    We calculated the line profiles for the three ion species in disk with different lightning models,
-    to see if we can distinguish the lightning models from the line observations.
-
+    We calculate the line profiles for the three ion species in disk with these seven disk models,
+    in order to study  the  ability to distinguishment the lightning model sfrom the line observations.
     We assume that our model disk is located at the same position as
     TW Hya i.e. at the distance of 56pc and the
     inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
+
+    In Figure \ref{fig-lightning-lp}, 
+    simulated integrated emission map of  $\mathrm{HCO}^{+}$ lines for
+    N, R50, and R100 disk models are shown.
     
-    In Figure \ref{fig-lightning-lp}, we assumed that
-    the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
 
    \begin{figure}
    \begin{tabular}{ccccccc}
@@ -149,12 +168,13 @@ subsectionFigures = do
    \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-56.eps}  
    \end{tabular}
    \caption{
-   Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines.
-   No breakdown model (upper row),
-   Runaway breakdown taking place at $ \mathrm{50au} < r <  \mathrm{100au}$  (middle row), and
-   Runaway breakdown taking place at $ \mathrm{100au} < r <  \mathrm{200au}$  (lower row).
+   Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines for
+   disk models N (upper row),
+   R50 (middle row), and
+   R100  (lower row), respectively.
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
    We assume beam size $0''.65 \times 0''44$.
+   \label{figEmissionMap}
    }
    \end{figure}
    

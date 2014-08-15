@@ -52,6 +52,10 @@ fingerprints = do
       , ( 0, 0, 1)        
       ]
 
+
+bestFingerprint :: Fingerprint
+bestFingerprint =  Fingerprint {fingerP = (1.0,0.0,0.0), fingerQ = (1.0,1.0,-1.0)}
+
 data ExperimentData
   = ExperimentData
   { dataFilename :: FilePath
@@ -122,12 +126,6 @@ toModelFn fn = (++"_model.txt") $ reverse $ drop 4 $ reverse fn
 
 
 
-main :: IO ()
-main = do
-  ans <- mapM fitTotalCost fingerprints
-  writeFile (workDir ++ "survey.txt") $ unlines $
-    zipWith (\a f -> show a ++ " " ++ show f) ans fingerprints
-  
 
 fitTotalCost :: Fingerprint -> IO Double
 fitTotalCost fp = do
@@ -151,6 +149,8 @@ fitTotalCost fp = do
     writeFile fn2 $ unlines $
       map mkLine idxs
   
+  writeFile (workDir ++ "best-model.txt") $ show models
+  
   let totalCost = sum [modelCostAt i loadedData (justLookup i models) | i <- idxs]
   system "gnuplot attic/plot-cross-section.gnu"
   print fp
@@ -170,3 +170,18 @@ loadFile xp = do
       bin :: Double -> Int
       bin x = round $ log x / log 10 * 8 
   return xp{i2cs = M.fromList xys}
+  
+  
+mainBuildModel :: IO ()
+mainBuildModel = do
+  fitTotalCost bestFingerprint
+  return ()
+
+mainSurvey :: IO ()
+mainSurvey = do
+  ans <- mapM fitTotalCost fingerprints
+  writeFile (workDir ++ "survey.txt") $ unlines $
+    zipWith (\a f -> show a ++ " " ++ show f) ans fingerprints
+  
+  
+main = mainBuildModel  

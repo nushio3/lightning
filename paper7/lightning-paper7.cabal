@@ -121,12 +121,15 @@ executable model-cross-section
   main-is:           model-cross-section.hs           
   Ghc-Options:       -Wall -O2
   hs-source-dirs:    exe-src/
-  Build-Depends:     base
-                   , lightning-paper7
-                   , lens
-                   , process
-                   , units
-                   , units-defs
+  Build-Depends:
+      base
+    , cmaes	
+    , containers
+    , lightning-paper7
+    , lens
+    , process
+    , units
+    , units-defs
 
 
 

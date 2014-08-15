@@ -101,7 +101,7 @@ massesD xp = (mp, mq) -- (mu, r)
     m12 = m1 + m2
     
     (pa,pb,pc) = fingerP fp
-    (qa,qb,qc) = fingerP fp
+    (qa,qb,qc) = fingerQ fp
 
     mp = m1**pa * m2**pb * m12**pc
     mq = m1**qa * m2**qb * m12**qc

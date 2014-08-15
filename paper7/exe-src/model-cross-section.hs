@@ -1,5 +1,9 @@
 import Control.Monad
 
+data Dataset
+  = Dataset
+  { csFilename :: FilePath }
+
 files :: [FilePath]
 files = ["Ar+_Ar.txt",
          "H+_H2.txt",
@@ -7,6 +11,7 @@ files = ["Ar+_Ar.txt",
          "H3+_H2.txt",
          "N+_N2.txt",
          "N2+_N2.txt"]
+
 
 
 main :: IO ()
@@ -23,3 +28,4 @@ bucket fn = do
       bin :: Double -> Int
       bin x = round $ log x / log 10 * 8 
   mapM_ print xys
+  

@@ -15,11 +15,15 @@ data ExperimentData
   , target   :: ChemicalSpecies}
 
 massesD :: ExperimentData -> (Double, Double)
-massesD xp = (m1, m2) 
+massesD xp = (mu, r) 
   where
     m1 = molecularMass (ion xp) # (Gram :/ Mole)
     m2 = molecularMass (target xp) # (Gram :/ Mole)
   
+    mu = m1*m2 / (m1+m2)
+    r  = m1 / m2
+    
+    
 inputData :: [ExperimentData]
 inputData =
    [e "Ar+_Ar.txt" ArPlus Ar ,

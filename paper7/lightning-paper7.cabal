@@ -123,9 +123,10 @@ executable model-cross-section
   hs-source-dirs:    exe-src/
   Build-Depends:     base
                    , lightning-paper7
-                   
                    , lens
                    , process
+                   , units
+                   , units-defs
 
 
 

@@ -30,12 +30,26 @@ $n_{0,\mathrm{ppd}} = #{ppValE 2 $ mmsn1au ^. ppdDensity}
 We assume that protoplanetary disk gas consists of 
 $\rm H_2,He,CO,O_2$ and their volume fractions are
 $0.92, 7.8\times10^{ -2},2.3\times10^{ -4},1.3\times10^{ -4}$, respectively
-@{citationGen "citep[chap. 3.4.6.]" ["bibcode:2009LanB...4B...44L"]} 
-Calculations similar to the previous section leads to the following values:
+@{citationGen "citep[chap. 3.4.6.]" ["bibcode:2009LanB...4B...44L"]} .
+We used cross sections data for 15eV electrons 
+tabulated in   @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
+This is because $\Delta W_{\rm H_2} = 15.43{\rm eV}$ and 15eV is the closest 
+table index that is found in the database.
+The cross sections are as follows (units are in ${\rm cm}^{ -2} $).
+
+  \begin{tabular} {ccc}
+species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\
+$\rm H_2$  &  $#{ppValE 1 $ inelCrossSection 15 H2}$ &  $#{ppValE 1 $ elCrossSection 15 H2}$\\
+$\rm He$   &  $#{ppValE 1 $ inelCrossSection 15 He}$ &  $#{ppValE 1 $ elCrossSection 15 He}$\\
+$\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSection 15 CO}$\\
+$\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
+\end{tabular}
+
+ Calculations similar to the previous section leads to the following values:
 
 \begin{eqnarray}
 \begin{array}{CCCCC}
-E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
+E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm inel})  n_n&=&
  #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthT) (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
  #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthDP)  (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\

@@ -24,7 +24,7 @@ import Model.Values
 aboutDiskDischarge :: MonadAuthoring s w m => m ()
 aboutDiskDischarge = 
   [rawQ| 
-In the MMSN model the gas density at eqatorial plane, $r = 1{\rm au}$ is 
+In our disk model the gas density at eqatorial plane, $r = 1{\rm au}$ is 
 $n_{0,\mathrm{ppd}} = #{ppValE 2 $ mmsn1au ^. ppdDensity} 
 {\rm g~cm^{ -3}}$.
 We assume that protoplanetary disk gas consists of 

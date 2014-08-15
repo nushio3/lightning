@@ -1,12 +1,12 @@
 {-# LANGUAGE RecordWildCards, DeriveFunctor, DeriveFoldable, DeriveTraversable #-}
 
-import Control.Monad hiding (mapM, mapM_, forM_)
+import Control.Monad hiding (mapM, mapM_, forM_,forM)
 import Numeric.Optimization.Algorithms.CMAES
 
 import Data.Foldable
 import Data.Traversable 
 import qualified Data.Map as M
-
+import Data.Maybe
 import Data.Metrology.Poly
 import Data.Metrology.Synonyms
 import Data.Metrology.SI.Prefixes
@@ -14,8 +14,11 @@ import Data.Metrology.SI.Units
 import Data.Metrology.Z
 
 import Prelude hiding (sum,mapM, mapM_)
+import Text.Printf
 
 import Model.Gas
+
+justLookup k m = fromJust $ M.lookup k m
 
 data ExperimentData
   = ExperimentData
@@ -43,7 +46,7 @@ errorAt :: Model -> ExperimentData -> Int -> Double
 errorAt m xp i = (log valM - log valX) ** 2
   where
     valM = max 1e-99 $ predict m xp
-    Just valX = M.lookup i (i2cs xp)
+    valX = justLookup i (i2cs xp)
 
 fitModel :: [ExperimentData] -> Int -> IO Model
 fitModel xps i = do
@@ -72,16 +75,32 @@ inputData =
     e "N2+_N2.txt" N2Plus N2 ]
    where e f a b = ExperimentData f a b M.empty
 
-
+toModelFn :: FilePath -> FilePath
+toModelFn fn = (++"_model.txt") $ reverse $ drop 4 $ reverse fn
 
 
 
 main :: IO ()
 main = do
   loadedData <- mapM loadFile inputData
-  forM_ [-8..32] $ \i -> do
+  let idxs = [-8..32] :: [Int]
+  ms <- forM idxs $ \i -> do
     m <- fitModel loadedData i
     print m
+    return (i,m)
+  let models :: M.Map Int Model
+      models = M.fromList ms
+  forM_ loadedData $ \xp -> do
+    let fn2 = toModelFn (dataFilename xp)
+        mkLine :: Int -> String
+        mkLine i = printf "%f %f %f" 
+                   (10 ** (fromIntegral i / 8) :: Double)
+                   (justLookup i (i2cs xp))
+                   (predict (justLookup i models) xp)
+                   
+        
+    writeFile fn2 $ unlines $
+      map mkLine idxs
   return ()
   
 loadFile :: ExperimentData -> IO ExperimentData

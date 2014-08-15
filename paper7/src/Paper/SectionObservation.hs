@@ -76,16 +76,6 @@ R
 
 TODO: provide link to appendix for  cross section model
 
-We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.
-The cross sections are as follows @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
-
-  \begin{tabular} {ccc}
-species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\
-$\rm H_2$  &  $#{ppValE 1 $ inelCrossSection 15 H2}$ &  $#{ppValE 1 $ elCrossSection 15 H2}$\\
-$\rm He$   &  $#{ppValE 1 $ inelCrossSection 15 He}$ &  $#{ppValE 1 $ elCrossSection 15 He}$\\
-$\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSection 15 CO}$\\
-$\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
-\end{tabular}
   |]
 
   aboutLineObservation

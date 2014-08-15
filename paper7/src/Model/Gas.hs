@@ -39,7 +39,7 @@ data ChemicalSpecies
   | N2Plus
   | ArPlus
   | LovePlus
-  deriving (Eq, Show)    
+  deriving (Eq, Ord, Show, Read)    
 
 airMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
 airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar

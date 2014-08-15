@@ -1,6 +1,6 @@
 main :: IO ()
 main = do
-  con <- getContents
+  con <- readFile "material/cross-section-rawdata.txt"
   parse con
   
 parse :: String -> IO ()

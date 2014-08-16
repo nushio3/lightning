@@ -22,6 +22,9 @@ import Model.Gas
 workDir = "material/cross-section/"
 
 justLookup k m = fromJust $ M.lookup k m
+zeroLookup k m = case M.lookup k m of
+  Just x -> x
+  Nothing -> 0
 
 data Fingerprint = Fingerprint
   { fingerP :: (Double, Double, Double)
@@ -54,7 +57,8 @@ fingerprints = do
 
 
 bestFingerprint :: Fingerprint
-bestFingerprint =  Fingerprint {fingerP = (1.0,0.0,0.0), fingerQ = (1.0,1.0,-1.0)}
+--bestFingerprint =  Fingerprint {fingerP = (1.0,0.0,0.0), fingerQ = (1.0,1.0,-1.0)}
+bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (0,0,0)}
 
 data ExperimentData
   = ExperimentData
@@ -121,6 +125,15 @@ inputData fp =
     e "N2+_N2.txt" N2Plus N2 ]
    where e f a b = ExperimentData f a b M.empty fp
 
+
+testData :: Fingerprint -> [ExperimentData]
+testData fp =
+   [e "HCO+_H2.txt" HCOPlus  H2 ,
+    e "DCO+_H2.txt" DCOPlus  H2 ,
+    e "N2H+_H2.txt" N2HPlus  H2 ]
+   where e f a b = ExperimentData f a b M.empty fp
+
+
 toModelFn :: FilePath -> FilePath
 toModelFn fn = (++"_model.txt") $ reverse $ drop 4 $ reverse fn
 
@@ -137,12 +150,12 @@ fitTotalCost fp = do
     return (i,m)
   let models :: M.Map Int Model
       models = M.fromList ms
-  forM_ loadedData $ \xp -> do
+  forM_ (loadedData ++ testData fp) $ \xp -> do
     let fn2 = workDir ++ toModelFn (dataFilename xp)
         mkLine :: Int -> String
         mkLine i = printf "%f %f %f" 
                    (10 ** (fromIntegral i / 8) :: Double)
-                   (justLookup i (i2cs xp))
+                   (zeroLookup i (i2cs xp))
                    (predict (justLookup i models) xp)
                    
         

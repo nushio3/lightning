@@ -28,11 +28,19 @@ fieldToVelocity env chem = qSqrt $ v2
     ef :: QofU VoltPerCm 
     ef = env ^. lightningAccelerator 
     v2 :: QofU Cm2PerSec2 
-    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15N2) |/| m 
+    v2 = redim $ equilEps |/| m
+    
+    equilEps :: QofU ElectronVolt
+    equilEps = solve accEq
+    
+    accEq :: QofU ElectronVolt -> QofU ElectronVolt
+    accEq eps = redim $ elementaryCharge |*| ef |*| (env^. mfpPpd15N2 eps)
+    
     m :: Mass
     m = molecularMass chem |/| avogadroConstant
 
-
+    solve f = foldr ($) (10 % ElectronVolt)
+      (replicate 10 f)
 
 aboutLineObservation :: MonadAuthoring s w m => m ()
 aboutLineObservation = do

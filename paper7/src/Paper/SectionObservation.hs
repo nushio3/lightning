@@ -47,13 +47,27 @@ sectionObservation = do
   [rawQ|  
 
 The electric field of LMG accelerates the charged chemical species.   
-The kinetic energy $\varepsilon$ obtained by this mechanism is $\varepsilon = e E_{\rm crit} l_{\rm mfp}$.
-The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$
-while the mean free path $l_{\rm mfp}$ is inversely proportional to the gas number density $n_n$.
-This means that the obtained kinetic energy $\varepsilon$ does not depend on the gas number density.
-It only depends on the lightning model, so the value is the same anywhere in a protoplanetary disk,
-provided that the lightning model does not change within the protoplanetary disk. Each model predicts
-the maximum velocities of the chemical elements as follows (units are in cm/s);
+Let  $\varepsilon_I$ be the kinetic energy of a particle of such an ion species $I$.
+At the equilibrium $\varepsilon_I = e E_{\rm crit} l_{{\rm mfp},I}$.
+The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
+Let $A$ be the proportionality factor and $E_{\rm crit} = A n_n$ .
+Now, the mean free path $l_{{\rm mfp},I} = 1/\sigma_I(\varepsilon_I) {n_n}$ is inversely proportional to the gas number density $n_n$.
+This means that the obtained kinetic energy $\varepsilon_I$ does not depend on the gas number density.
+
+\begin{eqnarray*}
+ \varepsilon_I &=& e E_{\rm crit} l_{{\rm mfp},I} \\
+ &=&e \frac {A n_n} {\sigma_I(\varepsilon_I) n_n} \\
+ &=& \frac {e A } {\sigma_I(\varepsilon_I) } 
+\end{eqnarray*}
+
+ 
+The value of $\sigma_I(\varepsilon_I)$
+ only depends on the lightning model, so is is universally the same  in a protoplanetary disk.
+This is a unique feature for detecting lightning model within the disk.
+
+The predicted 
+$\varepsilon_I$
+and the velocities of the ion species are as follows (units are in cm/s);
 
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\

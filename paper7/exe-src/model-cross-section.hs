@@ -58,7 +58,9 @@ fingerprints = do
 
 bestFingerprint :: Fingerprint
 --bestFingerprint =  Fingerprint {fingerP = (1.0,0.0,0.0), fingerQ = (1.0,1.0,-1.0)}
-bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (0,0,0)}
+bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (1,0,0)}
+--bestFingerprint =  Fingerprint {fingerP = (1,0,0), fingerQ = (0,1,0)}
+--bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (0,0,0)}
 
 data ExperimentData
   = ExperimentData
@@ -157,11 +159,11 @@ fitTotalCost fp = do
                    (10 ** (fromIntegral i / 8) :: Double)
                    (zeroLookup i (i2cs xp))
                    (predict (justLookup i models) xp)
-                   
-        
     writeFile fn2 $ unlines $
       map mkLine idxs
-  
+    printf "%s at 0.1eV: sigma=%f\n "(dataFilename xp) (predict (justLookup (-8) models) xp)
+    printf "%s at 100eV: sigma=%f\n "(dataFilename xp) (predict (justLookup (16) models) xp)
+
   writeFile (workDir ++ "best-model.txt") $ show models
   
   let totalCost = sum [modelCostAt i loadedData (justLookup i models) | i <- idxs]

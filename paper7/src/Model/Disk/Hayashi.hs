@@ -109,13 +109,14 @@ mmsnModel
        mmsnStandardSurfaceDensity |*
        ( (**(-1.0)) $ (# Number) $ r |/| (1 % AU))
       where
-        cutoff =
-          sigmoid ((# Number) $ (r |-| innerRadius) |/| (eps % AU)) *
-          exp (negate $ (# Number) $ 
-               (3 *| r |/| outerRadius) )
+        cutoff :: Double
+        cutoff = 
+          exp (negate $ (# Number) $ (3 *| r |/| outerRadius) )
+--        * (if r |<| innerRadius then 0 else 1) -- there must be no inner-edge cut off here
+--        because several power-law constant are origined at 1au.
+          
         r = pos ^. radius 
         
-    eps = 1e-99
     tem :: Coord -> Temperature
     tem pos = 273 % Kelvin  |*
        ( (**(-0.5)) $ (# Number) $ r |/| (1 % AU))

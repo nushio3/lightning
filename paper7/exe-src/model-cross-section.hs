@@ -57,7 +57,7 @@ fingerprints = do
 
 
 bestFingerprint :: Fingerprint
-bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (1,0,0)}
+bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (0,0,0)}
 --bestFingerprint =  Fingerprint {fingerP = (1.0,0.0,0.0), fingerQ = (1.0,1.0,-1.0)}
 --bestFingerprint =  Fingerprint {fingerP = (1,0,0), fingerQ = (0,1,0)}
 --bestFingerprint =  Fingerprint {fingerP = (1.0,1.0,-1.0), fingerQ = (0,0,0)}
@@ -198,5 +198,5 @@ mainSurvey = do
   writeFile (workDir ++ "survey.txt") $ unlines $
     zipWith (\a f -> show a ++ " " ++ show f) ans fingerprints
   
-main = mainSurvey
---main = mainBuildModel  
+--main = mainSurvey
+main = mainBuildModel  

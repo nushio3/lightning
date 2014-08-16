@@ -63,8 +63,11 @@ genBodyText = do
         sectionObservation
         sectionMF
         sectionConclusion
-        sectionCrossSection         
         sectionAcknowledgement
+        
+        [rawQ| \appendix |]
+
+        sectionCrossSection         
 
   
   (bibText, _ , bodyDoc) <- runAuthoringT $ do

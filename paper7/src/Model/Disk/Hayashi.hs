@@ -74,8 +74,8 @@ n_{\mathrm{H_2}}(r,z)
 
 
 innerRadius, outerRadius, snowlineRadius, innerSH, outerSH, snowlineSH :: Length
-innerRadius =     0.35 % AU
-outerRadius =     300  % AU
+innerRadius =     3.5 % AU
+outerRadius =     150  % AU
 snowlineRadius =  2.7  % AU
 
 innerSH    = mmsnModel >$< equatorAt innerRadius     ^.scaleHeight
@@ -83,13 +83,49 @@ outerSH    = mmsnModel >$< equatorAt outerRadius     ^.scaleHeight
 snowlineSH = mmsnModel >$< equatorAt snowlineRadius  ^.scaleHeight
 
 mmsnStandardSurfaceDensity :: QofU GramPerCm2
-mmsnStandardSurfaceDensity =  1700 % (undefined :: GramPerCm2)
+mmsnStandardSurfaceDensity =  640 % (undefined :: GramPerCm2)
+
+
+mmsnOriginalStandardSurfaceDensity :: QofU GramPerCm2
+mmsnOriginalStandardSurfaceDensity =  1700 % (undefined :: GramPerCm2)
 
 mmsn1au :: Environment
 mmsn1au = mmsnModel >$< equatorAt1au
 
 mmsnModel :: Disk
 mmsnModel 
+  = Disk
+  { _distanceFromEarth = 100 % AU
+  , _inclinationAngle = 0
+  , _centralStarMass = solarMass
+  , _gasSurfaceDensityField = sdGas
+  , _temperatureField = tem
+  , _lightningAcceleratorField = const $ zero
+  }
+  where
+    sdGas :: Coord -> QofU GramPerCm2 
+    sdGas pos = 
+      cutoff *|
+       mmsnStandardSurfaceDensity |*
+       ( (**(-1.0)) $ (# Number) $ r |/| (1 % AU))
+      where
+        cutoff =
+          sigmoid ((# Number) $ (r |-| innerRadius) |/| (eps % AU)) *
+          exp (negate $ (# Number) $ 
+               (3 *| r |/| outerRadius) )
+        r = pos ^. radius 
+        
+    eps = 1e-99
+    tem :: Coord -> Temperature
+    tem pos = 273 % Kelvin  |*
+       ( (**(-0.5)) $ (# Number) $ r |/| (1 % AU))
+      where
+        r = pos ^. radius
+
+
+
+mmsnOriginalModel :: Disk
+mmsnOriginalModel 
   = Disk
   { _distanceFromEarth = 100 % AU
   , _inclinationAngle = 0

@@ -118,6 +118,37 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/1989GeCoA..53..197A},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:1990NISTJ..95..407P
+  - - ! '@ARTICLE{1990NISTJ..95..407P,'
+    - ! '   author = {{Phelps}, A.~V.},'
+    - ! '    title = "{The diffusion of charged particles in collisional plasmas -
+      Free and ambipolar diffusion at low and moderate pressures}",'
+    - ! '  journal = {National Institute of Standards and Technology Journal of Research},'
+    - ! ' keywords = {Ambipolar Diffusion, Charged Particles, Collisional Plasmas,
+      Particle Diffusion, Pressure Distribution, Diffusion Coefficient, Magnetic Fields,
+      Particle Motion, Plasma Diffusion, Space Charge, Spatial Distribution},'
+    - ! '     year = 1990,'
+    - ! '    month = aug,'
+    - ! '   volume = 95,'
+    - ! '    pages = {407-431},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1990NISTJ..95..407P},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:1991JPCRD..20..557P
+  - - ! '@ARTICLE{1991JPCRD..20..557P,'
+    - ! '   author = {{Phelps}, A.~V.},'
+    - ! '    title = "{Cross Sections and Swarm Coefficients for Nitrogen Ions and
+      Neutrals in N$_{2}$ and Argon Ions and Neutrals in Ar for Energies from 0.1
+      eV to 10 keV}",'
+    - ! '  journal = {Journal of Physical and Chemical Reference Data},'
+    - ! '     year = 1991,'
+    - ! '    month = may,'
+    - ! '   volume = 20,'
+    - ! '    pages = {557-573},'
+    - ! '      doi = {10.1063/1.555889},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/1991JPCRD..20..557P},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:1992ApJ...387..364P
   - - ! '@ARTICLE{1992ApJ...387..364P,'
     - ! '   author = {{Pilipp}, W. and {Hartquist}, T.~W. and {Morfill}, G.~E.},'

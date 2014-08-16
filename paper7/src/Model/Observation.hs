@@ -38,7 +38,7 @@ pixelSize = angularResolution |^ sTwo
 noiseLevelPerbeam :: ChemicalSpecies -> QofU Jansky
 noiseLevelPerbeam HCOPlus = redim $ 11.3e-3 % Jansky
 noiseLevelPerbeam DCOPlus = redim $ 13.3e-3 % Jansky
-noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky -- xxx
+noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky 
 noiseLevelPerbeam c = error $ "noise level undefined for : " ++ show c
 
 
@@ -53,7 +53,7 @@ measureOfSensitivity n c a b = 4*|modelNorm n c a b |/|  psdPerPixel c
 
 
 modelNorm :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
-modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo)  -- produces error here
+modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo) 
 
 modelNorm' :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> Double
 

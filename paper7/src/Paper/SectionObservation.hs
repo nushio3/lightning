@@ -128,7 +128,7 @@ subsectionFigures = do
    \includegraphics[angle=270,width=8cm]{figure/mix-N2HPlus-V50x80-pv.eps}
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
+      assuming that the lightning takes place at $ \mathrm{50au} < r <  \mathrm{100au}$ of the disk.
     The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
     no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
     runaway breakdown model, respectively.

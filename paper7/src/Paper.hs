@@ -24,6 +24,7 @@ import qualified Text.LaTeX as LTX
 import           Paper.SectionModel (sectionModel)
 import           Paper.SectionMatchedFilter (sectionMF)
 import           Paper.SectionObservation (sectionObservation)
+import           Paper.SectionCrossSection (sectionCrossSection)
 import           Paper.SectionAcknowledgement (sectionAcknowledgement)
 
 
@@ -62,8 +63,10 @@ genBodyText = do
         sectionObservation
         sectionMF
         sectionConclusion
+        sectionCrossSection         
         sectionAcknowledgement
 
+  
   (bibText, _ , bodyDoc) <- runAuthoringT $ do
     withDatabaseFile "material/citation.db" paper
     txt <- bibliographyContent

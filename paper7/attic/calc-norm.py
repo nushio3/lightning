@@ -23,7 +23,7 @@ for chem in chems:
       h1 =  pyfits.open(fn1)[0].data
       h2 =  pyfits.open(fn2)[0].data
       norm = ((h1-h2)**2).sum()
-      msg = "modelNorm %s %s %s = %e\n" % (chem, b1 , b2 , norm)
+      msg = "modelNorm' 25 %s %s %s = %e\n" % (chem, b1 , b2 , norm)
       fp.write(msg)
 
 fp.close()
@@ -39,7 +39,7 @@ for chem in chems:
       h1 =  pyfits.open(fn1)[0].data
       h2 =  pyfits.open(fn2)[0].data
       norm = ((h1-h2)**2).sum()
-      msg = "modelNorm %s %s %s = %e\n" % (chem, b1 , b2 , norm)
+      msg = "modelNorm' 50 %s %s %s = %e\n" % (chem, b1 , b2 , norm)
       fp.write(msg)
 
 fp.close()

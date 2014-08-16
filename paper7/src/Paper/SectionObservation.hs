@@ -112,12 +112,12 @@ subsectionFigures = do
      disk model name & discharge & LMG region \\
      \hline                                   
      N   & no discharge  & \\
-     T50 & Townsend discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
-     T100 & Townsend discharge& $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\     
-     DB50 & Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\ 
-     DB100& Druyversteyn-Penning discharge & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\
-     R50 & runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
-     R100& runaway dischage & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\    
+     T25 & Townsend discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\
+     T50 & Townsend discharge& $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
+     DB25 & Druyversteyn-Penning discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\ 
+     DB50& Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     R25 & runaway dischage & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\     
+     R50& runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\    
      \hline
    \end{tabular}
    

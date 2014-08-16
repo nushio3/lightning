@@ -385,7 +385,7 @@ fin
 
 
 
-argon
+Argon
 
 Lab. ion
 energy Q(e) Q(UV) Q(488) Q(811)

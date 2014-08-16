@@ -270,7 +270,7 @@ aboutLineProperty = do
    $#{ppValFIn "%5.2f" (lineFrequency 2 HCOPlus) (giga Hertz)}$GHz,
    $#{ppValFIn "%5.2f" (lineFrequency 2 DCOPlus) (giga Hertz)}$GHz and
    $#{ppValFIn "%5.2f" (lineFrequency 2 N2HPlus) (giga Hertz)}$GHz, respectively.
-   At 100au of the MMSN disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
+   At 100au of the model disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
    @{aboutFractionalAbundance}
 
    Assuming that there is no lightning and that the molecules are in their thermal velocities,

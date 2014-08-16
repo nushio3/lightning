@@ -57,7 +57,7 @@ modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo)
 
 modelNorm' :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> Double
 
+#include "modelNorm25.hs"
 #include "modelNorm50.hs"
-#include "modelNorm100.hs"
 
 modelNorm' _ _ _ _ = 0

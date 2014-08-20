@@ -69,25 +69,25 @@ compareTables :: MonadAuthoring s w m => m ()
 compareTables = 
   [rawQ|
 
-  The measure of sensitivity among {\tt N}, {\tt T50}, {\tt DP50} and {\tt R50} models,
+  The measure of sensitivity among {\tt N}, {\tt T25}, {\tt DP25} and {\tt R25} models,
   using the $\mathrm{HCO}^{+}$  line, is as follows:
 
-  @{compareTable 50 [HCOPlus]}
+  @{compareTable 25 [HCOPlus]}
  
-  The measure of sensitivity among {\tt N}, {\tt T100}, {\tt DP100} and {\tt R100} models are as follows:
+  The measure of sensitivity among {\tt N}, {\tt T50}, {\tt DP50} and {\tt R50} models are as follows:
   
-  @{compareTable 100 [HCOPlus]}
+  @{compareTable 50 [HCOPlus]}
 
 
   $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$ lines.
 
-  @{compareTable 50 [DCOPlus]}   @{compareTable 100 [DCOPlus]}
+  @{compareTable 25 [DCOPlus]}   @{compareTable 50 [DCOPlus]}
 
-  @{compareTable 50 [N2HPlus]}   @{compareTable 100 [N2HPlus]}
+  @{compareTable 25 [N2HPlus]}   @{compareTable 50 [N2HPlus]}
 
   Finally, using all the three lines, we can achieve the following measure-of-sensitivities:
 
-  @{compareTable 50 [HCOPlus, DCOPlus, N2HPlus]}   @{compareTable 100 [HCOPlus, DCOPlus, N2HPlus]}
+  @{compareTable 25 [HCOPlus, DCOPlus, N2HPlus]}   @{compareTable 50 [HCOPlus, DCOPlus, N2HPlus]}
 
   |]
 
@@ -180,12 +180,12 @@ closingMF = do
    For example, if the radii of LMG clumps is smaller than the values in the following tables,
    they are not $#{thresholdSigma}-\sigma$ detectable.
 
+   @{upperLimitTable 25 [HCOPlus, DCOPlus, N2HPlus]}
    @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}
-   @{upperLimitTable 100 [HCOPlus, DCOPlus, N2HPlus]}
 
    The above values ar upper limit to the size of the LMG clums that possibly exists
    on 
-   $50{\mathrm{au}} < r < 100{\mathrm{au}}$ and
-   $100{\mathrm{au}} < r < 200{\mathrm{au}}$ orbit, respectively.    
+   $25{\mathrm{au}} < r < 50{\mathrm{au}}$ and
+   $50{\mathrm{au}} < r < 100{\mathrm{au}}$ orbit, respectively.    
   |]
 

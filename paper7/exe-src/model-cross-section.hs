@@ -198,5 +198,5 @@ mainSurvey = do
   writeFile (workDir ++ "survey.txt") $ unlines $
     zipWith (\a f -> show a ++ " " ++ show f) ans fingerprints
   
-  
-main = mainBuildModel  
+main = mainSurvey
+--main = mainBuildModel  

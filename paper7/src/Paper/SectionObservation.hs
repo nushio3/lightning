@@ -112,12 +112,12 @@ subsectionFigures = do
      disk model name & discharge & LMG region \\
      \hline                                   
      N   & no discharge  & \\
-     T50 & Townsend discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
-     T100 & Townsend discharge& $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\     
-     DB50 & Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\ 
-     DB100& Druyversteyn-Penning discharge & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\
-     R50 & runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
-     R100& runaway dischage & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\    
+     T25 & Townsend discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\
+     T50 & Townsend discharge& $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
+     DB25 & Druyversteyn-Penning discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\ 
+     DB50& Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     R25 & runaway dischage & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\     
+     R50& runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\    
      \hline
    \end{tabular}
    
@@ -128,7 +128,7 @@ subsectionFigures = do
    \includegraphics[angle=270,width=8cm]{figure/mix-N2HPlus-V50x80-pv.eps}
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
+      assuming that the lightning takes place at $ \mathrm{50au} < r <  \mathrm{100au}$ of the disk.
     The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
     no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
     runaway breakdown model, respectively.

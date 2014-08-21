@@ -35,7 +35,7 @@ makeClassy ''LimeConfig
 defaultLimeConfig = LimeConfig
   { _targetMolecule = HCOPlus
   , _targetLightningModel = Just TownsendBreakdown
-  , _fileNameBody = "LgAK"
+  , _fileNameBody = "LTZS"
   , _velocityChannelNumber = 201
   , _velocityResolution = 200
   , _lightningInnerRadius = 50

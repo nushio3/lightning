@@ -4,6 +4,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators #-}
@@ -165,10 +166,12 @@ mfpPpd15 :: Getter Environment Length
 mfpPpd15 = Lens.to $ \env -> 
   redim $ 1 /| (env^.ppdNumberDensity) |/| (ppdMix $ inelCrossSection 15)
 
-mfpPpd15N2 :: Getter Environment Length
-mfpPpd15N2 = Lens.to $ \env -> 
-  redim $ 1 /| (env^.ppdNumberDensity) |/| (1e-18 % (Meter :^ pTwo))
-
+mfpPpd15N2 :: QofU ElectronVolt -> Getter Environment Length
+mfpPpd15N2 nrg = Lens.to $ \env -> 
+  redim $ 1 /| (env^.ppdNumberDensity) |/| ((1e-18 * (eps/0.1)**(-0.273) ) % (Meter :^ pTwo))
+  where
+    eps :: Double
+    eps = nrg # ElectronVolt
 
 mfpPpd15E :: Getter Environment Length
 mfpPpd15E = Lens.to $ \env->

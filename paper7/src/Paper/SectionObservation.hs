@@ -47,13 +47,27 @@ sectionObservation = do
   [rawQ|  
 
 The electric field of LMG accelerates the charged chemical species.   
-The kinetic energy $\varepsilon$ obtained by this mechanism is $\varepsilon = e E_{\rm crit} l_{\rm mfp}$.
-The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$
-while the mean free path $l_{\rm mfp}$ is inversely proportional to the gas number density $n_n$.
-This means that the obtained kinetic energy $\varepsilon$ does not depend on the gas number density.
-It only depends on the lightning model, so the value is the same anywhere in a protoplanetary disk,
-provided that the lightning model does not change within the protoplanetary disk. Each model predicts
-the maximum velocities of the chemical elements as follows (units are in cm/s);
+Let  $\varepsilon_I$ be the kinetic energy of a particle of such an ion species $I$.
+At the equilibrium $\varepsilon_I = e E_{\rm crit} l_{{\rm mfp},I}$.
+The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
+Let $A$ be the proportionality factor and $E_{\rm crit} = A n_n$ .
+Now, the mean free path $l_{{\rm mfp},I} = 1/\sigma_I(\varepsilon_I) {n_n}$ is inversely proportional to the gas number density $n_n$.
+This means that the obtained kinetic energy $\varepsilon_I$ does not depend on the gas number density.
+
+\begin{eqnarray*}
+ \varepsilon_I &=& e E_{\rm crit} l_{{\rm mfp},I} \\
+ &=&e \frac {A n_n} {\sigma_I(\varepsilon_I) n_n} \\
+ &=& \frac {e A } {\sigma_I(\varepsilon_I) } 
+\end{eqnarray*}
+
+ 
+The value of $\sigma_I(\varepsilon_I)$
+ only depends on the lightning model, so is is universally the same  in a protoplanetary disk.
+This is a unique feature for detecting lightning model within the disk.
+
+The predicted 
+$\varepsilon_I$
+and the velocities of the ion species are as follows (units are in cm/s);
 
   \begin{tabular} {cccc}
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
@@ -76,16 +90,6 @@ R
 
 TODO: provide link to appendix for  cross section model
 
-We used cross sections for 15eV electrons because $\Delta W_{\rm H_2} = 15.43{\rm eV}$.
-The cross sections are as follows @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
-
-  \begin{tabular} {ccc}
-species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\
-$\rm H_2$  &  $#{ppValE 1 $ inelCrossSection 15 H2}$ &  $#{ppValE 1 $ elCrossSection 15 H2}$\\
-$\rm He$   &  $#{ppValE 1 $ inelCrossSection 15 He}$ &  $#{ppValE 1 $ elCrossSection 15 He}$\\
-$\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSection 15 CO}$\\
-$\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
-\end{tabular}
   |]
 
   aboutLineObservation
@@ -108,12 +112,12 @@ subsectionFigures = do
      disk model name & discharge & LMG region \\
      \hline                                   
      N   & no discharge  & \\
-     T50 & Townsend discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
-     T100 & Townsend discharge& $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\     
-     DB50 & Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\ 
-     DB100& Druyversteyn-Penning discharge & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\
-     R50 & runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
-     R100& runaway dischage & $100{\mathrm{au}} < r < 200{\mathrm{au}}$\\    
+     T25 & Townsend discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\
+     T50 & Townsend discharge& $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
+     DB25 & Druyversteyn-Penning discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\ 
+     DB50& Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     R25 & runaway dischage & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\     
+     R50& runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\    
      \hline
    \end{tabular}
    
@@ -124,7 +128,7 @@ subsectionFigures = do
    \includegraphics[angle=270,width=8cm]{figure/mix-N2HPlus-V50x80-pv.eps}
    \caption{
     The line profiles for  $\mathrm{HCO}^{+}$ , $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$,
-      assuming that the lightning takes place at $ \mathrm{100au} < r <  \mathrm{200au}$ of the disk.
+      assuming that the lightning takes place at $ \mathrm{50au} < r <  \mathrm{100au}$ of the disk.
     The labels {\tt no}, {\tt T}, {\tt DP}, and {\tt R} for the curves corresponds to 
     no lightning, Townsend breakdown model, Druyversteyn-Penning breakdown model and
     runaway breakdown model, respectively.

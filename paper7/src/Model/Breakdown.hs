@@ -195,7 +195,7 @@ the mean inelastic cross section of air at 12eV is
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
-$E_{\rm crit} = #{ppValF "%.0f" $ 1e-3 *| airDielectricStrengthT} {\rm kV/cm}$,
+$E_{\rm crit} = #{ppValFIn "%.0f" airDielectricStrengthT (undefined :: KVPerCm) } {\rm kV/cm}$,
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 

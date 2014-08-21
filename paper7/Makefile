@@ -30,6 +30,8 @@ paper: build
 # ./dist/build/make-figures/make-figures
 	./link-figure.sh
 	./dist/build/make-paper/make-paper
+#gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS='/screen' -sOutputFile=output/paper-lowres.pdf output/paper.pdf
+
 
 presentation: build
 	./dist/build/make-presentation/make-presentation

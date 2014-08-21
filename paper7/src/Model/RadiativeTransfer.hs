@@ -28,11 +28,19 @@ fieldToVelocity env chem = qSqrt $ v2
     ef :: QofU VoltPerCm 
     ef = env ^. lightningAccelerator 
     v2 :: QofU Cm2PerSec2 
-    v2 = redim $ elementaryCharge |*| ef |*| (env^.mfpPpd15N2) |/| m 
+    v2 = redim $ equilEps |/| m
+    
+    equilEps :: QofU ElectronVolt
+    equilEps = solve accEq
+    
+    accEq :: QofU ElectronVolt -> QofU ElectronVolt
+    accEq eps = redim $ elementaryCharge |*| ef |*| (env^. mfpPpd15N2 eps)
+    
     m :: Mass
     m = molecularMass chem |/| avogadroConstant
 
-
+    solve f = foldr ($) (10 % ElectronVolt)
+      (replicate 10 f)
 
 aboutLineObservation :: MonadAuthoring s w m => m ()
 aboutLineObservation = do
@@ -262,7 +270,7 @@ aboutLineProperty = do
    $#{ppValFIn "%5.2f" (lineFrequency 2 HCOPlus) (giga Hertz)}$GHz,
    $#{ppValFIn "%5.2f" (lineFrequency 2 DCOPlus) (giga Hertz)}$GHz and
    $#{ppValFIn "%5.2f" (lineFrequency 2 N2HPlus) (giga Hertz)}$GHz, respectively.
-   At 100au of the MMSN disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
+   At 100au of the model disk $T = #{ppValF "%3.0f" tem100au} {\rm K}$.                                                     
    @{aboutFractionalAbundance}
 
    Assuming that there is no lightning and that the molecules are in their thermal velocities,

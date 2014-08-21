@@ -40,6 +40,7 @@ library
     Model.Values
     Paper
     Paper.SectionAcknowledgement
+    Paper.SectionCrossSection
     Paper.SectionModel
     Paper.SectionObservation
     Paper.SectionMatchedFilter
@@ -115,6 +116,23 @@ executable make-lime-figures
                    
                    , lens
                    , process
+
+executable model-cross-section
+  buildable:         True
+  main-is:           model-cross-section.hs           
+  Ghc-Options:       -Wall -O2
+  hs-source-dirs:    exe-src/
+  Build-Depends:
+      base
+    , cmaes	
+    , containers
+    , lightning-paper7
+    , lens
+    , process
+    , units
+    , units-defs
+
+
 
 
 -- Test-Suite doctest

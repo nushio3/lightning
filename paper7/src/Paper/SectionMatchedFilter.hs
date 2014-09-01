@@ -161,7 +161,7 @@ upperLimitTable n chems =
 
 
 thresholdSigma :: Double
-thresholdSigma = 3.0
+thresholdSigma = 5.0
 
 
 

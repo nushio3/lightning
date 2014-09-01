@@ -44,6 +44,7 @@ data ChemicalSpecies
 airMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
 airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 
+
 ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
 ppdMix func = 0.9219 *| func H2 |+| 7.7718e-2 *| func He 
               |+| 2.262326e-4 *| func CO |+| 1.3404e-4 *| func O2

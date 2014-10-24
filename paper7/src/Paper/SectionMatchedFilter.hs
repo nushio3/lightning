@@ -171,8 +171,11 @@ closingMF = do
    The measure-of-sensitivity for any two different models is larger than 100.
    Therefore the image like Figure \ref{figEmissionMap} is not difficult to detect.
    However, no observation of protoplanetary disk has been reported.
-   Therefore, observations reject such form of lightning models. Instead, observations suggest that
-   protoplanetary disk lightning matrix gas (LMG), if it exists at all, 
+   Therefore, we can reject such form of lightning models from observations. 
+   There are multiple alternative scenarios that observations suggest:
+   (1) Protoplanetary disk lightning does not exist at all. (2) The probability of protoplanetary disk 
+   with lightning matrix gas (LMG) is low, so that we have not yet observed one yet.
+   (3) Protoplanetary disk LMG
    exists in forms of LMG clumps (protoplanetary ``cumulonibus clouds'') much smaller than the size of
    the protoplanetary disks.
    

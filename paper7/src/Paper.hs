@@ -52,7 +52,12 @@ abstractText :: Text.Text
 abstractText = LTX.render abstract
 
 abstract :: LaTeX
-abstract = TeXRaw "We study the possibility of observationally distinguishing lightning models in protoplanetary disks."
+abstract = TeXRaw 
+  "Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been increasing drastically, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied. \n\n\n In this paper, we focus on the lightning matrix gas (LMG), which is the disk gas that is subject to electric field large enough for the discharge process to take place. We study the measurement of the dielectric strength of the LMG, using the fact that multiple (+1) ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishment between the models. At the distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and   lightning  $\sigma$. A $5-\sigma$ are TODO au."
+
+   
+
+
 
 
 genBodyText :: IO (Text.Text, Text.Text)
@@ -138,16 +143,25 @@ sectionConclusion = do
 
   command1 "section" $ esc "Conclusions and Discussions."
   [rawQ|   
+   Understanding of the MRI in weakly-ionized accretion disks will
+   contribute to the study of the dynamics of protoplanetary disks
+   as well as circumplanetary disks @{keithWardle}.
+   Dielectric strength of the disk gas is one of the crucial elementary processes
+   that regulates the MRI in protoplanetary disks. Discharge phenomena takes place in the regions with the critical
+   electric field (LMG), and acceleration of the molecular ions is one of the observable features
+   of the LMG.
 
-  todo: @{keithWardle} discusses circumplanetary disk lightning.
+   We have presented three dielectric strength models for protoplanetary disks.
+   They are Townsend breakdown model, Druyversteyn-Penning breakdown model,
+   and runaway breakdown model, respectively.
+   We have proposed methods for observational distinguishment of the three models.
+   The models are distinguishable with
+   the sensitivity of advanced telescopes such as ALMA.
+   It was already possible to reject some of the lightning models based on ground observations.
+   The upper limits of the LMG clouds size are given from the observations.
 
-
-   We have shown that some
-   lightning models are observationally distinguishable with ALMA.
-   It is possible to reject some of the lightning models based on ground observations.
-   Our lightning models treated here are very simple. To apply this work to more realistic
-   disk models are beyond the scope of this paper, and left as a useful direction
-   for future research.
+   Our lightning models treated here are very simple. New studies are targeting to apply this work to more realistic
+   disk models.
 
 
    |]

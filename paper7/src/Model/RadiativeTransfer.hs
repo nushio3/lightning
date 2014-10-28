@@ -47,12 +47,13 @@ aboutLineObservation = do
   aboutScoville
 
   raw "\n\n"
+  
+  aboutLineProfile
+
+  raw "\n\n"
 
   aboutLineProperty
 
-  raw "\n\n"
-  
-  aboutLineProfile
 
 
 -- | From Alma OT
@@ -291,7 +292,9 @@ aboutLineProperty = do
    However, 
    all the three lines becomes two degrees of magnitude more transparent under the effect of the
    critical electric field. This is a result of the molecular speed becoming faster. 
-   Consequently, observed line profiles are broadened.
+   Consequently, observed line profiles are broadened. This Doppler broadening of the lines of the charged molecular
+   species are the key observational features to observe the characteristic speed of the molecules, and therefore
+   the electric field strength in the protoplanetary disk. 
    
 
    |]

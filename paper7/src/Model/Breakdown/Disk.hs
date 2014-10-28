@@ -24,7 +24,8 @@ import Model.Values
 aboutDiskDischarge :: MonadAuthoring s w m => m ()
 aboutDiskDischarge = 
   [rawQ| 
-In our disk model the gas density at eqatorial plane, $r = 1{\rm au}$ is 
+Here we estimate the dielectric strength of the protoplanetary disk gas.
+In our disk model the gas density at the equatorial plane, $r = 1{\rm au}$ is 
 $n_{0,\mathrm{ppd}} = #{ppValE 2 $ mmsn1au ^. ppdDensity} 
 {\rm g~cm^{ -3}}$.
 We assume that protoplanetary disk gas consists of 
@@ -45,7 +46,7 @@ $\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSec
 $\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
 \end{tabular}
 
- Calculations similar to the previous section leads to the following values:
+ Calculations similar to those in the previous section leads to the following values:
 
 \begin{eqnarray}
 \begin{array}{CCCCC}

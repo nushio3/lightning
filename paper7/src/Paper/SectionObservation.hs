@@ -52,7 +52,7 @@ At the equilibrium $\varepsilon_I = e E_{\rm crit} l_{{\rm mfp},I}$.
 The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
 Let $A$ be the proportionality factor and $E_{\rm crit} = A n_n$ .
 Now, the mean free path $l_{{\rm mfp},I} = 1/\sigma_I(\varepsilon_I) {n_n}$ is inversely proportional to the gas number density $n_n$.
-This means that the obtained kinetic energy $\varepsilon_I$ does not depend on the gas number density.
+This means that the obtained kinetic energy $\varepsilon_I$ is independent of the gas number density.
 
 \begin{eqnarray*}
  \varepsilon_I &=& e E_{\rm crit} l_{{\rm mfp},I} \\
@@ -63,7 +63,7 @@ This means that the obtained kinetic energy $\varepsilon_I$ does not depend on t
  
 The value of $\sigma_I(\varepsilon_I)$
  only depends on the lightning model, so is is universally the same  in a protoplanetary disk.
-This is a unique feature for detecting lightning model within the disk.
+This gives rise to the unique features of the lightning models in the disk.
 
 The predicted 
 $\varepsilon_I$
@@ -88,7 +88,9 @@ R
   \\
 \end{tabular}
 
-TODO: provide link to appendix for  cross section model
+In the Appendix we describe
+the detail
+of the cross section model we have used in order to estimate the above cross sections.
 
   |]
 
@@ -143,7 +145,7 @@ subsectionFigures = do
 
     In Figure \ref{fig-lightning-lp}, 
     simulated integrated emission map of  $\mathrm{HCO}^{+}$ lines for
-    N, R50, and R100 disk models are shown.
+    N, R25, and R50 disk models are shown.
     
 
    \begin{figure}
@@ -173,8 +175,8 @@ subsectionFigures = do
    \caption{
    Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines for
    disk models N (upper row),
-   R50 (middle row), and
-   R100  (lower row), respectively.
+   R25 (middle row), and
+   R50  (lower row), respectively.
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
    We assume beam size $0''.65 \times 0''44$.
    \label{figEmissionMap}

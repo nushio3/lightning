@@ -33,7 +33,7 @@ aboutLatestDiskModel = do
     See e.g. 
     @{citet ["arxiv:1402.6597"]}.
 
-    Some of the features common to the recent models are that the power-law index 
+    Some of the features common to the recent models are that the power-law indices
     of the surface density distribution is
     close to 1 rather than 1.5, and that there are exponential cut-off at the outer
     edge of the disk

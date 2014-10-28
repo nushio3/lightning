@@ -7,7 +7,7 @@ init:
 	cabal configure --enable-tests
 
 build: init
-	cabal build  --ghc-options=-dsuppress-module-prefixes
+	cabal build -j1
 
 
 clean:

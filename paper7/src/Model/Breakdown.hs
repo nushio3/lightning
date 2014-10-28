@@ -48,7 +48,7 @@ aboutDielectricStrengthOfAir = do
   [rawQ|
 
 Dielectric strength of an insulating material is the maximum amplitude 
-of the electric field the subject material does not cause the electric
+of the electric field the subject material does not result in electric
 breakdown. It is physical property of central importance for discharge 
 physics.
 Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
@@ -57,7 +57,7 @@ dielectric strength of air.
 
 On the one hand, the dielectric strength of air at normal temperature and pressure 
 (NTP; $20^{\circ}{\rm C}$ and 1atm)
-is well established from laboratory experiments @{citeDSofAir}: |]
+are well established from laboratory experiments @{citeDSofAir}: |]
 
   environment "eqnarray" $ [rawQ| E_0 = 30 {\rm kV/cm}. @{label ntpAirDielectricStrength}|]
 
@@ -110,10 +110,10 @@ aboutThreeDischargeModel = do
     
     [rawQ| 
 In {\em Townsend breakdown model} the critical electric field
-is such that an electron accelerated by the elecric field 
+is such that an electron accelerated by the electric field 
 over its mean free path gains
 kinetic energy large enough to ionize a neutral gas molecule.
-It has widely been used in meteorological context,
+It has widely been used in the meteorological context,
 and also adopted into astrophysical context e.g. by
 @{citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]} .
 This model explains laboratory gas discharge experiments 
@@ -128,7 +128,7 @@ This model explains laboratory gas discharge experiments
 
     [rawQ| 
 @{dandp} has derived the formulae for equilibrium distribution
-of electron under constant electric field, neglecting the effects of inelastic 
+of electrons under constant electric field, neglecting the effects of inelastic 
 collision with atoms.
 {\em Druyversteyn-Penning breakdown model} states that the breakdown 
 takes place when the mean electron kinetic energy in Druyversteyn-Penning 
@@ -141,15 +141,15 @@ The model is introduced as a protoplanetary disk lightning model by
     
     [rawQ|
 @{citet ["doi:10.1016/0375-9601(92)90348-P"] -- Gurevich+ } 
-have propesed {\em Runaway breakdown model} 
+have proposed {\em Runaway breakdown model} 
 and 
 @{citet ["doi:10.1070/PU2001v044n11ABEH000939"] -- Gurevich & Zybin}
 provided a detailed review of the model.
-This model states that breakdown is caused by exponential 
+This model states that the breakdown is caused by the exponential 
 increase of the number of electron with relativistic ($\sim 1$MeV) kinetic energy.
 Because the mean free path for such fast electrons is much longer than that for thermal
-electrons, runaway breakdown can take place at electric field much weaker than that of a Townsend breakdown. 
-Runaway breakdown model better explains the lightning observations in Earth atmosphere and is used as the discharge
+electrons, runaway breakdown can take place at an electric field value much weaker than that of a Townsend breakdown. 
+Runaway breakdown model better explains the lightning observations in the Earth atmosphere and is used as the discharge
 model in thunderstorm simulations studies
 e.g. by @{citet ["bibcode:2002JGRD..107.4075M"] -- Mansell et al}. |]
     
@@ -161,10 +161,10 @@ e.g. by @{citet ["bibcode:2002JGRD..107.4075M"] -- Mansell et al}. |]
                ]
 
   [escQ|
-In order to calculate the dielectric strength of gas
+In order to estimate the dielectric strength of gas
 we need to compute Boltzmann distribution of electrons.
-Since the interactons of electrons with even the simplest atoms and molecules
-has profound details @{landoltBoernstein},
+Since the interactions of electrons with even the simplest atoms and molecules
+have profound details @{landoltBoernstein},
 this requires difficult numerical computations @{citep ["doi:10.1063/1.329081"]}.
 In this paper, we will instead resort to a simple calculation that reproduces
 the values from the Townsend breakdown model.
@@ -178,7 +178,7 @@ aboutAir :: MonadAuthoring s w m => m ()
 aboutAir = do
   [rawQ|
 We assume that air consists of
-78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fraction).
+78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fractions).
 Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
 The ionization energy of these chemical species are
 $\Delta W_{\rm N_2} = #{ppFIn "%.1f" (ionizationEnergy N2) ElectronVolt} $,
@@ -187,11 +187,10 @@ $\Delta W_{\rm Ar}  = #{ppFIn "%.1f" (ionizationEnergy Ar) ElectronVolt}$, respe
 Of these $\Delta W_{\rm O_2} \sim 12 {\rm eV}$ is the smallest, so we estimate
 the electric field amplitude $E_{\rm crit}$ required to accelerate the electron
 upto 12eV; i.e. we solve $12 {\rm eV} = e E_{\rm crit} l_{\rm mfp}$.
-Given that
-the inelastic cross sections of $\rm N_2, O_2, Ar$ for 12 eV electron 12eV are
+The inelastic collisional cross sections of  $\rm N_2, O_2, Ar$ for 12 eV electrons are
 $0.8, ~1.8, ~0.0 \times 10^{ -16} {\rm cm^{ -2}}$
-@{citep ["isbn:3-540-64296-X", "isbn:354044338X"]},
-the mean inelastic cross section of air at 12eV is 
+@{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
+Therefore, the mean inelastic cross section of air for 12eV electrons is 
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
@@ -199,9 +198,9 @@ $E_{\rm crit} = #{ppValFIn "%.0f" airDielectricStrengthT (undefined :: KVPerCm) 
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 
-On the other hand, according to the formalization by
-@{citet ["doi:10.1086/432796"]}, average kinetic energy of electron
-under the electric field $E$ is
+On the other hand, according to Druyversteyn-Penning model
+, average kinetic energy of electron
+under the electric field $E$ is @{citep ["doi:10.1086/432796"]}
 \begin{eqnarray}
   \langle \epsilon \rangle = 0.43 e E l_{\rm mfp} \sqrt{\frac{M}{m_e}},
 \end{eqnarray}

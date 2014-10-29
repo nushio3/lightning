@@ -13,16 +13,16 @@ sectionCrossSection :: MonadAuthoring s w m => m ()
 sectionCrossSection = do
   command1 "section" $ raw "Appendix: Cross Section Model of Ion-Neutral Molecular Collision"
   [rawQ| 
-     We establish a model of collision cross section as functions of collision energy,
+     We establish the model of ion-neutral collisional cross sections as functions of collision energy,
 in collaboration with Motomichi Tashiro.
 
 In order to compute the equilibrium speed under electric field for ion species
  $\rm HCO^{+}$ , $\rm DCO^{+}$  and $\rm N_2H^{+}$, we need the knowledge of
-energy-dependent cross section of collision between the 
+the energy-dependent cross section of the collisions between the 
  $\rm H_2$ and the ion species. 
-However, no experimental values for such collisions exists.
-In general, collisional cross section data for molecular ions and molecules are scarse, due to 
-the difficulity of setting up such collision experiments.
+However, no experimental values for such collisions exist.
+In general, collisional cross section data for molecular ions and molecules are scarce, due to 
+the difficulty of setting up such collision experiments.
 On the other hand, quantum-mechanical simulation of such collision event 
 would require upto 1 month per single collision
 (Tashiro, private comm.,) and it requires many collision simulations with different 
@@ -33,7 +33,7 @@ Therefore, we construct and use a simple empirical model of
  molecular ions and molecules collisional cross section, following
 Tashiro's advice.
 
-There are well-established   collision cross section data 
+There are  collision cross section data 
   @{citep ["bibcode:1990NISTJ..95..407P", "bibcode:1991JPCRD..20..557P"]}.
 for the following six pairs of  molecular ions and molecules:
 ${\rm H^{+}}-{\rm H_2}$ ,
@@ -68,7 +68,7 @@ is minimized. Here, $\sigma_{I^{+}, I,\rm exp}[\varepsilon]$
 are experimentally known cross section values for some fixed values of $\varepsilon$
 found in
   @{citet ["bibcode:1990NISTJ..95..407P", "bibcode:1991JPCRD..20..557P"]}. 
-The experimental data and the best-fit models are shown in
+The experimental data and the best-fit models are presented in
 Figure \ref{fig-cross-section-model}.
 
   \begin{figure}
@@ -82,7 +82,7 @@ Figure \ref{fig-cross-section-model}.
 We have also studied models more complex than Equation (\ref{eq-fit-model}).
 These complex models reproduce more detailed behavior of the cross sections such as
 dependence on ion-neutral molecular mass ratio.
-However, there are many candidates for such models, and the
+However, there are numerous candidates for such models, and the
 predicted cross section values vary upto four degrees of magnitude among the models.
 Available experimental data are not abundant enough to justify a choice 
 among those complex models without risking overfitting.

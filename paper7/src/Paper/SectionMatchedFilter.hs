@@ -35,10 +35,10 @@ introMF = do
    We apply the matched filtering method @{citep ["doi:10.1109/PROC.1963.2383"]},
    in order to distinguish lightning model by ALMA.
    Matched filtering is
-   the optimal method for discreminating models under noisy observation has been well studied
+   the optimal method for discriminating models under noisy observation has been well studied
    and have wide  applications not only in radio astronomy 
    @{citep [ "bibcode:2003ApJS..147..167E"]} but also in
-   extrasolar planet astronomy @{citep ["bibcode:1996Icar..119..244J", "bibcode:2000ApJ...535..338D"]}, 
+   extra solar planet astronomy @{citep ["bibcode:1996Icar..119..244J", "bibcode:2000ApJ...535..338D"]}, 
    gravitational wave astronomy @{citep ["bibcode:1999PhRvD..60b2002O","bibcode:2007PhRvD..76h4020V","bibcode:2013PhRvD..88d4026H"]},
    and even in ocean tomography @{citep [ "bibcode:1979DSRA...26..123M"]}.
    We follow the treatment by @{citet ["isbn:978-3-527-40886-3"]} .
@@ -168,11 +168,11 @@ thresholdSigma = 5.0
 closingMF :: MonadAuthoring s w m => m ()
 closingMF = do
   [rawQ|
-   The measure-of-sensitivity for any two different models is greater than 100.
-   Therefore the image like Figure \ref{figEmissionMap} is easy to detect.
+   The measure-of-sensitivity for any two different models is larger than 100.
+   Therefore the image like Figure \ref{figEmissionMap} is not difficult to detect.
    However, no observation of protoplanetary disk has been reported.
-   This means that we can observationally reject such form of lightning models.
-   Protoplanetary disk lightning matrix gas, if it exists at all, does not occupy the full disk, but 
+   Therefore, observations reject such form of lightning models. Instead, observations suggest that
+   protoplanetary disk lightning matrix gas (LMG), if it exists at all, 
    exists in forms of LMG clumps (protoplanetary ``cumulonibus clouds'') much smaller than the size of
    the protoplanetary disks.
    
@@ -183,7 +183,7 @@ closingMF = do
    @{upperLimitTable 25 [HCOPlus, DCOPlus, N2HPlus]}
    @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}
 
-   The above values ar upper limit to the size of the LMG clums that possibly exists
+   The above values are upper limit to the size of the LMG clums that possibly exists
    on 
    $25{\mathrm{au}} < r < 50{\mathrm{au}}$ and
    $50{\mathrm{au}} < r < 100{\mathrm{au}}$ orbit, respectively.    

@@ -4,8 +4,8 @@ import math
 import subprocess
 
 for model_label in ['N', 'JRB']:
-#    fits_fn = 'material/lime-output/LgAK16k-HCOPlus-' + model_label + '-R50_100-V50x80.fits'
-    fits_fn = 'material-old/lime-output/LgRg16k-HCOPlus-' + model_label + '-R50_100-V50.0x80.fits'
+    fits_fn = 'material/lime-output/LgAK16k-HCOPlus-' + model_label + '-R50_100-V50x80.fits'
+#    fits_fn = 'material-old/lime-output/LgRg16k-HCOPlus-' + model_label + '-R50_100-V50.0x80.fits'
 
     hdulist0 = pyfits.open(fits_fn)
     img0 = hdulist0[0].data
@@ -21,7 +21,7 @@ for model_label in ['N', 'JRB']:
     set pm3d
     set pm3d map
     set size ratio -1
-    set cbrange [0:1]
+    set cbrange [0:0.1]
     set xrange[-150:150]
     set yrange[-150:150]
     set palette defined (  0 1 1 1, 0.1 0.5 0.5 0.5  , 1 0 0 0 )

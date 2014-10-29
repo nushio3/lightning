@@ -11,6 +11,9 @@ import           Text.Authoring.TH
 
 sectionAcknowledgement :: MonadAuthoring s w m => m ()
 sectionAcknowledgement = do
+  let takahashi2007 = citet ["isbn:9784130627184"]
+      marlow2013    = citet ["isbn:9781449335946"]
+
   command1 "section*" $ raw "Acknowledgement"
   [rawQ| 
         We thank Yasuo Fukui, Hitoshi Miura, Munetake Momose and Takayuki Muto for helpful discussions; 
@@ -22,6 +25,8 @@ sectionAcknowledgement = do
         Institute of Low Temperature Science, Hokkaido University for hosting the workshop
         ``Recent Development in Studies of Protoplanetary Disks with ALMA''
         where the authors learned ALMA image analysis.
+        This work is based on the landmark review of terrestrial lightning by @{takahashi2007}. 
+        The parallel computation techniques used in this work are based on @{marlow2013}.
         We used {\tt units} library @{citep ["special:units"]} to thoroughly check for the 
         consistency of physical dimensions and units in this paper.
         |]

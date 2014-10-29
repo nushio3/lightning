@@ -137,14 +137,14 @@ subsectionFigures = do
    }\label{fig-lightning-lp}
    \end{figure}    
     
-    We calculate the line profiles for the three ion species in disk with these seven disk models,
-    in order to study  the  ability to distinguishment the lightning model sfrom the line observations.
+    We calculate the line profiles for the three ion species with these seven disk models,
+    in order to study  the  ability to distinguish the lightning model from the line observations.
     We assume that our model disk is located at the same position as
     TW Hya i.e. at the distance of 56pc and the
     inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
 
     In Figure \ref{fig-lightning-lp}, 
-    simulated integrated emission map of  $\mathrm{HCO}^{+}$ lines for
+    simulated integrated emission maps of the $\mathrm{HCO}^{+}$ line for
     N, R25, and R50 disk models are shown.
     
 

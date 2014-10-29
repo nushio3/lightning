@@ -133,8 +133,7 @@ electric field $E \simeq E_{\rm crit}$. We explore the possible observational fe
 
 sectionConclusion :: MonadAuthoring s w m => m ()
 sectionConclusion = do
-  let takahashi2007 = citet ["isbn:9784130627184"]
-      marlow2013    = citet ["isbn:9781449335946"]
+  let
       keithWardle   = citep ["bibcode:2014MNRAS.440...89K"]
 
   command1 "section" $ esc "Conclusions and Discussions."
@@ -149,8 +148,6 @@ sectionConclusion = do
    Our lightning models treated here are very simple. To apply this work to more realistic
    disk models are beyond the scope of this paper, and left as a useful direction
    for future research.
-   This work is based on the landmark review of terrestrial lightning by @{takahashi2007}. 
-   The parallel computations used in this work are based on @{marlow2013}.
 
 
    |]

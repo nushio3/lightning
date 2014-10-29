@@ -104,7 +104,7 @@ lightningVelocity :: Getter LimeConfig Double
 lightningVelocity = to go
   where 
     go :: LimeConfig -> Double
-    go conf = (# (kilo Meter :/ Second)) $
+    go conf = (# (Meter :/ Second)) $
       fieldToVelocity (disk1 conf) (conf ^. targetMolecule) 
     disk1 conf = case (conf^.targetLightningModel) of
       Nothing -> mmsn1au

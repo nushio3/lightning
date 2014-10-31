@@ -43,14 +43,15 @@ for distanceint in [25,50]:
         fp_g.close()
     
         fp = open('material/lime-output/2d.txt','w')
+        RESO = 4
         for x in range(img0.shape[2]):
             for y in range(img0.shape[1]):
-                if (x%2==0 and y%2==0):
+                if (x%RESO==0 and y%RESO==0):
                     ax = (200-x) * 0.025 * 56
                     ay = (y-200) * 0.025 * 56
                     avg4 = (img0[i,y,x] + img0[i,y+1,x] + img0[i,y+1,x+1] + img0[i,y,x+1])/4.0
                     print >> fp, ax, ay, avg4 * perBeam
-            if (x%2==0):
+            if (x%RESO==0):
                 print >> fp, ''    
         fp.close
         subprocess.call('gnuplot material/lime-output/2d.gnuplot', shell=True)

@@ -168,7 +168,8 @@ thresholdSigma = 5.0
 closingMF :: MonadAuthoring s w m => m ()
 closingMF = do
   [rawQ|
-   The measure-of-sensitivity for any two different models is larger than 100.
+   The measure-of-sensitivity for any two different models is larger than 100,
+   and the largest measure-of-sensitivity is greater than 1000.
    Therefore the image like Figure \ref{figEmissionMap} is not difficult to detect.
    However, no observation of protoplanetary disk has been reported.
    Therefore, we can reject such form of lightning models from observations. 
@@ -186,9 +187,13 @@ closingMF = do
    @{upperLimitTable 25 [HCOPlus, DCOPlus, N2HPlus]}
    @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}
 
-   The above values are upper limit to the size of the LMG clums that possibly exists
+   The above values are upper limit to the size of the LMG clums that exists
    on 
    $25{\mathrm{au}} < r < 50{\mathrm{au}}$ and
    $50{\mathrm{au}} < r < 100{\mathrm{au}}$ orbit, respectively.    
+   
+   The matched filter studies show that the Townsend breakdown model is the easiest model to detect,
+   Druyversteyn-Penning model being next, runaway breakdown being most difficult. 
+   The tendency is explained as the wider the Doppler broadening is, more easier is the detection.
   |]
 

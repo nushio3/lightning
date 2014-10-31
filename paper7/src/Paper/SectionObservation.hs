@@ -145,7 +145,7 @@ subsectionFigures = do
 
     In Figure \ref{fig-lightning-lp}, 
     simulated integrated emission maps of the $\mathrm{HCO}^{+}$ line for
-    N, R25, and R50 disk models are shown.
+    N, T25, and T50 disk models are shown.
     
 
    \begin{figure}
@@ -157,26 +157,26 @@ subsectionFigures = do
    \includegraphics[angle=270,width=4.5cm]{figure/2d-N-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-N-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
    \includegraphics[angle=270,width=4.5cm]{figure/2d-N-56.eps}  \\
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2d-JRB-56.eps}  \\
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
-   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JRB-56.eps}  
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2d-JTB-56.eps}  \\
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-24.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-32.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-36.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-40.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-44.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-48.eps}  \hspace{ -3.1cm}& \hspace{ -3.1cm}
+   \includegraphics[angle=270,width=4.5cm]{figure/2dfar-JTB-56.eps}  
    \end{tabular}
    \caption{
    Simulated Integrated Emission Map of  $\mathrm{HCO}^{+}$ lines for
    disk models N (upper row),
-   R25 (middle row), and
-   R50  (lower row), respectively.
+   T25 (middle row), and
+   T50  (lower row), respectively.
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
    We assume beam size $0''.65 \times 0''44$.
    \label{figEmissionMap}

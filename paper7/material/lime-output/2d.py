@@ -3,8 +3,13 @@ import pyfits
 import math
 import subprocess
 
-for model_label in ['N', 'JRB']:
-    fits_fn = 'material/lime-output/LgAK16k-HCOPlus-' + model_label + '-R50_100-V50x80.fits'
+for distanceint in [25,50]:
+  for model_label in ['N','JRB','JDPB','JTB']:
+    rangestr = '25_50' if distanceint==25 else '50_100'
+    fits_fn = 'material/lime-output/LTZS16k-HCOPlus-' + model_label + '-R' + rangestr + '-V50x80.fits'
+    print fits_fn
+#    fits_fn = 'material/lime-output/LTZS16k-HCOPlus-' + model_label + '-R25_50-V50x80.fits'
+
 #    fits_fn = 'material-old/lime-output/LgRg16k-HCOPlus-' + model_label + '-R50_100-V50.0x80.fits'
 
     hdulist0 = pyfits.open(fits_fn)
@@ -21,7 +26,7 @@ for model_label in ['N', 'JRB']:
     set pm3d
     set pm3d map
     set size ratio -1
-    set cbrange [0:0.1]
+    set cbrange [0:1]
     set xrange[-150:150]
     set yrange[-150:150]
     set palette defined (  0 1 1 1, 0.1 0.5 0.5 0.5  , 1 0 0 0 )
@@ -29,12 +34,12 @@ for model_label in ['N', 'JRB']:
     {setytics}
     {setcb}
     set title 'v={dopplerVel}km/s'
-    set out 'material/lime-output/2dfar-{modelabel}-{index}.eps'
+    set out 'material/lime-output/2d{distancelabel}-{modelabel}-{index}.eps'
     splot 'material/lime-output/2d.txt' t ''
     """
         v = velRes * (i-40)
     
-        print >> fp_g, gnuplot_script.format(index=str(i), modelabel = model_label, setytics=('' if (i==irange[0]) else 'set format y ""'), setcb=('set cblabel "Integration Intensity [Jy beam^{-1} km s^{-1}]" rotate by 270' if (i==irange[-1]) else 'unset colorbox'), dopplerVel = str(v))
+        print >> fp_g, gnuplot_script.format(index=str(i), modelabel = model_label, setytics=('' if (i==irange[0]) else 'set format y ""'), setcb=('set cblabel "Integration Intensity [Jy beam^{-1} km s^{-1}]" rotate by 270' if (i==irange[-1]) else 'unset colorbox'), dopplerVel = str(v), distancelabel=('' if (distanceint==25) else 'far'))
         fp_g.close()
     
         fp = open('material/lime-output/2d.txt','w')
@@ -50,3 +55,4 @@ for model_label in ['N', 'JRB']:
         fp.close
         subprocess.call('gnuplot material/lime-output/2d.gnuplot', shell=True)
 
+  

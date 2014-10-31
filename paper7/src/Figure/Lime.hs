@@ -4,6 +4,7 @@ module Figure.Lime where
 import Control.Lens hiding ((#))
 import Control.Monad
 import Data.Char
+import Data.List (isInfixOf)
 import System.Process
 import Text.Printf
 import Model.Breakdown
@@ -119,7 +120,8 @@ execLime really conf = do
   generateLimeC tmpFn conf         
   generatePy tmpPyFn conf         
   generateGnuplot tmpGnuplotFn conf         
-  when really $ do 
+--  when (really && "N2HPlus-JRB-R25_50-V200x201" `isInfixOf` tmpFn) $ do 
+  when really $ do
     system $ printf "yes '' | lime %s" tmpFn         
     system $ printf "python %s %s" tmpPyFn tmpFn
     system $ printf "gnuplot %s" tmpGnuplotFn

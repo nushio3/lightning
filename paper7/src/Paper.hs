@@ -53,7 +53,7 @@ abstractText = LTX.render abstract
 
 abstract :: LaTeX
 abstract = TeXRaw 
-  "Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been increasing drastically, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied. \n\n\n In this paper, we focus on the lightning matrix gas (LMG), which is the disk gas that is subject to electric field large enough for the discharge process to take place. We study the measurement of the dielectric strength of the LMG, using the fact that multiple (+1) ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishment between the models. At the distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limit of the radii of a $5-\\sigma$-detectable LMG clump is 3.0 au to 18.1 au, depending on the models."
+  "Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been  drastically increased, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied. \n\n\n In this paper, we focus on  lightning matrix gas (LMG), which is the disk gas that is subject to electric field large enough for the discharge process to take place. We study the measurement of the dielectric strength of the LMG, utilizing the fact that multiple (+1) ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishing between the models. At distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limit of the radii of a $5-\\sigma$-detectable LMG clump is 3.0 au to 18.1 au, depending on the models."
 
    
 
@@ -147,7 +147,7 @@ sectionConclusion = do
    contribute to the study of the dynamics of protoplanetary disks
    as well as circumplanetary disks @{keithWardle}.
    Dielectric strength of the disk gas is one of the crucial elementary processes
-   that regulates the MRI in protoplanetary disks. Discharge phenomena takes place in the regions with the critical
+   that regulates the MRI in protoplanetary disks. Discharge phenomena take place in the regions with the critical
    electric field (LMG), and acceleration of the molecular ions is one of the observable features
    of the LMG.
 
@@ -157,10 +157,10 @@ sectionConclusion = do
    We have proposed methods for observational distinguishment of the three models.
    The models are distinguishable with
    the sensitivity of advanced telescopes such as ALMA.
-   It was already possible to reject some of the lightning models based on ground observations.
+   It is now possible to reject some of the lightning models based on ground observations.
    The upper limits of the LMG clouds size are given from the observations.
 
-   Our lightning models treated here are very simple. New studies are targeting to apply this work to more realistic
+   Our lightning models treated here are quite simple. Further studies are targeting to apply this work to more realistic
    disk models.
 
 

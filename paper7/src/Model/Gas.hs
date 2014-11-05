@@ -42,7 +42,7 @@ data ChemicalSpecies
   deriving (Eq, Ord, Show, Read)    
 
 airMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double
-airMix func = 0.78 *| func Ar |+| 0.21 *| func O2 |+| 0.01 *| func Ar
+airMix func = 0.78 *| func N2 |+| 0.21 *| func O2 |+| 0.01 *| func Ar
 
 
 ppdMix :: (ChemicalSpecies -> Qu d l Double) -> Qu d l Double

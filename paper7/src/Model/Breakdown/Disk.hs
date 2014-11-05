@@ -38,6 +38,8 @@ This is because $\Delta W_{\rm H_2} = 15.43{\rm eV}$ and 15eV is the closest
 table index that is found in the database.
 The cross sections are as follows (units are in ${\rm cm}^{ -2} $).
 
+xxx: create a separate table environment.
+
   \begin{tabular} {ccc}
 species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\
 $\rm H_2$  &  $#{ppValE 1 $ inelCrossSection 15 H2}$ &  $#{ppValE 1 $ elCrossSection 15 H2}$\\

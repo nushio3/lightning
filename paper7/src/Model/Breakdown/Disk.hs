@@ -38,7 +38,7 @@ This is because $\Delta W_{\rm H_2} = 15.43{\rm eV}$ and 15eV is the closest tab
 
 
 
-\begin{table}
+\begin{table}[t]
 \begin{center}
   \begin{tabular} {|c|c|c|}
 \hline

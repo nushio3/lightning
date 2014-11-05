@@ -29,6 +29,8 @@ sectionAcknowledgement = do
         The parallel computation techniques used in this work are based on @{marlow2013}.
         We used {\tt units} library @{citep ["special:units"]} to thoroughly check for the 
         consistency of physical dimensions and units in this paper.
+        This work is supported by Grants-in-Aid for Scientific Research
+        (\#23103005,\#24103506,\#25887023,\#26400224) from MEXT.
         |]
 
                          

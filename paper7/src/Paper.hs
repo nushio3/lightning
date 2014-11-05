@@ -53,7 +53,7 @@ abstractText = LTX.render abstract
 
 abstract :: LaTeX
 abstract = TeXRaw 
-  "Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been  drastically increased, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied. \n\n\n In this paper, we focus on  lightning matrix gas (LMG), which is the disk gas that is subject to electric field large enough for the discharge process to take place. We study the measurement of the dielectric strength of the LMG, utilizing the fact that multiple positive ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishing between the models. At distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limit of the radii of a $5-\\sigma$-detectable LMG clump is 3.0 au to 18.1 au, depending on the models."
+  "In this paper, we study the observational methods for detecting and distinguishing lightning models in protoplanetary disks. We do so by observing the dielectric strength of the lightning matrix gas (LMG), the region of the disk where the electric field is strong enough for lightning. We utilize the fact that multiple positive ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishing between the models. At the distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limits of the radii of $5\\sigma$-detectable LMG clumps are between 3.0 au and 18.1 au, depending on the models."
 
    
 
@@ -86,9 +86,11 @@ genBodyText = do
 
 sectionIntro :: MonadAuthoring s w m => m ()
 sectionIntro = do
-  command1 "section" $ raw "Introduction"
+  command1 "section" $ raw "INTRODUCTION"
   
   [rawQ| 
+Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been  drastically increasing, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied.
+
 There has been a controversial debate on the existence and the mechanism of
 protoplanetary disk lightning. 
 @{citet ["doi:10.1006/icar.1997.5846"]} argued that plasma conductivity is too large
@@ -122,29 +124,33 @@ electric field $E$. Electric field $E$ in protoplanetary disk can be generated b
 magnetorotational instability (MRI) or by the collective motion of charged dust.
 The breakdown model sets an upper limit $E \leq E_{\rm crit}$ to the electric field amplitude.
 At the point $E = E_{\rm crit}$ electric discharge takes place, which increases the ionization degree of the medium
-and prevents the further growth of the electric field amplitude.
-Lightning bolts, contrary to intuition, do not serve as the only dominant observational signal emitter.
+and prevents the further growth of the electric field amplitude. 
+Thus, electric field amplitude is kept under the upper limit ($E \leq E_{\rm crit}$) .
+
+Lightning bolts, contrary to intuition, do not serve as the only observational signals emitters.
 This is because lightning is transient events, and typical radius of a lightning bolt is $5\times 10^3$ times
 mean free path
 @{citep ["bibcode:1992ApJ...387..364P"]}. This radius
-is much smaller than the scale height of the disk. Most of the protoplanetary disk gas is containd in the region
+is much smaller than the scale height of the disk. Hence 
+even if the critical condition is met, most of the time
+most of the protoplanetary disk gas is in the region
 outside the lightning bolts. 
 We call this lightning matrix gas (LMG).
 Properties of LMG is no different from those of the disk gas without lightning,
-but differ in one point that LMG is subject to
-electric field $E \simeq E_{\rm crit}$. We explore the possible observational features of the LMG.
+but differ in one point that LMG is subject to critical
+electric field $E \simeq E_{\rm crit}$. In this paper, we explore the possible observational features of the LMG.
 
 This paper is organized as follows. In section \ref{sec:Model}, we introduce the 
 discharge models, taking the Earth atposphere as an example (\S \ref{sec:DischargeModel}, \ref{sec:DischargeAir}); 
 introduce the protoplanetary disk model (\S \ref{sec:DiskModel}); apply the discharge model to the disk gas
 (\S \ref{sec:DiskDischargeModel}).
 In section \ref{sec:Observation} we establish our observation model
-by first calculating the terminal velocity of the 
-\S \ref{sec:ObservationLines}
-\S \ref{sec:ObservationEstimates} 
-\S \ref{sec:ObservationProfiles}
+by first calculating the terminal velocity of the ion molecules
+\S \ref{sec:ObservationLines}, then estimating the spectral irradiance
+\S \ref{sec:ObservationEstimates}, then constructing integral maps by radiative transfer simulations 
+\S \ref{sec:ObservationProfiles}. Given the simulated observational signals, we estimate the measure-of-sensitivity by
 matched filtering (\S \ref{sec:MatchedFilter}).
-
+Finally, in section \ref{sec:Observation}, we conclude and discuss the future directions of this research.
  |]
 
 sectionConclusion :: MonadAuthoring s w m => m ()
@@ -152,7 +158,7 @@ sectionConclusion = do
   let
       keithWardle   = citep ["bibcode:2014MNRAS.440...89K"]
 
-  command1 "section" $ esc "Conclusions and Discussions."
+  command1 "section" $ esc "CONCLUSIONS AND DISCUSSIONS."
   [rawQ|   
    Discharge phenomena take place in the regions with the critical
    electric field (LMG), and we have established observable features for detecting LMGs by

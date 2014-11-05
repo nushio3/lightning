@@ -23,6 +23,8 @@ sectionModel = do
   command1 "section" $ raw "Model"
   
   command1 "subsection" $ raw "Dielectric Strength of Air"  
+
+  [rawQ| xxx: Motivate air, or remove air. |]
   
   aboutDielectricStrengthOfAir
 

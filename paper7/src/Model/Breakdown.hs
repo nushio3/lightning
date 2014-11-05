@@ -162,12 +162,12 @@ e.g. by @{citet ["bibcode:2002JGRD..107.4075M"] -- Mansell et al}. |]
 
   [escQ|
 In order to estimate the dielectric strength of gas
-we need to compute Boltzmann distribution of electrons.
+we need to compute energy distribution of electrons.
 Since the interactions of electrons with even the simplest atoms and molecules
 have profound details @{landoltBoernstein},
 this requires difficult numerical computations @{citep ["doi:10.1063/1.329081"]}.
 In this paper, we will instead resort to a simple calculation that reproduces
-the values from the Townsend breakdown model.
+the observed values from the discharge models.
  |]
 
 
@@ -177,7 +177,8 @@ the values from the Townsend breakdown model.
 aboutAir :: MonadAuthoring s w m => m ()
 aboutAir = do
   [rawQ|
-We assume that air consists of
+First, we derive the dielectric strength of air at ground level from Townsend model.
+Air consists of
 78\% $\rm N_2$,  21\% $\rm O_2$, and 1\% $\rm Ar$ (volume fractions).
 Air number density at NTP is $#{ppValE 3 airNumberDensity} {\rm cm^{ -3}}$ .
 The ionization energy of these chemical species are
@@ -187,14 +188,16 @@ $\Delta W_{\rm Ar}  = #{ppFIn "%.1f" (ionizationEnergy Ar) ElectronVolt}$, respe
 Of these $\Delta W_{\rm O_2} \sim 12 {\rm eV}$ is the smallest, so we estimate
 the electric field amplitude $E_{\rm crit}$ required to accelerate the electron
 upto 12eV; i.e. we solve $12 {\rm eV} = e E_{\rm crit} l_{\rm mfp}$.
-The inelastic collisional cross sections of  $\rm N_2, O_2, Ar$ for 12 eV electrons are
+The inelastic collisional cross sections ($\sigma_{\rm inel}$) of  $\rm N_2, O_2, Ar$ for 12 eV electrons are
 $0.8, ~1.8, ~0.0 \times 10^{ -16} {\rm cm^{ -2}}$
 @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
 Therefore, the mean inelastic cross section of air for 12eV electrons is 
 $#{ppValE 1 $ airMix $ inelCrossSection 12} {\rm cm^{ -2}}$.
 Therefore, $l_{\rm mfp} = (n_n \sigma_{inel})^{ -1 } = #{ppValE 1 mfpAir12} {\rm cm}$.
 This gives 
-$E_{\rm crit} = #{ppValFIn "%.0f" airDielectricStrengthT (undefined :: KVPerCm) } {\rm kV/cm}$,
+\begin{eqnarray}
+E_{\rm crit} &=& #{ppValFIn "%.0f" airDielectricStrengthT (undefined :: KVPerCm) } {\rm kV/cm},
+\end{eqnarray}
  which is in agreement with the dielectric strength of air at ground level
 (Equations (@{ref ntpAirDielectricStrength})).
 
@@ -274,15 +277,16 @@ E_{\rm crit}
 
 
   [rawQ|
-All the three model state that the dielectric strength of the gas is proportional to
-the number density of the gas. 
+Here we summarize the three models. The dielectric strength of the gas is proportional to
+the number density of the gas. It is this proportional relation that leads to constant ion velocity
+we present in this paper.
 
 \begin{eqnarray}
 \begin{array}{CCCCC}
-E_{\rm c, T} &=& \frac{\Delta W}{e} (\sigma_{\mathrm tot} - \sigma_{\mathrm el})  n_n&=&
+E_{\rm c, T} &=& \frac{\Delta W}{e} \sigma_{\mathrm{ inel}}  n_n&=&
  #{ppFIn "%.1f"  airDielectricStrengthT  (kilo Volt :/ centi Meter)} \cdot 
  \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}   , \\
-E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} n_n  &=&
+E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm{el}} n_n  &=&
  #{ppFIn "%.1f"  airDielectricStrengthDP (kilo Volt :/ centi Meter)} \cdot
  \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}  , \\
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&

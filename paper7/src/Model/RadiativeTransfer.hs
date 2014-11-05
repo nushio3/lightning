@@ -241,7 +241,7 @@ aboutScoville = do
 
   where $B$ is the rotational constant of the molecule, $\mu$ is its electric dipole matrix element,
   $h \nu_0$ is the energy difference between the two levels 
-  and $J$ is the rotational quantum number of the lower state.
+  and $J$ is the rotational quantum number of the lower state. xxx define all the variables.
 
   The optical depth of the disk with column density $N$ is
 
@@ -294,7 +294,7 @@ aboutLineProperty = do
    critical electric field. This is a result of the molecular speed becoming faster. 
    Consequently, observed line profiles are broadened. This Doppler broadening of the lines of the charged molecular
    species are the key observational features to observe the characteristic speed of the molecules, and therefore
-   the electric field strength in the protoplanetary disk. 
+   the electric field strength in the protoplanetary disk.  xxx rephrase;
    
 
    |]
@@ -330,6 +330,8 @@ r \mathit{dr} \mathit{d\varphi} \cos i ,\\
 d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber .
 \end{eqnarray}   
    
+Here xxx: define variables.
+
    |]
 
 lineProfile :: Disk -> Int -> ChemicalSpecies -> (Velocity -> QofU Jansky)

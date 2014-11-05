@@ -34,7 +34,7 @@ import           Text.Authoring.TH
 hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
   
-  esc "The minimum-mass solar nebula (MMSN) model "
+  esc "xxx: remove confusing MMSN model! The minimum-mass solar nebula (MMSN) model "
   citep1 "bibcode:1981PThPS..70...35H"
   esc " has been widely used in studies of the protoplanetary disk, with fruitful results."
 

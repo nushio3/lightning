@@ -38,7 +38,14 @@ sectionObservation = do
 
   command1 "subsection" $ raw "Estimation of the line signal strength"
   
-  [rawQ| It is possible to observe (+1)-charged chemical species by radio telescopes such as ALMA. |]
+  [rawQ| 
+  xxx: add some connection sentence. we wanted to estimate velocity.
+  xxx: The Doppler broadening of the lines of the charged molecular
+   species are the key observational features to observe the characteristic speed of the molecules, and therefore
+   the electric field strength in the protoplanetary disk. 
+
+
+  It is possible to observe ionized chemical species by radio telescopes such as ALMA. |]
   raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$    lines have been performed "
   citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
   raw ". "
@@ -49,6 +56,7 @@ sectionObservation = do
 The electric field of LMG accelerates the charged chemical species.   
 Let  $\varepsilon_I$ be the kinetic energy of a particle of such an ion species $I$.
 At the equilibrium $\varepsilon_I = e E_{\rm crit} l_{{\rm mfp},I}$.
+As shown in equation xxx, 
 The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
 Let $A$ be the proportionality factor and $E_{\rm crit} = A n_n$ .
 Now, the mean free path $l_{{\rm mfp},I} = 1/\sigma_I(\varepsilon_I) {n_n}$ is inversely proportional to the gas number density $n_n$.
@@ -56,7 +64,6 @@ This means that the obtained kinetic energy $\varepsilon_I$ is independent of th
 
 \begin{eqnarray*}
  \varepsilon_I &=& e E_{\rm crit} l_{{\rm mfp},I} \\
- &=&e \frac {A n_n} {\sigma_I(\varepsilon_I) n_n} \\
  &=& \frac {e A } {\sigma_I(\varepsilon_I) } 
 \end{eqnarray*}
 
@@ -64,7 +71,6 @@ This means that the obtained kinetic energy $\varepsilon_I$ is independent of th
 The value of $\sigma_I(\varepsilon_I)$
  only depends on the lightning model, so is is universally the same  in a protoplanetary disk.
 This gives rise to the unique features of the lightning models in the disk.
-
 The predicted 
 $\varepsilon_I$
 and the velocities of the ion species are as follows (units are in cm/s);
@@ -87,6 +93,8 @@ R
   & $#{ppValE 1 $ fieldToVelocity mmsn1auR N2HPlus }$
   \\
 \end{tabular}
+
+xxx: describe how these velocities are used.
 
 In the Appendix we describe
 the detail

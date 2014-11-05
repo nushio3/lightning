@@ -26,6 +26,22 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2014A%26A...564A..93M},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - arxiv:1407.8110
+  - - ! '@ARTICLE{2014arXiv1407.8110O,'
+    - ! '   author = {{Okuzumi}, S. and {Inutsuka}, S.-i.},'
+    - ! '    title = "{The Nonlinear Ohm''s Law: Plasma Heating by Strong Electric
+      Fields and its Effects on the Ionization Balance in Protoplanetary Disks}",'
+    - ! '  journal = {ArXiv e-prints},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {1407.8110},'
+    - ! ' primaryClass = "astro-ph.EP",'
+    - ! ' keywords = {Astrophysics - Earth and Planetary Astrophysics, Astrophysics
+      - Solar and Stellar Astrophysics, Physics - Plasma Physics},'
+    - ! '     year = 2014,'
+    - ! '    month = jul,'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2014arXiv1407.8110O},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - ! "bibcode:\t2009LanB...4B...44L"
   - - ! '@ARTICLE{2009LanB...4B...44L,'
     - ! '   author = {{Lodders}, K. and {Palme}, H. and {Gail}, H.-P.},'

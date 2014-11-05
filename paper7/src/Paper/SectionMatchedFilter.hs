@@ -71,32 +71,38 @@ compareTables :: MonadAuthoring s w m => m ()
 compareTables = 
   [rawQ|
 
-  The measure of sensitivity among {\tt N}, {\tt T25}, {\tt DP25} and {\tt R25} models,
-  using the $\mathrm{HCO}^{+}$  line, is as follows:
 
-  @{compareTable 25 [HCOPlus]}
+  \begin{table}[hp]
+  \begin{tabular}{cc}
+  @{compareTable 25 [HCOPlus]} & @{compareTable 50 [HCOPlus]} \\
+  @{compareTable 25 [DCOPlus]} & @{compareTable 50 [DCOPlus]} \\
+  @{compareTable 25 [N2HPlus]} & @{compareTable 50 [N2HPlus]} \\
+  @{compareTable 25 [HCOPlus, DCOPlus, N2HPlus]} & @{compareTable 50 [HCOPlus, DCOPlus, N2HPlus]}\\
+  \end{tabular}
+  \caption{
+  The measure of sensitivity values among {\tt N}, {\tt T25}, {\tt DP25} and {\tt R25} models,
+  and among {\tt N}, {\tt T50}, {\tt DP50} and {\tt R50} models,
+  using either one of,
+  or all the three of, our lines
+  $\mathrm{HCO}^{+}~3-2$ ,
+  $\mathrm{DCO}^{+}~3-2$ and $\mathrm{N_2H}^{+}~3-2$.
+  }\label{tbl:MOS}
+  \end{table}
  
-  The measure of sensitivity among {\tt N}, {\tt T50}, {\tt DP50} and {\tt R50} models are as follows:
-  
-  @{compareTable 50 [HCOPlus]}
 
 
-  $\mathrm{DCO}^{+}$ and $\mathrm{N_2H}^{+}$ lines.
 
-  @{compareTable 25 [DCOPlus]}   @{compareTable 50 [DCOPlus]}
 
-  @{compareTable 25 [N2HPlus]}   @{compareTable 50 [N2HPlus]}
 
-  Finally, using all the three lines, we can achieve the following measure-of-sensitivities:
 
-  @{compareTable 25 [HCOPlus, DCOPlus, N2HPlus]}   @{compareTable 50 [HCOPlus, DCOPlus, N2HPlus]}
+
+
 
   |]
 
 compareTable :: MonadAuthoring s w m => Int -> [ChemicalSpecies] ->  m ()
 compareTable n chems = 
   [rawQ| 
-  
   \begin{tabular}{|c|ccc|}
   \hline
   #{chemStr} &  T#{n} & DP#{n} & R#{n} \\
@@ -105,8 +111,11 @@ compareTable n chems =
   T#{n}  &               & #{pp jtb jdpb} &  #{pp jtb jrb} \\
   DP#{n} &               &                &  #{pp jdpb jrb} \\
   \hline
+  \multicolumn{1}{c}{\phantom{888 species}} &
+  \multicolumn{1}{c}{\phantom{888.88}} &
+  \multicolumn{1}{c}{\phantom{888.88}} & 
+  \multicolumn{1}{c}{\phantom{888.88}}
   \end{tabular}
-
    |]
 
   where
@@ -170,6 +179,9 @@ thresholdSigma = 5.0
 closingMF :: MonadAuthoring s w m => m ()
 closingMF = do
   [rawQ|
+
+   The measure of sensitivity among the models using different lines are summarized in 
+   Table \ref{tbl:MOS}.
    The measure-of-sensitivity for any two different models is larger than 100,
    and the largest measure-of-sensitivity is greater than 1000.
    Therefore the image like Figure \ref{figEmissionMap} is not difficult to detect.
@@ -181,19 +193,20 @@ closingMF = do
    (3) Protoplanetary disk LMG
    exists in forms of LMG clumps (protoplanetary ``cumulonibus clouds'') much smaller than the size of
    the protoplanetary disks.
+
+  \begin{table}[t]\begin{center}
+  \begin{tabular}{cc}
+   @{upperLimitTable 25 [HCOPlus, DCOPlus, N2HPlus]}&
+   @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}\\
+  \end{tabular}
+  \end{center}\caption{  The upper limits to the sizes of the LMG clumps that exist on 
+   $25{\mathrm{au}} < r < 50{\mathrm{au}}$ and
+   $50{\mathrm{au}} < r < 100{\mathrm{au}}$ orbit, respectively.    }\label{tbl:UpperLimit}
+  \end{table}
    
    We can put the upper limit to the size of such LMG clumps by thresholding the measure-of-sensitivity.
-   For example, if the radii of LMG clumps is smaller than the values in the following tables,
+   For example, if the radii of LMG clumps is smaller than the values in Table \ref{tbl:UpperLimit},
    they are not $#{thresholdSigma}-\sigma$ detectable.
-
-   @{upperLimitTable 25 [HCOPlus, DCOPlus, N2HPlus]}
-   @{upperLimitTable 50 [HCOPlus, DCOPlus, N2HPlus]}
-
-   The above values are upper limit to the size of the LMG clums that exists
-   on 
-   $25{\mathrm{au}} < r < 50{\mathrm{au}}$ and
-   $50{\mathrm{au}} < r < 100{\mathrm{au}}$ orbit, respectively.    
-   
    The matched filter studies show that the Townsend breakdown model is the easiest model to detect,
    Druyversteyn-Penning model being next, runaway breakdown being most difficult. 
    The tendency is explained as the wider the Doppler broadening is, more easier is the detection.

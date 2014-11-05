@@ -34,11 +34,11 @@ sectionObservation = do
       mmsn1auR  = mmsn1au & disk %~ lightenedDisk RunawayBreakdown
   
   
-  command1 "section" $ raw "Observation"
+  command1 "section" $ raw "OBSERVATION"
   [rawQ| \label{sec:Observation} |]
 
 
-  command1 "subsection" $ raw "Calculation of the spectral irradiance for the molecular lines"
+  command1 "subsection" $ raw "Calculation of the Terminal Velocity of the Ions"
   [rawQ| \label{sec:ObservationLines} |]  
 
   [rawQ| 
@@ -80,7 +80,7 @@ of the cross section model we have used in order to estimate the above cross sec
 
 
 
-\begin{table}
+\begin{table}[t]
 \begin{center}
   \begin{tabular} {|c|ccc|}
 \hline
@@ -111,7 +111,7 @@ Units are in cm/s.
 \end{table}
 
 
-   \subsection{Estimation of The Observational Signals}
+   \subsection{Estimation of the Observational Signals}
    \label{sec:ObservationEstimates} 
 
 
@@ -128,11 +128,11 @@ Units are in cm/s.
 subsectionFigures :: MonadAuthoring s w m => m ()
 subsectionFigures = do
   [rawQ|
-   \subsection{Calculations of The Line Profiles and Integral Maps by Radiative Transfer}
+   \subsection{Calculations of the Line Profiles and Integral Maps by Radiative Transfer}
    \label{sec:ObservationProfiles} 
 
-   We introduce the following seven disk models.
 
+   \begin{table}\begin{center}
    \begin{tabular}{|c|c|c|}   
      \hline                             
      disk model name & discharge & LMG region \\
@@ -140,13 +140,15 @@ subsectionFigures = do
      N   & no discharge  & \\
      T25 & Townsend discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\
      T50 & Townsend discharge& $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\     
-     DB25 & Druyversteyn-Penning discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\ 
-     DB50& Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
+     DP25 & Druyversteyn-Penning discharge & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\ 
+     DP50& Druyversteyn-Penning discharge & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\
      R25 & runaway dischage & $25{\mathrm{au}} < r < 50{\mathrm{au}}$\\     
      R50& runaway dischage & $50{\mathrm{au}} < r < 100{\mathrm{au}}$\\    
      \hline
    \end{tabular}
-   
+   \end{center}
+  \caption{Our seven disk models, their respective discharge models and LMG distribution models.}\label{tbl:DiskModels}
+  \end{table}
     
    \begin{figure}
    \includegraphics[angle=270,width=8cm]{figure/mix-HCOPlus-V50x80-pv.eps}
@@ -161,6 +163,7 @@ subsectionFigures = do
    }\label{fig-lightning-lp}
    \end{figure}    
     
+    We introduce seven disk models, as in Table \ref{tbl:DiskModels}.
     We calculate the line profiles for the three ion species with these seven disk models,
     in order to study the ability to distinguish the lightning model from the line observations (Figure \ref{fig-lightning-lp}).
     The line profiles are obtained by performing the spectral irradiance integral (equation (\ref{eq:SpectralIrradiance})).
@@ -207,7 +210,7 @@ subsectionFigures = do
    T25 (middle row), and
    T50  (lower row), respectively.
    Units are in $\mathrm{Jy} ~ \mathrm{beam}^{ -1} ~ \mathrm{km} ~\mathrm{s}^{ -1}$.
-   We assume beam size $0''.65 \times 0''44$.
+   We assume the beam size of $0''.65 \times 0''44$.
    \label{figEmissionMap}
    }
    \end{figure}

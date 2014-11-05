@@ -20,7 +20,7 @@ import           Text.Authoring.TH
 
 sectionModel :: MonadAuthoring s w m => m ()
 sectionModel = do
-  command1 "section" $ raw "Model"
+  command1 "section" $ raw "MODEL"
   [rawQ| \label{sec:Model} |]
   
   command1 "subsection" $ raw "Dielectric Strength of Air"  

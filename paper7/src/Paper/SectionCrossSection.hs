@@ -11,7 +11,7 @@ import           Text.Authoring.TH
 
 sectionCrossSection :: MonadAuthoring s w m => m ()
 sectionCrossSection = do
-  command1 "section" $ raw "Appendix: Cross Section Model of Ion-Neutral Molecular Collision"
+  command1 "section" $ raw "CROSS SECTION MODEL OF ION-NEUTRAL MOLECULAR COLLISION"
   [rawQ| 
      We establish the model of ion-neutral collisional cross sections as functions of collision energy,
 in collaboration with Motomichi Tashiro.

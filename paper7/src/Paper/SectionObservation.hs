@@ -176,8 +176,8 @@ subsectionFigures = do
     N, T25, and T50 disk.
     We assumed that our model disk is located in the same way as
     TW Hya. That is, our model disk at the distance of $#{ppFIn "%.0f" sourceDistance Parsec}$ and the
-    inclination angle of $7^\circ$ @{citep ["bibcode:2007ASSL..350.....V"]}.
-    Our programs can be easily applied to other disk systems.
+    inclination angle of $7^\circ$ @{citep ["bibcode:2007ASSL..350.....V"]}. Although we limit the disk parameters to this specific distance and inclination thoroughout this paper,
+    our programs can be easily applied to other disk parameters.
 
     
 

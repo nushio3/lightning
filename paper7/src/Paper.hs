@@ -145,13 +145,14 @@ sectionConclusion = do
 
   command1 "section" $ esc "Conclusions and Discussions."
   [rawQ|   
+   Discharge phenomena take place in the regions with the critical
+   electric field (LMG), and we have established observable features for detecting LMGs by
+   the line observations of the accelerated molecular ions.
+   Dielectric strength of the disk gas, being one of the crucial elementary processes,
+   will open up the understanding of the MRI in protoplanetary disks. 
    Understanding of the MRI in weakly-ionized accretion disks will
    contribute to the study of the dynamics of protoplanetary disks
    as well as circumplanetary disks @{keithWardle}.
-   Dielectric strength of the disk gas is one of the crucial elementary processes
-   that regulates the MRI in protoplanetary disks. Discharge phenomena take place in the regions with the critical
-   electric field (LMG), and acceleration of the molecular ions is one of the observable features
-   of the LMG.
 
    We have presented three dielectric strength models for protoplanetary disks.
    They are Townsend breakdown model, Druyversteyn-Penning breakdown model,

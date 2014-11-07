@@ -65,7 +65,7 @@ E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm el} 
  #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthDP)  (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  , \\
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
  #{ppValEIn 1 (mmsn1au^.ppdDielectricStrengthR)  (Volt :/ centi Meter)} \left( \frac{n_n}{n_{0,\mathrm{ppd}}}  \right) \mathrm{V/cm}  .
-\end{array}
+\end{array} \label{eq:DischargeDisk}
 \end{eqnarray}
 
 |]

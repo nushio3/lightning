@@ -35,9 +35,12 @@ sectionObservation = do
   
   
   command1 "section" $ raw "Observation"
+  [rawQ| \label{sec:Observation} |]
 
-  command1 "subsection" $ raw "Estimation of the line signal strength"
-  
+
+  command1 "subsection" $ raw "Calculation of the spectral irradiance for the molecular lines"
+  [rawQ| \label{sec:ObservationLines} |]  
+
   [rawQ| 
   The goal of this section is to calculate the Doppler broadening of the molecular ion lines in the disk,
   which reflects the electric field strength in the protoplanetary disk.
@@ -71,6 +74,9 @@ The predicted
 $\varepsilon_I$
 and the velocities of the ion species
 (Table \ref{tbl:terminalVelocity}).
+In the Appendix we describe
+the detail
+of the cross section model we have used in order to estimate the above cross sections.
 
 
 
@@ -105,9 +111,9 @@ Units are in cm/s.
 \end{table}
 
 
-In the Appendix we describe
-the detail
-of the cross section model we have used in order to estimate the above cross sections.
+   \subsection{Estimation of The Observational Signals}
+   \label{sec:ObservationEstimates} 
+
 
   |]
 
@@ -122,7 +128,8 @@ of the cross section model we have used in order to estimate the above cross sec
 subsectionFigures :: MonadAuthoring s w m => m ()
 subsectionFigures = do
   [rawQ|
-   \subsection{Line Profile Prediction by Radiative Transfer}
+   \subsection{Calculations of The Line Profiles and Integral Maps by Radiative Transfer}
+   \label{sec:ObservationProfiles} 
 
    We introduce the following seven disk models.
 
@@ -156,7 +163,10 @@ subsectionFigures = do
     
     We calculate the line profiles for the three ion species with these seven disk models,
     in order to study the ability to distinguish the lightning model from the line observations (Figure \ref{fig-lightning-lp}).
-    The line profiles are obtained by performing the spectral irradiance integral (equation ({eq:SpectralIrradiance})).
+    The line profiles are obtained by performing the spectral irradiance integral (equation (\ref{eq:SpectralIrradiance})).
+    We assume isotropic distribution for the ion velocities, assuming that the electric field is turbulent.
+    We simulate the integrated emission maps using the 
+    spectral line radiation transfer code LIME by @{citet ["doi:10.1051/0004-6361/201015333"]}.
     In Figure \ref{figEmissionMap}, we present the
     simulated integrated emission maps of the $\mathrm{HCO}^{+}$ line for
     N, T25, and T50 disk.

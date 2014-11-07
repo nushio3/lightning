@@ -134,7 +134,16 @@ Properties of LMG is no different from those of the disk gas without lightning,
 but differ in one point that LMG is subject to
 electric field $E \simeq E_{\rm crit}$. We explore the possible observational features of the LMG.
 
-This paper is organized as follows. xxx
+This paper is organized as follows. In section \ref{sec:Model}, we introduce the 
+discharge models, taking the Earth atposphere as an example (\S \ref{sec:DischargeModel}, \ref{sec:DischargeAir}); 
+introduce the protoplanetary disk model (\S \ref{sec:DiskModel}); apply the discharge model to the disk gas
+(\S \ref{sec:DiskDischargeModel}).
+In section \ref{sec:Observation} we establish our observation model
+by first calculating the terminal velocity of the 
+\S \ref{sec:ObservationLines}
+\S \ref{sec:ObservationEstimates} 
+\S \ref{sec:ObservationProfiles}
+matched filtering (\S \ref{sec:MatchedFilter}).
 
  |]
 

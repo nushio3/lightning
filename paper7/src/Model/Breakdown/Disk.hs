@@ -33,20 +33,27 @@ $\rm H_2,He,CO,O_2$ and their volume fractions are
 $0.92, 7.8\times10^{ -2},2.3\times10^{ -4},1.3\times10^{ -4}$, respectively
 @{citationGen "citep[chap. 3.4.6.]" ["bibcode:2009LanB...4B...44L"]} .
 We used cross sections data for 15eV electrons 
-tabulated in   @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]}.
-This is because $\Delta W_{\rm H_2} = 15.43{\rm eV}$ and 15eV is the closest 
-table index that is found in the database.
-The cross sections are as follows (units are in ${\rm cm}^{ -2} $).
+tabulated in   @{citep ["isbn:3-540-64296-X", "isbn:354044338X"]} (c.f. Table \ref{tbl:CrossSection}).
+This is because $\Delta W_{\rm H_2} = 15.43{\rm eV}$ and 15eV is the closest table index that is found in the database.
 
-xxx: create a separate table environment.
 
-  \begin{tabular} {ccc}
+
+\begin{table}
+\begin{center}
+  \begin{tabular} {|c|c|c|}
+\hline
 species & $\sigma_{\rm inel}$ & $\sigma_{\rm el}$ \\
+\hline
 $\rm H_2$  &  $#{ppValE 1 $ inelCrossSection 15 H2}$ &  $#{ppValE 1 $ elCrossSection 15 H2}$\\
 $\rm He$   &  $#{ppValE 1 $ inelCrossSection 15 He}$ &  $#{ppValE 1 $ elCrossSection 15 He}$\\
 $\rm CO$   &  $#{ppValE 1 $ inelCrossSection 15 CO}$ &  $#{ppValE 1 $ elCrossSection 15 CO}$\\
-$\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$
+$\rm O_2$  &  $#{ppValE 1 $ inelCrossSection 15 O2}$ &  $#{ppValE 1 $ elCrossSection 15 O2}$\\
+\hline
 \end{tabular}
+\end{center}
+\caption{Collisional cross sections of the molecules for 15eV electrons (units are in ${\rm cm}^{ -2} $).}
+\label{tbl:CrossSection}
+\end{table}
 
  Calculations similar to those in the previous section leads to the following values:
 

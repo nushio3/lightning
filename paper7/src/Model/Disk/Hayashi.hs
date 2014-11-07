@@ -34,18 +34,7 @@ import           Text.Authoring.TH
 hayashiModelDoc :: MonadAuthoring s w m => m ()
 hayashiModelDoc = do
   
-  esc "xxx: remove confusing MMSN model! The minimum-mass solar nebula (MMSN) model "
-  citep1 "bibcode:1981PThPS..70...35H"
-  esc " has been widely used in studies of the protoplanetary disk, with fruitful results."
-
-  raw "\n\n"
   
-  
-  environment "eqnarray" $ do
-    surfaceDensityGasDoc
-    raw ",\\\\"
-    temperatureFieldDoc
-    raw "."
 
   [rawQ| The assumption of the hydrostatic equilibrium leads to the vertical distribution of the gas
 \begin{eqnarray}
@@ -68,7 +57,7 @@ v_K(r)     &=& \sqrt{\frac{G M_{\odot}}{r}}.
 \begin{eqnarray}
 n_{\mathrm{H_2}}(r,z)
 &=&  #{ppValE 2 $ mmsn1au ^. numberDensityGas } 
-\exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{cm^{ -3 }}}  .\\
+\exp \left(-\frac{z^2}{2h^2}\right) {\mathrm{cm^{ -3 }}}  .
 \end{eqnarray}
    |]
 

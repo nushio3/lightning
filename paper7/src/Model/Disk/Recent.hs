@@ -20,9 +20,14 @@ calvetStandardSurfaceDensity =  640 % (undefined :: GramPerCm2)
 
 aboutLatestDiskModel :: MonadAuthoring s w m => m ()
 aboutLatestDiskModel = do
+  esc "The minimum-mass solar nebula (MMSN) model "
+  citep1 "bibcode:1981PThPS..70...35H"
+  esc " has been widely used in studies of the protoplanetary disk, with fruitful results."
+
+
   [rawQ| 
-    Recent observations have proposed sophisticated models of disks and also have reported qualitative values
-    for the inner and outer edge radius of the disks. 
+    Recent observations have contributed to sophistication of the disk models, and also have reported qualitative values
+    for the inner and outer edge radius of the disks
     @{citep ["bibcode:2002ApJ...581..357K",
              "bibcode:2009ApJ...700.1502A",
              "bibcode:2010ApJ...723.1241A",

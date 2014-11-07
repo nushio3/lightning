@@ -35,12 +35,13 @@ sectionModel = do
   
   aboutAir
   
-  command1 "subsection" $ raw "Disk Models"  
-  command1 "subsubsection" $ raw "Minimum Mass Solar Nebula Model"  
+  command1 "subsection" $ raw "The Disk Model"  
+
+  aboutLatestDiskModel
+
   hayashiModelDoc  
 
 
-  aboutLatestDiskModel
 
   command1 "subsection" $ raw "Breakdonw Models on Protoplanetary Disks"  
 

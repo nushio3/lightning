@@ -73,10 +73,17 @@ The value of $\sigma_I(\varepsilon_I)$
 This gives rise to the unique features of the lightning models in the disk.
 The predicted 
 $\varepsilon_I$
-and the velocities of the ion species are as follows (units are in cm/s);
+and the velocities of the ion species
+(Table \ref{tbl:terminalVelocity}).
 
-  \begin{tabular} {cccc}
+
+
+\begin{table}
+\begin{center}
+  \begin{tabular} {|c|ccc|}
+\hline
  &  $\mathrm{HCO}^{+}$ & $\mathrm{DCO}^{+}$ & $\mathrm{N_2H}^{+}$ \\
+\hline
 T  
   & $#{ppValE 1 $ fieldToVelocity mmsn1auT HCOPlus }$
   & $#{ppValE 1 $ fieldToVelocity mmsn1auT DCOPlus }$
@@ -92,9 +99,15 @@ R
   & $#{ppValE 1 $ fieldToVelocity mmsn1auR DCOPlus }$
   & $#{ppValE 1 $ fieldToVelocity mmsn1auR N2HPlus }$
   \\
+\hline
 \end{tabular}
+\end{center}
+\caption{The terminal velocity of the molecular ions which we use as the characteristic features
+for observational measurement of the dielectric strength.
+Units are in cm/s.
+}\label{tbl:terminalVelocity}
+\end{table}
 
-xxx: describe how these velocities are used.
 
 In the Appendix we describe
 the detail

@@ -1,4 +1,4 @@
-                {-# LANGUAGE ConstraintKinds #-}
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes #-}
@@ -39,25 +39,21 @@ sectionObservation = do
   command1 "subsection" $ raw "Estimation of the line signal strength"
   
   [rawQ| 
-  xxx: add some connection sentence. we wanted to estimate velocity.
-  xxx: The Doppler broadening of the lines of the charged molecular
-   species are the key observational features to observe the characteristic speed of the molecules, and therefore
-   the electric field strength in the protoplanetary disk. 
+  The goal of this section is to calculate the Doppler broadening of the molecular ion lines in the disk,
+  which reflects the electric field strength in the protoplanetary disk.
+  In order to establish the observation procedure, we calculate the collisional cross sections and the terminal
+  velocities of the molecules. Then, we can estimate the optical depths and the spectral irradiances of the specific
+  lines. We simulate the observational images using the calculated spectral irradiances. Finally, we establish a model discrimination procedure based on matched-filtering.
 
 
-  It is possible to observe ionized chemical species by radio telescopes such as ALMA. |]
-  raw "Observations of $\\mathrm{HCO}^{+}$,  $\\mathrm{DCO}^{+}$ and  $\\mathrm{N_2H}^{+}$    lines have been performed "
-  citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]
-  raw ". "
-  raw "We can distinguish lightning model by observing such charged molecules."
-  raw "\n\n"  
-  [rawQ|  
-
-The electric field of LMG accelerates the charged chemical species.   
+  We choose three ion species: $\mathrm{HCO}^{+}$,  $\mathrm{DCO}^{+}$ and  $\mathrm{N_2H}^{+}$  lines, whose observations have been performed 
+  @{citep ["bibcode:2011ApJ...734...98O", "bibcode:2010ApJ...720..480O"]} .
+Such charged chemical species are accelerated upto their respective terminal velocity by
+the electric field of the LMG.
 Let  $\varepsilon_I$ be the kinetic energy of a particle of such an ion species $I$.
 At the equilibrium $\varepsilon_I = e E_{\rm crit} l_{{\rm mfp},I}$.
-As shown in equation xxx, 
-The dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
+As shown in equations (\ref{eq:DischargeAir}) and (\ref{eq:DischargeDisk}), 
+the dielectric strength $E_{\rm crit}$ is proportional to the gas number density $n_n$.
 Let $A$ be the proportionality factor and $E_{\rm crit} = A n_n$ .
 Now, the mean free path $l_{{\rm mfp},I} = 1/\sigma_I(\varepsilon_I) {n_n}$ is inversely proportional to the gas number density $n_n$.
 This means that the obtained kinetic energy $\varepsilon_I$ is independent of the gas number density.
@@ -159,14 +155,16 @@ subsectionFigures = do
    \end{figure}    
     
     We calculate the line profiles for the three ion species with these seven disk models,
-    in order to study  the  ability to distinguish the lightning model from the line observations.
-    We assume that our model disk is located at the same position as
-    TW Hya i.e. at the distance of 56pc and the
-    inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]} .
-
-    In Figure \ref{fig-lightning-lp}, 
+    in order to study the ability to distinguish the lightning model from the line observations (Figure \ref{fig-lightning-lp}).
+    The line profiles are obtained by performing the spectral irradiance integral (equation ({eq:SpectralIrradiance})).
+    In Figure \ref{figEmissionMap}, we present the
     simulated integrated emission maps of the $\mathrm{HCO}^{+}$ line for
-    N, T25, and T50 disk models are shown.
+    N, T25, and T50 disk.
+    We assumed that our model disk is located at the same position as
+    TW Hya i.e. at the distance of 56pc and the
+    inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]}.
+    Our programs can be easily applied to other disk systems.
+
     
 
    \begin{figure}

@@ -46,16 +46,21 @@ aboutDielectricStrengthOfAir = do
   
   
   [rawQ|
+We begin the model section by estimating the dielectric strength of the Earth atmosphere,
+in order to introduce the reader to the discharge models we later apply to the
+protoplanetary disk gas.
+
+
 
 Dielectric strength of an insulating material is the maximum amplitude 
 of the electric field the subject material does not result in electric
-breakdown. It is physical property of central importance for discharge 
+breakdown. It is a physical property of central importance for the discharge 
 physics.
-Lightning on Earth is discharge phenomenon in the air, but it has been a long standing 
+Lightning on Earth is discharge phenomenon in the air. However, it has been a long standing 
 mystery that lightning takes place under electric field amplitude well below the 
-dielectric strength of air. 
+dielectric strength of the air. 
 
-On the one hand, the dielectric strength of air at normal temperature and pressure 
+The dielectric strength of air at normal temperature and pressure 
 (NTP; $20^{\circ}{\rm C}$ and 1atm)
 are well established from laboratory experiments @{citeDSofAir}: |]
 
@@ -64,14 +69,19 @@ are well established from laboratory experiments @{citeDSofAir}: |]
 
   [rawQ| The long-distance limit of Paschen's law states that the dielectric strength of gas 
 depends linearly on the gas number density @{citep ["isbn:978-3-642-64760-4"]}.
-However, in the case of the air the dependence of the dielectric strength on the number density is
-known to be steeper than linear. This is explained by the electron loss via three-body interactions,
-and empirical formulae are known
+However, in the case of the Earth atmosphere the dependence of the dielectric strength on the number density is
+known to be steeper than linear. This is explained by the effects of electron loss via three-body interactions
+and also collisions to the water vapor molecules. 
+Empirical formulae are known
  @{citep ["doi:10.1063/1.323084","isbn:9784130627184"]}:
          |] 
   environment "eqnarray" $ do
      [rawQ| E &=& E_0 \left( \frac{P}{P_0} \right) ^ {1.5 - 1.65} @{label takahashiDischargeFormula} , |]
-  [rawQ| where $E_0$ and $P_0$ are the dielectric strength and the pressure of the air at ground level, respectively. |]
+  [rawQ| where $E_0$ and $P_0$ are the dielectric strength and the pressure of the air at ground level, respectively. 
+The formula predicts the dielectric strength of the air to be $17 {\rm kV/cm}$ and $10 {\rm kV/cm}$ at altitudes
+3km and 6km, respectively.
+
+  |]
 
 
 
@@ -102,7 +112,7 @@ aboutThreeDischargeModel :: MonadAuthoring s w m => m ()
 aboutThreeDischargeModel = do
 
 
-  [escQ| We compare following three models of breakdown model: |]
+  [escQ| We compare following three breakdown models: |]
   
   environment "itemize" $ do
 
@@ -117,7 +127,7 @@ It has widely been used in the meteorological context,
 and also adopted into astrophysical context e.g. by
 @{citet ["doi:10.1006/icar.1999.6245", "bibcode:2010MNRAS.401.2641M"]} .
 This model explains laboratory gas discharge experiments 
-(Equations (@{ref ntpAirDielectricStrength})) well.
+(equation (@{ref ntpAirDielectricStrength})) well.
 
 
  |]
@@ -199,7 +209,7 @@ This gives
 E_{\rm crit} &=& #{ppValFIn "%.0f" airDielectricStrengthT (undefined :: KVPerCm) } {\rm kV/cm},
 \end{eqnarray}
  which is in agreement with the dielectric strength of air at ground level
-(Equations (@{ref ntpAirDielectricStrength})).
+(equation (@{ref ntpAirDielectricStrength})).
 
 On the other hand, according to Druyversteyn-Penning model
 , average kinetic energy of electron
@@ -292,7 +302,7 @@ E_{\rm c,DP} &=& \frac{\Delta W}{0.43} \sqrt{\frac{m_e}{M}} \sigma_{\mathrm{el}}
 E_{\rm c, R} &=& \frac{e^3 a_{\rm min} {\bar Z} }{8 \pi \epsilon_0 m c^2} n_n&=&
  #{ppFIn "%.1f"  airDielectricStrengthR  (kilo Volt :/ centi Meter)} \cdot
  \left( \frac{n_n}{n_{0,\mathrm{air}}}  \right)^{1}   .
-\end{array}
+\end{array} \label{eq:DischargeAir}
 \end{eqnarray}
   |]
 

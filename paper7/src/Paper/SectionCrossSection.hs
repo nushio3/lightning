@@ -79,14 +79,14 @@ Figure \ref{fig-cross-section-model}.
  \label{fig-cross-section-model}
   \end{figure}
    
-We have also studied models more complex than Equation (\ref{eq-fit-model}).
+We have also studied models more complex than equation (\ref{eq-fit-model}).
 These complex models reproduce more detailed behavior of the cross sections such as
 dependence on ion-neutral molecular mass ratio.
 However, there are numerous candidates for such models, and the
 predicted cross section values vary upto four degrees of magnitude among the models.
 Available experimental data are not abundant enough to justify a choice 
 among those complex models without risking overfitting.
-Therefore, we decided to use the simple model of Equation (\ref{eq-fit-model})
+Therefore, we decided to use the simple model of equation (\ref{eq-fit-model})
 that captures overall tendency.
       
    

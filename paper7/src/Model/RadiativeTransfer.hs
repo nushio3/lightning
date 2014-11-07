@@ -239,9 +239,12 @@ aboutScoville = do
 
   @{aboutScovilleFormula} 
 
-  where $B$ is the rotational constant of the molecule, $\mu$ is its electric dipole matrix element,
+  where $T_\mathrm{ex}$ is the excitation temperature, 
+  $\Delta v_\mathrm{gas}$ is the Doppler broadening of the target molecule,
+  $B$ is the rotational constant of the molecule, $\mu$ is its electric dipole matrix element,
+  $\theta$ is the angle between the disk axis and the line of sight,
   $h \nu_0$ is the energy difference between the two levels 
-  and $J$ is the rotational quantum number of the lower state. xxx define all the variables.
+  and $J$ is the rotational quantum number of the lower state.
 
   The optical depth of the disk with column density $N$ is
 
@@ -294,7 +297,7 @@ aboutLineProperty = do
    critical electric field. This is a result of the molecular speed becoming faster. 
    Consequently, observed line profiles are broadened. This Doppler broadening of the lines of the charged molecular
    species are the key observational features to observe the characteristic speed of the molecules, and therefore
-   the electric field strength in the protoplanetary disk.  xxx rephrase;
+   the electric field strength in the protoplanetary disk.  
    
 
    |]
@@ -325,12 +328,12 @@ E(\nu) &=& \frac{1}{D^2}
 \left(
 - \frac{m c^2 d(\nu; \nu_0,r)^2}{2 k_B T {\nu_0}^2}
 \right) 
-r \mathit{dr} \mathit{d\varphi} \cos i ,\\
+r \mathit{dr} \mathit{d\varphi} \cos \theta , \label{eq:SpectralIrradiance} \\
 \mathrm {where} ~~~
-d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin i \nonumber .
+d(\nu; \nu_0,r) &=& \nu - \nu_0 - \frac{v_K(r)}{c} \cos \varphi \sin \theta \nonumber .
 \end{eqnarray}   
    
-Here xxx: define variables.
+The integral is done in cylindrical coordinates $(r,\phi)$, and $\theta$ is the inclination angle of the disk.
 
    |]
 

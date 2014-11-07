@@ -32,6 +32,8 @@ sectionMF = do
 introMF :: MonadAuthoring s w m => m ()
 introMF = do
   [rawQ|
+  \subsection{Matched Filtering} \label{sec:MatchedFilter}
+
    We apply the matched filtering method @{citep ["doi:10.1109/PROC.1963.2383"]},
    in order to distinguish lightning model by ALMA.
    Matched filtering is

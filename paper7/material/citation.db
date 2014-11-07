@@ -728,6 +728,13 @@
       (John Wiley &amp; Sons)}, author={Dye, J. E. and Jones, J. J. and Winn, W. P.
       and Cerni, T. A. and Gardiner, B. and Lamb, D. and Pitter, R. L. and Hallett,
       J. and Saunders, C. P. R.}, year={1986}, pages={1231}}'
+- - doi:10.1051/0004-6361/201015333
+  - - ! " @article{Brinch_2010, title={LIME \xE2\x80\x93 a flexible, non-LTE line
+      excitation and radiation transfer method for millimeter and far-infrared wavelengths},
+      volume={523}, ISSN={1432-0746}, url={http://dx.doi.org/10.1051/0004-6361/201015333},
+      DOI={10.1051/0004-6361/201015333}, journal={Astronomy and Astrophysics}, publisher={EDP
+      Sciences}, author={Brinch, C. and Hogerheijde, M. R.}, year={2010}, month={Nov},
+      pages={A25}}"
 - - doi:10.1063/1.1656844
   - - ! ' @article{Nasser_1968, title={Field Criterion for Sustained Streamer Propagation},
       volume={39}, ISSN={0021-8979}, url={http://dx.doi.org/10.1063/1.1656844}, DOI={10.1063/1.1656844},

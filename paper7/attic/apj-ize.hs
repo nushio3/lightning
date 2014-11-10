@@ -1,7 +1,7 @@
-
+import qualified Data.Text as T
 
 parseFigureFns :: String -> [String]
-parseFigureFns = isEps . go
+parseFigureFns = filter isEps . go
   where
     isEps = (==".eps") .reverse . take 4 . reverse
 
@@ -15,5 +15,5 @@ parseFigureFns = isEps . go
 main :: IO ()
 main = do
   src <- readFile "output/paper.tex"
-  fns <- parseFigureFns src  
+  let fns = parseFigureFns src  
   mapM_ putStrLn fns

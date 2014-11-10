@@ -93,7 +93,7 @@ sectionIntro = do
   command1 "section" $ raw "INTRODUCTION"
   
   [rawQ| 
-Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observational data archive has been  drastically increasing, opening access to the observational results from the most advanced telescopes. However, observational methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied.
+Lightning in protoplanetary disks is one of the important topic in protoplanetary disk physics, because it is one of the elementary electromagnetic processes in the disks, it is one of the observational clue to measure the electromagnetic states of the disk, and it is one of the candidate mechanism for chondrule heating. Meanwhile, the size of the observation data archive has been  drastically increasing, opening access to the observational results from the most advanced telescopes. However, observation methods of the protoplanetary lightning using the advanced telescopes have not been seriously studied.
 
 There has been a controversial debate on the existence and the mechanism of
 protoplanetary disk lightning. 
@@ -116,7 +116,7 @@ well below the nominal dielectric strength of air
 @{citep ["doi:10.1029/JC076i024p05799", "doi:10.1063/1.1656844"]}. As a result 
 new model of lightning such as Runaway breakdown
 @{citep ["doi:10.1016/0375-9601(92)90348-P", "doi:10.1070/PU2001v044n11ABEH000939"]}
-has been proposed. We take such new models into account and propose new observational methods for
+has been proposed. We take such new models into account and propose a new observation method for
 the detection of the
 protoplanetary disk lightning. 
 Observation of the disk lightning will contribute to the
@@ -176,7 +176,7 @@ sectionConclusion = do
    We have presented three dielectric strength models for protoplanetary disks.
    They are Townsend breakdown model, Druyversteyn-Penning breakdown model,
    and runaway breakdown model, respectively.
-   We have proposed methods for observational distinguishment of the three models.
+   We have proposed a method for observational distinguishment of the three models.
    The models are distinguishable with
    the sensitivity of advanced telescopes such as ALMA.
    It is now possible to reject some of the lightning models based on ground observations.

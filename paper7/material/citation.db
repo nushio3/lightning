@@ -384,6 +384,34 @@
     - ! '   url = {http://adsabs.harvard.edu/abs/2005ApJ...628L.155I},'
     - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
     - ! '}'
+- - bibcode:2007A&A...474..653V
+  - - ! '@ARTICLE{2007A&A...474..653V,'
+    - ! '   author = {{van Leeuwen}, F.},'
+    - ! '    title = "{Validation of the new Hipparcos reduction}",'
+    - ! '  journal = {\aap},'
+    - archivePrefix = "arXiv",
+    - ! '   eprint = {0708.1752},'
+    - ! ' keywords = {space vehicles: instruments, methods: data analysis, catalogs,
+      astrometry, instrumentation: miscellaneous},'
+    - ! '     year = 2007,'
+    - ! '    month = nov,'
+    - ! '   volume = 474,'
+    - ! '    pages = {653-664},'
+    - ! '      doi = {10.1051/0004-6361:20078357},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2007A%26A...474..653V},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
+- - bibcode:2007ASSL..350.....V
+  - - ! '@PROCEEDINGS{2007ASSL..350.....V,'
+    - ! '    title = "{Hipparcos, the New Reduction of the Raw Data}",'
+    - booktitle = {Astrophysics and Space Science Library},
+    - ! '     year = 2007,'
+    - ! '   series = {Astrophysics and Space Science Library},'
+    - ! '   volume = 350,'
+    - ! '   editor = {{van Leeuwen}, F.},'
+    - ! '   url = {http://adsabs.harvard.edu/abs/2007ASSL..350.....V},'
+    - ! '  adsnote = {Provided by the SAO/NASA Astrophysics Data System}'
+    - ! '}'
 - - bibcode:2007PhRvD..76h4020V
   - - ! '@ARTICLE{2007PhRvD..76h4020V,'
     - ! '   author = {{Vaishnav}, B. and {Hinder}, I. and {Herrmann}, F. and {Shoemaker},

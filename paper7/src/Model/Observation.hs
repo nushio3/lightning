@@ -20,26 +20,31 @@ import Model.Gas
 import Model.Breakdown
 
 sourceDistance :: Length
-sourceDistance = (56) % Parsec
+sourceDistance = 54 % Parsec
+
 
 arcSecond :: Angle
 arcSecond =  (pi/180/3600) % Number
 
+
+pixelSize :: SolidAngle
+pixelSize = angularResolution |^ sTwo
+
+-- Specifications of previous observations (Matthews 2013)
 angularResolution :: Angle
 angularResolution = 0.025 *| arcSecond
 
 beamSize :: SolidAngle
 beamSize = (0.65 *| arcSecond) |*| (0.44 *| arcSecond)
 
-pixelSize :: SolidAngle
-pixelSize = angularResolution |^ sTwo
-
-
 noiseLevelPerbeam :: ChemicalSpecies -> QofU Jansky
 noiseLevelPerbeam HCOPlus = redim $ 11.3e-3 % Jansky
 noiseLevelPerbeam DCOPlus = redim $ 13.3e-3 % Jansky
-noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky 
+noiseLevelPerbeam N2HPlus = redim $ 18.0e-3 % Jansky
 noiseLevelPerbeam c = error $ "noise level undefined for : " ++ show c
+
+referenceDistance :: Length
+referenceDistance = 54 % Parsec
 
 
 psdPerPixel :: ChemicalSpecies -> QofU (Jansky :^ Two)
@@ -53,7 +58,7 @@ measureOfSensitivity n c a b = 4*|modelNorm n c a b |/|  psdPerPixel c
 
 
 modelNorm :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> QofU (Jansky :^ Two) 
-modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo) 
+modelNorm n c a b = modelNorm' n c a b % (Jansky :^ sTwo) |*| (referenceDistance |/| sourceDistance) |^ sFour
 
 modelNorm' :: Int -> ChemicalSpecies -> Maybe BreakdownModel -> Maybe BreakdownModel -> Double
 

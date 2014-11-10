@@ -12,6 +12,8 @@ import           Data.List (break)
 import           Data.Monoid ((<>))
 import           Data.Functor.Identity
 import qualified Data.Map as Map
+import           Data.Metrology.Poly
+import           Data.Metrology.Synonyms
 import qualified Data.Set as Set
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as Text
@@ -20,7 +22,9 @@ import           Text.Authoring.TH
 import           Text.LaTeX.Base.Syntax (LaTeX(..),TeXArg(..))
 import           Text.LaTeX.Base.Writer (LaTeXT(..), execLaTeXT)
 import qualified Text.LaTeX as LTX
+import           Text.Printf
 
+import           Model.Observation(sourceDistance)
 import           Paper.SectionModel (sectionModel)
 import           Paper.SectionMatchedFilter (sectionMF)
 import           Paper.SectionObservation (sectionObservation)
@@ -52,8 +56,8 @@ abstractText :: Text.Text
 abstractText = LTX.render abstract
 
 abstract :: LaTeX
-abstract = TeXRaw 
-  "In this paper, we study the observational methods for detecting and distinguishing lightning models in protoplanetary disks. We do so by observing the dielectric strength of the lightning matrix gas (LMG), the region of the disk where the electric field is strong enough for lightning. We utilize the fact that multiple positive ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishing between the models. At the distance of TW-Hya (56pc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limits of the radii of $5\\sigma$-detectable LMG clumps are between 3.0 au and 18.1 au, depending on the models."
+abstract = TeXRaw $ Text.pack $ printf
+  "In this paper, we study the observational methods for detecting and distinguishing lightning models in protoplanetary disks. We do so by observing the dielectric strength of the lightning matrix gas (LMG), the region of the disk where the electric field is strong enough for lightning. We utilize the fact that multiple positive ion species are accelerated to their characteristic terminal velocities due to the electric field. In this paper, we present three distinct discharge models. We simulate the position-velocity diagrams and the integrated emission maps for the models. We calculate the measure of sensitivity values for detection of the models, and distinguishing between the models. At the distance of TW-Hya (%.0fpc), LMG that occupies $2\\pi$ in azimuth and $25 \\mathrm{au}<r<50 \\mathrm{au}$ is  $125\\sigma$- to  $1000\\sigma$-detectable. The upper limits of the radii of $5\\sigma$-detectable LMG clumps are between 3.0 au and 18.1 au, depending on the models." (sourceDistance # Parsec)
 
    
 

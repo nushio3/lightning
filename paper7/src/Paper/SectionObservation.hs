@@ -15,6 +15,7 @@ import Data.Metrology.Synonyms
 
 import Model.Breakdown
 import Model.Disk
+import Model.Observation(sourceDistance)
 import Model.Disk.Hayashi
 import Model.Disk.Derived       
 import Model.Gas
@@ -173,9 +174,9 @@ subsectionFigures = do
     In Figure \ref{figEmissionMap}, we present the
     simulated integrated emission maps of the $\mathrm{HCO}^{+}$ line for
     N, T25, and T50 disk.
-    We assumed that our model disk is located at the same position as
-    TW Hya i.e. at the distance of 56pc and the
-    inclination angle of $7^\circ$ @{citep ["doi:10.1086/421063"]}.
+    We assumed that our model disk is located in the same way as
+    TW Hya. That is, our model disk at the distance of $#{ppFIn "%.0f" sourceDistance Parsec}$ and the
+    inclination angle of $7^\circ$ @{citep ["bibcode:2007ASSL..350.....V"]}.
     Our programs can be easily applied to other disk systems.
 
     

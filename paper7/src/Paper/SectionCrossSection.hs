@@ -69,13 +69,17 @@ are experimentally known cross section values for some fixed values of $\varepsi
 found in
   @{citet ["bibcode:1990NISTJ..95..407P", "bibcode:1991JPCRD..20..557P"]}. 
 The experimental data and the best-fit models are presented in
-Figure \ref{fig-cross-section-model}.
+Figure \ref{fig-cross-section-model}. Our cross section model predicts almost identical cross sections for
+the three collision pairs $\rm HCO^{+}-H_2$ , $\rm DCO^{+}-H_2$,  and $\rm N_2H^{+}-H_2$.
+This is because our model depends only on 
+the residual mass of species $\mu(I^{+}, I)$, and all the three pairs
+ $\rm HCO^{+}-H_2$ , $\rm DCO^{+}-H_2$,  and $\rm N_2H^{+}-H_2$ have similar residual masses.
 
   \begin{figure}
    \begin{center}
-\includegraphics[angle=270,width=12cm]{figure/cross-section-model.eps}
+\includegraphics[angle=270,width=15cm]{figure/cross-section-model.eps}
    \end{center}
-\caption{Cross section model. Experimental data are dots, and fitted models are curves.}
+\caption{Cross section model. Experimental data are points, and fitted models are curves.}
  \label{fig-cross-section-model}
   \end{figure}
    

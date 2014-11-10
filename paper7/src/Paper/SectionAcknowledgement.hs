@@ -31,6 +31,7 @@ sectionAcknowledgement = do
         consistency of physical dimensions and units in this paper.
         This work is supported by Grants-in-Aid for Scientific Research
         (\#23103005,\#24103506,\#25887023,\#26400224) from MEXT.
+        This research used computational resources of the K computer provided by the RIKEN Advanced Institute for Computational Science(AICS). We thank RIKEN AICS for the support in conducting this research.
         |]
 
                          

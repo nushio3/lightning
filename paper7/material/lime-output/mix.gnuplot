@@ -1,4 +1,4 @@
-set term postscript enhanced color solid 30
+set term postscript enhanced color 30
 set grid
 set xlabel 'velocity (km/s)'
 set ylabel 'spectral flux density (Jy)'

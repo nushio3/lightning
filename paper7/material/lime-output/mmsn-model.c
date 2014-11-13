@@ -1,14 +1,8 @@
 /*
- *  model.c
- *  LIME, The versatile 3D line modeling tool 
+ *  
+ *  A protoplanetary disk model for LIME, a line modeling tool 
  *
- *  Created by Christian Brinch on 11/05/07.
- *  Copyright 2006-2013, Christian Brinch, 
- *  <brinch@nbi.dk>
- *  Niels Bohr institutet
- *  University of Copenhagen
- *	All rights reserved.
- *
+ *  based on model.c Created by Christian Brinch.
  */
 
 #include "math.h"
